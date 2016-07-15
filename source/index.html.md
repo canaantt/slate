@@ -3,7 +3,7 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
+  - R
   - python
   - javascript
 
@@ -25,7 +25,7 @@ search: true
 
 > To authorize, use this code:
 
-```ruby
+```R
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
@@ -61,11 +61,11 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Rest API Queries
 
-## Get All Kittens
+## How to connect to Oncoscape Mongo Database?
 
-```ruby
+```R
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
@@ -131,7 +131,7 @@ Remember — a happy kitten is an authenticated kitten!
 
 ## Get a Specific Kitten
 
-```ruby
+```R
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
