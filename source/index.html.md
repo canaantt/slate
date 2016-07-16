@@ -63,13 +63,19 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 # Rest API Queries
 
-## How to connect to Oncoscape Mongo Database?
+## Connect to Oncoscape Mongo Database?
 
 ```R
-require 'kittn'
+install.packages("rmongodb")
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+library(devtools)
+install_github(repo = "mongosoup/rmongodb")
+
+library(rmongodb)
+
+help("mongo.create")
+mongo <- mongo.create()
+mongo
 ```
 
 ```python
@@ -126,60 +132,147 @@ include_cats | false | If set to true, the result will also include cats.
 available | true | If set to false, the result will include kittens that have already been adopted.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Now you are connected to Oncoscape Mongo Database through Restful API
 </aside>
 
-## Get a Specific Kitten
+## Database Collections
 
-```R
-require 'kittn'
+### HTTP Request: 
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
+`localhost:3000/api/_collections`
 
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+[ 
+  {
+            "name" : "brca",
+            "tables" : [ 
+                {
+                    "created" : ISODate("2016-06-01T18:19:36.214Z"),
+                    "name" : "drug",
+                    "records" : 2406,
+                    "collection" : "tcga_brca_drug"
+                }, 
+                {
+                    "created" : ISODate("2016-06-01T18:19:36.215Z"),
+                    "name" : "f1",
+                    "records" : 114,
+                    "collection" : "tcga_brca_f1"
+                }, 
+                {
+                    "created" : ISODate("2016-06-01T18:19:36.215Z"),
+                    "name" : "f2",
+                    "records" : 523,
+                    "collection" : "tcga_brca_f2"
+                }, 
+                {
+                    "created" : ISODate("2016-06-01T18:19:36.216Z"),
+                    "name" : "f3",
+                    "records" : 716,
+                    "collection" : "tcga_brca_f3"
+                }, 
+                {
+                    "created" : ISODate("2016-06-01T18:19:36.217Z"),
+                    "name" : "nte",
+                    "records" : 119,
+                    "collection" : "tcga_brca_nte"
+                }, 
+                {
+                    "created" : ISODate("2016-06-01T18:19:36.219Z"),
+                    "name" : "nte",
+                    "records" : 82,
+                    "collection" : "tcga_brca_nte_f1"
+                }, 
+                {
+                    "created" : ISODate("2016-06-01T18:19:36.219Z"),
+                    "name" : "omf",
+                    "records" : 82,
+                    "collection" : "tcga_brca_omf"
+                }, 
+                {
+                    "created" : ISODate("2016-06-01T18:19:36.220Z"),
+                    "name" : "pt",
+                    "records" : 1097,
+                    "collection" : "tcga_brca_pt"
+                }, 
+                {
+                    "created" : ISODate("2016-06-01T18:19:36.221Z"),
+                    "name" : "rad",
+                    "records" : 618,
+                    "collection" : "tcga_brca_rad"
+                }
+            ]
+        }
+    ] 
 ```
 
-This endpoint retrieves a specific kitten.
+### Disease Types
+Disease Code | Description
+------------ | -----------
+BRCA | Breast Invasive Carcinoma
+GBM | Glioblastoma Multiforme
+OV | Ovarian Serous Cystadenocarcinoma 
+LUAD | Lung Adenocarcinoma
+UCEC | Uterine Corpus Endometrial Carcinoma 
+KIRC | Kidney Renal Clear Cell Carcinoma  
+HNSC | Head and Neck Squamous Cell Carcinoma  
+LGG | Brain Lower Grade Glioma  
+THCA | Thyroid Carcinoma  
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+## How to query? 
 
-### HTTP Request
+### HTTP Request:
 
-`GET http://example.com/kittens/<ID>`
+`http://localhost:3000/api/tcga_gbm_drug/?q={"$fields":["gender:Male","race:Asian"]}`
 
-### URL Parameters
+### count: 
+
+`localhost:3000/api/tcga_gbm_pt?count`
+
+### $field
+
+`http://localhost:3000/api/tcga_gbm_drug/?q={"$fields":["patient_ID","race","gender"]}`
+
+### $limit
+
+`http://localhost:3000/api/tcga_gbm_drug/?q={"$limit":10}`
+
+### $skip
+
+`http://localhost:3000/api/tcga_gbm_drug/?q={"$skip":20}`
+
+### combine
+
+`http://localhost:3000/api/tcga_gbm_drug/?q={"gender":"Male", "race":"Asian","$fields":["patient_ID","race","gender"],"$limit":10,"$skip":20}`
+
+
+# Clinical Data
+
+## Common Clinical Collections in each disease type
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+tcga_gbm_pt | collection of TCGA Glioblastoma (GBM) patients 
+tcga_gbm_drug | collection of chemo drug administered on each patient
+tcga_gbm_rad | collection of radiation administered on each patient
+tcga_gbm_omf | other malignant form 
+tcga_gbm_nte | new tumor event
+tcg_gbm_f1 | the first follow up table
+tcg_gbm_nte_f1 | new tumor events follow up table
+
+## common fields
+
+## 
+
+
+# Molecular Data
+
+## Copy Number Variation
+
+## Mutation Data
+
+## Methylation Data
+
+## Expression Data
 
