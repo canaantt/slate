@@ -114,7 +114,7 @@ Now you are connected to Oncoscape Mongo Database through Restful API
 
 ## Disease Types
 
-#### Source 
+
 
 `https://tcga-data.nci.nih.gov/docs/publications/tcga/`
 
@@ -157,6 +157,11 @@ Uveal Melanoma |UVM
 ```shell
 db.getCollection('lookup_oncoscape_datasources').find({})
 ```
+
+#### Source 
+
+[TCGA Data source](https://tcga-data.nci.nih.gov/docs/publications/tcga/datatype.html)
+
 ## What kind of Data are included in each Disease Type?
 
 ```R
@@ -305,7 +310,7 @@ gbm|rad | clinical_tcga_acc_rad
 
 `http://localhost:80/api/clinical_tcga_gbm_drug/?q={"$skip":20}`
 
-### combine
+### combined query example
 
 `http://localhost:80/api/clinical_tcga_gbm_drug/?q={"gender":"Male", "race":"Asian","$fields":["patient_ID","race","gender"],"$limit":10,"$skip":20}`
 
