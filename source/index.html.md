@@ -286,12 +286,34 @@ tcg_gbm_nte_f1 | new tumor events follow up table
 
 ## common fields
 
-## 
-
-
 # Molecular Data
 
+```R
+library(TCGAgbm)
+dz <- TCGAgbm()
+names(matrices(dz))
+[1] "mtx.cn" "mtx.mrna" "mtx.mrna.ueArray" "mtx.mut" "mtx.prot"  
+```
+
 ## Copy Number Variation
+
+```R
+cn = matrices(dz)$mtx.cn
+dim(cn)
+[1] 563 23575
+cn[c(1:10), c(20:30)]
+                DVL1 FAM132A FAM138A FAM138F FAM213B FAM41C GABRD CPTP GNB1 HES4 HES5
+TCGA.02.0001.01    1       1       0       0       1      1     1    1    1    1    1
+TCGA.02.0003.01    0       0       0       0       0      0     0    0    0    0    0
+TCGA.02.0006.01    0       0       0       0       0      0     0    0    0    0    0
+TCGA.02.0007.01    0       0       1       1       0      0     0    0    0    0    0
+TCGA.02.0009.01    0       0       1       1       0      0     0    0    0    0    0
+TCGA.02.0010.01    0       0       0       0       0      0     0    0    0    0    0
+TCGA.02.0011.01    0       0       0       0       0      0     0    0    0    0    0
+TCGA.02.0014.01    0       0       1       1       0      0     0    0    0    0    0
+TCGA.02.0015.01   -1      -1       1       1      -1     -1    -1   -1   -1   -1   -1
+TCGA.02.0016.01    0       0       1       1       0      0     0    0    0    0    0
+```
 
 ## Mutation Data
 
