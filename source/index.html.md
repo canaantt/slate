@@ -243,7 +243,7 @@ gbm|rad | clinical_tcga_acc_rad
 
 ## How to query? 
 
-[Oncoscape_API_explorer]: source/images/oncoscape_explore_home.png
+![Oncoscape_API_explorer](/images/oncoscape_explore_home.png)
 
 ### HTTP Request:
 
