@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs:
-  - shell
+  - shell: mongo
   - R
   - python
   - javascript
@@ -23,43 +23,7 @@ search: true
 
 # Authentication
 
-> To authorize, use this code:
-
-```R
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+Oncoscape API authentication occurs at Mongo DB level. 
 
 # Rest API Queries
 
@@ -288,6 +252,8 @@ tcg_gbm_nte_f1 | new tumor events follow up table
 
 # Molecular Data
 
+Molecular Data sources include: cBioPortal MySQL database, other public datasets as well as private datasets. At current stage, we have JSON formatted molecular data including DNA Copy Number Variation (CNV), DNA mutation (Mut), DNA methylation (methylation), RNA expression data (mrna) and protein level data. 
+
 ```R
 library(TCGAgbm)
 dz <- TCGAgbm()
@@ -296,6 +262,8 @@ names(matrices(dz))
 ```
 
 ## Copy Number Variation
+
+Copy Number Variation are represented with [Gistic score](ftp://ftp.broadinstitute.org/pub/genepattern/modules_public_server_doc/GISTIC2.pdf). 
 
 ```R
 cn = matrices(dz)$mtx.cn
@@ -320,4 +288,8 @@ TCGA.02.0016.01    0       0       1       1       0      0     0    0    0    0
 ## Methylation Data
 
 ## Expression Data
+
+## Protein Expression Data
+
+
 
