@@ -9,12 +9,15 @@ var MongoClient = require('mongodb').MongoClient;
  
 
 var format = {
-h1: function(text) { console.log(); console.log('# '+text); },
-h2: function(text) { console.log(); console.log('## '+text); },
-text: function(text){ console.log(text); },
-codeStart: function() { console.log(); console.log('```'); },
-codeStop: function() { console.log(); console.log('```'); },
-code: function(text) { console.log(text) }
+	h1: function(text) { console.log(); console.log('# '+text); },
+	h2: function(text) { console.log(); console.log('## '+text); },
+	h3: function(text) { console.log(); console.log('### '+text); },
+	text: function(text){ console.log(text); },
+	codeStart: function() { console.log(); console.log('```'); },
+	codeComment: function(text) {console.log(); console.log('>' + text);},
+	codeStop: function() { console.log(); console.log('```'); },
+	code: function(text) { console.log('"'+ text + '"'); },
+	jsonfy: function(text) { console.log('{' + text + '}');}
 };
 
 
@@ -22,26 +25,26 @@ code: function(text) { console.log(text) }
 
 
 var onerror = function(e){
-console.log(e);
+	console.log(e);
 }
 
+
+format.h2("Clinical Collection Queries");
 
 // Connect to the db
 MongoClient.connect("mongodb://localhost:27017/oncoscape", function(err, db) {
   if(!err) {
-    console.log("We are connected");
     var collection = db.collection('lookup_oncoscape_datasources');
     collection.find().toArray(function(err, documents) {
-        console.log(documents); 
         documents.forEach(function(doc){
-			format.h1(doc.disease);
-			console.log(doc.collections);
+			format.h3(doc.disease);
+			format.codeComment("List of collections");
+			format.codeStart();
+			format.text(JSON.stringify(doc.collections,null, 4));;
+			format.codeStart();
 			Object.keys(doc.collections).forEach(function(key){
-				//var value = this.collections[key];
-				console.log(key);
-				format.codeStart();
-				//format.code("http://oncoscape.sttrcancer.io/api/"+value);
-				format.codeStop();	
+				var value = doc.collections[key];
+				//format.text("http://oncoscape.sttrcancer.io/api/"+value);
          	});
       });
     });   
