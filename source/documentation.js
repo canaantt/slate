@@ -14,6 +14,7 @@ var format = {
 	h3: function(text) { console.log(); console.log('### '+text); },
 	h4: function(text) { console.log(); console.log('#### '+text); },
 	text: function(text){ console.log(text); },
+	url: function(text) {console.log(); console.log('`' + text + '`');},
 	codeStart: function() { console.log(); console.log('```'); },
 	codeComment: function(text) {console.log(); console.log('>' + text);},
 	codeStop: function() { console.log(); console.log('```'); },
@@ -30,7 +31,7 @@ var onerror = function(e){
 }
 
 
-format.h2("Clinical Collection Queries");
+format.h2("Clinical Collections by Disease");
 
 // Connect to the db
 MongoClient.connect("mongodb://localhost:27017/oncoscape", function(err, db) {
@@ -38,51 +39,12 @@ MongoClient.connect("mongodb://localhost:27017/oncoscape", function(err, db) {
     var collection = db.collection('lookup_oncoscape_datasources');
     collection.find().toArray(function(err, documents) {
         documents.forEach(function(doc){
-			if(doc.disease == "gbm"){
-				format.h3(doc.disease);
-				format.text(JSON.stringify(doc,null, 4));
-				format.codeComment("List of collections");
-				format.codeStart();
-				format.text(JSON.stringify(doc.collections,null, 4));
-				format.codeStop();
-				Object.keys(doc.collections).forEach(function(key){
-					if(key == 1) {
-						var value = doc.collections[key];
-						//remove 'clinical_' prefix for local version
-						if(value.indexOf('clinical_') > -1){
-							value = value.replace('clinical_','');	
-						}
-						format.text(value);
-						var collection = db.collection(value);
-					    collection.count(function(err, count){
-					    	format.h3(doc.disease);
-					    	format.codeComment("TCGA GBM Patient Colleciton Count: ");
-					    	format.codeStart();
-					    	format.text(count);
-					    	format.codeStop();
-					    });
-					}
-					
-	         	});
-	         	format.h3("Other Disease Types");	
-			}else{
-				format.h4(doc.disease);
-			}
-			// else{
-			// 	format.codeComment("List of collections");
-			// 	format.codeStart();
-			// 	format.text(JSON.stringify(doc.collections,null, 4));
-			// 	format.codeStart();
-			// 	Object.keys(doc.collections).forEach(function(key){
-			// 		var value = doc.collections[key];
-			// 		//remove 'clinical_' prefix for local version
-			// 		if(value.indexOf('clinical_') > -1){
-			// 			value = value.replace('clinical_','');	
-			// 		}
-	  //        	});
-			// }
-			
-      });
+			format.h3(doc.disease);
+			format.codeComment("List of collections");
+			format.codeStart();
+			format.text(JSON.stringify(doc.collections,null, 4));
+			format.codeStop();
+	    });
     });   
 	db.close();		
   }else{
@@ -90,20 +52,40 @@ MongoClient.connect("mongodb://localhost:27017/oncoscape", function(err, db) {
   }
 }); 
 
-// MongoClient.connect("mongodb://localhost:27017/oncoscape", function(err, db) {
-//   if(!err) {
-//     var collection = db.collection('tcga_gbm_pt');
-//     collection.count(function(err, count){
-//     	format.h3("gbm");
-//     	format.codeComment("TCGA GBM Patient Colleciton Count: ");
-//     	format.codeStart();
-//     	format.text(count);
-//     	format.codeStop();
-//     });
-// 	db.close();		
-//   }else{
-//   	onerror(err.errmsg);
-//   }
-// }); 
+MongoClient.connect("mongodb://localhost:27017/oncoscape", function(err, db) {
+  if(!err) {
+  	format.h2("Query Disease Collections");
+  	format.text("Query detail information from collection tcga_acc_drug");
+    var collection = db.collection('tcga_acc_drug');
+    collection.find().toArray(function(err, doc){
+    	var max_ind = 0;
+    	var max_len = 0;
+    	var ind = 0;
+    	doc.forEach(function(d){
+    		if(d.length > max_len){
+    			max_len = d.length;
+    			max_ind = ind;
+    		}
+    		ind = ind + 1;
+    	});
+    	format.h3("List of fields that most records have");
+    	format.codeComment("Fields for most of records in tcga_acc_drug");
+    	format.codeStart();
+    	format.text(Object.keys(doc[max_ind]));	
+    	format.codeStop(); 
+    	format.h3("Get the count of records in the collection");
+    	format.h4("HTTP Request")
+    	format.url("GET http://oncoscape.sttrcancer.io/api/tcga_acc_drug/count");
+    	format.codeComment("Count of records in tcga_acc_drug");
+    	format.codeStart();
+    	format.code(doc.length);
+    	format.codeStop(); 
+    });
+
+	db.close();		
+  }else{
+  	onerror(err.errmsg);
+  }
+}); 
 
 
