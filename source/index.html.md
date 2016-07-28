@@ -13,6 +13,7 @@ toc_footers:
 
 includes:
   - clinic_api_query
+  - tools
   - errors
 
 search: true

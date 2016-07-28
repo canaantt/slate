@@ -2,6 +2,7 @@
 ## Clinical Collections by Disease
 
 ### acc
+Adrenocortical carcinoma
 
 >List of collections
 
@@ -19,6 +20,7 @@
 ```
 
 ### blca
+Bladder Urothelial Carcinoma
 
 >List of collections
 
@@ -37,6 +39,7 @@
 ```
 
 ### brca
+Breast invasive carcinoma
 
 >List of collections
 
@@ -56,6 +59,7 @@
 ```
 
 ### cesc
+Cervical squamous cell carcinoma and endocervical adenocarcinoma
 
 >List of collections
 
@@ -74,6 +78,7 @@
 ```
 
 ### chol
+Cholangiocarcinoma
 
 >List of collections
 
@@ -91,6 +96,7 @@
 ```
 
 ### coad
+undefined
 
 >List of collections
 
@@ -108,6 +114,7 @@
 ```
 
 ### dlbc
+Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
 
 >List of collections
 
@@ -124,6 +131,7 @@
 ```
 
 ### esca
+Esophageal carcinoma
 
 >List of collections
 
@@ -141,6 +149,7 @@
 ```
 
 ### gbm
+Glioblastoma multiforme
 
 >List of collections
 
@@ -158,6 +167,7 @@
 ```
 
 ### hnsc
+Head and Neck squamous cell carcinoma
 
 >List of collections
 
@@ -176,6 +186,7 @@
 ```
 
 ### kich
+Kidney Chromophobe
 
 >List of collections
 
@@ -193,6 +204,7 @@
 ```
 
 ### kirc
+Kidney renal clear cell carcinoma
 
 >List of collections
 
@@ -209,6 +221,7 @@
 ```
 
 ### kirp
+Kidney renal papillary cell carcinoma
 
 >List of collections
 
@@ -225,6 +238,7 @@
 ```
 
 ### laml
+Acute Myeloid Leukemia
 
 >List of collections
 
@@ -236,6 +250,7 @@
 ```
 
 ### lgg
+Brain Lower Grade Glioma
 
 >List of collections
 
@@ -252,6 +267,7 @@
 ```
 
 ### lich
+undefined
 
 >List of collections
 
@@ -269,6 +285,7 @@
 ```
 
 ### luad
+Lung adenocarcinoma
 
 >List of collections
 
@@ -285,6 +302,7 @@
 ```
 
 ### lusc
+Lung squamous cell carcinoma
 
 >List of collections
 
@@ -301,6 +319,7 @@
 ```
 
 ### meso
+Mesothelioma
 
 >List of collections
 
@@ -318,6 +337,7 @@
 ```
 
 ### ov
+Ovarian serous cystadenocarcinoma
 
 >List of collections
 
@@ -335,6 +355,7 @@
 ```
 
 ### paad
+Pancreatic adenocarcinoma
 
 >List of collections
 
@@ -352,6 +373,7 @@
 ```
 
 ### pcpg
+Pheochromocytoma and Paraganglioma
 
 >List of collections
 
@@ -369,6 +391,7 @@
 ```
 
 ### prad
+Prostate adenocarcinoma
 
 >List of collections
 
@@ -385,6 +408,7 @@
 ```
 
 ### read
+Rectum adenocarcinoma
 
 >List of collections
 
@@ -402,6 +426,7 @@
 ```
 
 ### sarc
+Sarcoma
 
 >List of collections
 
@@ -419,6 +444,7 @@
 ```
 
 ### skcm
+Skin Cutaneous Melanoma
 
 >List of collections
 
@@ -435,6 +461,7 @@
 ```
 
 ### stad
+Stomach adenocarcinoma
 
 >List of collections
 
@@ -451,6 +478,7 @@
 ```
 
 ### tgct
+Testicular Germ Cell Tumors
 
 >List of collections
 
@@ -468,6 +496,7 @@
 ```
 
 ### thca
+Thyroid carcinoma
 
 >List of collections
 
@@ -487,6 +516,7 @@
 ```
 
 ### thym
+Thymoma
 
 >List of collections
 
@@ -504,6 +534,7 @@
 ```
 
 ### ucec
+Uterine Corpus Endometrial Carcinoma
 
 >List of collections
 
@@ -523,6 +554,7 @@
 ```
 
 ### ucs
+Uterine Carcinosarcoma
 
 >List of collections
 
@@ -540,6 +572,7 @@
 ```
 
 ### uvm
+Uveal Melanoma
 
 >List of collections
 
@@ -557,6 +590,8 @@
 
 ## Query Disease Collections
 Query detail information from collection tcga_acc_drug
+Query detail information from collection tcga_acc_drug
+{"drug_therapy_name":"SUNITINIB"}
 
 ### List of fields that most records have
 
@@ -584,6 +619,49 @@ Query detail information from collection tcga_acc_drug
 >Count of records in tcga_acc_drug
 
 ```
-"36"
+36
+
+```
+
+### Filter by Drug Name
+
+#### HTTP Request
+
+`GET http://oncoscape.sttrcancer.io/api/tcga_acc_drug/?q={"drug_therapy_name":"SUNITINIB"}`
+
+>all the patients have been used on SUNITINIB
+
+```
+[
+    {
+        "_id": "574f1b528b0b1b0970a6edbf",
+        "patient_ID": "TCGA.OR.A5JM",
+        "drug_therapy_name": "SUNITINIB",
+        "pharmaceutical_therapy_type1": "TARGETED MOLECULAR THERAPY",
+        "days_to_drug_start": 378,
+        "pharmaceutical_tx_ongoing": false,
+        "days_to_drug_end": 439,
+        "treatment_best_response": "PROGRESSIVE DISEASE",
+        "therapy_on_clinical_trial": false
+    },
+    {
+        "_id": "574f1b6bccb4c70b704964d9",
+        "patient_ID": "TCGA.OR.A5JM",
+        "drug_therapy_name": "SUNITINIB",
+        "pharmaceutical_therapy_type1": "TARGETED MOLECULAR THERAPY",
+        "days_to_drug_start": 378,
+        "pharmaceutical_tx_ongoing": false,
+        "days_to_drug_end": 439,
+        "treatment_best_response": "PROGRESSIVE DISEASE",
+        "therapy_on_clinical_trial": false
+    }
+]
+
+```
+
+>Count of the records meet this criteria
+
+```
+2
 
 ```

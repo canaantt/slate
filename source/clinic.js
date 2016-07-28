@@ -30,7 +30,41 @@ var onerror = function(e){
 	console.log(e);
 }
 
-
+var disease_code = {
+ "LAML" : "Acute Myeloid Leukemia",
+ "ACC":"Adrenocortical carcinoma",
+ "BLCA" : "Bladder Urothelial Carcinoma",
+ "LGG": "Brain Lower Grade Glioma",
+ "BRCA": "Breast invasive carcinoma",
+ "CESC": "Cervical squamous cell carcinoma and endocervical adenocarcinoma",  
+ "CHOL":"Cholangiocarcinoma",
+ "COAD ":"Colon adenocarcinoma", 
+ "ESCA":"Esophageal carcinoma",  
+ "GBM":"Glioblastoma multiforme",    
+ "HNSC":"Head and Neck squamous cell carcinoma", 
+ "KICH":"Kidney Chromophobe",
+ "KIRC":"Kidney renal clear cell carcinoma", 
+ "KIRP":"Kidney renal papillary cell carcinoma", 
+ "LIHC":"Liver hepatocellular carcinoma",    
+ "LUAD":"Lung adenocarcinoma",   
+ "LUSC":"Lung squamous cell carcinoma",  
+ "DLBC":"Lymphoid Neoplasm Diffuse Large B-cell Lymphoma",
+ "MESO":"Mesothelioma",
+ "OV":"Ovarian serous cystadenocarcinoma",   
+ "PAAD":"Pancreatic adenocarcinoma", 
+ "PCPG":"Pheochromocytoma and Paraganglioma",    
+ "PRAD":"Prostate adenocarcinoma",   
+ "READ":"Rectum adenocarcinoma", 
+ "SARC":"Sarcoma",   
+ "SKCM":"Skin Cutaneous Melanoma",   
+ "STAD":"Stomach adenocarcinoma",    
+ "TGCT":"Testicular Germ Cell Tumors",   
+ "THYM":"Thymoma",   
+ "THCA":"Thyroid carcinoma", 
+ "UCS":"Uterine Carcinosarcoma",
+ "UCEC":"Uterine Corpus Endometrial Carcinoma",  
+ "UVM":"Uveal Melanoma"
+ };
 format.h2("Clinical Collections by Disease");
 
 // Connect to the db
@@ -40,6 +74,7 @@ MongoClient.connect("mongodb://localhost:27017/oncoscape", function(err, db) {
     collection.find().toArray(function(err, documents) {
         documents.forEach(function(doc){
 			format.h3(doc.disease);
+      format.text(disease_code[doc.disease.toUpperCase()]);
 			format.codeComment("List of collections");
 			format.codeStart();
 			format.text(JSON.stringify(doc.collections,null, 4));
@@ -78,13 +113,39 @@ MongoClient.connect("mongodb://localhost:27017/oncoscape", function(err, db) {
     	format.url("GET http://oncoscape.sttrcancer.io/api/tcga_acc_drug/count");
     	format.codeComment("Count of records in tcga_acc_drug");
     	format.codeStart();
-    	format.code(doc.length);
+    	format.text(doc.length);
     	format.codeStop(); 
     });
 
 	db.close();		
   }else{
   	onerror(err.errmsg);
+  }
+}); 
+
+MongoClient.connect("mongodb://localhost:27017/oncoscape", function(err, db) {
+  if(!err) {
+    format.text("Query detail information from collection tcga_acc_drug");
+    var collection = db.collection('tcga_acc_drug');
+    var query = '{"drug_therapy_name":"SUNITINIB"}';
+    console.log(query);
+    collection.find({"drug_therapy_name":"SUNITINIB"}).toArray(function(err, doc){
+      format.h3("Filter by Drug Name");
+      format.h4("HTTP Request")
+      format.url("GET http://oncoscape.sttrcancer.io/api/tcga_acc_drug/?q=" + query);
+      format.codeComment("all the patients have been used on SUNITINIB");
+      format.codeStart();
+      format.text(JSON.stringify(doc, null, 4)); 
+      format.codeStop(); 
+      format.codeComment("Count of the records meet this criteria");
+      format.codeStart(); 
+      format.text(doc.length);
+      format.codeStop(); 
+    });
+
+  db.close();   
+  }else{
+    onerror(err.errmsg);
   }
 }); 
 
