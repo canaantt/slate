@@ -1,4 +1,13 @@
 
+## Mongo DB Connection
+```javascript
+const mongoose = require("mongoose");
+"mongoose.connect("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/os?authSource=admin",{user: "oncoscapeRead",pass: "i1f4d9botHD4xnZ"});"
+"var connection = mongoose.connection;"
+"var db = connection.db;"
+
+```
+
 ## Clinical Collections by Disease
 
 ### acc
@@ -8,13 +17,13 @@ Adrenocortical carcinoma
 
 ```
 {
-    "drug": "tcga_acc_drug",
-    "f1": "tcga_acc_f1",
-    "nte": "tcga_acc_nte",
-    "nte_f1": "tcga_acc_nte_f1",
-    "omf": "tcga_acc_omf",
-    "pt": "tcga_acc_pt",
-    "rad": "tcga_acc_rad"
+    "drug": "clinical_tcga_acc_drug",
+    "f1": "clinical_tcga_acc_f1",
+    "nte": "clinical_tcga_acc_nte",
+    "nte_f1": "clinical_tcga_acc_nte_f1",
+    "omf": "clinical_tcga_acc_omf",
+    "pt": "clinical_tcga_acc_pt",
+    "rad": "clinical_tcga_acc_rad"
 }
 
 ```
@@ -26,14 +35,14 @@ Bladder Urothelial Carcinoma
 
 ```
 {
-    "drug": "tcga_blca_drug",
-    "f1": "tcga_blca_f1",
-    "f2": "tcga_blca_f2",
-    "nte": "tcga_blca_nte",
-    "nte_f1": "tcga_blca_nte_f1",
-    "omf": "tcga_blca_omf",
-    "pt": "tcga_blca_pt",
-    "rad": "tcga_blca_rad"
+    "drug": "clinical_tcga_blca_drug",
+    "f1": "clinical_tcga_blca_f1",
+    "f2": "clinical_tcga_blca_f2",
+    "nte": "clinical_tcga_blca_nte",
+    "nte_f1": "clinical_tcga_blca_nte_f1",
+    "omf": "clinical_tcga_blca_omf",
+    "pt": "clinical_tcga_blca_pt",
+    "rad": "clinical_tcga_blca_rad"
 }
 
 ```
@@ -45,15 +54,15 @@ Breast invasive carcinoma
 
 ```
 {
-    "drug": "tcga_brca_drug",
-    "f1": "tcga_brca_f1",
-    "f2": "tcga_brca_f2",
-    "f3": "tcga_brca_f3",
-    "nte": "tcga_brca_nte",
-    "nte_f1": "tcga_brca_nte_f1",
-    "omf": "tcga_brca_omf",
-    "pt": "tcga_brca_pt",
-    "rad": "tcga_brca_rad"
+    "drug": "clinical_tcga_brca_drug",
+    "f1": "clinical_tcga_brca_f1",
+    "f2": "clinical_tcga_brca_f2",
+    "f3": "clinical_tcga_brca_f3",
+    "nte": "clinical_tcga_brca_nte",
+    "nte_f1": "clinical_tcga_brca_nte_f1",
+    "omf": "clinical_tcga_brca_omf",
+    "pt": "clinical_tcga_brca_pt",
+    "rad": "clinical_tcga_brca_rad"
 }
 
 ```
@@ -65,14 +74,14 @@ Cervical squamous cell carcinoma and endocervical adenocarcinoma
 
 ```
 {
-    "drug": "tcga_cesc_drug",
-    "f1": "tcga_cesc_f1",
-    "f2": "tcga_cesc_f2",
-    "nte": "tcga_cesc_nte",
-    "nte_f1": "tcga_cesc_nte_f1",
-    "omf": "tcga_cesc_omf",
-    "pt": "tcga_cesc_pt",
-    "rad": "tcga_cesc_rad"
+    "drug": "clinical_tcga_cesc_drug",
+    "f1": "clinical_tcga_cesc_f1",
+    "f2": "clinical_tcga_cesc_f2",
+    "nte": "clinical_tcga_cesc_nte",
+    "nte_f1": "clinical_tcga_cesc_nte_f1",
+    "omf": "clinical_tcga_cesc_omf",
+    "pt": "clinical_tcga_cesc_pt",
+    "rad": "clinical_tcga_cesc_rad"
 }
 
 ```
@@ -84,13 +93,13 @@ Cholangiocarcinoma
 
 ```
 {
-    "drug": "tcga_chol_drug",
-    "f1": "tcga_chol_f1",
-    "nte": "tcga_chol_nte",
-    "nte_f1": "tcga_chol_nte_f1",
-    "omf": "tcga_chol_omf",
-    "pt": "tcga_chol_pt",
-    "rad": "tcga_chol_rad"
+    "drug": "clinical_tcga_chol_drug",
+    "f1": "clinical_tcga_chol_f1",
+    "nte": "clinical_tcga_chol_nte",
+    "nte_f1": "clinical_tcga_chol_nte_f1",
+    "omf": "clinical_tcga_chol_omf",
+    "pt": "clinical_tcga_chol_pt",
+    "rad": "clinical_tcga_chol_rad"
 }
 
 ```
@@ -102,13 +111,13 @@ undefined
 
 ```
 {
-    "drug": "tcga_coad_drug",
-    "f1": "tcga_coad_f1",
-    "nte": "tcga_coad_nte",
-    "nte_f1": "tcga_coad_nte_f1",
-    "omf": "tcga_coad_omf",
-    "pt": "tcga_coad_pt",
-    "rad": "tcga_coad_rad"
+    "drug": "clinical_tcga_coad_drug",
+    "f1": "clinical_tcga_coad_f1",
+    "nte": "clinical_tcga_coad_nte",
+    "nte_f1": "clinical_tcga_coad_nte_f1",
+    "omf": "clinical_tcga_coad_omf",
+    "pt": "clinical_tcga_coad_pt",
+    "rad": "clinical_tcga_coad_rad"
 }
 
 ```
@@ -120,12 +129,12 @@ Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
 
 ```
 {
-    "drug": "tcga_dlbc_drug",
-    "f1": "tcga_dlbc_f1",
-    "nte": "tcga_dlbc_nte",
-    "nte_f1": "tcga_dlbc_nte_f1",
-    "pt": "tcga_dlbc_pt",
-    "rad": "tcga_dlbc_rad"
+    "drug": "clinical_tcga_dlbc_drug",
+    "f1": "clinical_tcga_dlbc_f1",
+    "nte": "clinical_tcga_dlbc_nte",
+    "nte_f1": "clinical_tcga_dlbc_nte_f1",
+    "pt": "clinical_tcga_dlbc_pt",
+    "rad": "clinical_tcga_dlbc_rad"
 }
 
 ```
@@ -137,13 +146,13 @@ Esophageal carcinoma
 
 ```
 {
-    "drug": "tcga_esca_drug",
-    "f1": "tcga_esca_f1",
-    "nte": "tcga_esca_nte",
-    "nte_f1": "tcga_esca_nte_f1",
-    "omf": "tcga_esca_omf",
-    "pt": "tcga_esca_pt",
-    "rad": "tcga_esca_rad"
+    "drug": "clinical_tcga_esca_drug",
+    "f1": "clinical_tcga_esca_f1",
+    "nte": "clinical_tcga_esca_nte",
+    "nte_f1": "clinical_tcga_esca_nte_f1",
+    "omf": "clinical_tcga_esca_omf",
+    "pt": "clinical_tcga_esca_pt",
+    "rad": "clinical_tcga_esca_rad"
 }
 
 ```
@@ -155,13 +164,13 @@ Glioblastoma multiforme
 
 ```
 {
-    "drug": "tcga_gbm_drug",
-    "f1": "tcga_gbm_f1",
-    "nte": "tcga_gbm_nte",
-    "nte_f1": "tcga_gbm_nte_f1",
-    "omf": "tcga_gbm_omf",
-    "pt": "tcga_gbm_pt",
-    "rad": "tcga_gbm_rad"
+    "drug": "clinical_tcga_gbm_drug",
+    "f1": "clinical_tcga_gbm_f1",
+    "nte": "clinical_tcga_gbm_nte",
+    "nte_f1": "clinical_tcga_gbm_nte_f1",
+    "omf": "clinical_tcga_gbm_omf",
+    "pt": "clinical_tcga_gbm_pt",
+    "rad": "clinical_tcga_gbm_rad"
 }
 
 ```
@@ -173,14 +182,14 @@ Head and Neck squamous cell carcinoma
 
 ```
 {
-    "drug": "tcga_hnsc_drug",
-    "f1": "tcga_hnsc_f1",
-    "f2": "tcga_hnsc_f2",
-    "nte": "tcga_hnsc_nte",
-    "nte_f1": "tcga_hnsc_nte_f1",
-    "omf": "tcga_hnsc_omf",
-    "pt": "tcga_hnsc_pt",
-    "rad": "tcga_hnsc_rad"
+    "drug": "clinical_tcga_hnsc_drug",
+    "f1": "clinical_tcga_hnsc_f1",
+    "f2": "clinical_tcga_hnsc_f2",
+    "nte": "clinical_tcga_hnsc_nte",
+    "nte_f1": "clinical_tcga_hnsc_nte_f1",
+    "omf": "clinical_tcga_hnsc_omf",
+    "pt": "clinical_tcga_hnsc_pt",
+    "rad": "clinical_tcga_hnsc_rad"
 }
 
 ```
@@ -192,13 +201,13 @@ Kidney Chromophobe
 
 ```
 {
-    "drug": "tcga_kich_drug",
-    "f1": "tcga_kich_f1",
-    "nte": "tcga_kich_nte",
-    "nte_f1": "tcga_kich_nte_f1",
-    "omf": "tcga_kich_omf",
-    "pt": "tcga_kich_pt",
-    "rad": "tcga_kich_rad"
+    "drug": "clinical_tcga_kich_drug",
+    "f1": "clinical_tcga_kich_f1",
+    "nte": "clinical_tcga_kich_nte",
+    "nte_f1": "clinical_tcga_kich_nte_f1",
+    "omf": "clinical_tcga_kich_omf",
+    "pt": "clinical_tcga_kich_pt",
+    "rad": "clinical_tcga_kich_rad"
 }
 
 ```
@@ -210,12 +219,12 @@ Kidney renal clear cell carcinoma
 
 ```
 {
-    "drug": "tcga_kirc_drug",
-    "f1": "tcga_kirc_f1",
-    "nte": "tcga_kirc_nte",
-    "omf": "tcga_kirc_omf",
-    "pt": "tcga_kirc_pt",
-    "rad": "tcga_kirc_rad"
+    "drug": "clinical_tcga_kirc_drug",
+    "f1": "clinical_tcga_kirc_f1",
+    "nte": "clinical_tcga_kirc_nte",
+    "omf": "clinical_tcga_kirc_omf",
+    "pt": "clinical_tcga_kirc_pt",
+    "rad": "clinical_tcga_kirc_rad"
 }
 
 ```
@@ -227,12 +236,12 @@ Kidney renal papillary cell carcinoma
 
 ```
 {
-    "drug": "tcga_kirp_drug",
-    "f1": "tcga_kirp_f1",
-    "nte": "tcga_kirp_nte",
-    "omf": "tcga_kirp_omf",
-    "pt": "tcga_kirp_pt",
-    "rad": "tcga_kirp_rad"
+    "drug": "clinical_tcga_kirp_drug",
+    "f1": "clinical_tcga_kirp_f1",
+    "nte": "clinical_tcga_kirp_nte",
+    "omf": "clinical_tcga_kirp_omf",
+    "pt": "clinical_tcga_kirp_pt",
+    "rad": "clinical_tcga_kirp_rad"
 }
 
 ```
@@ -244,7 +253,7 @@ Acute Myeloid Leukemia
 
 ```
 {
-    "pt": "tcga_laml_pt"
+    "pt": "clinical_tcga_laml_pt"
 }
 
 ```
@@ -256,30 +265,30 @@ Brain Lower Grade Glioma
 
 ```
 {
-    "drug": "tcga_lgg_drug",
-    "f1": "tcga_lgg_f1",
-    "nte": "tcga_lgg_nte",
-    "omf": "tcga_lgg_omf",
-    "pt": "tcga_lgg_pt",
-    "rad": "tcga_lgg_rad"
+    "drug": "clinical_tcga_lgg_drug",
+    "f1": "clinical_tcga_lgg_f1",
+    "nte": "clinical_tcga_lgg_nte",
+    "omf": "clinical_tcga_lgg_omf",
+    "pt": "clinical_tcga_lgg_pt",
+    "rad": "clinical_tcga_lgg_rad"
 }
 
 ```
 
 ### lich
-undefined
+Liver hepatocellular carcinoma
 
 >List of collections
 
 ```
 {
-    "drug": "tcga_lich_drug",
-    "f1": "tcga_lich_f1",
-    "nte": "tcga_lich_nte",
-    "nte_f1": "tcga_lich_nte_f1",
-    "omf": "tcga_lich_omf",
-    "pt": "tcga_lich_pt",
-    "rad": "tcga_lich_rad"
+    "drug": "clinical_tcga_lich_drug",
+    "f1": "clinical_tcga_lich_f1",
+    "nte": "clinical_tcga_lich_nte",
+    "nte_f1": "clinical_tcga_lich_nte_f1",
+    "omf": "clinical_tcga_lich_omf",
+    "pt": "clinical_tcga_lich_pt",
+    "rad": "clinical_tcga_lich_rad"
 }
 
 ```
@@ -291,12 +300,12 @@ Lung adenocarcinoma
 
 ```
 {
-    "drug": "tcga_luad_drug",
-    "f1": "tcga_luad_f1",
-    "nte": "tcga_luad_nte",
-    "omf": "tcga_luad_omf",
-    "pt": "tcga_luad_pt",
-    "rad": "tcga_luad_rad"
+    "drug": "clinical_tcga_luad_drug",
+    "f1": "clinical_tcga_luad_f1",
+    "nte": "clinical_tcga_luad_nte",
+    "omf": "clinical_tcga_luad_omf",
+    "pt": "clinical_tcga_luad_pt",
+    "rad": "clinical_tcga_luad_rad"
 }
 
 ```
@@ -308,12 +317,12 @@ Lung squamous cell carcinoma
 
 ```
 {
-    "drug": "tcga_lusc_drug",
-    "f1": "tcga_lusc_f1",
-    "nte": "tcga_lusc_nte",
-    "omf": "tcga_lusc_omf",
-    "pt": "tcga_lusc_pt",
-    "rad": "tcga_lusc_rad"
+    "drug": "clinical_tcga_lusc_drug",
+    "f1": "clinical_tcga_lusc_f1",
+    "nte": "clinical_tcga_lusc_nte",
+    "omf": "clinical_tcga_lusc_omf",
+    "pt": "clinical_tcga_lusc_pt",
+    "rad": "clinical_tcga_lusc_rad"
 }
 
 ```
@@ -325,13 +334,13 @@ Mesothelioma
 
 ```
 {
-    "drug": "tcga_meso_drug",
-    "f1": "tcga_meso_f1",
-    "nte": "tcga_meso_nte",
-    "nte_f1": "tcga_meso_nte_f1",
-    "omf": "tcga_meso_omf",
-    "pt": "tcga_meso_pt",
-    "rad": "tcga_meso_rad"
+    "drug": "clinical_tcga_meso_drug",
+    "f1": "clinical_tcga_meso_f1",
+    "nte": "clinical_tcga_meso_nte",
+    "nte_f1": "clinical_tcga_meso_nte_f1",
+    "omf": "clinical_tcga_meso_omf",
+    "pt": "clinical_tcga_meso_pt",
+    "rad": "clinical_tcga_meso_rad"
 }
 
 ```
@@ -343,13 +352,13 @@ Ovarian serous cystadenocarcinoma
 
 ```
 {
-    "drug": "tcga_ov_drug",
-    "f1": "tcga_ov_f1",
-    "nte": "tcga_ov_nte",
-    "nte_f1": "tcga_ov_nte_f1",
-    "omf": "tcga_ov_omf",
-    "pt": "tcga_ov_pt",
-    "rad": "tcga_ov_rad"
+    "drug": "clinical_tcga_ov_drug",
+    "f1": "clinical_tcga_ov_f1",
+    "nte": "clinical_tcga_ov_nte",
+    "nte_f1": "clinical_tcga_ov_nte_f1",
+    "omf": "clinical_tcga_ov_omf",
+    "pt": "clinical_tcga_ov_pt",
+    "rad": "clinical_tcga_ov_rad"
 }
 
 ```
@@ -361,13 +370,13 @@ Pancreatic adenocarcinoma
 
 ```
 {
-    "drug": "tcga_paad_drug",
-    "f1": "tcga_paad_f1",
-    "nte": "tcga_paad_nte",
-    "nte_f1": "tcga_paad_nte_f1",
-    "omf": "tcga_paad_omf",
-    "pt": "tcga_paad_pt",
-    "rad": "tcga_paad_rad"
+    "drug": "clinical_tcga_paad_drug",
+    "f1": "clinical_tcga_paad_f1",
+    "nte": "clinical_tcga_paad_nte",
+    "nte_f1": "clinical_tcga_paad_nte_f1",
+    "omf": "clinical_tcga_paad_omf",
+    "pt": "clinical_tcga_paad_pt",
+    "rad": "clinical_tcga_paad_rad"
 }
 
 ```
@@ -379,13 +388,13 @@ Pheochromocytoma and Paraganglioma
 
 ```
 {
-    "drug": "tcga_pcpg_drug",
-    "f1": "tcga_pcpg_f1",
-    "nte": "tcga_pcpg_nte",
-    "nte_f1": "tcga_pcpg_nte_f1",
-    "omf": "tcga_pcpg_omf",
-    "pt": "tcga_pcpg_pt",
-    "rad": "tcga_pcpg_rad"
+    "drug": "clinical_tcga_pcpg_drug",
+    "f1": "clinical_tcga_pcpg_f1",
+    "nte": "clinical_tcga_pcpg_nte",
+    "nte_f1": "clinical_tcga_pcpg_nte_f1",
+    "omf": "clinical_tcga_pcpg_omf",
+    "pt": "clinical_tcga_pcpg_pt",
+    "rad": "clinical_tcga_pcpg_rad"
 }
 
 ```
@@ -397,12 +406,12 @@ Prostate adenocarcinoma
 
 ```
 {
-    "drug": "tcga_prad_drug",
-    "f1": "tcga_prad_f1",
-    "nte": "tcga_prad_nte",
-    "omf": "tcga_prad_omf",
-    "pt": "tcga_prad_pt",
-    "rad": "tcga_prad_rad"
+    "drug": "clinical_tcga_prad_drug",
+    "f1": "clinical_tcga_prad_f1",
+    "nte": "clinical_tcga_prad_nte",
+    "omf": "clinical_tcga_prad_omf",
+    "pt": "clinical_tcga_prad_pt",
+    "rad": "clinical_tcga_prad_rad"
 }
 
 ```
@@ -414,13 +423,13 @@ Rectum adenocarcinoma
 
 ```
 {
-    "drug": "tcga_read_drug",
-    "f1": "tcga_read_f1",
-    "nte": "tcga_read_nte",
-    "nte_f1": "tcga_read_nte_f1",
-    "omf": "tcga_read_omf",
-    "pt": "tcga_read_pt",
-    "rad": "tcga_read_rad"
+    "drug": "clinical_tcga_read_drug",
+    "f1": "clinical_tcga_read_f1",
+    "nte": "clinical_tcga_read_nte",
+    "nte_f1": "clinical_tcga_read_nte_f1",
+    "omf": "clinical_tcga_read_omf",
+    "pt": "clinical_tcga_read_pt",
+    "rad": "clinical_tcga_read_rad"
 }
 
 ```
@@ -432,13 +441,13 @@ Sarcoma
 
 ```
 {
-    "drug": "tcga_sarc_drug",
-    "f1": "tcga_sarc_f1",
-    "nte": "tcga_sarc_nte",
-    "nte_f1": "tcga_sarc_nte_f1",
-    "omf": "tcga_sarc_omf",
-    "pt": "tcga_sarc_pt",
-    "rad": "tcga_sarc_rad"
+    "drug": "clinical_tcga_sarc_drug",
+    "f1": "clinical_tcga_sarc_f1",
+    "nte": "clinical_tcga_sarc_nte",
+    "nte_f1": "clinical_tcga_sarc_nte_f1",
+    "omf": "clinical_tcga_sarc_omf",
+    "pt": "clinical_tcga_sarc_pt",
+    "rad": "clinical_tcga_sarc_rad"
 }
 
 ```
@@ -450,12 +459,12 @@ Skin Cutaneous Melanoma
 
 ```
 {
-    "drug": "tcga_skcm_drug",
-    "f1": "tcga_skcm_f1",
-    "nte": "tcga_skcm_nte",
-    "omf": "tcga_skcm_omf",
-    "pt": "tcga_skcm_pt",
-    "rad": "tcga_skcm_rad"
+    "drug": "clinical_tcga_skcm_drug",
+    "f1": "clinical_tcga_skcm_f1",
+    "nte": "clinical_tcga_skcm_nte",
+    "omf": "clinical_tcga_skcm_omf",
+    "pt": "clinical_tcga_skcm_pt",
+    "rad": "clinical_tcga_skcm_rad"
 }
 
 ```
@@ -467,12 +476,12 @@ Stomach adenocarcinoma
 
 ```
 {
-    "drug": "tcga_stad_drug",
-    "f1": "tcga_stad_f1",
-    "nte": "tcga_stad_nte",
-    "omf": "tcga_stad_omf",
-    "pt": "tcga_stad_pt",
-    "rad": "tcga_stad_rad"
+    "drug": "clinical_tcga_stad_drug",
+    "f1": "clinical_tcga_stad_f1",
+    "nte": "clinical_tcga_stad_nte",
+    "omf": "clinical_tcga_stad_omf",
+    "pt": "clinical_tcga_stad_pt",
+    "rad": "clinical_tcga_stad_rad"
 }
 
 ```
@@ -484,13 +493,13 @@ Testicular Germ Cell Tumors
 
 ```
 {
-    "drug": "tcga_tgct_drug",
-    "f1": "tcga_tgct_f1",
-    "nte": "tcga_tgct_nte",
-    "nte_f1": "tcga_tgct_nte_f1",
-    "omf": "tcga_tgct_omf",
-    "pt": "tcga_tgct_pt",
-    "rad": "tcga_tgct_rad"
+    "drug": "clinical_tcga_tgct_drug",
+    "f1": "clinical_tcga_tgct_f1",
+    "nte": "clinical_tcga_tgct_nte",
+    "nte_f1": "clinical_tcga_tgct_nte_f1",
+    "omf": "clinical_tcga_tgct_omf",
+    "pt": "clinical_tcga_tgct_pt",
+    "rad": "clinical_tcga_tgct_rad"
 }
 
 ```
@@ -502,15 +511,15 @@ Thyroid carcinoma
 
 ```
 {
-    "drug": "tcga_thca_drug",
-    "f1": "tcga_thca_f1",
-    "f2": "tcga_thca_f2",
-    "nte": "tcga_thca_nte",
-    "nte_f1": "tcga_thca_nte_f1",
-    "nte_f2": "tcga_thca_nte_f2",
-    "omf": "tcga_thca_omf",
-    "pt": "tcga_thca_pt",
-    "rad": "tcga_thca_rad"
+    "drug": "clinical_tcga_thca_drug",
+    "f1": "clinical_tcga_thca_f1",
+    "f2": "clinical_tcga_thca_f2",
+    "nte": "clinical_tcga_thca_nte",
+    "nte_f1": "clinical_tcga_thca_nte_f1",
+    "nte_f2": "clinical_tcga_thca_nte_f2",
+    "omf": "clinical_tcga_thca_omf",
+    "pt": "clinical_tcga_thca_pt",
+    "rad": "clinical_tcga_thca_rad"
 }
 
 ```
@@ -522,13 +531,13 @@ Thymoma
 
 ```
 {
-    "drug": "tcga_thym_drug",
-    "f1": "tcga_thym_f1",
-    "nte": "tcga_thym_nte",
-    "nte_f1": "tcga_thym_nte_f1",
-    "omf": "tcga_thym_omf",
-    "pt": "tcga_thym_pt",
-    "rad": "tcga_thym_rad"
+    "drug": "clinical_tcga_thym_drug",
+    "f1": "clinical_tcga_thym_f1",
+    "nte": "clinical_tcga_thym_nte",
+    "nte_f1": "clinical_tcga_thym_nte_f1",
+    "omf": "clinical_tcga_thym_omf",
+    "pt": "clinical_tcga_thym_pt",
+    "rad": "clinical_tcga_thym_rad"
 }
 
 ```
@@ -540,15 +549,15 @@ Uterine Corpus Endometrial Carcinoma
 
 ```
 {
-    "drug": "tcga_ucec_drug",
-    "f1": "tcga_ucec_f1",
-    "f2": "tcga_ucec_f2",
-    "f3": "tcga_ucec_f3",
-    "nte": "tcga_ucec_nte",
-    "nte_f1": "tcga_ucec_nte_f1",
-    "omf": "tcga_ucec_omf",
-    "pt": "tcga_ucec_pt",
-    "rad": "tcga_ucec_rad"
+    "drug": "clinical_tcga_ucec_drug",
+    "f1": "clinical_tcga_ucec_f1",
+    "f2": "clinical_tcga_ucec_f2",
+    "f3": "clinical_tcga_ucec_f3",
+    "nte": "clinical_tcga_ucec_nte",
+    "nte_f1": "clinical_tcga_ucec_nte_f1",
+    "omf": "clinical_tcga_ucec_omf",
+    "pt": "clinical_tcga_ucec_pt",
+    "rad": "clinical_tcga_ucec_rad"
 }
 
 ```
@@ -560,13 +569,13 @@ Uterine Carcinosarcoma
 
 ```
 {
-    "drug": "tcga_ucs_drug",
-    "f1": "tcga_ucs_f1",
-    "nte": "tcga_ucs_nte",
-    "nte_f1": "tcga_ucs_nte_f1",
-    "omf": "tcga_ucs_omf",
-    "pt": "tcga_ucs_pt",
-    "rad": "tcga_ucs_rad"
+    "drug": "clinical_tcga_ucs_drug",
+    "f1": "clinical_tcga_ucs_f1",
+    "nte": "clinical_tcga_ucs_nte",
+    "nte_f1": "clinical_tcga_ucs_nte_f1",
+    "omf": "clinical_tcga_ucs_omf",
+    "pt": "clinical_tcga_ucs_pt",
+    "rad": "clinical_tcga_ucs_rad"
 }
 
 ```
@@ -578,35 +587,65 @@ Uveal Melanoma
 
 ```
 {
-    "drug": "tcga_uvm_drug",
-    "f1": "tcga_uvm_f1",
-    "nte": "tcga_uvm_nte",
-    "omf": "tcga_uvm_omf",
-    "pt": "tcga_uvm_pt",
-    "rad": "tcga_uvm_rad"
+    "drug": "clinical_tcga_uvm_drug",
+    "f1": "clinical_tcga_uvm_f1",
+    "nte": "clinical_tcga_uvm_nte",
+    "omf": "clinical_tcga_uvm_omf",
+    "pt": "clinical_tcga_uvm_pt",
+    "rad": "clinical_tcga_uvm_rad"
 }
 
 ```
 
-## Query Disease Collections
-Query detail information from collection tcga_acc_drug
-Query detail information from collection tcga_acc_drug
-{"drug_therapy_name":"SUNITINIB"}
-
 ### List of fields that most records have
 
->Fields for most of records in tcga_acc_drug
+>Fields for most of records in clinical_tcga_acc_pt
 
 ```
 [ '_id',
   'patient_ID',
-  'drug_therapy_name',
-  'pharmaceutical_therapy_type1',
-  'days_to_drug_start',
-  'pharmaceutical_tx_ongoing',
-  'days_to_drug_end',
-  'treatment_best_response',
-  'therapy_on_clinical_trial' ]
+  'prospective_collection',
+  'retrospective_collection',
+  'gender',
+  'race',
+  'history_other_malignancy',
+  'history_neoadjuvant_treatment',
+  'status_tumor',
+  'status_vital',
+  'radiation_treatment_adjuvant',
+  'pharmaceutical_tx_adjuvant',
+  'pharm_tx_mitotane',
+  'laterality',
+  'histologic_diagnosis',
+  'diagnosis_year',
+  'weiss_score_overall',
+  'mitoses_per_50_hpf',
+  'stage_S',
+  'residual_tumor',
+  'history_adrenal_hormone_excess',
+  'molecular_studies_others_performed',
+  'new_tumor_event_diagnosis',
+  'age_at_initial_pathologic_diagnosis',
+  'atypical_mitotic_figures',
+  'stage_M',
+  'cytoplasm_less_than_equal_25_percent',
+  'days_to_birth',
+  'days_to_death',
+  'days_to_diagnosis',
+  'diffuse_architecture',
+  'icd_10',
+  'icd_3_histology',
+  'icd_3',
+  'invasion_of_tumor_capsule',
+  'mitotic_rate_greater_than_5/50_HPF',
+  'necrosis',
+  'nuclear_grade_III_IV',
+  'stage_N1',
+  'stage_T1',
+  'sinusoid_invasion',
+  'tissue_source_site_code',
+  'tumor_tissue_site',
+  'weiss_venous_invasion' ]
 
 ```
 
@@ -614,46 +653,53 @@ Query detail information from collection tcga_acc_drug
 
 #### HTTP Request
 
-`GET http://oncoscape.sttrcancer.io/api/tcga_acc_drug/count`
+`GET http://oncoscape.sttrcancer.io/api/clinical_tcga_acc_pt/count`
 
->Count of records in tcga_acc_drug
 
-```
-36
+>Count of records in clinical_tcga_acc_pt
 
 ```
+92
 
-### Filter by Drug Name
+```
+
+### Query detail information from collection clinical_tcga_acc_pt
+Filter by gender and race and only show the selected fields
 
 #### HTTP Request
 
-`GET http://oncoscape.sttrcancer.io/api/tcga_acc_drug/?q={"drug_therapy_name":"SUNITINIB"}`
+`GET http://oncoscape.sttrcancer.io/api/clinical_tcga_acc_pt/?q={"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}`
 
->all the patients have been used on SUNITINIB
+only show gender, race and patient_ID
+
+`"$fields":["gender","race","patient_ID"]`
+
+skip the first five records
+
+`"$skip":5`
+
+limit the final output to two records.
+
+`"$limit":2`
+
+
+>Male White patients result: 
 
 ```
 [
     {
-        "_id": "574f1b528b0b1b0970a6edbf",
-        "patient_ID": "TCGA.OR.A5JM",
-        "drug_therapy_name": "SUNITINIB",
-        "pharmaceutical_therapy_type1": "TARGETED MOLECULAR THERAPY",
-        "days_to_drug_start": 378,
-        "pharmaceutical_tx_ongoing": false,
-        "days_to_drug_end": 439,
-        "treatment_best_response": "PROGRESSIVE DISEASE",
-        "therapy_on_clinical_trial": false
+        "_id": "5776e1b487fac0aca951b80f",
+        "patient_ID": "TCGA.OR.A5JG",
+        "gender": "MALE",
+        "race": "WHITE",
+        "histologic_diagnosis": "ADRENOCORTICAL CARCINOMA"
     },
     {
-        "_id": "574f1b6bccb4c70b704964d9",
-        "patient_ID": "TCGA.OR.A5JM",
-        "drug_therapy_name": "SUNITINIB",
-        "pharmaceutical_therapy_type1": "TARGETED MOLECULAR THERAPY",
-        "days_to_drug_start": 378,
-        "pharmaceutical_tx_ongoing": false,
-        "days_to_drug_end": 439,
-        "treatment_best_response": "PROGRESSIVE DISEASE",
-        "therapy_on_clinical_trial": false
+        "_id": "5776e1b487fac0aca951b811",
+        "patient_ID": "TCGA.OR.A5JI",
+        "gender": "MALE",
+        "race": "WHITE",
+        "histologic_diagnosis": "ADRENOCORTICAL CARCINOMA"
     }
 ]
 
@@ -663,5 +709,27 @@ Query detail information from collection tcga_acc_drug
 
 ```
 2
+
+```
+```javascript
+collection = db.collection("clinical_tcga_acc_pt");
+"collection.find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true}).limit(2).skip(5).toArray(function(err, doc){);console.log(JSON.stringify(doc, null, 4));"
+
+```
+```mongo
+db.getCollection("clinical_tcga_acc_pt").find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true}).skip(5).limit(2)
+
+```
+```r
+install.packages("rmongodb")
+"library(rmongodb)"
+
+```
+```python
+pip install pymongo
+"from pymongo import MongoClient"
+"client = MongoClient("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/os?authSource=admin")"
+"db = client.os"
+"db["clinical_tcga_acc_pt"]"
 
 ```
