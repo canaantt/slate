@@ -91,7 +91,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;R&quot;,&quot;python&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -101,8 +101,8 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="shell">mongo</a>
+              <a href="#" data-language-name="R">R</a>
               <a href="#" data-language-name="python">python</a>
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
@@ -113,8 +113,8 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li>email to contact@oncoscape.org</li>
+            <li><a href='https://github.com/FredHutch/Oncoscape'>Oncoscape Github Site</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -126,231 +126,811 @@
 
 <h1 id="authentication">Authentication</h1>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Oncoscape API authentication occurs at Mongo DB level. </p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<h1 id="rest-api-queries">Rest API Queries</h1>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+          <h2 id="mongo-db-connection">Mongo DB Connection</h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"mongoose"</span><span class="p">);</span>
+<span class="s2">"mongoose.connect("</span><span class="nx">mongodb</span><span class="err">:</span><span class="c1">//oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/os?authSource=admin",{user: "oncoscapeRead",pass: "i1f4d9botHD4xnZ"});"</span>
+<span class="s2">"var connection = mongoose.connection;"</span>
+<span class="s2">"var db = connection.db;"</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
 </code></pre>
+
+<h2 id="clinical-collections-by-disease">Clinical Collections by Disease</h2>
+
+<h3 id="acc">acc</h3>
+
+<p>Adrenocortical carcinoma</p>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all kittens.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>List of collections</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_rad"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<h3 id="blca">blca</h3>
 
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p>Bladder Urothelial Carcinoma</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_f2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+</span></code></pre>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h3 id="brca">brca</h3>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
+<p>Breast invasive carcinoma</p>
 
-          <h1 id="errors">Errors</h1>
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_brca_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_brca_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_brca_f2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_brca_f3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_brca_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_brca_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_brca_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_brca_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_brca_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+</span></code></pre>
 
-<p>The Kittn API uses the following error codes:</p>
+<h3 id="cesc">cesc</h3>
 
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
-</tr>
-</tbody></table>
+<p>Cervical squamous cell carcinoma and endocervical adenocarcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_cesc_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_cesc_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_cesc_f2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_cesc_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_cesc_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_cesc_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_cesc_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_cesc_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="chol">chol</h3>
+
+<p>Cholangiocarcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_chol_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_chol_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_chol_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_chol_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_chol_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_chol_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_chol_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="coad">coad</h3>
+
+<p>undefined</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_coad_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_coad_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_coad_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_coad_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_coad_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_coad_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_coad_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="dlbc">dlbc</h3>
+
+<p>Lymphoid Neoplasm Diffuse Large B-cell Lymphoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_dlbc_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_dlbc_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_dlbc_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_dlbc_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_dlbc_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_dlbc_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="esca">esca</h3>
+
+<p>Esophageal carcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_esca_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_esca_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_esca_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_esca_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_esca_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_esca_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_esca_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="gbm">gbm</h3>
+
+<p>Glioblastoma multiforme</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_gbm_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_gbm_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_gbm_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_gbm_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_gbm_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_gbm_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_gbm_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="hnsc">hnsc</h3>
+
+<p>Head and Neck squamous cell carcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_hnsc_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_hnsc_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_hnsc_f2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_hnsc_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_hnsc_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_hnsc_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_hnsc_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_hnsc_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="kich">kich</h3>
+
+<p>Kidney Chromophobe</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kich_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kich_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kich_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kich_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kich_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kich_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kich_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="kirc">kirc</h3>
+
+<p>Kidney renal clear cell carcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirc_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirc_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirc_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirc_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirc_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirc_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="kirp">kirp</h3>
+
+<p>Kidney renal papillary cell carcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirp_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirp_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirp_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirp_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirp_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_kirp_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="laml">laml</h3>
+
+<p>Acute Myeloid Leukemia</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_laml_pt"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="lgg">lgg</h3>
+
+<p>Brain Lower Grade Glioma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lgg_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lgg_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lgg_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lgg_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lgg_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lgg_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="lich">lich</h3>
+
+<p>Liver hepatocellular carcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lich_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lich_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lich_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lich_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lich_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lich_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lich_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="luad">luad</h3>
+
+<p>Lung adenocarcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_luad_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_luad_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_luad_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_luad_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_luad_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_luad_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="lusc">lusc</h3>
+
+<p>Lung squamous cell carcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lusc_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lusc_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lusc_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lusc_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lusc_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_lusc_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="meso">meso</h3>
+
+<p>Mesothelioma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_meso_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_meso_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_meso_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_meso_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_meso_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_meso_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_meso_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="ov">ov</h3>
+
+<p>Ovarian serous cystadenocarcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ov_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ov_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ov_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ov_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ov_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ov_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ov_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="paad">paad</h3>
+
+<p>Pancreatic adenocarcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_paad_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_paad_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_paad_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_paad_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_paad_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_paad_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_paad_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="pcpg">pcpg</h3>
+
+<p>Pheochromocytoma and Paraganglioma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_pcpg_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_pcpg_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_pcpg_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_pcpg_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_pcpg_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_pcpg_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_pcpg_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="prad">prad</h3>
+
+<p>Prostate adenocarcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_prad_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_prad_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_prad_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_prad_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_prad_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_prad_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="read">read</h3>
+
+<p>Rectum adenocarcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_read_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_read_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_read_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_read_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_read_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_read_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_read_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="sarc">sarc</h3>
+
+<p>Sarcoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_sarc_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_sarc_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_sarc_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_sarc_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_sarc_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_sarc_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_sarc_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="skcm">skcm</h3>
+
+<p>Skin Cutaneous Melanoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_skcm_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_skcm_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_skcm_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_skcm_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_skcm_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_skcm_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="stad">stad</h3>
+
+<p>Stomach adenocarcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_stad_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_stad_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_stad_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_stad_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_stad_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_stad_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="tgct">tgct</h3>
+
+<p>Testicular Germ Cell Tumors</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_tgct_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_tgct_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_tgct_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_tgct_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_tgct_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_tgct_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_tgct_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="thca">thca</h3>
+
+<p>Thyroid carcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thca_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thca_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thca_f2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thca_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thca_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thca_nte_f2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thca_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thca_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thca_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="thym">thym</h3>
+
+<p>Thymoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thym_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thym_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thym_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thym_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thym_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thym_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_thym_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="ucec">ucec</h3>
+
+<p>Uterine Corpus Endometrial Carcinoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucec_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucec_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucec_f2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucec_f3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucec_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucec_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucec_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucec_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucec_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="ucs">ucs</h3>
+
+<p>Uterine Carcinosarcoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucs_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucs_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucs_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte_f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucs_nte_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucs_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucs_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_ucs_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="uvm">uvm</h3>
+
+<p>Uveal Melanoma</p>
+
+<blockquote>
+<p>List of collections</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"drug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_uvm_drug"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"f1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_uvm_f1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_uvm_nte"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"omf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_uvm_omf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_uvm_pt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_uvm_rad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="list-of-fields-that-most-records-have">List of fields that most records have</h3>
+
+<blockquote>
+<p>Fields for most of records in clinical_tcga_acc_pt</p>
+</blockquote>
+<pre class="highlight plaintext"><code>[ '_id',
+  'patient_ID',
+  'prospective_collection',
+  'retrospective_collection',
+  'gender',
+  'race',
+  'history_other_malignancy',
+  'history_neoadjuvant_treatment',
+  'status_tumor',
+  'status_vital',
+  'radiation_treatment_adjuvant',
+  'pharmaceutical_tx_adjuvant',
+  'pharm_tx_mitotane',
+  'laterality',
+  'histologic_diagnosis',
+  'diagnosis_year',
+  'weiss_score_overall',
+  'mitoses_per_50_hpf',
+  'stage_S',
+  'residual_tumor',
+  'history_adrenal_hormone_excess',
+  'molecular_studies_others_performed',
+  'new_tumor_event_diagnosis',
+  'age_at_initial_pathologic_diagnosis',
+  'atypical_mitotic_figures',
+  'stage_M',
+  'cytoplasm_less_than_equal_25_percent',
+  'days_to_birth',
+  'days_to_death',
+  'days_to_diagnosis',
+  'diffuse_architecture',
+  'icd_10',
+  'icd_3_histology',
+  'icd_3',
+  'invasion_of_tumor_capsule',
+  'mitotic_rate_greater_than_5/50_HPF',
+  'necrosis',
+  'nuclear_grade_III_IV',
+  'stage_N1',
+  'stage_T1',
+  'sinusoid_invasion',
+  'tissue_source_site_code',
+  'tumor_tissue_site',
+  'weiss_venous_invasion' ]
+
+</code></pre>
+
+<h3 id="get-the-count-of-records-in-the-collection">Get the count of records in the collection</h3>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET http://oncoscape.sttrcancer.io/api/clinical_tcga_acc_pt/count</code></p>
+
+<blockquote>
+<p>Count of records in clinical_tcga_acc_pt</p>
+</blockquote>
+<pre class="highlight plaintext"><code>92
+
+</code></pre>
+
+<h3 id="query-detail-information-from-collection-clinical_tcga_acc_pt">Query detail information from collection clinical_tcga_acc_pt</h3>
+
+<p>Filter by gender and race and only show the selected fields</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET http://oncoscape.sttrcancer.io/api/clinical_tcga_acc_pt/?q={&quot;gender&quot;:&quot;MALE&quot;, &quot;race&quot;:&quot;WHITE&quot;,&quot;$fields&quot;:[&quot;gender&quot;,&quot;race&quot;,&quot;patient_ID&quot;],&quot;$skip&quot;:5,&quot;$limit&quot;:2}</code></p>
+
+<p>only show gender, race and patient_ID</p>
+
+<p><code class="prettyprint">&quot;$fields&quot;:[&quot;gender&quot;,&quot;race&quot;,&quot;patient_ID&quot;]</code></p>
+
+<p>skip the first five records</p>
+
+<p><code class="prettyprint">&quot;$skip&quot;:5</code></p>
+
+<p>limit the final output to two records.</p>
+
+<p><code class="prettyprint">&quot;$limit&quot;:2</code></p>
+
+<blockquote>
+<p>Male White patients result: </p>
+</blockquote>
+<pre class="highlight plaintext"><code>[
+    {
+        "_id": "5776e1b487fac0aca951b80f",
+        "patient_ID": "TCGA.OR.A5JG",
+        "gender": "MALE",
+        "race": "WHITE",
+        "histologic_diagnosis": "ADRENOCORTICAL CARCINOMA"
+    },
+    {
+        "_id": "5776e1b487fac0aca951b811",
+        "patient_ID": "TCGA.OR.A5JI",
+        "gender": "MALE",
+        "race": "WHITE",
+        "histologic_diagnosis": "ADRENOCORTICAL CARCINOMA"
+    }
+]
+
+</code></pre>
+
+<blockquote>
+<p>Count of the records meet this criteria</p>
+</blockquote>
+<pre class="highlight plaintext"><code>2
+
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">collection</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s2">"clinical_tcga_acc_pt"</span><span class="p">);</span>
+<span class="s2">"collection.find({"</span><span class="nx">gender</span><span class="s2">":"</span><span class="nx">MALE</span><span class="s2">", "</span><span class="nx">race</span><span class="s2">":"</span><span class="nx">WHITE</span><span class="s2">"},{"</span><span class="nx">patient_ID</span><span class="s2">":true, "</span><span class="nx">gender</span><span class="s2">":true, "</span><span class="nx">race</span><span class="s2">":true, "</span><span class="nx">histologic_diagnosis</span><span class="s2">":true}).limit(2).skip(5).toArray(function(err, doc){);console.log(JSON.stringify(doc, null, 4));"</span>
+
+</code></pre>
+<pre class="highlight plaintext"><code>db.getCollection("clinical_tcga_acc_pt").find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true}).skip(5).limit(2)
+
+</code></pre>
+<pre class="highlight r"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"rmongodb"</span><span class="p">)</span>
+<span class="s2">"library(rmongodb)"</span>
+
+</code></pre>
+<pre class="highlight python"><code><span class="n">pip</span> <span class="n">install</span> <span class="n">pymongo</span>
+<span class="s">"from pymongo import MongoClient"</span>
+<span class="s">"client = MongoClient("</span><span class="n">mongodb</span><span class="p">:</span><span class="o">//</span><span class="n">oncoscape</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">db1</span><span class="o">.</span><span class="n">sttrcancer</span><span class="o">.</span><span class="n">io</span><span class="p">:</span><span class="mi">27017</span><span class="p">,</span><span class="n">oncoscape</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">db2</span><span class="o">.</span><span class="n">sttrcancer</span><span class="o">.</span><span class="n">io</span><span class="p">:</span><span class="mi">27017</span><span class="p">,</span><span class="n">oncoscape</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">db3</span><span class="o">.</span><span class="n">sttrcancer</span><span class="o">.</span><span class="n">io</span><span class="p">:</span><span class="mi">27017</span><span class="o">/</span><span class="n">os</span><span class="err">?</span><span class="n">authSource</span><span class="o">=</span><span class="n">admin</span><span class="s">")"</span>
+<span class="s">"db = client.os"</span>
+<span class="s">"db["</span><span class="n">clinical_tcga_acc_pt</span><span class="s">"]"</span>
+
+</code></pre>
+
+          <h2 id="tools">Tools</h2>
+
+<h3 id="markers-patients">Markers + Patients</h3>
+
+<p>Link copy number variation and mutation data to patients.</p>
+
+<h3 id="timelines">Timelines</h3>
+
+<h3 id="survival">Survival</h3>
+
+<p>Compare survival rates of selected patients against the remaining population in a Kaplan Meier plot.</p>
+
+<h3 id="pathways">Pathways</h3>
+
+<p>Map patient specific expression levels on a hand curated network of genes.</p>
+
+<h3 id="patient-data">Patient Data</h3>
+
+<h3 id="plsr">PLSR</h3>
+
+<p>Use linear regression to correlate genes with clinical features using RNA expression.</p>
+
+<h3 id="pca">PCA</h3>
+
+<p>Two dimensional view of per sample expression data.</p>
+
+<h3 id="oncoprint">Oncoprint</h3>
+
+<h3 id="geneset-test">Geneset Test</h3>
+
+<h3 id="data-explorer">Data Explorer</h3>
+
+<h3 id="metadata">MetaData</h3>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="shell">mongo</a>
+                <a href="#" data-language-name="R">R</a>
                 <a href="#" data-language-name="python">python</a>
                 <a href="#" data-language-name="javascript">javascript</a>
           </div>
