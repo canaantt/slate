@@ -1,10 +1,9 @@
-//var connectionString = 'mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017/os';
-//var comongo = require('co-mongodb');
-//var co = require('co');
-//var db = "os";
-const _ = require('underscore');
-//var MongoClient = require('mongodb').MongoClient;
-const mongoose = require("mongoose");
+var comongo = require('co-mongodb');
+var co = require('co');
+var disease_tables = [];
+var db, collection,db_collections,collection_name, count,manifest, manifest_content;
+var diseases = [];
+var availableCollectionTags = [];
 
  
 
@@ -13,7 +12,7 @@ var format = {
 	h2: function(text) { console.log(); console.log('## '+text); },
 	h3: function(text) { console.log(); console.log('### '+text); },
 	h4: function(text) { console.log(); console.log('#### '+text); },
-	text: function(text){ console.log(text); },
+	text: function(text){ console.log(); console.log('##### '+text);  },
 	url: function(text) {console.log(); console.log('`' + text + '`'); console.log();},
 	codeStart: function() { console.log(); console.log('```'); },
 	codeComment: function(text) {console.log(); console.log('>' + text);},
@@ -29,6 +28,9 @@ var format = {
 
 
 var disease_code = {
+ "HG19" : "Genome Platform",
+ "BRAIN": "Lower Grade Glioma & Glioblastoma multiforme",
+ "COADREAD": "Colon adenocarcinoma & Rectum adenocarcinoma",
  "LAML" : "Acute Myeloid Leukemia",
  "ACC":"Adrenocortical carcinoma",
  "BLCA" : "Bladder Urothelial Carcinoma",
@@ -66,122 +68,147 @@ var disease_code = {
 
 format.h2("Mongo DB Connection");
 format.codeJSStart('const mongoose = require("mongoose");');
-format.code('mongoose.connect("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/os?authSource=admin",{user: "oncoscapeRead",pass: "i1f4d9botHD4xnZ"});');
+format.code('mongoose.connect("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin",{user: "oncoscapeRead",pass: "i1f4d9botHD4xnZ"});');
 format.code('var connection = mongoose.connection;');
 format.code('var db = connection.db;');
 format.codeStop();
- 
-
-
 format.h2("Clinical Collections by Disease");
 
-// Connect to the db
-mongoose.connect(
-    'mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/os?authSource=admin', {
-        db: {
-            native_parser: true
-        },
-        server: {
-            poolSize: 5,
-            reconnectTries: Number.MAX_VALUE
-        },
-        replset: {
-            rs_name: 'rs0'
-        },
-        user: 'oncoscapeRead',
-        pass: 'i1f4d9botHD4xnZ'
-    });
+var onerror = function(e){
+    console.log(e);
+  };
 
-var connection = mongoose.connection;
-connection.once('open', function(){
 
-    var db = connection.db;
-    /* First Query on lookup_oncoscape_datasources */
-    collection = db.collection('lookup_oncoscape_datasources');
-    collection.find().toArray(function(err, documents) {
-      if (err){ console.dir(err); }
-      documents.forEach(function(doc){
-        format.h3(doc.disease);
-        format.text(disease_code[doc.disease.toUpperCase()]);
-        format.codeComment("List of collections");
-        format.codeStart();
-        format.text(JSON.stringify(doc.collections,null, 4));
-        format.codeStop();
-      });
-      /* Second Query on clinical_tcga_acc_pt */
-      collection = db.collection('clinical_tcga_acc_pt');
-      collection.find().toArray(function(err, doc){
-        var max_ind = 0;
-        var max_len = 0;
-        var ind = 0;
-        doc.forEach(function(d){
-         if(d.length > max_len){
-           max_len = d.length;
-           max_ind = ind;
-         }
-         ind = ind + 1;
-        });
-        format.h3("List of fields that most records have");
-        format.codeComment("Fields for most of records in clinical_tcga_acc_pt");
-        format.codeStart();
-        format.text(Object.keys(doc[max_ind])); 
-        format.codeStop(); 
-        format.h3("Get the count of records in the collection");
-        format.h4("HTTP Request")
-        format.url("GET http://oncoscape.sttrcancer.io/api/clinical_tcga_acc_pt/count");
-        format.codeComment("Count of records in clinical_tcga_acc_pt");
-        format.codeStart();
-        format.text(doc.length);
-        format.codeStop();
-        format.h3("Query detail information from collection clinical_tcga_acc_pt");
 
-        /* Third Query on clinical_tcga_acc_pt */
-        collection = db.collection('clinical_tcga_acc_pt');
-        var query = '{"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}';
-        collection.find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true}).limit(2).skip(5).toArray(function(err, doc){
-          format.text("Filter by gender and race and only show the selected fields");
-          format.h4("HTTP Request")
-          format.url("GET http://oncoscape.sttrcancer.io/api/clinical_tcga_acc_pt/?q=" + query);
-          format.text("only show gender, race and patient_ID");
-          format.url('"$fields":["gender","race","patient_ID"]');
-          format.text("skip the first five records");
-          format.url('"$skip":5');
-          format.text("limit the final output to two records.");
-          format.url('"$limit":2');
-          format.codeComment("Male White patients result: ");
-          format.codeStart();
-          format.text(JSON.stringify(doc, null, 4)); 
-          format.codeStop(); 
-          format.codeComment("Count of the records meet this criteria");
-          format.codeStart(); 
-          format.text(doc.length);
-          format.codeStop(); 
-          
-          // javascript version 
-          format.codeJSStart("collection = db.collection(\"clinical_tcga_acc_pt\");");
-          format.code("collection.find({\"gender\":\"MALE\", \"race\":\"WHITE\"},"+
-            "{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true}).limit(2).skip(5).toArray(function(err, doc){);" +
-            "console.log(JSON.stringify(doc, null, 4));");
-          format.codeStop();
-          
-          // mongo shell version: not connect, --replicaSet option is specified 
-          format.codeMongoStart("db.getCollection(\"clinical_tcga_acc_pt\").find({\"gender\":\"MALE\", \"race\":\"WHITE\"},{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true}).skip(5).limit(2)");
-          format.codeStop();
+Array.prototype.contains = function(v) {
+      for(var i = 0; i < this.length; i++) {
+          if(this[i] === v) return true;
+      }
+      return false;
+  };
 
-          // R verion: not connect, error code 3
-          format.codeRStart("install.packages(\"rmongodb\")");
-          format.code("library(rmongodb)");
-          format.codeStop();
+Array.prototype.getAllIndexes = function(v) {
+      var indexes = [], i = -1;
+      while ((i = this.indexOf(v, i+1)) != -1){
+          indexes.push(i);
+      }
+      return indexes;
+  };
+Array.prototype.unique = function() {
+      var arr = [];
+      for(var i = 0; i < this.length; i++) {
+          if(!arr.contains(this[i])) {
+              arr.push(this[i]);
+          }
+      }
+      return arr; 
+  };
+var invalidEntries = 0;
+function filterByDataSet(value, obj) {
+  if ('dataset' in obj && typeof(obj.dataset) === 'string' && obj.dataset === value) {
+    return true;
+  } else {
+    invalidEntries++;
+    return false;
+  }
+}
 
-          // python verion: haven't tried 
-          format.codePyStart("pip install pymongo");
-          format.code("from pymongo import MongoClient");
-          format.code("client = MongoClient(\"mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/os?authSource=admin\")");
-          format.code("db = client.os");
-          format.code("db[\"clinical_tcga_acc_pt\"]");
-          format.codeStop();
-          process.exit(0); 
-        });   
-      });
-    });    
-});
+function filterByDataType(value, obj) {
+  if ('dataType' in obj && typeof(obj.dataType) === 'string' && obj.dataType === value) {
+    return true;
+  } else {
+    invalidEntries++;
+    return false;
+  }
+}
+
+co(function *() {
+
+  db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
+  collection = yield comongo.db.collection(db, 'lookup_oncoscape_datasources');
+  disease_tables = yield collection.find({},{"disease":true,"collections":true}).toArray();
+
+  //console.dir(disease_tables);
+  // var listed_collections = [];
+
+  // disease_tables.forEach(function(doc){
+  //   if(Object.keys(doc).indexOf("collections") != -1){
+  //     diseases.push(doc.disease);
+  //     Object.keys(doc.collections).forEach(function(key){
+  //       listed_collections.push(doc.collections[key]);
+  //     });
+  //   }
+  // });
+  collections = yield comongo.db.collections(db);
+  collections.forEach(function(c){
+    collection_name = c['s']['name'];
+    //console.log(collection_name);
+    // collection = yield comongo.db.collection(db, collection_name);
+    // count = yield collection.count();
+    availableCollectionTags.push(collection_name);
+  });
+  
+  manifest = yield comongo.db.collection(db, "manifest");
+  manifest_content = yield manifest.find({}).toArray();
+  //console.log(manifest_content);
+
+  // using Manifest file to populate _clinic_api_query.md
+  var keys = [];
+  var manifest_length = manifest_content.length;
+  var dataset = [];
+  var dataType = [];
+  var date = [];
+  var collection = [];
+  var source = [];
+  var parent = [];
+  for(i=0;i<manifest_length;i++){
+    Array.prototype.push.apply(keys, Object.keys(manifest_content[i]));
+    dataset.push(manifest_content[i]['dataset']);
+    dataType.push(manifest_content[i]['dataType']);
+    date.push(manifest_content[i]['date']);
+    collection.push(manifest_content[i]['collection']);
+    source.push(manifest_content[i]['source']);
+    parent.push(manifest_content[i]['parent']);
+  }
+
+  var unique_keys = keys.unique();
+  var unique_datasets = dataset.unique();
+  var unique_datasets_length = unique_datasets.length;
+  var unique_dataTypes = dataType.unique();
+  var unique_dates = date.unique();
+  var unique_collections = collection.unique();
+  var unique_sources = source.unique();
+  var unique_parents = parent.unique();
+
+  
+
+  //var collections_gbm = manifest_content.filter(filterByDataSet.bind(this, 'gbm')); //.length; would give 52 collections under 'gbm'
+  //var collections_gbm_patient = collections_gbm.filter(filterByDataType.bind(this, 'patient'));
+ 
+  for(var i=0;i<unique_datasets_length;i++){
+    format.h2(unique_datasets[i] + " --- " + disease_code[unique_datasets[i].toUpperCase()]);
+    //format.h3(format.text(disease_code[unique_datasets[i].toUpperCase()]));
+    //format.codeComment("List of collections");
+    //format.codeStart();
+    manifest_content.filter(filterByDataSet.bind(this, unique_datasets[i])).forEach(function(elem){
+            if(Array.isArray(elem.collection)){
+              elem.collection.forEach(function(e){
+                format.h3(e);
+              });
+            }else{
+              format.h3(elem.collection);
+            }
+          });
+    //format.codeStop();
+  }
+
+
+
+
+
+  yield comongo.db.close(db);
+}).catch(onerror);
+
+
+
+

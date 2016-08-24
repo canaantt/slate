@@ -12,7 +12,7 @@ toc_footers:
   - <a href='https://github.com/FredHutch/Oncoscape'>Oncoscape Github Site</a>
 
 includes:
-  - clinic_api_query
+  - clinic_api_query_1
   - tools
 
 search: true
