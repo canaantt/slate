@@ -134,31 +134,13 @@ co(function *() {
 }).catch(onerror);
 
 
+var keys = [];
+var manifest_length = manifest_content.length;
+for(i=0;i<manifest_length;i++){
+  Array.prototype.push.apply(keys, Object.keys(manifest_content[i]));
+  if(i==manifest_length-1){
+    console.log(keys);
+  }
+}
 
-
-//var db_collection_survey = {};
-//R code
-// collections = availableCollectionTags
-// strsplit(collections, '_')->collections_split
-// lapply(collections_split, function(c){return(c[1])})
-// var db_status = {};
-// var first_args = [];
-// var second_args = [];
-// var third_args = [];
-
-// availableCollectionTags.forEach(function(c){
-//   if(typeof(c) != "undefined"){
-//     var elem = [];
-//     elem = c.split("_");
-//     if(elem.length > 1){
-//       first_args.push(elem[0]);
-//       second_args.push(elem[1]); 
-//       if(elem[1] == "onocscape"){
-//         console.log(c);
-//       }  
-//     }
-//     db_status[c] = elem;
-//   }
-// });
-
-
+var unique_keys = keys.unique();
