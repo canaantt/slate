@@ -26,7 +26,7 @@ var format = {
 	h2: function(text) { console.log(); console.log('## '+text); },
 	h3: function(text) { console.log(); console.log('### '+text); },
 	h4: function(text) { console.log(); console.log('#### '+text); },
-	text: function(text){ console.log(); console.log('##### '+text);  },
+	text: function(text){ console.log(); console.log(text);  },
 	url: function(text) {console.log(); console.log('`' + text + '`'); console.log();},
 	codeStart: function() { console.log(); console.log('```'); },
 	codeComment: function(text) {console.log(); console.log('>' + text);},
@@ -52,7 +52,7 @@ var disease_code = {
  "BRCA": "Breast invasive carcinoma",
  "CESC": "Cervical squamous cell carcinoma and endocervical adenocarcinoma",  
  "CHOL":"Cholangiocarcinoma",
- "COAD ":"Colon adenocarcinoma", 
+ "COAD":"Colon adenocarcinoma", 
  "ESCA":"Esophageal carcinoma",  
  "GBM":"Glioblastoma multiforme",    
  "HNSC":"Head and Neck squamous cell carcinoma", 
@@ -80,6 +80,43 @@ var disease_code = {
  "UCEC":"Uterine Corpus Endometrial Carcinoma",  
  "UVM":"Uveal Melanoma"
  };
+
+var dataTypeCat = {
+    'clinical':[
+          'patient', 
+          'followUp-v1p0', 
+          'drug', 
+          'newTumor', 
+          'otherMalignancy-v4p0',
+          'radiation',
+          'followUp-v1p5',
+          'followUp-v2p1',
+          'followUp-v4p0',
+          'newTumor-followUp-v4p0',
+          'followUp-v4p8',
+          'newTumor-followUp-v4p8',
+          'followUp-v4p4',
+          'newTumor-followUp-v4p4'],
+     'molecular':[
+          'cnv', 
+          'mut01', 
+          'mut', 
+          'methylation',
+          'rna', 
+          'protein', 
+          'genesets'], 
+     'other':[
+          'chromosome',
+          'genes',
+          'centromere',
+          'color',
+          'mds',
+          'pcaScores',
+          'edges',
+          'ptDegree',
+          'geneDegree']
+};
+
 
 format.h2("Mongo DB Connection");
 format.codeJSStart('const mongoose = require("mongoose");');
@@ -138,6 +175,15 @@ function filterByDataType(value, obj) {
   }
 }
 
+function filterByDataTypeCat(value, obj) {
+  if ('dataTypeCat' in obj && typeof(obj.dataTypeCat) === 'string' && obj.dataTypeCat === value) {
+    return true;
+  } else {
+    invalidEntries++;
+    return false;
+  }
+}
+
 co(function *() {
 
   db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
@@ -155,9 +201,18 @@ co(function *() {
   
   manifest = yield comongo.db.collection(db, "manifest");
   manifest_content = yield manifest.find({}).toArray();
-  //console.log(manifest_content);
+  
+  /* using Manifest file to populate _clinic_api_query.md 
+  */
+  manifest_content.map(function(e){
+    if(dataTypeCat['clinical'].indexOf(e.dataType) != -1){
+      e.dataTypeCat = 'clinical';
+    }else if(dataTypeCat['molecular'].indexOf(e.dataType) != -1){
+      e.dataTypeCat = 'molecular';
+    }else{e.dataTypeCat = 'other';}
+    return e;
+  });
 
-  // using Manifest file to populate _clinic_api_query.md
   manifest_length = manifest_content.length;
   for(i=0;i<manifest_length;i++){
     Array.prototype.push.apply(keys, Object.keys(manifest_content[i]));
@@ -180,18 +235,38 @@ co(function *() {
 
   //var collections_gbm = manifest_content.filter(filterByDataSet.bind(this, 'gbm')); //.length; would give 52 collections under 'gbm'
   //var collections_gbm_patient = collections_gbm.filter(filterByDataType.bind(this, 'patient'));
- 
+  var dataTypeCat_values = Object.keys(dataTypeCat);
+  var dataTypeCat_length = dataTypeCat_values.length;
+  
   for(var i=0;i<unique_datasets_length;i++){
     format.h2(disease_code[unique_datasets[i].toUpperCase()] + " (" + unique_datasets[i].toUpperCase() + ")");
-    manifest_content.filter(filterByDataSet.bind(this, unique_datasets[i])).forEach(function(elem){
-            if(Array.isArray(elem.collection)){
+    for(var j=0; j<dataTypeCat_length-1; j++){
+       format.h3(dataTypeCat_values[j]);
+       manifest_content.filter(filterByDataSet.bind(this, unique_datasets[i]))
+                       .filter(filterByDataTypeCat.bind(this, dataTypeCat_values[j])).forEach(function(elem){
+         if(Array.isArray(elem.collection)){
               elem.collection.forEach(function(e){
-                format.h3(e);
+                format.text(e);
               });
             }else{
-              format.h3(elem.collection);
+              format.text(elem.collection);
             }
           });
+    }
+   
+
+
+
+    // manifest_content.filter(filterByDataSet.bind(this, unique_datasets[i])).forEach(function(elem){
+
+    //         if(Array.isArray(elem.collection)){
+    //           elem.collection.forEach(function(e){
+    //             format.text(e);
+    //           });
+    //         }else{
+    //           format.text(elem.collection);
+    //         }
+    //       });
   }
 
 
