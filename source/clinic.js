@@ -4,8 +4,22 @@ var disease_tables = [];
 var db, collection,db_collections,collection_name, count,manifest, manifest_content;
 var diseases = [];
 var availableCollectionTags = [];
-
- 
+var keys = [];
+var manifest_length;
+var dataset = [];
+var dataType = [];
+var date = [];
+var manifestCollection = [];
+var source = [];
+var parent = [];
+var unique_keys;
+var unique_datasets;
+var unique_datasets_length;
+var unique_dataTypes;
+var unique_dates;
+var unique_collections;
+var unique_sources;
+var unique_parents;
 
 var format = {
 	h1: function(text) { console.log(); console.log('# '+text); },
@@ -48,6 +62,7 @@ var disease_code = {
  "LICH":"Liver hepatocellular carcinoma",    
  "LUAD":"Lung adenocarcinoma",   
  "LUSC":"Lung squamous cell carcinoma",  
+ "LUNG":"Lung adenocarcinoma & Lung squamous cell carcinoma",
  "DLBC":"Lymphoid Neoplasm Diffuse Large B-cell Lymphoma",
  "MESO":"Mesothelioma",
  "OV":"Ovarian serous cystadenocarcinoma",   
@@ -72,7 +87,7 @@ format.code('mongoose.connect("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,o
 format.code('var connection = mongoose.connection;');
 format.code('var db = connection.db;');
 format.codeStop();
-format.h2("Clinical Collections by Disease");
+format.h1("Collections by Disease");
 
 var onerror = function(e){
     console.log(e);
@@ -103,6 +118,7 @@ Array.prototype.unique = function() {
       }
       return arr; 
   };
+
 var invalidEntries = 0;
 function filterByDataSet(value, obj) {
   if ('dataset' in obj && typeof(obj.dataset) === 'string' && obj.dataset === value) {
@@ -128,17 +144,6 @@ co(function *() {
   collection = yield comongo.db.collection(db, 'lookup_oncoscape_datasources');
   disease_tables = yield collection.find({},{"disease":true,"collections":true}).toArray();
 
-  //console.dir(disease_tables);
-  // var listed_collections = [];
-
-  // disease_tables.forEach(function(doc){
-  //   if(Object.keys(doc).indexOf("collections") != -1){
-  //     diseases.push(doc.disease);
-  //     Object.keys(doc.collections).forEach(function(key){
-  //       listed_collections.push(doc.collections[key]);
-  //     });
-  //   }
-  // });
   collections = yield comongo.db.collections(db);
   collections.forEach(function(c){
     collection_name = c['s']['name'];
@@ -153,43 +158,31 @@ co(function *() {
   //console.log(manifest_content);
 
   // using Manifest file to populate _clinic_api_query.md
-  var keys = [];
-  var manifest_length = manifest_content.length;
-  var dataset = [];
-  var dataType = [];
-  var date = [];
-  var collection = [];
-  var source = [];
-  var parent = [];
+  manifest_length = manifest_content.length;
   for(i=0;i<manifest_length;i++){
     Array.prototype.push.apply(keys, Object.keys(manifest_content[i]));
     dataset.push(manifest_content[i]['dataset']);
     dataType.push(manifest_content[i]['dataType']);
     date.push(manifest_content[i]['date']);
-    collection.push(manifest_content[i]['collection']);
+    manifestCollection.push(manifest_content[i]['collection']);
     source.push(manifest_content[i]['source']);
     parent.push(manifest_content[i]['parent']);
   }
 
-  var unique_keys = keys.unique();
-  var unique_datasets = dataset.unique();
-  var unique_datasets_length = unique_datasets.length;
-  var unique_dataTypes = dataType.unique();
-  var unique_dates = date.unique();
-  var unique_collections = collection.unique();
-  var unique_sources = source.unique();
-  var unique_parents = parent.unique();
-
-  
+  unique_keys = keys.unique();
+  unique_datasets = dataset.unique();
+  unique_datasets_length = unique_datasets.length;
+  unique_dataTypes = dataType.unique();
+  unique_dates = date.unique();
+  unique_collections = manifestCollection.unique();
+  unique_sources = source.unique();
+  unique_parents = parent.unique();
 
   //var collections_gbm = manifest_content.filter(filterByDataSet.bind(this, 'gbm')); //.length; would give 52 collections under 'gbm'
   //var collections_gbm_patient = collections_gbm.filter(filterByDataType.bind(this, 'patient'));
  
   for(var i=0;i<unique_datasets_length;i++){
-    format.h2(unique_datasets[i] + " --- " + disease_code[unique_datasets[i].toUpperCase()]);
-    //format.h3(format.text(disease_code[unique_datasets[i].toUpperCase()]));
-    //format.codeComment("List of collections");
-    //format.codeStart();
+    format.h2(disease_code[unique_datasets[i].toUpperCase()] + " (" + unique_datasets[i].toUpperCase() + ")");
     manifest_content.filter(filterByDataSet.bind(this, unique_datasets[i])).forEach(function(elem){
             if(Array.isArray(elem.collection)){
               elem.collection.forEach(function(e){
@@ -199,7 +192,6 @@ co(function *() {
               format.h3(elem.collection);
             }
           });
-    //format.codeStop();
   }
 
 

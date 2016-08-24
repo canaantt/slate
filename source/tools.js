@@ -24,7 +24,7 @@ var format = {
   codePy: function(text) { console.log("```python"); console.log(text); console.log("```")},
 };
 
-format.h2("Tools");
+format.h1("Tools");
 // Connect to the db
 mongoose.connect(
     'mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/os?authSource=admin', {
