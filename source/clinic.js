@@ -26,7 +26,7 @@ var format = {
 	h2: function(text) { console.log(); console.log('## '+text); },
 	h3: function(text) { console.log(); console.log('### '+text); },
 	h4: function(text) { console.log(); console.log('#### '+text); },
-  textbold: function(text) { console.log(); console.log('**'+ text+'**'); },
+  textbold: function(text) { console.log(); console.log(); console.log('**'+ text+'**'); },
   textlist: function(text){ console.log(); console.log('- '+ text);  },
   textsublist: function(text){ console.log('  * '+ text);  },
 	text: function(text){ console.log(); console.log(text);  },
@@ -39,7 +39,8 @@ var format = {
   codeRStart: function(text) { console.log("```r"); console.log(text);},
   codeMongoStart: function(text) { console.log("```mongo"); console.log(text);},
   codeJSStart: function(text) { console.log("```javascript"); console.log(text);},
-  codePyStart: function(text) { console.log("```python"); console.log(text);}
+  codePyStart: function(text) { console.log("```python"); console.log(text);},
+  table: function(text){ console.log(text);  }
 };
 
 
@@ -127,7 +128,6 @@ format.code('mongoose.connect("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,o
 format.code('var connection = mongoose.connection;');
 format.code('var db = connection.db;');
 format.codeStop();
-format.h1("Collections by Disease");
 
 var onerror = function(e){
     console.log(e);
@@ -190,43 +190,98 @@ function filterByDataTypeCat(value, obj) {
 co(function *() {
 
   db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
-  collection = yield comongo.db.collection(db, 'lookup_oncoscape_datasources');
-  disease_tables = yield collection.find({},{"disease":true,"collections":true}).toArray();
-
-  // collections = yield comongo.db.collections(db);
-  // collections.forEach(function(c){
-  //   collection_name = c['s']['name'];
-  //   console.log(collection_name);
-  //   collection = yield comongo.db.collection(db, collection_name);
-  //   count = yield collection.count();
-  //   availableCollectionTags.push(collection_name);
-  // });
   
+  /* REST API Query on gbm_patient_tcga_na */
+  collection = yield comongo.db.collection(db, 'gbm_patient_tcga_na');
+  var doc = yield collection.find({}).toArray();
+  var max_ind = 0;
+  var max_len = 0;
+  var ind = 0;
+  format.h2("Example of fields from one record");
+  format.codeComment("Fields for most of records in gbm_patient_tcga_na");
+  format.codeStart();
+  format.text(Object.keys(doc[0])); 
+  format.codeStop(); 
+  format.h2("Get the count of records in the collection");
+  format.h3("HTTP Request")
+  format.url("GET http://oncoscape.sttrcancer.io/api/gbm_patient_tcga_na/count");
+  format.codeComment("Count of records in gbm_patient_tcga_na");
+  format.codeStart();
+  format.text(doc.length);
+  format.codeStop();
+  format.h2("Query detail information from collection gbm_patient_tcga_na");
+  var query = '{"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}';
+  doc = yield collection.find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true}).limit(2).skip(5).toArray();
+  format.text("Filter by gender and race and only show the selected fields");
+  format.h3("HTTP Request")
+  format.url("GET http://oncoscape.sttrcancer.io/api/gbm_patient_tcga_na/?q=" + query);
+  format.text("only show gender, race and patient_ID");
+  format.url('"$fields":["gender","race","patient_ID"]');
+  format.text("skip the first five records");
+  format.url('"$skip":5');
+  format.text("limit the final output to two records.");
+  format.url('"$limit":2');
+  format.codeComment("Male White patients result: ");
+  format.codeStart();
+  format.text(JSON.stringify(doc, null, 4)); 
+  format.codeStop(); 
+  format.codeComment("Count of the records meet this criteria");
+  format.codeStart(); 
+  format.text(doc.length);
+  format.codeStop(); 
+      
+  // javascript version 
+  format.codeJSStart("collection = db.collection(\"gbm_patient_tcga_na\");");
+  format.code("collection.find({\"gender\":\"MALE\", \"race\":\"WHITE\"},"+
+    "{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true}).limit(2).skip(5).toArray(function(err, doc){);" +
+    "console.log(JSON.stringify(doc, null, 4));");
+  format.codeStop();
+  
+  // mongo shell version: not connect, --replicaSet option is specified 
+  format.codeMongoStart("db.getCollection(\"gbm_patient_tcga_na\").find({\"gender\":\"MALE\", \"race\":\"WHITE\"},{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true}).skip(5).limit(2)");
+  format.codeStop();
+
+  // R verion: not connect, error code 3
+  format.codeRStart("install.packages(\"rmongodb\")");
+  format.code("library(rmongodb)");
+  format.codeStop();
+
+  // python verion: haven't tried 
+  format.codePyStart("pip install pymongo");
+  format.code("from pymongo import MongoClient");
+  format.code("client = MongoClient(\"mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin\")");
+  format.code("db = client.os");
+  format.code("db[\"gbm_patient_tcga_na\"]");
+  format.codeStop();
+
+  
+  //========================================================
+  /* using Manifest file to populate _clinic_api_query.md 
+  */
+  format.h1("Collections by Disease");
   manifest = yield comongo.db.collection(db, "manifest");
   manifest_content = yield manifest.find({}).toArray();
   
-  /* using Manifest file to populate _clinic_api_query.md 
-  */
   manifest_content.map(function(e){
     if(dataTypeCat['clinical'].indexOf(e.dataType) != -1){
       e.dataTypeCat = 'clinical';
     }else if(dataTypeCat['molecular'].indexOf(e.dataType) != -1){
       e.dataTypeCat = 'molecular';
-    }else{e.dataTypeCat = 'other';}
-    
-    // if(!Array.isArray(e.collection)){
-    //   console.log("not array");
-    //   var coll = yield comongo.db.collection(db, e.collection);
-    //   var coll_arr = yield coll.find({}).toArray();
-    //   e.count = coll_arr.length;
-    //   e.field = Object.keys(coll_arr[0]);
-    // }
-    
+    }else{e.dataTypeCat = 'other';}    
+    return e;
+  }); //manifest_content is being modified
 
-    return e.collection;
-  });
-
-
+  for(var i=0;i<manifest_length;i++){
+    var e = manifest_content[i];
+    if(Array.isArray(e.collection)){
+      console.log(e);
+    }else{
+      var tbl = yield comongo.db.collection(db, e.collection);
+      var tbl_doc = yield tbl.find({}).toArray();
+      console.log(tbl_doc.length);
+      console.log(Object.keys(tbl_doc[0]));
+    }
+  }
 
 
   manifest_length = manifest_content.length;
@@ -255,7 +310,7 @@ co(function *() {
   var dataTypeCat_length = dataTypeCat_values.length;
   
   for(var i=0;i<unique_datasets_length;i++){
-    format.h2(disease_code[unique_datasets[i].toUpperCase()] + " (" + unique_datasets[i].toUpperCase() + ")");
+    format.h2(unique_datasets[i].toUpperCase() + " - " + disease_code[unique_datasets[i].toUpperCase()]);
     var disease_collections = manifest_content.filter(filterByDataSet.bind(this, unique_datasets[i]));
     for(var j=0; j<dataTypeCat_length-1; j++){
        format.h3(dataTypeCat_values[j]);
@@ -267,58 +322,12 @@ co(function *() {
                         }else{
                           format.textbold(elem.collection);
                         }
-
-
-                      format.text("data source: " + elem.source);
-                      format.text("data type: " + elem.dataType);
-                      // co(function *() {
-                      //   db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
-                      //   var coll = yield comongo.db.collection(db, elem.collection);
-                      //   var coll_arr = yield collection.find({}).toArray();
-                      //   format.text("count: " + coll_arr.length);
-                      //   format.text("fields: " + Object.keys(coll_arr[0]));
-                      // });  
-                      
+                      format.text("Data Source | Data Type");
+                      format.table("--------- | -----------");  
+                      format.table(elem.source + "|" + elem.dataType);
                     });
     }
-   
-
-
-
-    // manifest_content.filter(filterByDataSet.bind(this, unique_datasets[i])).forEach(function(elem){
-
-    //         if(Array.isArray(elem.collection)){
-    //           elem.collection.forEach(function(e){
-    //             format.text(e);
-    //           });
-    //         }else{
-    //           format.text(elem.collection);
-    //         }
-    //       });
   }
-
-
-
-
-
   yield comongo.db.close(db);
 }).catch(onerror);
-
-// var coll;
-// var coll_arr = [];
-// co(function *() {
-//   db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
-//   for(var i=0;i<manifest_length;i++){
-//     var elem = manifest_content[i];
-//     //console.dir(elem);
-//     //if(!Array.isArray(elem.collection)){
-//       coll = yield comongo.db.collection(db, elem.collection);
-//       coll_arr = yield collection.find({}).toArray();
-//       console.log(coll_arr.length);
-//       console.log(Object.keys(coll_arr[0]));
-//     //}
-//   }
-    
-// }).catch(onerror);
-
 
