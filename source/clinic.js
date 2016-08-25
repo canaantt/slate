@@ -26,6 +26,9 @@ var format = {
 	h2: function(text) { console.log(); console.log('## '+text); },
 	h3: function(text) { console.log(); console.log('### '+text); },
 	h4: function(text) { console.log(); console.log('#### '+text); },
+  textbold: function(text) { console.log(); console.log('**'+ text+'**'); },
+  textlist: function(text){ console.log(); console.log('- '+ text);  },
+  textsublist: function(text){ console.log('  * '+ text);  },
 	text: function(text){ console.log(); console.log(text);  },
 	url: function(text) {console.log(); console.log('`' + text + '`'); console.log();},
 	codeStart: function() { console.log(); console.log('```'); },
@@ -42,43 +45,43 @@ var format = {
 
 
 var disease_code = {
- "HG19" : "Genome Platform",
- "BRAIN": "Lower Grade Glioma & Glioblastoma multiforme",
- "COADREAD": "Colon adenocarcinoma & Rectum adenocarcinoma",
- "LAML" : "Acute Myeloid Leukemia",
- "ACC":"Adrenocortical carcinoma",
- "BLCA" : "Bladder Urothelial Carcinoma",
- "LGG": "Brain Lower Grade Glioma",
- "BRCA": "Breast invasive carcinoma",
- "CESC": "Cervical squamous cell carcinoma and endocervical adenocarcinoma",  
- "CHOL":"Cholangiocarcinoma",
- "COAD":"Colon adenocarcinoma", 
- "ESCA":"Esophageal carcinoma",  
- "GBM":"Glioblastoma multiforme",    
- "HNSC":"Head and Neck squamous cell carcinoma", 
- "KICH":"Kidney Chromophobe",
- "KIRC":"Kidney renal clear cell carcinoma", 
- "KIRP":"Kidney renal papillary cell carcinoma", 
- "LICH":"Liver hepatocellular carcinoma",    
- "LUAD":"Lung adenocarcinoma",   
- "LUSC":"Lung squamous cell carcinoma",  
- "LUNG":"Lung adenocarcinoma & Lung squamous cell carcinoma",
- "DLBC":"Lymphoid Neoplasm Diffuse Large B-cell Lymphoma",
- "MESO":"Mesothelioma",
- "OV":"Ovarian serous cystadenocarcinoma",   
- "PAAD":"Pancreatic adenocarcinoma", 
- "PCPG":"Pheochromocytoma and Paraganglioma",    
- "PRAD":"Prostate adenocarcinoma",   
- "READ":"Rectum adenocarcinoma", 
- "SARC":"Sarcoma",   
- "SKCM":"Skin Cutaneous Melanoma",   
- "STAD":"Stomach adenocarcinoma",    
- "TGCT":"Testicular Germ Cell Tumors",   
- "THYM":"Thymoma",   
- "THCA":"Thyroid carcinoma", 
- "UCS":"Uterine Carcinosarcoma",
- "UCEC":"Uterine Corpus Endometrial Carcinoma",  
- "UVM":"Uveal Melanoma"
+     "HG19" : "Genome Platform",
+     "BRAIN": "Lower Grade Glioma & Glioblastoma multiforme",
+     "COADREAD": "Colon adenocarcinoma & Rectum adenocarcinoma",
+     "LAML" : "Acute Myeloid Leukemia",
+     "ACC":"Adrenocortical carcinoma",
+     "BLCA" : "Bladder Urothelial Carcinoma",
+     "LGG": "Brain Lower Grade Glioma",
+     "BRCA": "Breast invasive carcinoma",
+     "CESC": "Cervical squamous cell carcinoma and endocervical adenocarcinoma",  
+     "CHOL":"Cholangiocarcinoma",
+     "COAD":"Colon adenocarcinoma", 
+     "ESCA":"Esophageal carcinoma",  
+     "GBM":"Glioblastoma multiforme",    
+     "HNSC":"Head and Neck squamous cell carcinoma", 
+     "KICH":"Kidney Chromophobe",
+     "KIRC":"Kidney renal clear cell carcinoma", 
+     "KIRP":"Kidney renal papillary cell carcinoma", 
+     "LICH":"Liver hepatocellular carcinoma",    
+     "LUAD":"Lung adenocarcinoma",   
+     "LUSC":"Lung squamous cell carcinoma",  
+     "LUNG":"Lung adenocarcinoma & Lung squamous cell carcinoma",
+     "DLBC":"Lymphoid Neoplasm Diffuse Large B-cell Lymphoma",
+     "MESO":"Mesothelioma",
+     "OV":"Ovarian serous cystadenocarcinoma",   
+     "PAAD":"Pancreatic adenocarcinoma", 
+     "PCPG":"Pheochromocytoma and Paraganglioma",    
+     "PRAD":"Prostate adenocarcinoma",   
+     "READ":"Rectum adenocarcinoma", 
+     "SARC":"Sarcoma",   
+     "SKCM":"Skin Cutaneous Melanoma",   
+     "STAD":"Stomach adenocarcinoma",    
+     "TGCT":"Testicular Germ Cell Tumors",   
+     "THYM":"Thymoma",   
+     "THCA":"Thyroid carcinoma", 
+     "UCS":"Uterine Carcinosarcoma",
+     "UCEC":"Uterine Corpus Endometrial Carcinoma",  
+     "UVM":"Uveal Melanoma"
  };
 
 var dataTypeCat = {
@@ -190,14 +193,14 @@ co(function *() {
   collection = yield comongo.db.collection(db, 'lookup_oncoscape_datasources');
   disease_tables = yield collection.find({},{"disease":true,"collections":true}).toArray();
 
-  collections = yield comongo.db.collections(db);
-  collections.forEach(function(c){
-    collection_name = c['s']['name'];
-    //console.log(collection_name);
-    // collection = yield comongo.db.collection(db, collection_name);
-    // count = yield collection.count();
-    availableCollectionTags.push(collection_name);
-  });
+  // collections = yield comongo.db.collections(db);
+  // collections.forEach(function(c){
+  //   collection_name = c['s']['name'];
+  //   console.log(collection_name);
+  //   collection = yield comongo.db.collection(db, collection_name);
+  //   count = yield collection.count();
+  //   availableCollectionTags.push(collection_name);
+  // });
   
   manifest = yield comongo.db.collection(db, "manifest");
   manifest_content = yield manifest.find({}).toArray();
@@ -210,8 +213,21 @@ co(function *() {
     }else if(dataTypeCat['molecular'].indexOf(e.dataType) != -1){
       e.dataTypeCat = 'molecular';
     }else{e.dataTypeCat = 'other';}
-    return e;
+    
+    // if(!Array.isArray(e.collection)){
+    //   console.log("not array");
+    //   var coll = yield comongo.db.collection(db, e.collection);
+    //   var coll_arr = yield coll.find({}).toArray();
+    //   e.count = coll_arr.length;
+    //   e.field = Object.keys(coll_arr[0]);
+    // }
+    
+
+    return e.collection;
   });
+
+
+
 
   manifest_length = manifest_content.length;
   for(i=0;i<manifest_length;i++){
@@ -240,18 +256,30 @@ co(function *() {
   
   for(var i=0;i<unique_datasets_length;i++){
     format.h2(disease_code[unique_datasets[i].toUpperCase()] + " (" + unique_datasets[i].toUpperCase() + ")");
+    var disease_collections = manifest_content.filter(filterByDataSet.bind(this, unique_datasets[i]));
     for(var j=0; j<dataTypeCat_length-1; j++){
        format.h3(dataTypeCat_values[j]);
-       manifest_content.filter(filterByDataSet.bind(this, unique_datasets[i]))
-                       .filter(filterByDataTypeCat.bind(this, dataTypeCat_values[j])).forEach(function(elem){
-         if(Array.isArray(elem.collection)){
-              elem.collection.forEach(function(e){
-                format.text(e);
-              });
-            }else{
-              format.text(elem.collection);
-            }
-          });
+       disease_collections.filter(filterByDataTypeCat.bind(this, dataTypeCat_values[j])).forEach(function(elem){
+                     if(Array.isArray(elem.collection)){
+                          elem.collection.forEach(function(e){
+                            format.textbold(e);
+                          });
+                        }else{
+                          format.textbold(elem.collection);
+                        }
+
+
+                      format.text("data source: " + elem.source);
+                      format.text("data type: " + elem.dataType);
+                      // co(function *() {
+                      //   db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
+                      //   var coll = yield comongo.db.collection(db, elem.collection);
+                      //   var coll_arr = yield collection.find({}).toArray();
+                      //   format.text("count: " + coll_arr.length);
+                      //   format.text("fields: " + Object.keys(coll_arr[0]));
+                      // });  
+                      
+                    });
     }
    
 
@@ -276,6 +304,21 @@ co(function *() {
   yield comongo.db.close(db);
 }).catch(onerror);
 
-
+// var coll;
+// var coll_arr = [];
+// co(function *() {
+//   db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
+//   for(var i=0;i<manifest_length;i++){
+//     var elem = manifest_content[i];
+//     //console.dir(elem);
+//     //if(!Array.isArray(elem.collection)){
+//       coll = yield comongo.db.collection(db, elem.collection);
+//       coll_arr = yield collection.find({}).toArray();
+//       console.log(coll_arr.length);
+//       console.log(Object.keys(coll_arr[0]));
+//     //}
+//   }
+    
+// }).catch(onerror);
 
 
