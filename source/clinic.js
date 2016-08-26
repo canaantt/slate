@@ -262,18 +262,18 @@ co(function *() {
   lookup_oncoscape_datasources = yield comongo.db.collection(db, "lookup_oncoscape_datasources");
   datasources = yield lookup_oncoscape_datasources.find({}).toArray();
   var datasource_count = yield lookup_oncoscape_datasources.count();
-  yield comongo.db.close(db);
+  //yield comongo.db.close(db);
 
   unique_datasets_length = datasources.length;
   //var dataTypeCat = ['clinical', 'molecular', 'category','calculated', 'edges'];
-  var dataTypeCat = ['molecular'];
+  var dataTypeCat = ['molecular', 'clinical'];
   var dataTypeCat_length = dataTypeCat.length;
   var elem_source, elem_dataType;
 
   for(var i=0;i<unique_datasets_length;i++){
     format.h2(datasources[i].disease.toUpperCase() + " - " + disease_code[datasources[i].disease.toUpperCase()]);
     var datasource = datasources[i];
-    db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
+    //db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
   
     for(var j=0; j<dataTypeCat_length; j++){
        if(dataTypeCat[j] in datasource){
@@ -283,10 +283,10 @@ co(function *() {
               datasource[dataTypeCat[j]].forEach(function(elem){
                 if('collection' in elem){
                   format.textbold(elem.collection);
-                  console.dir(comongo);
-                  var coll = yield comongo.db.collection(db, elem.collection);
-                  var coll_count = yield coll.count();
-                  format.text(coll_count);
+                  // console.dir(comongo);
+                  // var coll = yield comongo.db.collection(db, elem.collection);
+                  // var coll_count = yield coll.count();
+                  // format.text(coll_count);
                 }else{
                   format.textbold(elem.name);
                 }
@@ -296,7 +296,7 @@ co(function *() {
                 format.text("Data Source | Data Type");
                 format.table("--------- | -----------");  
                 format.table(elem_source + "|" + elem_dataType);
-               }); 
+              }); 
           }else{
               elem_source = datasource.source;
               elem_dataType = "";
@@ -314,10 +314,7 @@ co(function *() {
         }
        
     }
-    yield comongo.db.close(db);
   }
-
-
-  //yield comongo.db.close(db);
+  yield comongo.db.close(db);
 }).catch(onerror);
   
