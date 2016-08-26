@@ -20,7 +20,7 @@ var unique_dates;
 var unique_collections;
 var unique_sources;
 var unique_parents;
-
+var lookup_oncoscape_datasources, datasources;
 var format = {
 	h1: function(text) { console.log(); console.log('# '+text); },
 	h2: function(text) { console.log(); console.log('## '+text); },
@@ -85,41 +85,41 @@ var disease_code = {
      "UVM":"Uveal Melanoma"
  };
 
-var dataTypeCat = {
-    'clinical':[
-          'patient', 
-          'followUp-v1p0', 
-          'drug', 
-          'newTumor', 
-          'otherMalignancy-v4p0',
-          'radiation',
-          'followUp-v1p5',
-          'followUp-v2p1',
-          'followUp-v4p0',
-          'newTumor-followUp-v4p0',
-          'followUp-v4p8',
-          'newTumor-followUp-v4p8',
-          'followUp-v4p4',
-          'newTumor-followUp-v4p4'],
-     'molecular':[
-          'cnv', 
-          'mut01', 
-          'mut', 
-          'methylation',
-          'rna', 
-          'protein', 
-          'genesets'], 
-     'other':[
-          'chromosome',
-          'genes',
-          'centromere',
-          'color',
-          'mds',
-          'pcaScores',
-          'edges',
-          'ptDegree',
-          'geneDegree']
-};
+// var dataTypeCat = {
+//     'clinical':[
+//           'patient', 
+//           'followUp-v1p0', 
+//           'drug', 
+//           'newTumor', 
+//           'otherMalignancy-v4p0',
+//           'radiation',
+//           'followUp-v1p5',
+//           'followUp-v2p1',
+//           'followUp-v4p0',
+//           'newTumor-followUp-v4p0',
+//           'followUp-v4p8',
+//           'newTumor-followUp-v4p8',
+//           'followUp-v4p4',
+//           'newTumor-followUp-v4p4'],
+//      'molecular':[
+//           'cnv', 
+//           'mut01', 
+//           'mut', 
+//           'methylation',
+//           'rna', 
+//           'protein', 
+//           'genesets'], 
+//      'other':[
+//           'chromosome',
+//           'genes',
+//           'centromere',
+//           'color',
+//           'mds',
+//           'pcaScores',
+//           'edges',
+//           'ptDegree',
+//           'geneDegree']
+// };
 
 
 format.h2("Mongo DB Connection");
@@ -255,79 +255,69 @@ co(function *() {
   format.codeStop();
 
   
-  //========================================================
-  /* using Manifest file to populate _clinic_api_query.md 
+  //=========================================================================
+  /* using lookup_oncoscape_datasources file to populate _clinic_api_query.md 
   */
   format.h1("Collections by Disease");
-  manifest = yield comongo.db.collection(db, "manifest");
-  manifest_content = yield manifest.find({}).toArray();
-  
-  manifest_content.map(function(e){
-    if(dataTypeCat['clinical'].indexOf(e.dataType) != -1){
-      e.dataTypeCat = 'clinical';
-    }else if(dataTypeCat['molecular'].indexOf(e.dataType) != -1){
-      e.dataTypeCat = 'molecular';
-    }else{e.dataTypeCat = 'other';}    
-    return e;
-  }); //manifest_content is being modified
-
-  for(var i=0;i<manifest_length;i++){
-    var e = manifest_content[i];
-    if(Array.isArray(e.collection)){
-      console.log(e);
-    }else{
-      var tbl = yield comongo.db.collection(db, e.collection);
-      var tbl_doc = yield tbl.find({}).toArray();
-      console.log(tbl_doc.length);
-      console.log(Object.keys(tbl_doc[0]));
-    }
-  }
-
-
-  manifest_length = manifest_content.length;
-  for(i=0;i<manifest_length;i++){
-    Array.prototype.push.apply(keys, Object.keys(manifest_content[i]));
-    dataset.push(manifest_content[i]['dataset']);
-    dataType.push(manifest_content[i]['dataType']);
-    date.push(manifest_content[i]['date']);
-    manifestCollection.push(manifest_content[i]['collection']);
-    source.push(manifest_content[i]['source']);
-    parent.push(manifest_content[i]['parent']);
-  }
-
-  unique_keys = keys.unique();
-  unique_datasets = dataset.unique();
-  unique_datasets_length = unique_datasets.length;
-  unique_dataTypes = dataType.unique();
-  unique_dates = date.unique();
-  unique_collections = manifestCollection.unique();
-  unique_sources = source.unique();
-  unique_parents = parent.unique();
-
-  //var collections_gbm = manifest_content.filter(filterByDataSet.bind(this, 'gbm')); //.length; would give 52 collections under 'gbm'
-  //var collections_gbm_patient = collections_gbm.filter(filterByDataType.bind(this, 'patient'));
-  var dataTypeCat_values = Object.keys(dataTypeCat);
-  var dataTypeCat_length = dataTypeCat_values.length;
-  
-  for(var i=0;i<unique_datasets_length;i++){
-    format.h2(unique_datasets[i].toUpperCase() + " - " + disease_code[unique_datasets[i].toUpperCase()]);
-    var disease_collections = manifest_content.filter(filterByDataSet.bind(this, unique_datasets[i]));
-    for(var j=0; j<dataTypeCat_length-1; j++){
-       format.h3(dataTypeCat_values[j]);
-       disease_collections.filter(filterByDataTypeCat.bind(this, dataTypeCat_values[j])).forEach(function(elem){
-                     if(Array.isArray(elem.collection)){
-                          elem.collection.forEach(function(e){
-                            format.textbold(e);
-                          });
-                        }else{
-                          format.textbold(elem.collection);
-                        }
-                      format.text("Data Source | Data Type");
-                      format.table("--------- | -----------");  
-                      format.table(elem.source + "|" + elem.dataType);
-                    });
-    }
-  }
+  lookup_oncoscape_datasources = yield comongo.db.collection(db, "lookup_oncoscape_datasources");
+  datasources = yield lookup_oncoscape_datasources.find({}).toArray();
+  var datasource_count = yield lookup_oncoscape_datasources.count();
   yield comongo.db.close(db);
-}).catch(onerror);
 
+  unique_datasets_length = datasources.length;
+  //var dataTypeCat = ['clinical', 'molecular', 'category','calculated', 'edges'];
+  var dataTypeCat = ['molecular'];
+  var dataTypeCat_length = dataTypeCat.length;
+  var elem_source, elem_dataType;
+
+  for(var i=0;i<unique_datasets_length;i++){
+    format.h2(datasources[i].disease.toUpperCase() + " - " + disease_code[datasources[i].disease.toUpperCase()]);
+    var datasource = datasources[i];
+    db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
+  
+    for(var j=0; j<dataTypeCat_length; j++){
+       if(dataTypeCat[j] in datasource){
+          format.h3(dataTypeCat[j]);
+          if(Array.isArray(datasource[dataTypeCat[j]])) {
+
+              datasource[dataTypeCat[j]].forEach(function(elem){
+                if('collection' in elem){
+                  format.textbold(elem.collection);
+                  console.dir(comongo);
+                  var coll = yield comongo.db.collection(db, elem.collection);
+                  var coll_count = yield coll.count();
+                  format.text(coll_count);
+                }else{
+                  format.textbold(elem.name);
+                }
+                
+                elem_source = elem.source;
+                elem_dataType = elem.type;
+                format.text("Data Source | Data Type");
+                format.table("--------- | -----------");  
+                format.table(elem_source + "|" + elem_dataType);
+               }); 
+          }else{
+              elem_source = datasource.source;
+              elem_dataType = "";
+              var elems = Object.keys(datasource[dataTypeCat[j]]);
+              var elems_length = elems.length;
+              for(var j=0; j<elems_length;j++){
+                format.textbold(elems[j]);
+                //format.textbold(datasource[dataTypeCat[j]][elems[j]]);
+                format.text("Data Source | Data Type");
+                format.table("--------- | -----------");  
+                format.table(elem_source + "|" + elem_dataType);
+              }
+          }
+          
+        }
+       
+    }
+    yield comongo.db.close(db);
+  }
+
+
+  //yield comongo.db.close(db);
+}).catch(onerror);
+  
