@@ -231,27 +231,37 @@ co(function *() {
   format.codeStop(); 
       
   // javascript version 
-  format.codeJSStart("collection = db.collection(\"gbm_patient_tcga_na\");");
-  format.code("collection.find({\"gender\":\"MALE\", \"race\":\"WHITE\"},"+
-    "{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true}).limit(2).skip(5).toArray(function(err, doc){);" +
-    "console.log(JSON.stringify(doc, null, 4));");
+  format.codeJSStart('collection = db.collection(\"gbm_patient_tcga_na\");');
+  format.text('collection.find({\"gender\":\"MALE\", \"race\":\"WHITE\"},');
+  format.text('{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true})');
+  format.text('.limit(2).skip(5).toArray(function(err, doc){);"');
+  format.text('console.log(JSON.stringify(doc, null, 4));');
+  format.codeComment("To get the fields of first document and the count of the documents in collection");
+  format.text('var collection = "gbm_patient_tcga_clinical";');
+  format.text('var url = "https\://dev.oncoscape.sttrcancer.io/api/" + collection + "/?q=";');
+  format.text('$.get(url, function(data) {'); 
+  format.text('var field_names = Object.keys(data[0]);');
+  format.text('var count = data.length;');
+  format.text('console.log("fields name of the first records: " + field_names);');
+  format.text('console.log("counts: " + count);});');
   format.codeStop();
-  
+
   // mongo shell version: not connect, --replicaSet option is specified 
-  format.codeMongoStart("db.getCollection(\"gbm_patient_tcga_na\").find({\"gender\":\"MALE\", \"race\":\"WHITE\"},{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true}).skip(5).limit(2)");
+  format.codeMongoStart('db.getCollection(\"gbm_patient_tcga_na\").');
+  format.text('find({\"gender\":\"MALE\", \"race\":\"WHITE\"},{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true}).skip(5).limit(2)');
   format.codeStop();
 
   // R verion: not connect, error code 3
   format.codeRStart("install.packages(\"rmongodb\")");
-  format.code("library(rmongodb)");
+  format.text("library(rmongodb)");
   format.codeStop();
 
   // python verion: haven't tried 
   format.codePyStart("pip install pymongo");
-  format.code("from pymongo import MongoClient");
-  format.code("client = MongoClient(\"mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin\")");
-  format.code("db = client.os");
-  format.code("db[\"gbm_patient_tcga_na\"]");
+  format.text("from pymongo import MongoClient");
+  format.text("client = MongoClient(\"mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin\")");
+  format.text("db = client.os");
+  format.text("db[\"gbm_patient_tcga_na\"]");
   format.codeStop();
 
   
