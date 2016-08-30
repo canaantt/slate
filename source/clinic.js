@@ -253,7 +253,7 @@ co(function *() {
       format.h2(datasources[i].disease.toUpperCase() + " - " + disease_code[datasources[i].disease.toUpperCase()]);
       var datasource = datasources[i];
       //db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
-      format.text("Collection_Name | Category | Data Source | Data Type");
+      format.text("Collection Name | Collection Type | Data Source | Data Type");
       format.table("--------- | ----------- | ----------- | -----------"); 
       elem_source = datasource.source;
       elem_dataType = "";
