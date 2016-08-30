@@ -123,7 +123,7 @@ console.log(JSON.stringify(doc, null, 4));
 
 >To get the fields of first document and the count of the documents in collection
 var collection = "gbm_patient_tcga_clinical";
-var url = "https://dev.oncoscape.sttrcancer.io/api/" + collection + "/?q=";
+var url = "https\://dev.oncoscape.sttrcancer.io/api/" + collection + "/?q=";
 $.get(url, function(data) {
 var field_names = Object.keys(data[0]);
 var count = data.length;
@@ -138,7 +138,6 @@ find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race"
 ```
 ```r
 install.packages("rmongodb")
-undefined
 library(rmongodb)
 
 ```

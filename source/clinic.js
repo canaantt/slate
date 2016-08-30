@@ -202,7 +202,7 @@ co(function *() {
   format.table('console.log(JSON.stringify(doc, null, 4));');
   format.codeComment('To get the fields of first document and the count of the documents in collection');
   format.table('var collection = "gbm_patient_tcga_clinical";');
-  format.table('var url = "https\://dev.oncoscape.sttrcancer.io/api/" + collection + "/?q=";');
+  format.table('var url = "https\\://dev.oncoscape.sttrcancer.io/api/" + collection + "/?q=";');
   format.table('$.get(url, function(data) {'); 
   format.table('var field_names = Object.keys(data[0]);');
   format.table('var count = data.length;');
@@ -219,7 +219,6 @@ co(function *() {
   // R verion: not connect, error code 3
   format.codeRStart();
   format.table('install.packages(\"rmongodb\")');
-  format.table()
   format.table('library(rmongodb)');
   format.codeStop();
 
