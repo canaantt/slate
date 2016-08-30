@@ -36,10 +36,10 @@ var format = {
 	codeStop: function() { console.log(); console.log('```'); },
 	code: function(text) { console.log('"'+ text + '"'); },
 	jsonfy: function(text) { console.log('{' + text + '}');},
-  codeRStart: function(text) { console.log("```r"); console.log(text);},
-  codeMongoStart: function(text) { console.log("```mongo"); console.log(text);},
-  codeJSStart: function(text) { console.log("```javascript"); console.log(text);},
-  codePyStart: function(text) { console.log("```python"); console.log(text);},
+  codeRStart: function(text) { console.log("```r");},
+  codeMongoStart: function(text) { console.log("```mongo"); },
+  codeJSStart: function(text) { console.log("```javascript"); },
+  codePyStart: function(text) { console.log("```python"); },
   table: function(text){ console.log(text);  }
 };
 
@@ -84,43 +84,6 @@ var disease_code = {
      "UCEC":"Uterine Corpus Endometrial Carcinoma",  
      "UVM":"Uveal Melanoma"
  };
-
-// var dataTypeCat = {
-//     'clinical':[
-//           'patient', 
-//           'followUp-v1p0', 
-//           'drug', 
-//           'newTumor', 
-//           'otherMalignancy-v4p0',
-//           'radiation',
-//           'followUp-v1p5',
-//           'followUp-v2p1',
-//           'followUp-v4p0',
-//           'newTumor-followUp-v4p0',
-//           'followUp-v4p8',
-//           'newTumor-followUp-v4p8',
-//           'followUp-v4p4',
-//           'newTumor-followUp-v4p4'],
-//      'molecular':[
-//           'cnv', 
-//           'mut01', 
-//           'mut', 
-//           'methylation',
-//           'rna', 
-//           'protein', 
-//           'genesets'], 
-//      'other':[
-//           'chromosome',
-//           'genes',
-//           'centromere',
-//           'color',
-//           'mds',
-//           'pcaScores',
-//           'edges',
-//           'ptDegree',
-//           'geneDegree']
-// };
-
 
 format.h2("Mongo DB Connection");
 format.codeJSStart('const mongoose = require("mongoose");');
@@ -221,47 +184,52 @@ co(function *() {
   format.url('"$skip":5');
   format.text("limit the final output to two records.");
   format.url('"$limit":2');
-  format.codeComment("Male White patients result: ");
+  format.codeComment('Male White patients result: ');
   format.codeStart();
   format.text(JSON.stringify(doc, null, 4)); 
   format.codeStop(); 
-  format.codeComment("Count of the records meet this criteria");
+  format.codeComment('Count of the records meet this criteria');
   format.codeStart(); 
   format.text(doc.length);
   format.codeStop(); 
       
   // javascript version 
-  format.codeJSStart('collection = db.collection(\"gbm_patient_tcga_na\");');
-  format.text('collection.find({\"gender\":\"MALE\", \"race\":\"WHITE\"},');
-  format.text('{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true})');
-  format.text('.limit(2).skip(5).toArray(function(err, doc){);"');
-  format.text('console.log(JSON.stringify(doc, null, 4));');
-  format.codeComment("To get the fields of first document and the count of the documents in collection");
-  format.text('var collection = "gbm_patient_tcga_clinical";');
-  format.text('var url = "https\://dev.oncoscape.sttrcancer.io/api/" + collection + "/?q=";');
-  format.text('$.get(url, function(data) {'); 
-  format.text('var field_names = Object.keys(data[0]);');
-  format.text('var count = data.length;');
-  format.text('console.log("fields name of the first records: " + field_names);');
-  format.text('console.log("counts: " + count);});');
+  format.codeJSStart();
+  format.table('collection = db.collection(\"gbm_patient_tcga_na\");');
+  format.table('collection.find({\"gender\":\"MALE\", \"race\":\"WHITE\"},');
+  format.table('{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true})');
+  format.table('.limit(2).skip(5).toArray(function(err, doc){);"');
+  format.table('console.log(JSON.stringify(doc, null, 4));');
+  format.codeComment('To get the fields of first document and the count of the documents in collection');
+  format.table('var collection = "gbm_patient_tcga_clinical";');
+  format.table('var url = "https\://dev.oncoscape.sttrcancer.io/api/" + collection + "/?q=";');
+  format.table('$.get(url, function(data) {'); 
+  format.table('var field_names = Object.keys(data[0]);');
+  format.table('var count = data.length;');
+  format.table('console.log("fields name of the first records: " + field_names);');
+  format.table('console.log("counts: " + count);});');
   format.codeStop();
 
   // mongo shell version: not connect, --replicaSet option is specified 
-  format.codeMongoStart('db.getCollection(\"gbm_patient_tcga_na\").');
-  format.text('find({\"gender\":\"MALE\", \"race\":\"WHITE\"},{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true}).skip(5).limit(2)');
+  format.codeMongoStart();
+  format.table('db.getCollection(\"gbm_patient_tcga_na\").');
+  format.table('find({\"gender\":\"MALE\", \"race\":\"WHITE\"},{\"patient_ID\":true, \"gender\":true, \"race\":true, \"histologic_diagnosis\":true}).skip(5).limit(2)');
   format.codeStop();
 
   // R verion: not connect, error code 3
-  format.codeRStart("install.packages(\"rmongodb\")");
-  format.text("library(rmongodb)");
+  format.codeRStart();
+  format.table('install.packages(\"rmongodb\")');
+  format.table()
+  format.table('library(rmongodb)');
   format.codeStop();
 
   // python verion: haven't tried 
-  format.codePyStart("pip install pymongo");
-  format.text("from pymongo import MongoClient");
-  format.text("client = MongoClient(\"mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin\")");
-  format.text("db = client.os");
-  format.text("db[\"gbm_patient_tcga_na\"]");
+  format.codePyStart();
+  format.table('pip install pymongo');
+  format.table('from pymongo import MongoClient');
+  format.table('client = MongoClient(\"mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin\")');
+  format.table('db = client.os');
+  format.table('db[\"gbm_patient_tcga_na\"]');
   format.codeStop();
 
   
@@ -275,55 +243,58 @@ co(function *() {
   //yield comongo.db.close(db);
 
   unique_datasets_length = datasources.length;
-  //var dataTypeCat = ['clinical', 'molecular', 'category','calculated', 'edges'];
-  var dataTypeCat = ['molecular', 'clinical'];
+  //var dataTypeCat = ['clinical', 'molecular','calculated', 'edges'];
+  var dataTypeCat = ['molecular', 'clinical', 'category'];
   var dataTypeCat_length = dataTypeCat.length;
   var elem_source, elem_dataType;
 
   for(var i=0;i<unique_datasets_length;i++){
-    format.h2(datasources[i].disease.toUpperCase() + " - " + disease_code[datasources[i].disease.toUpperCase()]);
-    var datasource = datasources[i];
-    //db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
-  
-    for(var j=0; j<dataTypeCat_length; j++){
-       if(dataTypeCat[j] in datasource){
-          format.h3(dataTypeCat[j]);
-          if(Array.isArray(datasource[dataTypeCat[j]])) {
+    if("disease" in datasources[i]){
+      format.h2(datasources[i].disease.toUpperCase() + " - " + disease_code[datasources[i].disease.toUpperCase()]);
+      var datasource = datasources[i];
+      //db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
+    
+      for(var j=0; j<dataTypeCat_length; j++){
+         if(dataTypeCat[j] in datasource){
+            format.h3(dataTypeCat[j]);
+            if(Array.isArray(datasource[dataTypeCat[j]])) {
 
-              datasource[dataTypeCat[j]].forEach(function(elem){
-                if('collection' in elem){
-                  format.textbold(elem.collection);
-                  // console.dir(comongo);
-                  // var coll = yield comongo.db.collection(db, elem.collection);
-                  // var coll_count = yield coll.count();
-                  // format.text(coll_count);
-                }else{
-                  format.textbold(elem.name);
+                datasource[dataTypeCat[j]].forEach(function(elem){
+                  if('collection' in elem){
+                    format.textbold(elem.collection);
+                    // console.dir(comongo);
+                    // var coll = yield comongo.db.collection(db, elem.collection);
+                    // var coll_count = yield coll.count();
+                    // format.text(coll_count);
+                  }else{
+                    format.textbold(elem.name);
+                  }
+                  
+                  elem_source = elem.source;
+                  elem_dataType = elem.type;
+                  format.text("Data Source | Data Type");
+                  format.table("--------- | -----------");  
+                  format.table(elem_source + "|" + elem_dataType);
+                }); 
+            }else{
+                elem_source = datasource.source;
+                elem_dataType = "";
+                var elems = Object.keys(datasource[dataTypeCat[j]]);
+                var elems_length = elems.length;
+                for(var m=0; m<elems_length;m++){
+                  //format.textbold(elems[j]);
+                  format.textbold(datasource[dataTypeCat[j]][elems[m]]);
+                  format.text("Data Source | Data Type");
+                  format.table("--------- | -----------");  
+                  format.table(elem_source + "|" + elem_dataType);
                 }
-                
-                elem_source = elem.source;
-                elem_dataType = elem.type;
-                format.text("Data Source | Data Type");
-                format.table("--------- | -----------");  
-                format.table(elem_source + "|" + elem_dataType);
-              }); 
-          }else{
-              elem_source = datasource.source;
-              elem_dataType = "";
-              var elems = Object.keys(datasource[dataTypeCat[j]]);
-              var elems_length = elems.length;
-              for(var j=0; j<elems_length;j++){
-                format.textbold(elems[j]);
-                //format.textbold(datasource[dataTypeCat[j]][elems[j]]);
-                format.text("Data Source | Data Type");
-                format.table("--------- | -----------");  
-                format.table(elem_source + "|" + elem_dataType);
-              }
+            }
+            
           }
-          
-        }
-       
+         
+      } 
     }
+   
   }
   yield comongo.db.close(db);
 }).catch(onerror);
