@@ -244,7 +244,7 @@ co(function *() {
 
   unique_datasets_length = datasources.length;
   //var dataTypeCat = ['clinical', 'molecular','calculated', 'edges'];
-  var dataTypeCat = ['molecular', 'clinical', 'category'];
+  var dataTypeCat = ['category', 'clinical', 'molecular'];
   var dataTypeCat_length = dataTypeCat.length;
   var elem_source, elem_dataType;
 
@@ -253,40 +253,27 @@ co(function *() {
       format.h2(datasources[i].disease.toUpperCase() + " - " + disease_code[datasources[i].disease.toUpperCase()]);
       var datasource = datasources[i];
       //db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
-    
+      format.text("Collection_Name | Category | Data Source | Data Type");
+      format.table("--------- | ----------- | ----------- | -----------"); 
+      elem_source = datasource.source;
+      elem_dataType = "";
       for(var j=0; j<dataTypeCat_length; j++){
          if(dataTypeCat[j] in datasource){
-            format.h3(dataTypeCat[j]);
             if(Array.isArray(datasource[dataTypeCat[j]])) {
-
                 datasource[dataTypeCat[j]].forEach(function(elem){
-                  if('collection' in elem){
-                    format.textbold(elem.collection);
-                    // console.dir(comongo);
-                    // var coll = yield comongo.db.collection(db, elem.collection);
-                    // var coll_count = yield coll.count();
-                    // format.text(coll_count);
-                  }else{
-                    format.textbold(elem.name);
-                  }
-                  
                   elem_source = elem.source;
-                  elem_dataType = elem.type;
-                  format.text("Data Source | Data Type");
-                  format.table("--------- | -----------");  
-                  format.table(elem_source + "|" + elem_dataType);
+                  elem_dataType = elem.type; 
+                  if('collection' in elem){
+                    format.table(elem.collection + " | " + dataTypeCat[j] + " | " + elem_source + " | " + elem_dataType);
+                  }else{
+                    format.table(elem.name + " | " + dataTypeCat[j] + " | " + elem_source + " | " + elem_dataType);
+                  }
                 }); 
             }else{
-                elem_source = datasource.source;
-                elem_dataType = "";
                 var elems = Object.keys(datasource[dataTypeCat[j]]);
                 var elems_length = elems.length;
                 for(var m=0; m<elems_length;m++){
-                  //format.textbold(elems[j]);
-                  format.textbold(datasource[dataTypeCat[j]][elems[m]]);
-                  format.text("Data Source | Data Type");
-                  format.table("--------- | -----------");  
-                  format.table(elem_source + "|" + elem_dataType);
+                  format.table(datasource[dataTypeCat[j]][elems[m]] + " | " + dataTypeCat[j] + " | " + elem_source + " | " + elem_dataType);
                 }
             }
             
