@@ -155,7 +155,7 @@ db["gbm_patient_tcga_na"]
 
 ## HG19 - Genome Platform
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 hg19_genesets_hgnc_import | category | hgnc | genesets
 hg19_genesets_orghs_10000 | category | orgHs | genesets
@@ -163,19 +163,18 @@ hg19_genesets_orghs_1e+05 | category | orgHs | genesets
 
 ## BRCA - Breast invasive carcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-brca_color_tcga_import | category | tcga | color
-brca_patient_tcga_clinical | clinical | tcga | color
-brca_drug_tcga_clinical | clinical | tcga | color
-brca_radiation_tcga_clinical | clinical | tcga | color
-brca_followup-v1p5_tcga_clinical | clinical | tcga | color
-brca_followup-v2p1_tcga_clinical | clinical | tcga | color
-brca_followup-v4p0_tcga_clinical | clinical | tcga | color
-brca_newtumor_tcga_clinical | clinical | tcga | color
-brca_newtumor-followup-v4p0_tcga_clinical | clinical | tcga | color
-brca_othermalignancy-v4p0_tcga_clinical | clinical | tcga | color
-brca_events_tcga_clinical | clinical | tcga | color
+brca_patient_tcga_clinical | clinical | TCGA | 
+brca_drug_tcga_clinical | clinical | TCGA | 
+brca_radiation_tcga_clinical | clinical | TCGA | 
+brca_followup-v1p5_tcga_clinical | clinical | TCGA | 
+brca_followup-v2p1_tcga_clinical | clinical | TCGA | 
+brca_followup-v4p0_tcga_clinical | clinical | TCGA | 
+brca_newtumor_tcga_clinical | clinical | TCGA | 
+brca_newtumor-followup-v4p0_tcga_clinical | clinical | TCGA | 
+brca_othermalignancy-v4p0_tcga_clinical | clinical | TCGA | 
+brca_events_tcga_clinical | clinical | TCGA | 
 brca_cnv_cbio_gistic | molecular | cBio | cnv
 brca_mut_cbio_wxs | molecular | cBio | mut
 brca_mut01_cbio_import | molecular | cBio | mut01
@@ -188,16 +187,17 @@ brca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 brca_mut_ucsc_mutationcuratedwustlgene | molecular | ucsc | mut
 brca_mut01_ucsc_import | molecular | ucsc | mut01
 brca_psi_bradleylab_miso | molecular | bradleyLab | psi
+brca_color_tcga_import | category | tcga | color
 
 ## ESCA - Esophageal carcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 esca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 
 ## LUNG - Lung adenocarcinoma & Lung squamous cell carcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 lung_events_tcga_clinical | clinical | TCGA | 
 lung_facs_demo_flow | molecular | demo | facs
@@ -216,7 +216,7 @@ lung_protein_cbio_rppa | molecular | cBio | protein
 
 ## COAD - Colon adenocarcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 coad_patient_tcga_na | clinical | TCGA | 
 coad_drug_tcga_na | clinical | TCGA | 
@@ -227,7 +227,7 @@ coad_othermalignancy-v4p0_tcga_na | clinical | TCGA |
 
 ## GBM - Glioblastoma multiforme
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 gbm_patient_tcga_na | clinical | TCGA | 
 gbm_drug_tcga_na | clinical | TCGA | 
@@ -242,7 +242,7 @@ gbm_mut01_ucsc_import | molecular | ucsc | mut01
 
 ## COADREAD - Colon adenocarcinoma & Rectum adenocarcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 coadread_events_tcga_clinical | clinical | TCGA | 
 coadread_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
@@ -259,18 +259,17 @@ coadread_protein_cbio_rppa | molecular | cBio | protein
 
 ## HNSC - Head and Neck squamous cell carcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-hnsc_color_tcga_import | category | tcga | color
-hnsc_patient_tcga_na | clinical | tcga | color
-hnsc_drug_tcga_na | clinical | tcga | color
-hnsc_radiation_tcga_na | clinical | tcga | color
-hnsc_followup-v1p0_tcga_na | clinical | tcga | color
-hnsc_followup-v4p8_tcga_na | clinical | tcga | color
-hnsc_newtumor_tcga_na | clinical | tcga | color
-hnsc_newtumor-followup-v4p8_tcga_na | clinical | tcga | color
-hnsc_othermalignancy-v4p0_tcga_na | clinical | tcga | color
-hnsc_events_tcga_clinical | clinical | tcga | color
+hnsc_patient_tcga_na | clinical | TCGA | 
+hnsc_drug_tcga_na | clinical | TCGA | 
+hnsc_radiation_tcga_na | clinical | TCGA | 
+hnsc_followup-v1p0_tcga_na | clinical | TCGA | 
+hnsc_followup-v4p8_tcga_na | clinical | TCGA | 
+hnsc_newtumor_tcga_na | clinical | TCGA | 
+hnsc_newtumor-followup-v4p8_tcga_na | clinical | TCGA | 
+hnsc_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+hnsc_events_tcga_clinical | clinical | TCGA | 
 hnsc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 hnsc_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
 hnsc_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
@@ -280,10 +279,11 @@ hnsc_mut01_cbio_mut | molecular | cBio | mut01
 hnsc_methylation_cbio_methylationhm450 | molecular | cBio | methylation
 hnsc_rna_cbio_rnaseq | molecular | cBio | rna
 hnsc_protein_cbio_rppa | molecular | cBio | protein
+hnsc_color_tcga_import | category | tcga | color
 
 ## LGG - Brain Lower Grade Glioma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 lgg_patient_tcga_na | clinical | TCGA | 
 lgg_drug_tcga_na | clinical | TCGA | 
@@ -298,7 +298,7 @@ lgg_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 
 ## LUAD - Lung adenocarcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 luad_patient_tcga_na | clinical | TCGA | 
 luad_drug_tcga_na | clinical | TCGA | 
@@ -321,15 +321,14 @@ luad_protein_cbio_rppa | molecular | cBio | protein
 
 ## LUSC - Lung squamous cell carcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-lusc_color_tcga_import | category | tcga | color
-lusc_patient_tcga_na | clinical | tcga | color
-lusc_drug_tcga_na | clinical | tcga | color
-lusc_radiation_tcga_na | clinical | tcga | color
-lusc_followup-v1p0_tcga_na | clinical | tcga | color
-lusc_newtumor_tcga_na | clinical | tcga | color
-lusc_othermalignancy-v4p0_tcga_na | clinical | tcga | color
+lusc_patient_tcga_na | clinical | TCGA | 
+lusc_drug_tcga_na | clinical | TCGA | 
+lusc_radiation_tcga_na | clinical | TCGA | 
+lusc_followup-v1p0_tcga_na | clinical | TCGA | 
+lusc_newtumor_tcga_na | clinical | TCGA | 
+lusc_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
 lusc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 lusc_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
 lusc_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
@@ -342,18 +341,18 @@ lusc_rna_cbio_microarray-agilent | molecular | cBio | rna
 lusc_rna_cbio_rnaseq | molecular | cBio | rna
 lusc_rna_cbio_microarray-u133 | molecular | cBio | rna
 lusc_protein_cbio_rppa | molecular | cBio | protein
+lusc_color_tcga_import | category | tcga | color
 
 ## PRAD - Prostate adenocarcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-prad_color_tcga_import | category | tcga | color
-prad_patient_tcga_na | clinical | tcga | color
-prad_drug_tcga_na | clinical | tcga | color
-prad_radiation_tcga_na | clinical | tcga | color
-prad_followup-v1p0_tcga_na | clinical | tcga | color
-prad_newtumor_tcga_na | clinical | tcga | color
-prad_othermalignancy-v4p0_tcga_na | clinical | tcga | color
+prad_patient_tcga_na | clinical | TCGA | 
+prad_drug_tcga_na | clinical | TCGA | 
+prad_radiation_tcga_na | clinical | TCGA | 
+prad_followup-v1p0_tcga_na | clinical | TCGA | 
+prad_newtumor_tcga_na | clinical | TCGA | 
+prad_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
 prad_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 prad_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
 prad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
@@ -363,10 +362,11 @@ prad_mut01_cbio_mut | molecular | cBio | mut01
 prad_methylation_cbio_methylationhm450 | molecular | cBio | methylation
 prad_rna_cbio_microarray-agilent | molecular | cBio | rna
 prad_protein_cbio_rppa | molecular | cBio | protein
+prad_color_tcga_import | category | tcga | color
 
 ## PAAD - Pancreatic adenocarcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 paad_patient_tcga_na | clinical | TCGA | 
 paad_drug_tcga_na | clinical | TCGA | 
@@ -385,13 +385,13 @@ paad_rna_cbio_rnaseq | molecular | cBio | rna
 
 ## ACC - Adrenocortical carcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 acc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 
 ## BLCA - Bladder Urothelial Carcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 blca_patient_tcga_na | clinical | TCGA | 
 blca_drug_tcga_na | clinical | TCGA | 
@@ -406,25 +406,25 @@ blca_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 
 ## CESC - Cervical squamous cell carcinoma and endocervical adenocarcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 cesc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 
 ## CHOL - Cholangiocarcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 chol_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 
 ## DLBC - Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 dlbc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 
 ## LAML - Acute Myeloid Leukemia
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 laml_patient_tcga_na | clinical | TCGA | 
 laml_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
@@ -433,7 +433,7 @@ laml_mut01_ucsc_mutation | molecular | ucsc | mut01
 
 ## SARC - Sarcoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 sarc_patient_tcga_na | clinical | TCGA | 
 sarc_drug_tcga_na | clinical | TCGA | 
@@ -446,14 +446,14 @@ sarc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 
 ## STAD - Stomach adenocarcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 stad_mut_ucsc_mutationbcmgene | molecular | ucsc | mut
 stad_mut01_ucsc_mutationbcmgene | molecular | ucsc | mut01
 
 ## READ - Rectum adenocarcinoma
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 read_patient_tcga_na | clinical | TCGA | 
 read_drug_tcga_na | clinical | TCGA | 
@@ -464,15 +464,14 @@ read_othermalignancy-v4p0_tcga_na | clinical | TCGA |
 
 ## BRAIN - Lower Grade Glioma & Glioblastoma multiforme
 
-Collection_Name | Category | Data Source | Data Type
+Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-brain_color_tcga_import | category | tcga | color
-brain_patient_tcga_clinical | clinical | tcga | color
-brain_followup-v1p0_tcga_clinical | clinical | tcga | color
-brain_drug_tcga_clinical | clinical | tcga | color
-brain_newtumor_tcga_clinical | clinical | tcga | color
-brain_othermalignancy-v4p0_tcga_clinical | clinical | tcga | color
-brain_events_tcga_clinical | clinical | tcga | color
+brain_patient_tcga_clinical | clinical | TCGA | 
+brain_followup-v1p0_tcga_clinical | clinical | TCGA | 
+brain_drug_tcga_clinical | clinical | TCGA | 
+brain_newtumor_tcga_clinical | clinical | TCGA | 
+brain_othermalignancy-v4p0_tcga_clinical | clinical | TCGA | 
+brain_events_tcga_clinical | clinical | TCGA | 
 brain_cnv_ucsc_gistic | molecular | ucsc | cnv
 brain_mut01_ucsc_import | molecular | ucsc | mut01
 brain_cnv_cbio_gistic | molecular | cBio | cnv
@@ -481,3 +480,4 @@ brain_mut01_cbio_import | molecular | cBio | mut01
 brain_methylation_cbio_hm27 | molecular | cBio | methylation
 brain_rna_cbio_rnaseq-bc | molecular | cBio | rna
 brain_protein_cbio_rppa-zscore | molecular | cBio | protein
+brain_color_tcga_import | category | tcga | color

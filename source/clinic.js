@@ -244,7 +244,7 @@ co(function *() {
 
   unique_datasets_length = datasources.length;
   //var dataTypeCat = ['clinical', 'molecular','calculated', 'edges'];
-  var dataTypeCat = ['category', 'clinical', 'molecular'];
+  var dataTypeCat = ['clinical', 'molecular','category'];
   var dataTypeCat_length = dataTypeCat.length;
   var elem_source, elem_dataType;
 
