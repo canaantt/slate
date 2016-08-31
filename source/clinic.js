@@ -203,6 +203,7 @@ co(function *() {
   format.table('          .limit(2).skip(5).toArray(function(err, doc){);');
   format.table('console.log(JSON.stringify(doc, null, 4));');
   format.codeStop();
+  
   // javascript version 
   format.codeJSStart();
   format.table('var collection = \"gbm_patient_tcga_clinical\";');
