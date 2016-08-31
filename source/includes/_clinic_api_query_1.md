@@ -1,15 +1,17 @@
 
 ## Mongo DB Connection
-```javascript
-"mongoose.connect("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin",{user: "oncoscapeRead",pass: "i1f4d9botHD4xnZ"});"
-"var connection = mongoose.connection;"
-"var db = connection.db;"
 
+```javascript
+mongoose.connect("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin",{user: "oncoscapeRead",pass: "i1f4d9botHD4xnZ"});
+var connection = mongoose.connection;
+var db = connection.db;
 ```
+
 
 ## Example of fields from one record
 
->Fields for most of records in gbm_patient_tcga_na
+> Fields for most of records in gbm_patient_tcga_clinical
+
 
 ```
 
@@ -26,7 +28,6 @@
   'history_neoadjuvant_treatment',
   'diagnosis_year',
   'pathologic_method',
-  'method_initial_path_dx_other',
   'status_vital',
   'days_to_last_contact',
   'days_to_death',
@@ -37,38 +38,43 @@
   'radiation_treatment_adjuvant',
   'pharmaceutical_tx_adjuvant',
   'treatment_outcome_first_course',
-  'new_tumor_event_diagnosis_indicator',
-  'age_at_diagnosis',
-  'anatomic_neoplasm_subdivision',
+  'new_tumor_event_diagnosis',
+  'age_at_initial_pathologic_diagnosis',
+  'anatomic_organ_subdivision',
   'days_to_diagnosis',
-  'histologic_type',
+  'disease_code',
+  'histologic_diagnosis',
+  'icd_10',
+  'icd_3_histology',
+  'icd_3',
   'tissue_source_site_code',
   'tumor_tissue_site' ]
-
 ```
+
 
 ## Get the count of records in the collection
 
 ### HTTP Request
 
-`GET http://oncoscape.sttrcancer.io/api/gbm_patient_tcga_na/count`
+`GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/count`
 
 
->Count of records in gbm_patient_tcga_na
+> Count of records in gbm_patient_tcga_clinical
+
 
 ```
 
-1192
-
+596
 ```
 
-## Query detail information from collection gbm_patient_tcga_na
+
+## Query detail information from collection gbm_patient_tcga_clinical
 
 Filter by gender and race and only show the selected fields
 
 ### HTTP Request
 
-`GET http://oncoscape.sttrcancer.io/api/gbm_patient_tcga_na/?q={"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}`
+`GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q={"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}`
 
 
 only show gender, race and patient_ID
@@ -86,69 +92,196 @@ limit the final output to two records.
 `"$limit":2`
 
 
->Male White patients result: 
+> Male White patients result: 
+
 
 ```
 
 [
     {
-        "_id": "57aa2b3f6cfe8ff0eb66810e",
+        "_id": "57bce8ec1debbd62f4bf350e",
         "patient_ID": "TCGA-02-0024-01",
         "gender": "MALE",
-        "race": "WHITE"
+        "race": "WHITE",
+        "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME TREATED PRIMARY"
     },
     {
-        "_id": "57aa2b3f6cfe8ff0eb66810f",
+        "_id": "57bce8ec1debbd62f4bf350f",
         "patient_ID": "TCGA-02-0025-01",
         "gender": "MALE",
-        "race": "WHITE"
+        "race": "WHITE",
+        "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY"
     }
 ]
-
 ```
 
->Count of the records meet this criteria
+
+> Count of the records meet this criteria
+
 
 ```
 
 2
-
 ```
-```javascript
-collection = db.collection("gbm_patient_tcga_na");
-collection.find({"gender":"MALE", "race":"WHITE"},
-{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true})
-.limit(2).skip(5).toArray(function(err, doc){);"
+
+
+## Fetch JSON formatted data
+
+> Fetch JSON formatted data using R, Python, or javascript
+
+
+```shell
+collection = db.collection("gbm_patient_tcga_clinical");
+collection.find({"gender":"MALE", "race":"WHITE"}, {"patient_ID":true, "gender":true,
+ "race":true, "histologic_diagnosis":true})
+          .limit(2).skip(5).toArray(function(err, doc){);
 console.log(JSON.stringify(doc, null, 4));
+```
 
->To get the fields of first document and the count of the documents in collection
+
+```javascript
 var collection = "gbm_patient_tcga_clinical";
-var url = "https\://dev.oncoscape.sttrcancer.io/api/" + collection + "/?q=";
+var url = "https://dev.oncoscape.sttrcancer.io/api/" + collection + "/?q=";
 $.get(url, function(data) {
-var field_names = Object.keys(data[0]);
-var count = data.length;
-console.log("fields name of the first records: " + field_names);
-console.log("counts: " + count);});
-
+     var field_names = Object.keys(data[0]);
+     var count = data.length;
+     console.log("fields name of the first records: " + field_names);
+     console.log("counts: " + count);
+  });
 ```
-```mongo
-db.getCollection("gbm_patient_tcga_na").
-find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true}).skip(5).limit(2)
 
-```
+
 ```r
-install.packages("rmongodb")
-library(rmongodb)
-
+install.packages("jsonlite")
+install.packages("curl")
+library(jsonlite)
+library(curl)
+gbm_patient <- fromJSON("https://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical")
+str(gbm_patient, max.level=2)
+'data.frame': 596 obs. of  33 variables:
+$ patient_ID                         : chr  "TCGA-02-0001-01" "TCGA-02-0003-01" "TCGA-02-0004-01" "TCGA-02-0006-01" ...
+$ history_lgg_dx_of_brain_tissue     : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+$ prospective_collection             : logi  NA NA NA NA NA NA ...
+$ retrospective_collection           : logi  NA NA NA NA NA NA ...
+$ gender                             : chr  "FEMALE" "MALE" "MALE" "FEMALE" ...
+$ days_to_birth                      : int  -16179 -18341 -21617 -20516 -14806 -22457 -7452 -6926 -9369 -18404 ...
+$ race                               : chr  "WHITE" "WHITE" "WHITE" "WHITE" ...
+$ ethnicity                          : chr  "NOT HISPANIC OR LATINO" "NOT HISPANIC OR LATINO" "NOT HISPANIC OR LATINO" "NOT HISPANIC OR LATINO" ...
+$ history_other_malignancy           : logi  NA NA NA NA NA NA ...
+$ history_neoadjuvant_treatment      : logi  TRUE FALSE FALSE FALSE TRUE FALSE ...
+$ diagnosis_year                     : int  1009872000 1041408000 1009872000 1009872000 1009872000 1041408000 1009872000 1072944000 852105600 1009872000 ...
+$ pathologic_method                  : logi  NA NA NA NA NA NA ...
+$ pathologic_method                  : logi  NA NA NA NA NA NA ...
+$ status_vital                       : chr  "DEAD" "DEAD" "DEAD" "DEAD" ...
+$ days_to_last_contact               : int  279 144 345 558 705 322 1077 630 2512 627 ...
+$ days_to_death                      : int  358 144 345 558 705 322 1077 630 2512 627 ...
+$ status_tumor                       : chr  "WITH TUMOR" "WITH TUMOR" "WITH TUMOR" "WITH TUMOR" ...
+$ KPS                                : int  80 100 80 80 80 80 80 80 100 80 ...
+$ ECOG                               : int  NA NA NA NA NA NA NA NA NA NA ...
+$ encounter_type                     : chr  NA NA NA NA ...
+$ radiation_treatment_adjuvant       : logi  NA NA NA NA NA NA ...
+$ pharmaceutical_tx_adjuvant         : logi  NA NA NA NA NA NA ...
+$ treatment_outcome_first_course     : chr  NA NA NA NA ...
+$ new_tumor_event_diagnosis          : logi  NA NA NA NA NA NA ...
+$ age_at_initial_pathologic_diagnosis: int  44 50 59 56 40 61 20 18 25 50 ...
+$ anatomic_organ_subdivision         : logi  NA NA NA NA NA NA ...
+$ days_to_diagnosis                  : int  0 0 0 0 0 0 0 0 0 0 ...
+$ disease_code                       : logi  NA NA NA NA NA NA ...
+$ histologic_diagnosis               : chr  "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" ...
+$ icd_10                             : chr  "C71.9" "C71.9" "C71.9" "C71.9" ...
+$ icd_3_histology                    : chr  "9440/3" "9440/3" "9440/3" "9440/3" ...
+$ icd_3                              : chr  "C71.9" "C71.9" "C71.9" "C71.9" ...
+$ tissue_source_site_code            : chr  "02" "02" "02" "02" ...
+$ tumor_tissue_site                  : chr  "BRAIN" "BRAIN" "BRAIN" "BRAIN" ...
 ```
+
+
 ```python
-pip install pymongo
-from pymongo import MongoClient
-client = MongoClient("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin")
-db = client.os
-db["gbm_patient_tcga_na"]
 
+> shell commands: sudo pip install pymongo, simplejson, urllib2, json
+
+import urllib2
+import json
+import simplejson
+url = "https://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical"
+response = urlli2.urlopen(url)
+data = simplejson.load(response)
+print json.dumps(data[0:2], indent=4, sort_keys=True)
+
+[
+    {
+        "ECOG": null,
+        "KPS": 80,
+        "age_at_initial_pathologic_diagnosis": 44,
+        "anatomic_organ_subdivision": null,
+        "days_to_birth": -16179,
+        "days_to_death": 358,
+        "days_to_diagnosis": 0,
+        "days_to_last_contact": 279,
+        "diagnosis_year": 1009872000,
+        "disease_code": null,
+        "encounter_type": null,
+        "ethnicity": "NOT HISPANIC OR LATINO",
+        "gender": "FEMALE",
+        "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY",
+        "history_lgg_dx_of_brain_tissue": false,
+        "history_neoadjuvant_treatment": true,
+        "history_other_malignancy": null,
+        "icd_10": "C71.9",
+        "icd_3": "C71.9",
+        "icd_3_histology": "9440/3",
+        "new_tumor_event_diagnosis": null,
+        "pathologic_method": null,
+        "patient_ID": "TCGA-02-0001-01",
+        "pharmaceutical_tx_adjuvant": null,
+        "prospective_collection": null,
+        "race": "WHITE",
+        "radiation_treatment_adjuvant": null,
+        "retrospective_collection": null,
+        "status_tumor": "WITH TUMOR",
+        "status_vital": "DEAD",
+        "tissue_source_site_code": "02",
+        "treatment_outcome_first_course": null,
+        "tumor_tissue_site": "BRAIN"
+    },
+    {
+        "ECOG": null,
+        "KPS": 100,
+        "age_at_initial_pathologic_diagnosis": 50,
+        "anatomic_organ_subdivision": null,
+        "days_to_birth": -18341,
+        "days_to_death": 144,
+        "days_to_diagnosis": 0,
+        "days_to_last_contact": 144,
+        "diagnosis_year": 1041408000,
+        "disease_code": null,
+        "encounter_type": null,
+        "ethnicity": "NOT HISPANIC OR LATINO",
+        "gender": "MALE",
+        "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY",
+        "history_lgg_dx_of_brain_tissue": false,
+        "history_neoadjuvant_treatment": false,
+        "history_other_malignancy": null,
+        "icd_10": "C71.9",
+        "icd_3": "C71.9",
+        "icd_3_histology": "9440/3",
+        "new_tumor_event_diagnosis": null,
+        "pathologic_method": null,
+        "patient_ID": "TCGA-02-0003-01",
+        "pharmaceutical_tx_adjuvant": null,
+        "prospective_collection": null,
+        "race": "WHITE",
+        "radiation_treatment_adjuvant": null,
+        "retrospective_collection": null,
+        "status_tumor": "WITH TUMOR",
+        "status_vital": "DEAD",
+        "tissue_source_site_code": "02",
+        "treatment_outcome_first_course": null,
+        "tumor_tissue_site": "BRAIN"
+    }
+]
 ```
+
 
 # Collections by Disease
 

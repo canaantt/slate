@@ -1,735 +1,490 @@
 
 ## Mongo DB Connection
 ```javascript
-const mongoose = require("mongoose");
-"mongoose.connect("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/os?authSource=admin",{user: "oncoscapeRead",pass: "i1f4d9botHD4xnZ"});"
-"var connection = mongoose.connection;"
-"var db = connection.db;"
+mongoose.connect("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin",{user: "oncoscapeRead",pass: "i1f4d9botHD4xnZ"});
+var connection = mongoose.connection;
+var db = connection.db;
 
 ```
 
-## Clinical Collections by Disease
+## Example of fields from one record
 
-### acc
-Adrenocortical carcinoma
+> Fields for most of records in gbm_patient_tcga_na
 
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_acc_drug",
-    "f1": "clinical_tcga_acc_f1",
-    "nte": "clinical_tcga_acc_nte",
-    "nte_f1": "clinical_tcga_acc_nte_f1",
-    "omf": "clinical_tcga_acc_omf",
-    "pt": "clinical_tcga_acc_pt",
-    "rad": "clinical_tcga_acc_rad"
-}
-
-```
-
-### blca
-Bladder Urothelial Carcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_blca_drug",
-    "f1": "clinical_tcga_blca_f1",
-    "f2": "clinical_tcga_blca_f2",
-    "nte": "clinical_tcga_blca_nte",
-    "nte_f1": "clinical_tcga_blca_nte_f1",
-    "omf": "clinical_tcga_blca_omf",
-    "pt": "clinical_tcga_blca_pt",
-    "rad": "clinical_tcga_blca_rad"
-}
-
-```
-
-### brca
-Breast invasive carcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_brca_drug",
-    "f1": "clinical_tcga_brca_f1",
-    "f2": "clinical_tcga_brca_f2",
-    "f3": "clinical_tcga_brca_f3",
-    "nte": "clinical_tcga_brca_nte",
-    "nte_f1": "clinical_tcga_brca_nte_f1",
-    "omf": "clinical_tcga_brca_omf",
-    "pt": "clinical_tcga_brca_pt",
-    "rad": "clinical_tcga_brca_rad"
-}
-
-```
-
-### cesc
-Cervical squamous cell carcinoma and endocervical adenocarcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_cesc_drug",
-    "f1": "clinical_tcga_cesc_f1",
-    "f2": "clinical_tcga_cesc_f2",
-    "nte": "clinical_tcga_cesc_nte",
-    "nte_f1": "clinical_tcga_cesc_nte_f1",
-    "omf": "clinical_tcga_cesc_omf",
-    "pt": "clinical_tcga_cesc_pt",
-    "rad": "clinical_tcga_cesc_rad"
-}
-
-```
-
-### chol
-Cholangiocarcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_chol_drug",
-    "f1": "clinical_tcga_chol_f1",
-    "nte": "clinical_tcga_chol_nte",
-    "nte_f1": "clinical_tcga_chol_nte_f1",
-    "omf": "clinical_tcga_chol_omf",
-    "pt": "clinical_tcga_chol_pt",
-    "rad": "clinical_tcga_chol_rad"
-}
-
-```
-
-### coad
-undefined
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_coad_drug",
-    "f1": "clinical_tcga_coad_f1",
-    "nte": "clinical_tcga_coad_nte",
-    "nte_f1": "clinical_tcga_coad_nte_f1",
-    "omf": "clinical_tcga_coad_omf",
-    "pt": "clinical_tcga_coad_pt",
-    "rad": "clinical_tcga_coad_rad"
-}
-
-```
-
-### dlbc
-Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_dlbc_drug",
-    "f1": "clinical_tcga_dlbc_f1",
-    "nte": "clinical_tcga_dlbc_nte",
-    "nte_f1": "clinical_tcga_dlbc_nte_f1",
-    "pt": "clinical_tcga_dlbc_pt",
-    "rad": "clinical_tcga_dlbc_rad"
-}
-
-```
-
-### esca
-Esophageal carcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_esca_drug",
-    "f1": "clinical_tcga_esca_f1",
-    "nte": "clinical_tcga_esca_nte",
-    "nte_f1": "clinical_tcga_esca_nte_f1",
-    "omf": "clinical_tcga_esca_omf",
-    "pt": "clinical_tcga_esca_pt",
-    "rad": "clinical_tcga_esca_rad"
-}
-
-```
-
-### gbm
-Glioblastoma multiforme
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_gbm_drug",
-    "f1": "clinical_tcga_gbm_f1",
-    "nte": "clinical_tcga_gbm_nte",
-    "nte_f1": "clinical_tcga_gbm_nte_f1",
-    "omf": "clinical_tcga_gbm_omf",
-    "pt": "clinical_tcga_gbm_pt",
-    "rad": "clinical_tcga_gbm_rad"
-}
-
-```
-
-### hnsc
-Head and Neck squamous cell carcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_hnsc_drug",
-    "f1": "clinical_tcga_hnsc_f1",
-    "f2": "clinical_tcga_hnsc_f2",
-    "nte": "clinical_tcga_hnsc_nte",
-    "nte_f1": "clinical_tcga_hnsc_nte_f1",
-    "omf": "clinical_tcga_hnsc_omf",
-    "pt": "clinical_tcga_hnsc_pt",
-    "rad": "clinical_tcga_hnsc_rad"
-}
-
-```
-
-### kich
-Kidney Chromophobe
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_kich_drug",
-    "f1": "clinical_tcga_kich_f1",
-    "nte": "clinical_tcga_kich_nte",
-    "nte_f1": "clinical_tcga_kich_nte_f1",
-    "omf": "clinical_tcga_kich_omf",
-    "pt": "clinical_tcga_kich_pt",
-    "rad": "clinical_tcga_kich_rad"
-}
-
-```
-
-### kirc
-Kidney renal clear cell carcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_kirc_drug",
-    "f1": "clinical_tcga_kirc_f1",
-    "nte": "clinical_tcga_kirc_nte",
-    "omf": "clinical_tcga_kirc_omf",
-    "pt": "clinical_tcga_kirc_pt",
-    "rad": "clinical_tcga_kirc_rad"
-}
-
-```
-
-### kirp
-Kidney renal papillary cell carcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_kirp_drug",
-    "f1": "clinical_tcga_kirp_f1",
-    "nte": "clinical_tcga_kirp_nte",
-    "omf": "clinical_tcga_kirp_omf",
-    "pt": "clinical_tcga_kirp_pt",
-    "rad": "clinical_tcga_kirp_rad"
-}
-
-```
-
-### laml
-Acute Myeloid Leukemia
-
->List of collections
-
-```
-{
-    "pt": "clinical_tcga_laml_pt"
-}
-
-```
-
-### lgg
-Brain Lower Grade Glioma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_lgg_drug",
-    "f1": "clinical_tcga_lgg_f1",
-    "nte": "clinical_tcga_lgg_nte",
-    "omf": "clinical_tcga_lgg_omf",
-    "pt": "clinical_tcga_lgg_pt",
-    "rad": "clinical_tcga_lgg_rad"
-}
-
-```
-
-### lich
-Liver hepatocellular carcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_lich_drug",
-    "f1": "clinical_tcga_lich_f1",
-    "nte": "clinical_tcga_lich_nte",
-    "nte_f1": "clinical_tcga_lich_nte_f1",
-    "omf": "clinical_tcga_lich_omf",
-    "pt": "clinical_tcga_lich_pt",
-    "rad": "clinical_tcga_lich_rad"
-}
-
-```
-
-### luad
-Lung adenocarcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_luad_drug",
-    "f1": "clinical_tcga_luad_f1",
-    "nte": "clinical_tcga_luad_nte",
-    "omf": "clinical_tcga_luad_omf",
-    "pt": "clinical_tcga_luad_pt",
-    "rad": "clinical_tcga_luad_rad"
-}
-
 ```
 
-### lusc
-Lung squamous cell carcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_lusc_drug",
-    "f1": "clinical_tcga_lusc_f1",
-    "nte": "clinical_tcga_lusc_nte",
-    "omf": "clinical_tcga_lusc_omf",
-    "pt": "clinical_tcga_lusc_pt",
-    "rad": "clinical_tcga_lusc_rad"
-}
-
-```
-
-### meso
-Mesothelioma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_meso_drug",
-    "f1": "clinical_tcga_meso_f1",
-    "nte": "clinical_tcga_meso_nte",
-    "nte_f1": "clinical_tcga_meso_nte_f1",
-    "omf": "clinical_tcga_meso_omf",
-    "pt": "clinical_tcga_meso_pt",
-    "rad": "clinical_tcga_meso_rad"
-}
-
-```
-
-### ov
-Ovarian serous cystadenocarcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_ov_drug",
-    "f1": "clinical_tcga_ov_f1",
-    "nte": "clinical_tcga_ov_nte",
-    "nte_f1": "clinical_tcga_ov_nte_f1",
-    "omf": "clinical_tcga_ov_omf",
-    "pt": "clinical_tcga_ov_pt",
-    "rad": "clinical_tcga_ov_rad"
-}
-
-```
-
-### paad
-Pancreatic adenocarcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_paad_drug",
-    "f1": "clinical_tcga_paad_f1",
-    "nte": "clinical_tcga_paad_nte",
-    "nte_f1": "clinical_tcga_paad_nte_f1",
-    "omf": "clinical_tcga_paad_omf",
-    "pt": "clinical_tcga_paad_pt",
-    "rad": "clinical_tcga_paad_rad"
-}
-
-```
-
-### pcpg
-Pheochromocytoma and Paraganglioma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_pcpg_drug",
-    "f1": "clinical_tcga_pcpg_f1",
-    "nte": "clinical_tcga_pcpg_nte",
-    "nte_f1": "clinical_tcga_pcpg_nte_f1",
-    "omf": "clinical_tcga_pcpg_omf",
-    "pt": "clinical_tcga_pcpg_pt",
-    "rad": "clinical_tcga_pcpg_rad"
-}
-
-```
-
-### prad
-Prostate adenocarcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_prad_drug",
-    "f1": "clinical_tcga_prad_f1",
-    "nte": "clinical_tcga_prad_nte",
-    "omf": "clinical_tcga_prad_omf",
-    "pt": "clinical_tcga_prad_pt",
-    "rad": "clinical_tcga_prad_rad"
-}
-
-```
-
-### read
-Rectum adenocarcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_read_drug",
-    "f1": "clinical_tcga_read_f1",
-    "nte": "clinical_tcga_read_nte",
-    "nte_f1": "clinical_tcga_read_nte_f1",
-    "omf": "clinical_tcga_read_omf",
-    "pt": "clinical_tcga_read_pt",
-    "rad": "clinical_tcga_read_rad"
-}
-
-```
-
-### sarc
-Sarcoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_sarc_drug",
-    "f1": "clinical_tcga_sarc_f1",
-    "nte": "clinical_tcga_sarc_nte",
-    "nte_f1": "clinical_tcga_sarc_nte_f1",
-    "omf": "clinical_tcga_sarc_omf",
-    "pt": "clinical_tcga_sarc_pt",
-    "rad": "clinical_tcga_sarc_rad"
-}
-
-```
-
-### skcm
-Skin Cutaneous Melanoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_skcm_drug",
-    "f1": "clinical_tcga_skcm_f1",
-    "nte": "clinical_tcga_skcm_nte",
-    "omf": "clinical_tcga_skcm_omf",
-    "pt": "clinical_tcga_skcm_pt",
-    "rad": "clinical_tcga_skcm_rad"
-}
-
-```
-
-### stad
-Stomach adenocarcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_stad_drug",
-    "f1": "clinical_tcga_stad_f1",
-    "nte": "clinical_tcga_stad_nte",
-    "omf": "clinical_tcga_stad_omf",
-    "pt": "clinical_tcga_stad_pt",
-    "rad": "clinical_tcga_stad_rad"
-}
-
-```
-
-### tgct
-Testicular Germ Cell Tumors
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_tgct_drug",
-    "f1": "clinical_tcga_tgct_f1",
-    "nte": "clinical_tcga_tgct_nte",
-    "nte_f1": "clinical_tcga_tgct_nte_f1",
-    "omf": "clinical_tcga_tgct_omf",
-    "pt": "clinical_tcga_tgct_pt",
-    "rad": "clinical_tcga_tgct_rad"
-}
-
-```
-
-### thca
-Thyroid carcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_thca_drug",
-    "f1": "clinical_tcga_thca_f1",
-    "f2": "clinical_tcga_thca_f2",
-    "nte": "clinical_tcga_thca_nte",
-    "nte_f1": "clinical_tcga_thca_nte_f1",
-    "nte_f2": "clinical_tcga_thca_nte_f2",
-    "omf": "clinical_tcga_thca_omf",
-    "pt": "clinical_tcga_thca_pt",
-    "rad": "clinical_tcga_thca_rad"
-}
-
-```
-
-### thym
-Thymoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_thym_drug",
-    "f1": "clinical_tcga_thym_f1",
-    "nte": "clinical_tcga_thym_nte",
-    "nte_f1": "clinical_tcga_thym_nte_f1",
-    "omf": "clinical_tcga_thym_omf",
-    "pt": "clinical_tcga_thym_pt",
-    "rad": "clinical_tcga_thym_rad"
-}
-
-```
-
-### ucec
-Uterine Corpus Endometrial Carcinoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_ucec_drug",
-    "f1": "clinical_tcga_ucec_f1",
-    "f2": "clinical_tcga_ucec_f2",
-    "f3": "clinical_tcga_ucec_f3",
-    "nte": "clinical_tcga_ucec_nte",
-    "nte_f1": "clinical_tcga_ucec_nte_f1",
-    "omf": "clinical_tcga_ucec_omf",
-    "pt": "clinical_tcga_ucec_pt",
-    "rad": "clinical_tcga_ucec_rad"
-}
-
-```
-
-### ucs
-Uterine Carcinosarcoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_ucs_drug",
-    "f1": "clinical_tcga_ucs_f1",
-    "nte": "clinical_tcga_ucs_nte",
-    "nte_f1": "clinical_tcga_ucs_nte_f1",
-    "omf": "clinical_tcga_ucs_omf",
-    "pt": "clinical_tcga_ucs_pt",
-    "rad": "clinical_tcga_ucs_rad"
-}
-
-```
-
-### uvm
-Uveal Melanoma
-
->List of collections
-
-```
-{
-    "drug": "clinical_tcga_uvm_drug",
-    "f1": "clinical_tcga_uvm_f1",
-    "nte": "clinical_tcga_uvm_nte",
-    "omf": "clinical_tcga_uvm_omf",
-    "pt": "clinical_tcga_uvm_pt",
-    "rad": "clinical_tcga_uvm_rad"
-}
-
-```
-
-### List of fields that most records have
-
->Fields for most of records in clinical_tcga_acc_pt
-
-```
 [ '_id',
   'patient_ID',
+  'history_lgg_dx_of_brain_tissue',
   'prospective_collection',
   'retrospective_collection',
   'gender',
+  'days_to_birth',
   'race',
+  'ethnicity',
   'history_other_malignancy',
   'history_neoadjuvant_treatment',
-  'status_tumor',
+  'diagnosis_year',
+  'pathologic_method',
+  'method_initial_path_dx_other',
   'status_vital',
+  'days_to_last_contact',
+  'days_to_death',
+  'status_tumor',
+  'KPS',
+  'ECOG',
+  'encounter_type',
   'radiation_treatment_adjuvant',
   'pharmaceutical_tx_adjuvant',
-  'pharm_tx_mitotane',
-  'laterality',
-  'histologic_diagnosis',
-  'diagnosis_year',
-  'weiss_score_overall',
-  'mitoses_per_50_hpf',
-  'stage_S',
-  'residual_tumor',
-  'history_adrenal_hormone_excess',
-  'molecular_studies_others_performed',
-  'new_tumor_event_diagnosis',
-  'age_at_initial_pathologic_diagnosis',
-  'atypical_mitotic_figures',
-  'stage_M',
-  'cytoplasm_less_than_equal_25_percent',
-  'days_to_birth',
-  'days_to_death',
+  'treatment_outcome_first_course',
+  'new_tumor_event_diagnosis_indicator',
+  'age_at_diagnosis',
+  'anatomic_neoplasm_subdivision',
   'days_to_diagnosis',
-  'diffuse_architecture',
-  'icd_10',
-  'icd_3_histology',
-  'icd_3',
-  'invasion_of_tumor_capsule',
-  'mitotic_rate_greater_than_5/50_HPF',
-  'necrosis',
-  'nuclear_grade_III_IV',
-  'stage_N1',
-  'stage_T1',
-  'sinusoid_invasion',
+  'histologic_type',
   'tissue_source_site_code',
-  'tumor_tissue_site',
-  'weiss_venous_invasion' ]
+  'tumor_tissue_site' ]
 
 ```
 
-### Get the count of records in the collection
+## Get the count of records in the collection
 
-#### HTTP Request
+### HTTP Request
 
-`GET http://oncoscape.sttrcancer.io/api/clinical_tcga_acc_pt/count`
+`GET http://oncoscape.sttrcancer.io/api/gbm_patient_tcga_na/count`
 
 
->Count of records in clinical_tcga_acc_pt
-
-```
-92
+> Count of records in gbm_patient_tcga_na
 
 ```
 
-### Query detail information from collection clinical_tcga_acc_pt
+1192
+
+```
+
+## Query detail information from collection gbm_patient_tcga_na
+
 Filter by gender and race and only show the selected fields
 
-#### HTTP Request
+### HTTP Request
 
-`GET http://oncoscape.sttrcancer.io/api/clinical_tcga_acc_pt/?q={"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}`
+`GET http://oncoscape.sttrcancer.io/api/gbm_patient_tcga_na/?q={"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}`
+
 
 only show gender, race and patient_ID
 
 `"$fields":["gender","race","patient_ID"]`
 
+
 skip the first five records
 
 `"$skip":5`
+
 
 limit the final output to two records.
 
 `"$limit":2`
 
 
->Male White patients result: 
+> Male White patients result: 
 
 ```
+
 [
     {
-        "_id": "5776e1b487fac0aca951b80f",
-        "patient_ID": "TCGA.OR.A5JG",
+        "_id": "57aa2b3f6cfe8ff0eb66810e",
+        "patient_ID": "TCGA-02-0024-01",
         "gender": "MALE",
-        "race": "WHITE",
-        "histologic_diagnosis": "ADRENOCORTICAL CARCINOMA"
+        "race": "WHITE"
     },
     {
-        "_id": "5776e1b487fac0aca951b811",
-        "patient_ID": "TCGA.OR.A5JI",
+        "_id": "57aa2b3f6cfe8ff0eb66810f",
+        "patient_ID": "TCGA-02-0025-01",
         "gender": "MALE",
-        "race": "WHITE",
-        "histologic_diagnosis": "ADRENOCORTICAL CARCINOMA"
+        "race": "WHITE"
     }
 ]
 
 ```
 
->Count of the records meet this criteria
+> Count of the records meet this criteria
 
 ```
+
 2
 
 ```
-```javascript
-collection = db.collection("clinical_tcga_acc_pt");
-"collection.find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true}).limit(2).skip(5).toArray(function(err, doc){);console.log(JSON.stringify(doc, null, 4));"
+
+```shell
+db.getCollection("gbm_patient_tcga_na").
+find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true}).skip(5).limit(2)
 
 ```
-```mongo
-db.getCollection("clinical_tcga_acc_pt").find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true}).skip(5).limit(2)
 
-```
 ```r
 install.packages("rmongodb")
-"library(rmongodb)"
-
+library(rmongodb)
 ```
+
+
+```javascript
+collection = db.collection('gbm_patient_tcga_na');
+collection.find({"gender":"MALE", "race":"WHITE"},
+{"patient_ID":true, "gender":true, "race":true, histologic_diagnosis:true})
+.limit(2).skip(5).toArray(function(err, doc){);
+console.log(JSON.stringify(doc, null, 4));
+```
+
+>To get the fields of first document and the count of the documents in collection
+
+```javascript
+var collection = "gbm_patient_tcga_clinical";
+var url = 'https://dev.oncoscape.sttrcancer.io/api/' + collection + '///?q=';
+$.get(url, function(data) {
+var field_names = Object.keys(data[0]);
+var count = data.length;
+console.log("fields name of the first records: " + field_names);
+console.log("counts: " + count);});
+```
+
+
+
 ```python
 pip install pymongo
-"from pymongo import MongoClient"
-"client = MongoClient("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/os?authSource=admin")"
-"db = client.os"
-"db["clinical_tcga_acc_pt"]"
+from pymongo import MongoClient
+client = MongoClient("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin")
+db = client.os
+db["gbm_patient_tcga_na"]
 
 ```
+
+# Collections by Disease
+
+## HG19 - Genome Platform
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+hg19_genesets_hgnc_import | category | hgnc | genesets
+hg19_genesets_orghs_10000 | category | orgHs | genesets
+hg19_genesets_orghs_1e+05 | category | orgHs | genesets
+
+## BRCA - Breast invasive carcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+brca_patient_tcga_clinical | clinical | TCGA | 
+brca_drug_tcga_clinical | clinical | TCGA | 
+brca_radiation_tcga_clinical | clinical | TCGA | 
+brca_followup-v1p5_tcga_clinical | clinical | TCGA | 
+brca_followup-v2p1_tcga_clinical | clinical | TCGA | 
+brca_followup-v4p0_tcga_clinical | clinical | TCGA | 
+brca_newtumor_tcga_clinical | clinical | TCGA | 
+brca_newtumor-followup-v4p0_tcga_clinical | clinical | TCGA | 
+brca_othermalignancy-v4p0_tcga_clinical | clinical | TCGA | 
+brca_events_tcga_clinical | clinical | TCGA | 
+brca_cnv_cbio_gistic | molecular | cBio | cnv
+brca_mut_cbio_wxs | molecular | cBio | mut
+brca_mut01_cbio_import | molecular | cBio | mut01
+brca_methylation_cbio_hm27 | molecular | cBio | methylation
+brca_methylation_cbio_hm450 | molecular | cBio | methylation
+brca_rna_cbio_microarray-agilent-median-zscore | molecular | cBio | rna
+brca_rna_cbio_rnaseq-median-zscore | molecular | cBio | rna
+brca_protein_cbio_rppa-zscore | molecular | cBio | protein
+brca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+brca_mut_ucsc_mutationcuratedwustlgene | molecular | ucsc | mut
+brca_mut01_ucsc_import | molecular | ucsc | mut01
+brca_psi_bradleylab_miso | molecular | bradleyLab | psi
+brca_color_tcga_import | category | tcga | color
+
+## ESCA - Esophageal carcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+esca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+
+## LUNG - Lung adenocarcinoma & Lung squamous cell carcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+lung_events_tcga_clinical | clinical | TCGA | 
+lung_facs_demo_flow | molecular | demo | facs
+lung_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+lung_mut_ucsc_mutation | molecular | ucsc | mut
+lung_mut01_ucsc_mutation | molecular | ucsc | mut01
+lung_cnv_cbio_gistic | molecular | cBio | cnv
+lung_mut_cbio_mut | molecular | cBio | mut
+lung_mut01_cbio_mut | molecular | cBio | mut01
+lung_methylation_cbio_methylationhm27 | molecular | cBio | methylation
+lung_methylation_cbio_methylationhm450 | molecular | cBio | methylation
+lung_rna_cbio_microarray-agilent | molecular | cBio | rna
+lung_rna_cbio_rnaseq | molecular | cBio | rna
+lung_rna_cbio_microarray-u133 | molecular | cBio | rna
+lung_protein_cbio_rppa | molecular | cBio | protein
+
+## COAD - Colon adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+coad_patient_tcga_na | clinical | TCGA | 
+coad_drug_tcga_na | clinical | TCGA | 
+coad_radiation_tcga_na | clinical | TCGA | 
+coad_followup-v1p0_tcga_na | clinical | TCGA | 
+coad_newtumor_tcga_na | clinical | TCGA | 
+coad_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+
+## GBM - Glioblastoma multiforme
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+gbm_patient_tcga_na | clinical | TCGA | 
+gbm_drug_tcga_na | clinical | TCGA | 
+gbm_radiation_tcga_na | clinical | TCGA | 
+gbm_followup-v1p0_tcga_na | clinical | TCGA | 
+gbm_newtumor_tcga_na | clinical | TCGA | 
+gbm_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+gbm_events_tcga_clinical | clinical | TCGA | 
+gbm_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+gbm_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
+gbm_mut01_ucsc_import | molecular | ucsc | mut01
+
+## COADREAD - Colon adenocarcinoma & Rectum adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+coadread_events_tcga_clinical | clinical | TCGA | 
+coadread_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+coadread_mut_ucsc_mutation | molecular | ucsc | mut
+coadread_mut01_ucsc_mutation | molecular | ucsc | mut01
+coadread_cnv_cbio_gistic | molecular | cBio | cnv
+coadread_mut_cbio_mut | molecular | cBio | mut
+coadread_mut01_cbio_mut | molecular | cBio | mut01
+coadread_methylation_cbio_methylationhm27 | molecular | cBio | methylation
+coadread_methylation_cbio_methylationhm450 | molecular | cBio | methylation
+coadread_rna_cbio_microarray-agilent | molecular | cBio | rna
+coadread_rna_cbio_rnaseq | molecular | cBio | rna
+coadread_protein_cbio_rppa | molecular | cBio | protein
+
+## HNSC - Head and Neck squamous cell carcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+hnsc_patient_tcga_na | clinical | TCGA | 
+hnsc_drug_tcga_na | clinical | TCGA | 
+hnsc_radiation_tcga_na | clinical | TCGA | 
+hnsc_followup-v1p0_tcga_na | clinical | TCGA | 
+hnsc_followup-v4p8_tcga_na | clinical | TCGA | 
+hnsc_newtumor_tcga_na | clinical | TCGA | 
+hnsc_newtumor-followup-v4p8_tcga_na | clinical | TCGA | 
+hnsc_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+hnsc_events_tcga_clinical | clinical | TCGA | 
+hnsc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+hnsc_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
+hnsc_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
+hnsc_cnv_cbio_gistic | molecular | cBio | cnv
+hnsc_mut_cbio_mut | molecular | cBio | mut
+hnsc_mut01_cbio_mut | molecular | cBio | mut01
+hnsc_methylation_cbio_methylationhm450 | molecular | cBio | methylation
+hnsc_rna_cbio_rnaseq | molecular | cBio | rna
+hnsc_protein_cbio_rppa | molecular | cBio | protein
+hnsc_color_tcga_import | category | tcga | color
+
+## LGG - Brain Lower Grade Glioma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+lgg_patient_tcga_na | clinical | TCGA | 
+lgg_drug_tcga_na | clinical | TCGA | 
+lgg_radiation_tcga_na | clinical | TCGA | 
+lgg_followup-v1p0_tcga_na | clinical | TCGA | 
+lgg_newtumor_tcga_na | clinical | TCGA | 
+lgg_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+lgg_events_tcga_clinical | clinical | TCGA | 
+lgg_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+lgg_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
+lgg_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
+
+## LUAD - Lung adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+luad_patient_tcga_na | clinical | TCGA | 
+luad_drug_tcga_na | clinical | TCGA | 
+luad_radiation_tcga_na | clinical | TCGA | 
+luad_followup-v1p0_tcga_na | clinical | TCGA | 
+luad_newtumor_tcga_na | clinical | TCGA | 
+luad_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+luad_events_tcga_clinical | clinical | TCGA | 
+luad_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+luad_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
+luad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
+luad_cnv_cbio_gistic | molecular | cBio | cnv
+luad_mut_cbio_mut | molecular | cBio | mut
+luad_mut01_cbio_mut | molecular | cBio | mut01
+luad_methylation_cbio_methylationhm27 | molecular | cBio | methylation
+luad_methylation_cbio_methylationhm450 | molecular | cBio | methylation
+luad_rna_cbio_microarray-agilent | molecular | cBio | rna
+luad_rna_cbio_rnaseq | molecular | cBio | rna
+luad_protein_cbio_rppa | molecular | cBio | protein
+
+## LUSC - Lung squamous cell carcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+lusc_patient_tcga_na | clinical | TCGA | 
+lusc_drug_tcga_na | clinical | TCGA | 
+lusc_radiation_tcga_na | clinical | TCGA | 
+lusc_followup-v1p0_tcga_na | clinical | TCGA | 
+lusc_newtumor_tcga_na | clinical | TCGA | 
+lusc_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+lusc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+lusc_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
+lusc_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
+lusc_cnv_cbio_gistic | molecular | cBio | cnv
+lusc_mut_cbio_mut | molecular | cBio | mut
+lusc_mut01_cbio_mut | molecular | cBio | mut01
+lusc_methylation_cbio_methylationhm27 | molecular | cBio | methylation
+lusc_methylation_cbio_methylationhm450 | molecular | cBio | methylation
+lusc_rna_cbio_microarray-agilent | molecular | cBio | rna
+lusc_rna_cbio_rnaseq | molecular | cBio | rna
+lusc_rna_cbio_microarray-u133 | molecular | cBio | rna
+lusc_protein_cbio_rppa | molecular | cBio | protein
+lusc_color_tcga_import | category | tcga | color
+
+## PRAD - Prostate adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+prad_patient_tcga_na | clinical | TCGA | 
+prad_drug_tcga_na | clinical | TCGA | 
+prad_radiation_tcga_na | clinical | TCGA | 
+prad_followup-v1p0_tcga_na | clinical | TCGA | 
+prad_newtumor_tcga_na | clinical | TCGA | 
+prad_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+prad_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+prad_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
+prad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
+prad_cnv_cbio_gistic | molecular | cBio | cnv
+prad_mut_cbio_mut | molecular | cBio | mut
+prad_mut01_cbio_mut | molecular | cBio | mut01
+prad_methylation_cbio_methylationhm450 | molecular | cBio | methylation
+prad_rna_cbio_microarray-agilent | molecular | cBio | rna
+prad_protein_cbio_rppa | molecular | cBio | protein
+prad_color_tcga_import | category | tcga | color
+
+## PAAD - Pancreatic adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+paad_patient_tcga_na | clinical | TCGA | 
+paad_drug_tcga_na | clinical | TCGA | 
+paad_radiation_tcga_na | clinical | TCGA | 
+paad_followup-v4p4_tcga_na | clinical | TCGA | 
+paad_newtumor_tcga_na | clinical | TCGA | 
+paad_newtumor-followup-v4p4_tcga_na | clinical | TCGA | 
+paad_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+paad_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+paad_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
+paad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
+paad_cnv_cbio_gistic | molecular | cBio | cnv
+paad_mut_cbio_mut | molecular | cBio | mut
+paad_mut01_cbio_mut | molecular | cBio | mut01
+paad_rna_cbio_rnaseq | molecular | cBio | rna
+
+## ACC - Adrenocortical carcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+acc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+
+## BLCA - Bladder Urothelial Carcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+blca_patient_tcga_na | clinical | TCGA | 
+blca_drug_tcga_na | clinical | TCGA | 
+blca_radiation_tcga_na | clinical | TCGA | 
+blca_followup-v4p0_tcga_na | clinical | TCGA | 
+blca_newtumor_tcga_na | clinical | TCGA | 
+blca_newtumor-followup-v4p0_tcga_na | clinical | TCGA | 
+blca_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+blca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+blca_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
+blca_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
+
+## CESC - Cervical squamous cell carcinoma and endocervical adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+cesc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+
+## CHOL - Cholangiocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+chol_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+
+## DLBC - Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+dlbc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+
+## LAML - Acute Myeloid Leukemia
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+laml_patient_tcga_na | clinical | TCGA | 
+laml_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+laml_mut_ucsc_mutation | molecular | ucsc | mut
+laml_mut01_ucsc_mutation | molecular | ucsc | mut01
+
+## SARC - Sarcoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+sarc_patient_tcga_na | clinical | TCGA | 
+sarc_drug_tcga_na | clinical | TCGA | 
+sarc_radiation_tcga_na | clinical | TCGA | 
+sarc_followup-v4p0_tcga_na | clinical | TCGA | 
+sarc_newtumor_tcga_na | clinical | TCGA | 
+sarc_newtumor-followup-v4p0_tcga_na | clinical | TCGA | 
+sarc_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+sarc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+
+## STAD - Stomach adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+stad_mut_ucsc_mutationbcmgene | molecular | ucsc | mut
+stad_mut01_ucsc_mutationbcmgene | molecular | ucsc | mut01
+
+## READ - Rectum adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+read_patient_tcga_na | clinical | TCGA | 
+read_drug_tcga_na | clinical | TCGA | 
+read_radiation_tcga_na | clinical | TCGA | 
+read_followup-v1p0_tcga_na | clinical | TCGA | 
+read_newtumor_tcga_na | clinical | TCGA | 
+read_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+
+## BRAIN - Lower Grade Glioma & Glioblastoma multiforme
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+brain_patient_tcga_clinical | clinical | TCGA | 
+brain_followup-v1p0_tcga_clinical | clinical | TCGA | 
+brain_drug_tcga_clinical | clinical | TCGA | 
+brain_newtumor_tcga_clinical | clinical | TCGA | 
+brain_othermalignancy-v4p0_tcga_clinical | clinical | TCGA | 
+brain_events_tcga_clinical | clinical | TCGA | 
+brain_cnv_ucsc_gistic | molecular | ucsc | cnv
+brain_mut01_ucsc_import | molecular | ucsc | mut01
+brain_cnv_cbio_gistic | molecular | cBio | cnv
+brain_mut_cbio_wxs | molecular | cBio | mut
+brain_mut01_cbio_import | molecular | cBio | mut01
+brain_methylation_cbio_hm27 | molecular | cBio | methylation
+brain_rna_cbio_rnaseq-bc | molecular | cBio | rna
+brain_protein_cbio_rppa-zscore | molecular | cBio | protein
+brain_color_tcga_import | category | tcga | color

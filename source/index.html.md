@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs:
-  - shell: mongo
+  - shell
   - R
   - python
   - javascript
