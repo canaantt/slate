@@ -147,7 +147,10 @@
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
     "DESCRIPTION": "Putative copy-number calls on 1079 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "cnv",
+    "collection" : "brca_cnv_cbio_gistic" 
   },
   {
     "GENETIC_PROFILE_ID": 17,
@@ -157,7 +160,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (microarray)",
     "DESCRIPTION": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "rna",
+    "collection" : "brca_rna_cbio_microarray-agilent-median-zscore" 
   },
   {
     "GENETIC_PROFILE_ID": 18,
@@ -177,7 +183,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
     "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "rna",
+    "collection" : "brca_rna_cbio_rnaseq-median-zscore" 
   },
   {
     "GENETIC_PROFILE_ID": 20,
@@ -197,7 +206,10 @@
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM27)",
     "DESCRIPTION": "Methylation (HM27) beta-values for genes in 342 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0,
+    "source" : "cbio",
+    "type" : "methylation",
+    "collection" : "brca_tcga_methylation_hm27" 
   },
   {
     "GENETIC_PROFILE_ID": 22,
@@ -207,7 +219,10 @@
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM450)",
     "DESCRIPTION": "Methylation (HM450) beta-values for genes in 833 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0,
+    "source" : "cbio",
+    "type" : "methylation",
+    "collection" : "brca_tcga_methylation_hm450" 
   },
   {
     "GENETIC_PROFILE_ID": 23,
@@ -217,7 +232,23 @@
     "DATATYPE": "MAF",
     "NAME": "Mutations",
     "DESCRIPTION": "Mutation data from whole exome sequencing.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut",
+    "collection" : "brca_mut_cbio_wxs" 
+  },
+  {
+    "GENETIC_PROFILE_ID": 23,
+    "STABLE_ID": "brca_tcga_mutations",
+    "CANCER_STUDY_ID": 3,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Binary mutation data from whole exome sequencing.",
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut01",
+    "collection" : "brca_mut01_cbio_import" 
   },
   {
     "GENETIC_PROFILE_ID": 24,
@@ -227,7 +258,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "protein/phosphoprotein level (RPPA)",
     "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "protein",
+    "collection" : "brca_protein_cbio_rppa-zscore" 
   },
   {
     "GENETIC_PROFILE_ID": 25,
@@ -607,7 +641,10 @@
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
     "DESCRIPTION": "Putative copy-number calls on 522 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "cnv",
+    "collection" : "hnsc_cnv_cbio_gistic" 
   },
   {
     "GENETIC_PROFILE_ID": 63,
@@ -617,7 +654,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA expression (RNA Seq V2 RSEM)",
     "DESCRIPTION": "Expression levels for 20532 genes in 541 hnsc cases (RNA Seq V2 RSEM).",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0,
+    "source" : "cbio",
+    "type" : "rna",
+    "collection" : "hnsc_rna_cbio_rnaseq" 
   },
   {
     "GENETIC_PROFILE_ID": 64,
@@ -647,7 +687,10 @@
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM450)",
     "DESCRIPTION": "Methylation (HM450) beta-values for genes in 580 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0,
+    "source" : "cbio",
+    "type" : "methylation",
+    "collection" : "hnsc_cnv_cbio_gistic" 
   },
   {
     "GENETIC_PROFILE_ID": 67,
@@ -657,7 +700,23 @@
     "DATATYPE": "MAF",
     "NAME": "Mutations",
     "DESCRIPTION": "Mutation data from whole exome sequencing.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut",
+    "collection" : "hnsc_mut_cbio_mut" 
+  },
+  {
+    "GENETIC_PROFILE_ID": 67,
+    "STABLE_ID": "hnsc_tcga_mutations",
+    "CANCER_STUDY_ID": 9,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Binary mutation data from whole exome sequencing. ",
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut01",
+    "collection" : "hnsc_mut01_cbio_mut" 
   },
   {
     "GENETIC_PROFILE_ID": 68,
@@ -667,7 +726,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "protein/phosphoprotein level (RPPA)",
     "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "protein",
+    "collection" : "hnsc_protein_cbio_rppa" 
   },
   {
     "GENETIC_PROFILE_ID": 69,
@@ -1177,7 +1239,10 @@
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
     "DESCRIPTION": "Putative copy-number calls on 515 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "cnv",
+    "collection" : "luad_cnv_cbio_gistic" 
   },
   {
     "GENETIC_PROFILE_ID": 120,
@@ -1207,7 +1272,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
     "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "rna",
+    "collection" : "luad_rna_cbio_rnaseq" 
   },
   {
     "GENETIC_PROFILE_ID": 123,
@@ -1227,7 +1295,10 @@
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM27)",
     "DESCRIPTION": "Methylation (HM27) beta-values for genes in 150 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0,
+    "source" : "cbio",
+    "type" : "methylation",
+    "collection" : "luad_methylation_cbio_methylationhm27" 
   },
   {
     "GENETIC_PROFILE_ID": 125,
@@ -1237,7 +1308,10 @@
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM450)",
     "DESCRIPTION": "Methylation (HM450) beta-values for genes in 483 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0,
+    "source" : "cbio",
+    "type" : "methylation",
+    "collection" : "luad_methylation_cbio_methylationhm450" 
   },
   {
     "GENETIC_PROFILE_ID": 126,
@@ -1247,7 +1321,23 @@
     "DATATYPE": "MAF",
     "NAME": "Mutations",
     "DESCRIPTION": "Mutation data from whole exome sequencing.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut",
+    "collection" : "luad_mut_cbio_mut" 
+  },
+  {
+    "GENETIC_PROFILE_ID": 126,
+    "STABLE_ID": "luad_tcga_mutations",
+    "CANCER_STUDY_ID": 16,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Binary mutation data from whole exome sequencing.",
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut01",
+    "collection" : "luad_mut01_cbio_mut" 
   },
   {
     "GENETIC_PROFILE_ID": 127,
@@ -1257,7 +1347,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "protein/phosphoprotein level (RPPA)",
     "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "protein",
+    "collection" : "luad_protein_cbio_rppa" 
   },
   {
     "GENETIC_PROFILE_ID": 128,
@@ -1267,7 +1360,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA expression (microarray)",
     "DESCRIPTION": "Expression levels for 17215 genes in 32 luad cases (Agilent microarray).",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0,
+    "source" : "cbio",
+    "type" : "rna",
+    "collection" : "luad_rna_cbio_microarray" 
   },
   {
     "GENETIC_PROFILE_ID": 129,
@@ -1277,7 +1373,10 @@
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
     "DESCRIPTION": "Putative copy-number calls on 501 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "cnv",
+    "collection" : "lusc_cnv_cbio_gistic" 
   },
   {
     "GENETIC_PROFILE_ID": 130,
@@ -1297,7 +1396,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (U133 microarray only)",
     "DESCRIPTION": "mRNA z-Scores  (U133 microarray only) compared to the expression distribution of each gene tumors that are diploid for this gene.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "rna",
+    "collection" : "lusc_rna_cbio_microarray-u133"
   },
   {
     "GENETIC_PROFILE_ID": 132,
@@ -1307,7 +1409,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (microarray)",
     "DESCRIPTION": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "rna",
+    "collection" : "lusc_rna_cbio_microarray-agilent"
   },
   {
     "GENETIC_PROFILE_ID": 133,
@@ -1327,7 +1432,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
     "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "rna",
+    "collection" : "lusc_rna_cbio_rnaseq"
   },
   {
     "GENETIC_PROFILE_ID": 135,
@@ -1347,7 +1455,10 @@
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM27)",
     "DESCRIPTION": "Methylation (HM27) beta-values for genes in 160 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0,
+    "source" : "cbio",
+    "type" : "methylation",
+    "collection" : "lusc_methylation_cbio_methylationhm27"
   },
   {
     "GENETIC_PROFILE_ID": 137,
@@ -1357,7 +1468,10 @@
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM450)",
     "DESCRIPTION": "Methylation (HM450) beta-values for genes in 401 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0,
+    "source" : "cbio",
+    "type" : "methylation",
+    "collection" : "lusc_methylation_cbio_methylationhm450"
   },
   {
     "GENETIC_PROFILE_ID": 138,
@@ -1367,7 +1481,23 @@
     "DATATYPE": "MAF",
     "NAME": "Mutations",
     "DESCRIPTION": "Mutation data from whole exome sequencing.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut",
+    "collection" : "lusc_mut_cbio_mut" 
+  },
+  {
+    "GENETIC_PROFILE_ID": 138,
+    "STABLE_ID": "lusc_tcga_mutations",
+    "CANCER_STUDY_ID": 17,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Mutation data from whole exome sequencing.",
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut01",
+    "collection" : "lusc_mut01_cbio_mut" 
   },
   {
     "GENETIC_PROFILE_ID": 139,
@@ -1377,7 +1507,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "protein/phosphoprotein level (RPPA)",
     "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "protein",
+    "collection" : "lusc_protein_cbio_rppa" 
   },
   {
     "GENETIC_PROFILE_ID": 140,
@@ -1517,7 +1650,10 @@
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
     "DESCRIPTION": "Putative copy-number calls on 184 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "cnv",
+    "collection" : "paad_cnv_cbio_gistic"
   },
   {
     "GENETIC_PROFILE_ID": 154,
@@ -1537,7 +1673,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
     "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "rna",
+    "collection" : "paad_rna_cbio_rnaseq"
   },
   {
     "GENETIC_PROFILE_ID": 156,
@@ -1567,7 +1706,23 @@
     "DATATYPE": "MAF",
     "NAME": "Mutations",
     "DESCRIPTION": "Mutation data from whole exome sequencing.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut",
+    "collection" : "paad_mut_cbio_mut"
+  },
+  {
+    "GENETIC_PROFILE_ID": 158,
+    "STABLE_ID": "paad_tcga_mutations",
+    "CANCER_STUDY_ID": 19,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Binary mutation data from whole exome sequencing.",
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut01",
+    "collection" : "paad_mut01_cbio_mut"
   },
   {
     "GENETIC_PROFILE_ID": 159,
@@ -1647,7 +1802,10 @@
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
     "DESCRIPTION": "Putative copy-number calls on 492 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "cnv",
+    "collection" : "prad_cnv_cbio_gistic"
   },
   {
     "GENETIC_PROFILE_ID": 167,
@@ -1670,6 +1828,19 @@
     "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
   },
   {
+    "GENETIC_PROFILE_ID":"" ,
+    "STABLE_ID": "",
+    "CANCER_STUDY_ID": 21,
+    "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "mRNA Expression z-Scores (microarray)",
+    "DESCRIPTION": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene.",
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": "",
+    "source" : "cbio",
+    "type" : "rna",
+    "collection" : "prad_rna_cbio_microarray-agilent"
+  },
+  {
     "GENETIC_PROFILE_ID": 169,
     "STABLE_ID": "prad_tcga_log2CNA",
     "CANCER_STUDY_ID": 21,
@@ -1687,7 +1858,10 @@
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM450)",
     "DESCRIPTION": "Methylation (HM450) beta-values for genes in 475 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 0,
+    "source" : "cbio",
+    "type" : "methylation",
+    "collection" : "prad_methylation_cbio_methylationhm450"
   },
   {
     "GENETIC_PROFILE_ID": 171,
@@ -1697,7 +1871,23 @@
     "DATATYPE": "MAF",
     "NAME": "Mutations",
     "DESCRIPTION": "Mutation data from whole exome sequencing.",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut",
+    "collection" : "prad_mut_cbio_mut"
+  },
+  {
+    "GENETIC_PROFILE_ID": 171,
+    "STABLE_ID": "prad_tcga_mutations",
+    "CANCER_STUDY_ID": 21,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Binary mutation data from whole exome sequencing.",
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "mut01",
+    "collection" : "prad_mut01_cbio_mut"
   },
   {
     "GENETIC_PROFILE_ID": 172,
@@ -1707,7 +1897,10 @@
     "DATATYPE": "Z-SCORE",
     "NAME": "protein/phosphoprotein level (RPPA)",
     "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)",
-    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1
+    "SHOW_PROFILE_IN_ANALYSIS_TAB": 1,
+    "source" : "cbio",
+    "type" : "protein",
+    "collection" : "prad_protein_cbio_rppa"
   },
   {
     "GENETIC_PROFILE_ID": 173,
