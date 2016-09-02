@@ -1,3 +1,16 @@
+//http://www.csvjson.com/csv2json 
+var jsonfile = require("jsonfile");
+var cbio_annotation = {};
+var ucsc_annotation = {};
+
+jsonfile.readFile("cbio_mol_annotation.json", function(err, obj) {
+  cbio_annotation = obj;
+});
+
+jsonfile.readFile("ucsc_mol_annotation.json", function(err, obj) {
+  ucsc_annotation = obj;
+});
+
 var comongo = require('co-mongodb');
 var co = require('co');
 var disease_tables = [];
@@ -40,6 +53,7 @@ var format = {
   codeMongoStart: function(text) {  console.log(); console.log("```shell"); },
   codeJSStart: function(text) {  console.log(); console.log("```javascript"); },
   codePyStart: function(text) {  console.log(); console.log("```python"); },
+  codeJSONStart: function(text) {  console.log(); console.log("```json"); },
   table: function(text){ console.log(text);  }
 };
 
@@ -121,6 +135,28 @@ Array.prototype.unique = function() {
       }
       return arr; 
   };
+
+function filterByCollection(obj, val) {
+  if (obj.collection !== undefined && typeof(obj.collection) === 'string' && obj.collection === val) {
+    //return true;
+    return obj;
+  } else {
+    invalidEntries++;
+    return false;
+  }
+}
+
+Array.prototype.filterByCollection = function(v){
+  for(var i = 0; i < this.length; i++) {
+    if(this[i].collection === v){
+      //console.log(this[i].collection);
+      return this[i];
+    } 
+  }
+  return false;
+};
+
+//ucsc_annotation.filterByCollection('cesc_cnv_ucsc_gistic2thd')
 
 var invalidEntries = 0;
 function filterByDataSet(value, obj) {
@@ -363,8 +399,7 @@ co(function *() {
   //yield comongo.db.close(db);
 
   unique_datasets_length = datasources.length;
-  //var dataTypeCat = ['clinical', 'molecular','calculated', 'edges'];
-  var dataTypeCat = ['clinical', 'molecular','category'];
+  var dataTypeCat = ['category','clinical', 'molecular'];
   var dataTypeCat_length = dataTypeCat.length;
   var elem_source, elem_dataType;
 
@@ -372,6 +407,7 @@ co(function *() {
     if("disease" in datasources[i]){
       format.h2(datasources[i].disease.toUpperCase() + " - " + disease_code[datasources[i].disease.toUpperCase()]);
       var datasource = datasources[i];
+      var mol_colls = [];
       //db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin&replicaSet=rs0');
       format.text("Collection Name | Collection Type | Data Source | Data Type");
       format.table("--------- | ----------- | ----------- | -----------"); 
@@ -388,6 +424,9 @@ co(function *() {
                   }else{
                     format.table(elem.name + " | " + dataTypeCat[j] + " | " + elem_source + " | " + elem_dataType);
                   }
+                  if(dataTypeCat[j] === 'molecular'){
+                    mol_colls.push(elem);
+                  }
                 }); 
             }else{
                 var elems = Object.keys(datasource[dataTypeCat[j]]);
@@ -399,7 +438,16 @@ co(function *() {
             
           }
          
-      } 
+      }
+      mol_colls.forEach(function(e){
+        if(e.source === 'ucsc'){
+                    format.codeStart();
+                    var annot = ucsc_annotation.filterByCollection(e.collection);
+                    format.text(JSON.stringify(annot, null, 4)); 
+                    format.codeStop();
+                  } 
+      });
+      
     }
    
   }
