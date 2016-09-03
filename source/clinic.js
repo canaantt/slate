@@ -2,10 +2,33 @@
 var jsonfile = require("jsonfile");
 var cbio_annotation = {};
 var ucsc_annotation = {};
+// var cbio_annot = cbio_annotation.filter(function(c){
+//     if('collection' in c) 
+//       return typeof c != 'undefined'
+//  });
+// jsonfile.readFile("cbio_annot.json", function(err, obj) {
+//   cbio_annotation = obj;
+// });
 
-jsonfile.readFile("cbio_mol_annotation.json", function(err, obj) {
+// cbio_annotation = cbio_annotation.map(function(c){
+//    var elem = {};
+//    elem.source = c.source;
+//    elem.type = c.type;
+//    elem.collection = c.collection;
+//    elem.sampleSize = c.sampleSize;
+//    elem.GENETIC_ALTERATION_TYPE = c.GENETIC_ALTERATION_TYPE;
+//    elem.DATATYPE = c.DATATYPE;
+//    elem.NAME = c.NAME;
+//    elem.DESCRIPTION = c.DESCRIPTION;
+//    return elem;
+//  });
+//  jsonfile.writeFile("cbio_annot_reorganized.json", cbio_annotation);
+
+jsonfile.readFile("cbio_annot_reorganized.json", function(err, obj) {
   cbio_annotation = obj;
 });
+
+
 jsonfile.readFile("ucsc_mol_annotation.json", function(err, obj) {
   ucsc_annotation = obj;
 });
@@ -438,19 +461,28 @@ co(function *() {
           }
          
       }
-      mol_colls.forEach(function(e){
-        if(e.source === 'ucsc'){
-                    format.codeStart();
-                    var annot = ucsc_annotation.filterByCollection(e.collection);
-                    format.text(JSON.stringify(annot, null, 4)); 
-                    format.codeStop();
-        }else if(e.source === 'cbio'){
-                    format.codeStart();
-                    var annot = cbio_annotation.filterByCollection(e.collection);
-                    format.text(JSON.stringify(annot, null, 4)); 
-                    format.codeStop();
-        } 
-      });
+      if(mol_colls.length !== 0) {
+        mol_colls.forEach(function(e){
+          if(e.source === 'ucsc'){
+                      format.codeStart();
+                      var annot = ucsc_annotation.filterByCollection(e.collection);
+                      format.text(JSON.stringify(annot, null, 4)); 
+                      format.codeStop();
+          }else if(e.source === 'cBio'){
+                      var annot = cbio_annotation.filterByCollection(e.collection);
+                      if(annot != false){
+                        // var e_coll = yield comongo.db.collection(db, e.collection);
+                        // var e_coll_count = yield e.collection.count();
+  
+                        format.codeStart();
+                        format.text(JSON.stringify(annot, null, 4)); 
+                        format.codeStop();
+                      }
+                      
+          } 
+        });
+      }
+      
       
     }
    
@@ -458,3 +490,6 @@ co(function *() {
   yield comongo.db.close(db);
 }).catch(onerror);
   
+
+
+ 

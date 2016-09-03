@@ -295,21 +295,21 @@ hg19_genesets_orghs_1e+05 | category | orgHs | genesets
 
 ## BRCA - Breast invasive carcinoma
 
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-brca_color_tcga_import | category | tcga | color
-brca_patient_tcga_clinical | clinical | tcga | color
-brca_drug_tcga_clinical | clinical | tcga | color
-brca_radiation_tcga_clinical | clinical | tcga | color
-brca_followup-v1p5_tcga_clinical | clinical | tcga | color
-brca_followup-v2p1_tcga_clinical | clinical | tcga | color
-brca_followup-v4p0_tcga_clinical | clinical | tcga | color
-brca_newtumor_tcga_clinical | clinical | tcga | color
-brca_newtumor-followup-v4p0_tcga_clinical | clinical | tcga | color
-brca_othermalignancy-v4p0_tcga_clinical | clinical | tcga | color
-brca_events_tcga_clinical | clinical | tcga | color
-brca_cnv_cbio_gistic | molecular | cBio | cnv
-brca_mut_cbio_wxs | molecular | cBio | mut
+Collection Name | Collection Type | Data Source | Data Type | Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | ----------- | --------- | ----------- | ----------- | -----------
+brca_color_tcga_import | category | tcga | color | brca_color_tcga_import | category | tcga | color
+brca_patient_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
+brca_drug_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
+brca_radiation_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
+brca_followup-v1p5_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
+brca_followup-v2p1_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
+brca_followup-v4p0_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
+brca_newtumor_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
+brca_newtumor-followup-v4p0_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
+brca_othermalignancy-v4p0_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
+brca_events_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
+brca_cnv_cbio_gistic | molecular | cBio | cnv | brca_color_tcga_import | category | tcga | color
+brca_mut_cbio_wxs | molecular | cBio | mut | brca_color_tcga_import | category | tcga | color
 brca_mut01_cbio_import | molecular | cBio | mut01
 brca_methylation_cbio_hm27 | molecular | cBio | methylation
 brca_methylation_cbio_hm450 | molecular | cBio | methylation
@@ -320,6 +320,126 @@ brca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 brca_mut_ucsc_mutationcuratedwustlgene | molecular | ucsc | mut
 brca_mut01_ucsc_import | molecular | ucsc | mut01
 brca_psi_bradleylab_miso | molecular | bradleyLab | psi
+
+```
+
+{
+    "source": "cbio",
+    "type": "cnv",
+    "collection": "brca_cnv_cbio_gistic",
+    "sampleSize": 1079,
+    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
+    "DATATYPE": "DISCRETE",
+    "NAME": "Putative copy-number alterations from GISTIC",
+    "DESCRIPTION": "Putative copy-number calls on 1079 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut",
+    "collection": "brca_mut_cbio_wxs",
+    "sampleSize": 980,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Mutation data from whole exome sequencing."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut01",
+    "collection": "brca_mut01_cbio_import",
+    "sampleSize": 980,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Binary mutation data from whole exome sequencing."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "methylation",
+    "collection": "brca_methylation_cbio_hm27",
+    "sampleSize": 315,
+    "GENETIC_ALTERATION_TYPE": "METHYLATION",
+    "DATATYPE": "CONTINUOUS",
+    "NAME": "Methylation (HM27)",
+    "DESCRIPTION": "Methylation (HM27) beta-values for genes in 342 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "methylation",
+    "collection": "brca_methylation_cbio_hm450",
+    "sampleSize": 737,
+    "GENETIC_ALTERATION_TYPE": "METHYLATION",
+    "DATATYPE": "CONTINUOUS",
+    "NAME": "Methylation (HM450)",
+    "DESCRIPTION": "Methylation (HM450) beta-values for genes in 833 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "rna",
+    "collection": "brca_rna_cbio_microarray-agilent-median-zscore",
+    "sampleSize": 1098,
+    "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "mRNA Expression z-Scores (microarray)",
+    "DESCRIPTION": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "rna",
+    "collection": "brca_rna_cbio_rnaseq-median-zscore",
+    "sampleSize": 490,
+    "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
+    "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "protein",
+    "collection": "brca_protein_cbio_rppa-zscore",
+    "sampleSize": 409,
+    "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "protein/phosphoprotein level (RPPA)",
+    "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
+}
+```
+
 
 ```
 
@@ -653,6 +773,96 @@ hnsc_protein_cbio_rppa | molecular | cBio | protein
 ```
 
 
+```
+
+{
+    "source": "cbio",
+    "type": "cnv",
+    "collection": "hnsc_cnv_cbio_gistic",
+    "sampleSize": 522,
+    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
+    "DATATYPE": "DISCRETE",
+    "NAME": "Putative copy-number alterations from GISTIC",
+    "DESCRIPTION": "Putative copy-number calls on 522 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut",
+    "collection": "hnsc_mut_cbio_mut",
+    "sampleSize": 306,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Mutation data from whole exome sequencing."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut01",
+    "collection": "hnsc_mut01_cbio_mut",
+    "sampleSize": 306,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Binary mutation data from whole exome sequencing. "
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "methylation",
+    "collection": "hnsc_methylation_cbio_methylationhm450",
+    "sampleSize": 530,
+    "GENETIC_ALTERATION_TYPE": "METHYLATION",
+    "DATATYPE": "CONTINUOUS",
+    "NAME": "Methylation (HM450)",
+    "DESCRIPTION": "Methylation (HM450) beta-values for genes in 580 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "rna",
+    "collection": "hnsc_rna_cbio_rnaseq",
+    "sampleSize": 498,
+    "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "mRNA expression (RNA Seq V2 RSEM)",
+    "DESCRIPTION": "Expression levels for 20532 genes in 541 hnsc cases (RNA Seq V2 RSEM)."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "protein",
+    "collection": "hnsc_protein_cbio_rppa",
+    "sampleSize": 212,
+    "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "protein/phosphoprotein level (RPPA)",
+    "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
+}
+```
+
+
 ## LGG - Brain Lower Grade Glioma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -781,6 +991,126 @@ luad_protein_cbio_rppa | molecular | cBio | protein
 ```
 
 
+```
+
+{
+    "source": "cbio",
+    "type": "cnv",
+    "collection": "luad_cnv_cbio_gistic",
+    "sampleSize": 515,
+    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
+    "DATATYPE": "DISCRETE",
+    "NAME": "Putative copy-number alterations from GISTIC",
+    "DESCRIPTION": "Putative copy-number calls on 515 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut",
+    "collection": "luad_mut_cbio_mut",
+    "sampleSize": 229,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Mutation data from whole exome sequencing."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut01",
+    "collection": "luad_mut01_cbio_mut",
+    "sampleSize": 229,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Binary mutation data from whole exome sequencing."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "methylation",
+    "collection": "luad_methylation_cbio_methylationhm27",
+    "sampleSize": 126,
+    "GENETIC_ALTERATION_TYPE": "METHYLATION",
+    "DATATYPE": "CONTINUOUS",
+    "NAME": "Methylation (HM27)",
+    "DESCRIPTION": "Methylation (HM27) beta-values for genes in 150 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "methylation",
+    "collection": "luad_methylation_cbio_methylationhm450",
+    "sampleSize": 451,
+    "GENETIC_ALTERATION_TYPE": "METHYLATION",
+    "DATATYPE": "CONTINUOUS",
+    "NAME": "Methylation (HM450)",
+    "DESCRIPTION": "Methylation (HM450) beta-values for genes in 483 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "rna",
+    "collection": "luad_rna_cbio_microarray-agilent",
+    "sampleSize": 0,
+    "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "mRNA expression (microarray)",
+    "DESCRIPTION": "Expression levels for 17215 genes in 32 luad cases (Agilent microarray)."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "rna",
+    "collection": "luad_rna_cbio_rnaseq",
+    "sampleSize": 490,
+    "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
+    "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "protein",
+    "collection": "luad_protein_cbio_rppa",
+    "sampleSize": 181,
+    "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "protein/phosphoprotein level (RPPA)",
+    "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
+}
+```
+
+
 ## LUSC - Lung squamous cell carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -846,6 +1176,141 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "wrangler": "",
     "wranglingProcedure": "",
     "desc": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "cnv",
+    "collection": "lusc_cnv_cbio_gistic",
+    "sampleSize": 32,
+    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
+    "DATATYPE": "DISCRETE",
+    "NAME": "Putative copy-number alterations from GISTIC",
+    "DESCRIPTION": "Putative copy-number calls on 501 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut",
+    "collection": "lusc_mut_cbio_mut",
+    "sampleSize": 178,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Mutation data from whole exome sequencing."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut01",
+    "collection": "lusc_mut01_cbio_mut",
+    "sampleSize": 178,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Mutation data from whole exome sequencing."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "methylation",
+    "collection": "lusc_methylation_cbio_methylationhm27",
+    "sampleSize": 133,
+    "GENETIC_ALTERATION_TYPE": "METHYLATION",
+    "DATATYPE": "CONTINUOUS",
+    "NAME": "Methylation (HM27)",
+    "DESCRIPTION": "Methylation (HM27) beta-values for genes in 160 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "methylation",
+    "collection": "lusc_methylation_cbio_methylationhm450",
+    "sampleSize": 359,
+    "GENETIC_ALTERATION_TYPE": "METHYLATION",
+    "DATATYPE": "CONTINUOUS",
+    "NAME": "Methylation (HM450)",
+    "DESCRIPTION": "Methylation (HM450) beta-values for genes in 401 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "rna",
+    "collection": "lusc_rna_cbio_microarray-agilent",
+    "sampleSize": 154,
+    "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "mRNA Expression z-Scores (microarray)",
+    "DESCRIPTION": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "rna",
+    "collection": "lusc_rna_cbio_rnaseq",
+    "sampleSize": 501,
+    "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
+    "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "rna",
+    "collection": "lusc_rna_cbio_microarray-u133",
+    "sampleSize": 133,
+    "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "mRNA Expression z-Scores (U133 microarray only)",
+    "DESCRIPTION": "mRNA z-Scores  (U133 microarray only) compared to the expression distribution of each gene tumors that are diploid for this gene."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "protein",
+    "collection": "lusc_protein_cbio_rppa",
+    "sampleSize": 0,
+    "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "protein/phosphoprotein level (RPPA)",
+    "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
 }
 ```
 
@@ -916,6 +1381,96 @@ prad_protein_cbio_rppa | molecular | cBio | protein
 ```
 
 
+```
+
+{
+    "source": "cbio",
+    "type": "cnv",
+    "collection": "prad_cnv_cbio_gistic",
+    "sampleSize": 492,
+    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
+    "DATATYPE": "DISCRETE",
+    "NAME": "Putative copy-number alterations from GISTIC",
+    "DESCRIPTION": "Putative copy-number calls on 492 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut",
+    "collection": "prad_mut_cbio_mut",
+    "sampleSize": 261,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Mutation data from whole exome sequencing."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut01",
+    "collection": "prad_mut01_cbio_mut",
+    "sampleSize": 261,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Binary mutation data from whole exome sequencing."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "methylation",
+    "collection": "prad_methylation_cbio_methylationhm450",
+    "sampleSize": 425,
+    "GENETIC_ALTERATION_TYPE": "METHYLATION",
+    "DATATYPE": "CONTINUOUS",
+    "NAME": "Methylation (HM450)",
+    "DESCRIPTION": "Methylation (HM450) beta-values for genes in 475 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "rna",
+    "collection": "prad_rna_cbio_microarray-agilent",
+    "sampleSize": 487,
+    "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "mRNA Expression z-Scores (microarray)",
+    "DESCRIPTION": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "protein",
+    "collection": "prad_protein_cbio_rppa",
+    "sampleSize": 164,
+    "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "protein/phosphoprotein level (RPPA)",
+    "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
+}
+```
+
+
 ## PAAD - Pancreatic adenocarcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -976,6 +1531,66 @@ paad_rna_cbio_rnaseq | molecular | cBio | rna
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
     "desc": "TCGA pancreatic adenocarcinoma (PAAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. "
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "cnv",
+    "collection": "paad_cnv_cbio_gistic",
+    "sampleSize": 195,
+    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
+    "DATATYPE": "DISCRETE",
+    "NAME": "Putative copy-number alterations from GISTIC",
+    "DESCRIPTION": "Putative copy-number calls on 184 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut",
+    "collection": "paad_mut_cbio_mut",
+    "sampleSize": 91,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Mutation data from whole exome sequencing."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "mut01",
+    "collection": "paad_mut01_cbio_mut",
+    "sampleSize": 91,
+    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
+    "DATATYPE": "MAF",
+    "NAME": "Mutations",
+    "DESCRIPTION": "Binary mutation data from whole exome sequencing."
+}
+```
+
+
+```
+
+{
+    "source": "cbio",
+    "type": "rna",
+    "collection": "paad_rna_cbio_rnaseq",
+    "sampleSize": 179,
+    "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
+    "DATATYPE": "Z-SCORE",
+    "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
+    "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
 }
 ```
 
