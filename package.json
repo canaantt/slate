@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^4.5.7"
+    "jQuery": "^1.7.4",
+    "jsdom": "^9.4.2",
+    "mongodb": "^2.2.5"
   }
 }

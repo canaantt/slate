@@ -1,91 +1,51 @@
 <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p><a href="https://oncoscape.sttrcancer.org/#/">Oncoscape</a> is a web application that hosts an integrated suite of analysis tools for users to explore hypotheses related to molecular and clinical data in order to better understand cancer biology and treatment options. Oncoscape is as an SPA &ndash; a single page web application &ndash; using JavaScript in the browser and R (primarily) on the backend server for statistical calculations. For more detailed information, please read <a href="https://github.com/FredHutch/Oncoscape">wiki</a>.</p>
 
 <h1 id="authentication">Authentication</h1>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Oncoscape API authentication occurs at Mongo DB level. </p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<h1 id="rest-api-queries">Rest API Queries</h1>
+
+<h2 id="database-connection">Database Connection</h2>
+<pre class="highlight shell"><code><span class="nb">cd</span> &lt;mongodb installation dir&gt;
+./bin/mongo
+db
+use oncoscape
+db.getCollection<span class="o">(</span><span class="s2">"clinical_tcga_gbm_pt"</span><span class="o">)</span>
+
 </code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<pre class="highlight r"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"rmongodb"</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">devtools</span><span class="p">)</span>
+<span class="n">install_github</span><span class="p">(</span><span class="n">repo</span> <span class="o">=</span> <span class="s2">"mongosoup/rmongodb"</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">rmongodb</span><span class="p">)</span>
+<span class="n">help</span><span class="p">(</span><span class="s2">"mongo.create"</span><span class="p">)</span>
+<span class="n">mongo</span> <span class="o">&lt;-</span> <span class="n">mongo.create</span><span class="p">()</span>
 </code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">pymongo</span>
+<span class="n">mongod</span>
+<span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="mi">27017</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">oncoscape</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<pre class="highlight javascript"><code><span class="c1">// Retrieve</span>
+<span class="kd">var</span> <span class="nx">MongoClient</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongodb'</span><span class="p">).</span><span class="nx">MongoClient</span><span class="p">;</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<span class="c1">// Connect to the db</span>
+<span class="nx">MongoClient</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">"mongodb://localhost:27017/oncoscape"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">db</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="p">}</span>
+
+  <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s1">'test'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">collection</span><span class="p">)</span> <span class="p">{});</span>
+
+  <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s1">'test'</span><span class="p">,</span> <span class="p">{</span><span class="na">w</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">collection</span><span class="p">)</span> <span class="p">{});</span>
+
+  <span class="nx">db</span><span class="p">.</span><span class="nx">createCollection</span><span class="p">(</span><span class="s1">'test'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">collection</span><span class="p">)</span> <span class="p">{});</span>
+
+  <span class="nx">db</span><span class="p">.</span><span class="nx">createCollection</span><span class="p">(</span><span class="s1">'test'</span><span class="p">,</span> <span class="p">{</span><span class="na">w</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">collection</span><span class="p">)</span> <span class="p">{});</span>
+
+<span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all kittens.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -113,50 +73,525 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tbody></table>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Now you are connected to Oncoscape Mongo Database through Restful API
 </aside>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id="disease-types">Disease Types</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p><code class="prettyprint">https://tcga-data.nci.nih.gov/docs/publications/tcga/</code></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<table><thead>
+<tr>
+<th>Disease</th>
+<th>Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Acute Myeloid Leukemia</td>
+<td>LAML</td>
+</tr>
+<tr>
+<td>Adrenocortical carcinoma</td>
+<td>ACC</td>
+</tr>
+<tr>
+<td>Bladder Urothelial Carcinoma</td>
+<td>BLCA</td>
+</tr>
+<tr>
+<td>Brain Lower Grade Glioma</td>
+<td>LGG</td>
+</tr>
+<tr>
+<td>Breast invasive carcinoma</td>
+<td>BRCA</td>
+</tr>
+<tr>
+<td>Cervical squamous cell carcinoma and endocervical adenocarcinoma</td>
+<td>CESC</td>
+</tr>
+<tr>
+<td>Cholangiocarcinoma</td>
+<td>CHOL</td>
+</tr>
+<tr>
+<td>Colon adenocarcinoma</td>
+<td>COAD</td>
+</tr>
+<tr>
+<td>Esophageal carcinoma</td>
+<td>ESCA</td>
+</tr>
+<tr>
+<td>Glioblastoma multiforme</td>
+<td>GBM</td>
+</tr>
+<tr>
+<td>Head and Neck squamous cell carcinoma</td>
+<td>HNSC</td>
+</tr>
+<tr>
+<td>Kidney Chromophobe</td>
+<td>KICH</td>
+</tr>
+<tr>
+<td>Kidney renal clear cell carcinoma</td>
+<td>KIRC</td>
+</tr>
+<tr>
+<td>Kidney renal papillary cell carcinoma</td>
+<td>KIRP</td>
+</tr>
+<tr>
+<td>Liver hepatocellular carcinoma</td>
+<td>LIHC</td>
+</tr>
+<tr>
+<td>Lung adenocarcinoma</td>
+<td>LUAD</td>
+</tr>
+<tr>
+<td>Lung squamous cell carcinoma</td>
+<td>LUSC</td>
+</tr>
+<tr>
+<td>Lymphoid Neoplasm Diffuse Large B-cell Lymphoma</td>
+<td>DLBC</td>
+</tr>
+<tr>
+<td>Mesothelioma</td>
+<td>MESO</td>
+</tr>
+<tr>
+<td>Ovarian serous cystadenocarcinoma</td>
+<td>OV</td>
+</tr>
+<tr>
+<td>Pancreatic adenocarcinoma</td>
+<td>PAAD</td>
+</tr>
+<tr>
+<td>Pheochromocytoma and Paraganglioma</td>
+<td>PCPG</td>
+</tr>
+<tr>
+<td>Prostate adenocarcinoma</td>
+<td>PRAD</td>
+</tr>
+<tr>
+<td>Rectum adenocarcinoma</td>
+<td>READ</td>
+</tr>
+<tr>
+<td>Sarcoma</td>
+<td>SARC</td>
+</tr>
+<tr>
+<td>Skin Cutaneous Melanoma</td>
+<td>SKCM</td>
+</tr>
+<tr>
+<td>Stomach adenocarcinoma</td>
+<td>STAD</td>
+</tr>
+<tr>
+<td>Testicular Germ Cell Tumors</td>
+<td>TGCT</td>
+</tr>
+<tr>
+<td>Thymoma</td>
+<td>THYM</td>
+</tr>
+<tr>
+<td>Thyroid carcinoma</td>
+<td>THCA</td>
+</tr>
+<tr>
+<td>Uterine Carcinosarcoma</td>
+<td>UCS</td>
+</tr>
+<tr>
+<td>Uterine Corpus Endometrial Carcinoma</td>
+<td>UCEC</td>
+</tr>
+<tr>
+<td>Uveal Melanoma</td>
+<td>UVM</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell"><code>db.getCollection<span class="o">(</span><span class="s1">'lookup_oncoscape_datasources'</span><span class="o">)</span>.find<span class="o">({})</span>
 </code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<h4 id="source">Source</h4>
+
+<p><a href="https://tcga-data.nci.nih.gov/docs/publications/tcga/datatype.html">TCGA Data source</a></p>
+
+<h2 id="what-kind-of-data-are-included-in-each-disease-type">What kind of Data are included in each Disease Type?</h2>
+<pre class="highlight r"><code><span class="o">&gt;</span> <span class="n">library</span><span class="p">(</span><span class="n">TCGAgbm</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">dz</span> <span class="o">&lt;-</span> <span class="n">TCGAgbm</span><span class="p">()</span>
+<span class="o">&gt;</span> <span class="n">str</span><span class="p">(</span><span class="n">dz</span><span class="p">,</span> <span class="n">max.level</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="n">Formal</span> <span class="n">class</span> <span class="s1">'TCGAgbmClass'</span> <span class="p">[</span><span class="n">package</span> <span class="s2">"TCGAgbm"</span><span class="p">]</span> <span class="n">with</span> <span class="m">8</span> <span class="n">slots</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">name</span>                 <span class="o">:</span> <span class="n">chr</span> <span class="s2">"TCGAgbm"</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">matrices</span>             <span class="o">:</span><span class="n">List</span> <span class="n">of</span> <span class="m">5</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">data.frames</span>          <span class="o">:</span><span class="n">List</span> <span class="n">of</span> <span class="m">3</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">history</span>              <span class="o">:</span><span class="n">Formal</span> <span class="n">class</span> <span class="s1">'PatientHistoryClass'</span> <span class="p">[</span><span class="n">package</span> <span class="s2">"PatientHistory"</span><span class="p">]</span> <span class="n">with</span> <span class="m">4</span> <span class="n">slots</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">manifest</span>             <span class="o">:</span><span class="s1">'data.frame'</span><span class="o">:</span>   <span class="m">14</span> <span class="n">obs.</span> <span class="n">of</span>  <span class="m">11</span> <span class="n">variables</span><span class="o">:</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">genesets</span>             <span class="o">:</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">networks</span>             <span class="o">:</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">sampleCategorizations</span><span class="o">:</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+<span class="o">&gt;</span> <span class="n">str</span><span class="p">(</span><span class="n">dz</span><span class="p">,</span> <span class="n">max.level</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="n">Formal</span> <span class="n">class</span> <span class="s1">'TCGAgbmClass'</span> <span class="p">[</span><span class="n">package</span> <span class="s2">"TCGAgbm"</span><span class="p">]</span> <span class="n">with</span> <span class="m">8</span> <span class="n">slots</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">name</span>                 <span class="o">:</span> <span class="n">chr</span> <span class="s2">"TCGAgbm"</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">matrices</span>             <span class="o">:</span><span class="n">List</span> <span class="n">of</span> <span class="m">5</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">mtx.cn</span>          <span class="o">:</span> <span class="n">int</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">563</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">23575</span><span class="p">]</span> <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">-1</span> <span class="m">0</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span> <span class="err">..</span><span class="o">-</span> <span class="n">attr</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="s2">"dimnames"</span><span class="p">)</span><span class="o">=</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">mtx.mrna</span>        <span class="o">:</span> <span class="n">num</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">154</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">20457</span><span class="p">]</span> <span class="m">-0.744</span> <span class="m">-1.227</span> <span class="m">-0.552</span> <span class="m">2.018</span> <span class="m">-0.346</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span> <span class="err">..</span><span class="o">-</span> <span class="n">attr</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="s2">"dimnames"</span><span class="p">)</span><span class="o">=</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">mtx.mrna.ueArray</span><span class="o">:</span> <span class="n">num</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">323</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">11864</span><span class="p">]</span> <span class="m">0.0483</span> <span class="m">0.3241</span> <span class="m">0.7026</span> <span class="m">0.4747</span> <span class="m">0.1776</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span> <span class="err">..</span><span class="o">-</span> <span class="n">attr</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="s2">"dimnames"</span><span class="p">)</span><span class="o">=</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">mtx.mut</span>         <span class="o">:</span> <span class="n">chr</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">291</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">6698</span><span class="p">]</span> <span class="s2">"P436L"</span> <span class="s2">""</span> <span class="s2">""</span> <span class="s2">""</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span> <span class="err">..</span><span class="o">-</span> <span class="n">attr</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="s2">"dimnames"</span><span class="p">)</span><span class="o">=</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">mtx.prot</span>        <span class="o">:</span> <span class="n">num</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">214</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">171</span><span class="p">]</span> <span class="m">-0.5639</span> <span class="m">-0.0449</span> <span class="m">1.5614</span> <span class="m">0.0118</span> <span class="m">5.8114</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span> <span class="err">..</span><span class="o">-</span> <span class="n">attr</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="s2">"dimnames"</span><span class="p">)</span><span class="o">=</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">data.frames</span>          <span class="o">:</span><span class="n">List</span> <span class="n">of</span> <span class="m">3</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="o">:</span> <span class="n">NULL</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="o">:</span> <span class="n">NULL</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="o">:</span> <span class="n">NULL</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">history</span>              <span class="o">:</span><span class="n">Formal</span> <span class="n">class</span> <span class="s1">'PatientHistoryClass'</span> <span class="p">[</span><span class="n">package</span> <span class="s2">"PatientHistory"</span><span class="p">]</span> <span class="n">with</span> <span class="m">4</span> <span class="n">slots</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">manifest</span>             <span class="o">:</span><span class="s1">'data.frame'</span><span class="o">:</span>   <span class="m">14</span> <span class="n">obs.</span> <span class="n">of</span>  <span class="m">11</span> <span class="n">variables</span><span class="o">:</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">variable</span>     <span class="o">:</span> <span class="n">chr</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">]</span> <span class="s2">"mtx.cn"</span> <span class="s2">"history"</span> <span class="s2">"ptList"</span> <span class="s2">"catList"</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">class</span>        <span class="o">:</span> <span class="n">chr</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">]</span> <span class="s2">"matrix"</span> <span class="s2">"list"</span> <span class="s2">"list"</span> <span class="s2">"list"</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">category</span>     <span class="o">:</span> <span class="n">chr</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">]</span> <span class="s2">"copy number"</span> <span class="s2">"history"</span> <span class="s2">"history"</span> <span class="s2">"history"</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">subcategory</span>  <span class="o">:</span> <span class="n">chr</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">]</span> <span class="s2">"gistic scores"</span> <span class="s2">"clinical"</span> <span class="s2">"clinical patients"</span> <span class="s2">"clinical categories"</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">entity.count</span> <span class="o">:</span> <span class="n">int</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">]</span> <span class="m">563</span> <span class="m">7644</span> <span class="m">592</span> <span class="m">12</span> <span class="m">592</span> <span class="m">154</span> <span class="m">323</span> <span class="m">291</span> <span class="m">214</span> <span class="m">1443</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">feature.count</span><span class="o">:</span> <span class="n">int</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">]</span> <span class="m">23575</span> <span class="n">NA</span> <span class="n">NA</span> <span class="n">NA</span> <span class="m">427</span> <span class="m">20457</span> <span class="m">11864</span> <span class="m">6698</span> <span class="m">171</span> <span class="m">2953</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">entity.type</span>  <span class="o">:</span> <span class="n">chr</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">]</span> <span class="s2">"patient"</span> <span class="n">NA</span> <span class="n">NA</span> <span class="n">NA</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">feature.type</span> <span class="o">:</span> <span class="n">chr</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">]</span> <span class="s2">"gene"</span> <span class="n">NA</span> <span class="n">NA</span> <span class="n">NA</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">minValue</span>     <span class="o">:</span> <span class="n">num</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">]</span> <span class="m">-2</span> <span class="n">NA</span> <span class="n">NA</span> <span class="n">NA</span> <span class="n">NA</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">maxValue</span>     <span class="o">:</span> <span class="n">num</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">]</span> <span class="m">2</span> <span class="n">NA</span> <span class="n">NA</span> <span class="n">NA</span> <span class="n">NA</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">provenance</span>   <span class="o">:</span> <span class="n">chr</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">]</span> <span class="s2">"tcga cBio"</span> <span class="s2">"tcga"</span> <span class="s2">"tcga"</span> <span class="s2">"tcga"</span> <span class="k">...</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">genesets</span>             <span class="o">:</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">tcga.GBM.classifiers</span><span class="o">:</span> <span class="n">chr</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">840</span><span class="p">]</span> <span class="s2">"ABAT"</span> <span class="s2">"ABCD2"</span> <span class="s2">"ABL1"</span> <span class="s2">"ACPP"</span> <span class="k">...</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">marker.genes.545</span>    <span class="o">:</span> <span class="n">chr</span> <span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">545</span><span class="p">]</span> <span class="s2">"ABCG2"</span> <span class="s2">"AHNAK2"</span> <span class="s2">"AKT1"</span> <span class="s2">"ARHGAP26"</span> <span class="k">...</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">networks</span>             <span class="o">:</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">g.markers.json</span>    <span class="o">:</span> <span class="n">chr</span> <span class="s2">"{\"elements\":{\"nodes\":[{\"data\":{\"name\":\"TCGA.02.0003\",\"nodeType\":\"patient\",\"subType\":\"unassigned\",\"id\":\"TCG"</span><span class="o">|</span> <span class="n">__truncated__</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">g.gbmPathways.json</span><span class="o">:</span> <span class="n">chr</span> <span class="s2">"{\"elements\":{\"nodes\":[{\"data\":{\"name\":\"ABCA1\",\"nodeType\":\"gene\",\"label\":\"ABCA1\",\"id\":\"ABCA1\"},\"position\"</span><span class="o">|</span> <span class="n">__truncated__</span>
+  <span class="err">..</span><span class="o">@</span> <span class="n">sampleCategorizations</span><span class="o">:</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">tbl.verhaakPlus1</span><span class="o">:</span><span class="s1">'data.frame'</span><span class="o">:</span> <span class="m">548</span> <span class="n">obs.</span> <span class="n">of</span>  <span class="m">2</span> <span class="n">variables</span><span class="o">:</span>
+  <span class="err">..</span> <span class="err">..</span><span class="o">$</span> <span class="n">tbl.glioma8</span>     <span class="o">:</span><span class="s1">'data.frame'</span><span class="o">:</span> <span class="m">704</span> <span class="n">obs.</span> <span class="n">of</span>  <span class="m">2</span> <span class="n">variables</span><span class="o">:</span>
+
 </code></pre>
+
+<table><thead>
+<tr>
+<th>variable</th>
+<th>class</th>
+<th>category</th>
+<th>subcategory</th>
+<th>entity.count</th>
+<th>feature.count</th>
+<th>entity.type</th>
+<th>feature.type</th>
+<th>minValue</th>
+<th>maxValue</th>
+<th>provenance</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mtx.cn.RData</td>
+<td>mtx.cn</td>
+<td>matrix</td>
+<td>copy number</td>
+<td>gistic scores</td>
+<td>563</td>
+<td>23575</td>
+<td>patient</td>
+<td>gene</td>
+<td>-2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>events.RData</td>
+<td>history</td>
+<td>list</td>
+<td>history</td>
+<td>clinical</td>
+<td>7644</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>ptHistory.RData</td>
+<td>ptList</td>
+<td>list</td>
+<td>history</td>
+<td>clinical patients</td>
+<td>592</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>historyTypes.RData</td>
+<td>catList</td>
+<td>list</td>
+<td>history</td>
+<td>clinical categories</td>
+<td>12</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>tbl.ptHistory.RData</td>
+<td>tbl.ptHistory</td>
+<td>data.frame</td>
+<td>history</td>
+<td>clinical table</td>
+<td>592</td>
+<td>427</td>
+<td>patients</td>
+<td>events</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>mtx.mrna.RData</td>
+<td>mtx.mrna</td>
+<td>matrix</td>
+<td>mRNA expression</td>
+<td>Z scores</td>
+<td>154</td>
+<td>20457</td>
+<td>patient</td>
+<td>gene</td>
+<td>-5.6790</td>
+<td>3359.2622</td>
+</tr>
+<tr>
+<td>mtx.mrna.ueArray.RData</td>
+<td>mtx.mrna.ueArray</td>
+<td>matrix</td>
+<td>mRNA expression</td>
+<td>Z scores</td>
+<td>323</td>
+<td>11864</td>
+<td>patient</td>
+<td>gene</td>
+<td>-8.90925</td>
+<td>15.54740</td>
+</tr>
+<tr>
+<td>mtx.mut.RData</td>
+<td>mtx.mut</td>
+<td>matrix</td>
+<td>mutations</td>
+<td>aa substitutions</td>
+<td>291</td>
+<td>6698</td>
+<td>patient</td>
+<td>gene</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>mtx.prot.RData</td>
+<td>mtx.prot</td>
+<td>matrix</td>
+<td>protein abundance</td>
+<td>Z scores</td>
+<td>214</td>
+<td>171</td>
+<td>patient</td>
+<td>protein</td>
+<td>-5.62437</td>
+<td>10.30523</td>
+</tr>
+<tr>
+<td>markers.json.RData</td>
+<td>g.markers.json</td>
+<td>character</td>
+<td>network</td>
+<td>markers &amp; samples</td>
+<td>1443</td>
+<td>2953</td>
+<td>nodes</td>
+<td>edges</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>genesets.RData</td>
+<td>genesets</td>
+<td>list</td>
+<td>geneset</td>
+<td>NA</td>
+<td>2</td>
+<td>NA</td>
+<td>gene</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>gbmPathways.json.RData</td>
+<td>g.gbmPathways.json</td>
+<td>character</td>
+<td>network</td>
+<td>GBM-related Pathways</td>
+<td>156</td>
+<td>203</td>
+<td>nodes</td>
+<td>edges</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>verhaakGbmClustersAugmented.RData</td>
+<td>tbl.verhaakPlus1</td>
+<td>data.frame</td>
+<td>categorized samples</td>
+<td>tumors</td>
+<td>548</td>
+<td>2</td>
+<td>patient</td>
+<td>cluster &amp; color</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>ericsEightGliomaClusters.RData</td>
+<td>tbl.glioma8</td>
+<td>data.frame</td>
+<td>categorized samples</td>
+<td>tumors</td>
+<td>704</td>
+<td>2</td>
+<td>patient</td>
+<td>cluster &amp; color</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+</tbody></table>
+
+<h2 id="sanitized-clinical-collections-for-each-disease-type">Sanitized Clinical Collections for Each Disease Type</h2>
+
+<table><thead>
+<tr>
+<th>Disease</th>
+<th>Collection_Type</th>
+<th>Collection_Name</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>gbm</td>
+<td>drug</td>
+<td>clinical_tcga_acc_drug</td>
+</tr>
+<tr>
+<td>gbm</td>
+<td>f1</td>
+<td>clinical_tcga_acc_f1</td>
+</tr>
+<tr>
+<td>gbm</td>
+<td>nte</td>
+<td>clinical_tcga_acc_nte</td>
+</tr>
+<tr>
+<td>gbm</td>
+<td>nte_f1</td>
+<td>clinical_tcga_acc_nte_f1</td>
+</tr>
+<tr>
+<td>gbm</td>
+<td>omf</td>
+<td>clinical_tcga_acc_omf</td>
+</tr>
+<tr>
+<td>gbm</td>
+<td>pt</td>
+<td>clinical_tcga_acc_pt</td>
+</tr>
+<tr>
+<td>gbm</td>
+<td>rad</td>
+<td>clinical_tcga_acc_rad</td>
+</tr>
+</tbody></table>
+
+<p><code class="prettyprint">localhost:80/api/lookup_oncoscape_datasources</code></p>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="nt">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">ObjectId(</span><span class="s2">"5776eeea171709ceb0555fc6"</span><span class="err">)</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"disease"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"acc"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"collections"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"drug"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_drug"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"f1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_f1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"nte"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_nte"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"nte_f1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_nte_f1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"omf"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_omf"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"pt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_pt"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rad"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_acc_rad"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">ObjectId(</span><span class="s2">"5776eeea171709ceb0555fc7"</span><span class="err">)</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"disease"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"blca"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"collections"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"drug"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_drug"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"f1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_f1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"f2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_f2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"nte"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_nte"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"nte_f1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_nte_f1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"omf"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_omf"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"pt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_pt"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rad"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clinical_tcga_blca_rad"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<h2 id="how-to-query">How to query?</h2>
 
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p><img alt="Oncoscape_API_explorer" src="/images/oncoscape_explore_home.png" /></p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="http-request">HTTP Request:</h3>
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">http://localhost:80/api/clinical_tcga_gbm_drug/?q={&quot;$fields&quot;:[&quot;gender:Male&quot;,&quot;race:Asian&quot;]}</code></p>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h3 id="count">count:</h3>
+
+<p><code class="prettyprint">localhost:80/api/clinical_tcga_gbm_pt?count</code></p>
+
+<h3 id="field">$field</h3>
+
+<p><code class="prettyprint">http://localhost:80/api/clinical_tcga_gbm_drug/?q={&quot;$fields&quot;:[&quot;patient_ID&quot;,&quot;race&quot;,&quot;gender&quot;]}</code></p>
+
+<h3 id="limit">$limit</h3>
+
+<p><code class="prettyprint">http://localhost:80/api/clinical_tcga_gbm_drug/?q={&quot;$limit&quot;:10}</code></p>
+
+<h3 id="skip">$skip</h3>
+
+<p><code class="prettyprint">http://localhost:80/api/clinical_tcga_gbm_drug/?q={&quot;$skip&quot;:20}</code></p>
+
+<h3 id="combined-query-example">combined query example</h3>
+
+<p><code class="prettyprint">http://localhost:80/api/clinical_tcga_gbm_drug/?q={&quot;gender&quot;:&quot;Male&quot;, &quot;race&quot;:&quot;Asian&quot;,&quot;$fields&quot;:[&quot;patient_ID&quot;,&quot;race&quot;,&quot;gender&quot;],&quot;$limit&quot;:10,&quot;$skip&quot;:20}</code></p>
+
+<h1 id="clinical-data">Clinical Data</h1>
+
+<h2 id="common-clinical-collections-in-each-disease-type">Common Clinical Collections in each disease type</h2>
 
 <table><thead>
 <tr>
@@ -165,7 +600,158 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>clinical_tcga_gbm_pt</td>
+<td>collection of TCGA Glioblastoma (GBM) patients</td>
+</tr>
+<tr>
+<td>clinical_tcga_gbm_drug</td>
+<td>collection of chemo drug administered on each patient</td>
+</tr>
+<tr>
+<td>clinical_tcga_gbm_rad</td>
+<td>collection of radiation administered on each patient</td>
+</tr>
+<tr>
+<td>clinical_tcga_gbm_omf</td>
+<td>other malignant form</td>
+</tr>
+<tr>
+<td>clinical_tcga_gbm_nte</td>
+<td>new tumor event</td>
+</tr>
+<tr>
+<td>tcg_gbm_f1</td>
+<td>the first follow up table</td>
+</tr>
+<tr>
+<td>tcg_gbm_nte_f1</td>
+<td>new tumor events follow up table</td>
 </tr>
 </tbody></table>
+
+<h3 id="tcga-sample-barcode-system">TCGA sample barcode system</h3>
+
+<p align="center">
+    <a href="https://wiki.nci.nih.gov/display/TCGA/TCGA+barcode"><img src="/images/tcga_barcode.png" alt="tcga barcode"></a>
+</p>
+
+<h1 id="molecular-data">Molecular Data</h1>
+
+<p>Molecular Data sources include: cBioPortal MySQL database, other public datasets as well as private datasets. At current stage, we have JSON formatted molecular data including DNA Copy Number Variation (CNV), DNA mutation (Mut), DNA methylation (methylation), RNA expression data (mrna) and protein-level and phosphoprotein (RPPA) data. </p>
+
+<p>The current TCGA datasets are provided from <a href="http://www.cbioportal.org/faq.jsp">cbioportal</a> via <a href="http://gdac.broadinstitute.org/">Broad Firehose</a>. </p>
+<pre class="highlight r"><code><span class="n">names</span><span class="p">(</span><span class="n">matrices</span><span class="p">(</span><span class="n">dz</span><span class="p">))</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="n">SttrDataPackage</span> <span class="n">ctor</span><span class="p">,</span> <span class="n">networks.found</span><span class="o">:</span> <span class="m">2</span>
+<span class="o">&gt;</span> <span class="n">names</span><span class="p">(</span><span class="n">matrices</span><span class="p">(</span><span class="n">dz</span><span class="p">))</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="s2">"mtx.cn"</span>  <span class="s2">"mtx.mrna"</span> <span class="s2">"mtx.mrna.ueArray"</span> <span class="s2">"mtx.mut"</span> <span class="s2">"mtx.prot"</span>         
+</code></pre>
+
+<h2 id="copy-number-variation">Copy Number Variation</h2>
+
+<p>Copy Number Variation are represented with <a href="ftp://ftp.broadinstitute.org/pub/genepattern/modules_public_server_doc/GISTIC2.pdf">Gistic score</a>. </p>
+<pre class="highlight r"><code><span class="o">&gt;</span> <span class="n">cn</span> <span class="o">=</span> <span class="n">matrices</span><span class="p">(</span><span class="n">dz</span><span class="p">)</span><span class="o">$</span><span class="n">mtx.cn</span>
+<span class="o">&gt;</span> <span class="n">dim</span><span class="p">(</span><span class="n">cn</span><span class="p">)</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span>   <span class="m">563</span> <span class="m">23575</span>
+<span class="o">&gt;</span> <span class="n">cn</span><span class="p">[</span><span class="n">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="s2">"EGFR"</span><span class="p">,</span> <span class="s2">"PDGFRA"</span><span class="p">,</span> <span class="s2">"PDGFRB"</span><span class="p">,</span> <span class="s2">"PDGFD"</span><span class="p">,</span> <span class="s2">"IDH1"</span><span class="p">,</span> <span class="s2">"PTEN"</span><span class="p">)]</span>
+                <span class="n">EGFR</span> <span class="n">PDGFRA</span> <span class="n">PDGFRB</span> <span class="n">PDGFD</span> <span class="n">IDH1</span> <span class="n">PTEN</span>
+<span class="n">TCGA.02.0001.01</span>    <span class="m">1</span>      <span class="m">0</span>      <span class="m">0</span>    <span class="m">-1</span>    <span class="m">1</span>    <span class="m">0</span>
+<span class="n">TCGA.02.0003.01</span>    <span class="m">2</span>      <span class="m">0</span>      <span class="m">0</span>     <span class="m">0</span>    <span class="m">0</span>   <span class="m">-1</span>
+<span class="n">TCGA.02.0006.01</span>    <span class="m">1</span>      <span class="m">0</span>      <span class="m">0</span>     <span class="m">0</span>    <span class="m">0</span>   <span class="m">-2</span>
+<span class="n">TCGA.02.0007.01</span>    <span class="m">1</span>      <span class="m">0</span>      <span class="m">0</span>     <span class="m">0</span>    <span class="m">0</span>   <span class="m">-1</span>
+<span class="n">TCGA.02.0009.01</span>    <span class="m">2</span>      <span class="m">0</span>      <span class="m">0</span>     <span class="m">0</span>    <span class="m">0</span>   <span class="m">-1</span>
+<span class="n">TCGA.02.0010.01</span>    <span class="m">0</span>      <span class="m">0</span>     <span class="m">-1</span>    <span class="m">-1</span>    <span class="m">0</span>   <span class="m">-1</span>
+<span class="n">TCGA.02.0011.01</span>    <span class="m">0</span>      <span class="m">0</span>     <span class="m">-1</span>     <span class="m">0</span>    <span class="m">0</span>   <span class="m">-1</span>
+<span class="n">TCGA.02.0014.01</span>    <span class="m">0</span>      <span class="m">2</span>      <span class="m">0</span>    <span class="m">-1</span>    <span class="m">0</span>   <span class="m">-1</span>
+<span class="n">TCGA.02.0015.01</span>    <span class="m">1</span>      <span class="m">0</span>      <span class="m">0</span>     <span class="m">0</span>    <span class="m">0</span>   <span class="m">-1</span>
+<span class="n">TCGA.02.0016.01</span>    <span class="m">2</span>      <span class="m">0</span>      <span class="m">0</span>     <span class="m">0</span>    <span class="m">0</span>   <span class="m">-1</span>
+</code></pre>
+
+<h2 id="mutation-data">Mutation Data</h2>
+
+<p>According to our data source <a href="http://www.cbioportal.org/faq.jsp#what-are-oncoprints">cBioportal</a>, &ldquo;We store mutation data for published cancer studies. We do not, however store mutation data for provisional cancer data sets generated by TCGA. This is because provisional studies contain preliminary somatic mutations, which per NCI guidelines cannot be redistributed until they have been validated. As each cancer study is published and finalized by the TCGA, we will import the corresponding mutation data.&rdquo;</p>
+<pre class="highlight r"><code><span class="o">&gt;</span> <span class="n">dim</span><span class="p">(</span><span class="n">mut</span><span class="p">)</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span>  <span class="m">291</span> <span class="m">6698</span>
+<span class="o">&gt;</span> <span class="n">mut</span><span class="p">[</span><span class="n">c</span><span class="p">(</span><span class="m">200</span><span class="o">:</span><span class="m">210</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="s2">"EGFR"</span><span class="p">,</span> <span class="s2">"PDGFRA"</span><span class="p">,</span> <span class="s2">"PDGFRB"</span><span class="p">,</span> <span class="s2">"PDGFD"</span><span class="p">,</span> <span class="s2">"IDH1"</span><span class="p">,</span> <span class="s2">"PTEN"</span><span class="p">)]</span>
+                <span class="n">EGFR</span>    <span class="n">PDGFRA</span> <span class="n">PDGFRB</span> <span class="n">PDGFD</span> <span class="n">IDH1</span>    <span class="n">PTEN</span>    
+<span class="n">TCGA.32.4211.01</span> <span class="s2">""</span>      <span class="s2">""</span>     <span class="s2">""</span>     <span class="s2">""</span>    <span class="s2">""</span>      <span class="s2">""</span>      
+<span class="n">TCGA.76.4927.01</span> <span class="s2">"R222C"</span> <span class="s2">""</span>     <span class="s2">""</span>     <span class="s2">""</span>    <span class="s2">""</span>      <span class="s2">"R130fs"</span>
+<span class="n">TCGA.06.0939.01</span> <span class="s2">""</span>      <span class="s2">""</span>     <span class="s2">""</span>     <span class="s2">""</span>    <span class="s2">""</span>      <span class="s2">"R233*"</span> 
+<span class="n">TCGA.76.4926.01</span> <span class="s2">"R222C"</span> <span class="s2">""</span>     <span class="s2">""</span>     <span class="s2">""</span>    <span class="s2">""</span>      <span class="s2">""</span>      
+<span class="n">TCGA.15.1444.01</span> <span class="s2">""</span>      <span class="s2">""</span>     <span class="s2">""</span>     <span class="s2">""</span>    <span class="s2">"R132G"</span> <span class="s2">""</span>      
+<span class="n">TCGA.27.1837.01</span> <span class="s2">""</span>      <span class="s2">""</span>     <span class="s2">""</span>     <span class="s2">""</span>    <span class="s2">""</span>      <span class="s2">"T277I"</span> 
+<span class="n">TCGA.26.5136.01</span> <span class="s2">""</span>      <span class="s2">""</span>     <span class="s2">""</span>     <span class="s2">""</span>    <span class="s2">""</span>      <span class="s2">""</span>      
+<span class="n">TCGA.06.6693.01</span> <span class="s2">""</span>      <span class="s2">""</span>     <span class="s2">""</span>     <span class="s2">""</span>    <span class="s2">""</span>      <span class="s2">""</span>      
+<span class="n">TCGA.06.0882.01</span> <span class="s2">""</span>      <span class="s2">""</span>     <span class="s2">""</span>     <span class="s2">""</span>    <span class="s2">""</span>      <span class="s2">"R173H"</span> 
+<span class="n">TCGA.06.0155.01</span> <span class="s2">"H304Y"</span> <span class="s2">""</span>     <span class="s2">""</span>     <span class="s2">""</span>    <span class="s2">""</span>      <span class="s2">"C136R"</span> 
+<span class="n">TCGA.27.1836.01</span> <span class="s2">""</span>      <span class="s2">""</span>     <span class="s2">""</span>     <span class="s2">""</span>    <span class="s2">""</span>      <span class="s2">""</span>      
+</code></pre>
+
+<h2 id="methylation-data">Methylation Data</h2>
+
+<h2 id="expression-data">Expression Data</h2>
+<pre class="highlight r"><code><span class="o">&gt;</span> <span class="n">mrna</span> <span class="o">&lt;-</span> <span class="n">matrices</span><span class="p">(</span><span class="n">dz</span><span class="p">)</span><span class="o">$</span><span class="n">mtx.mrna</span>
+<span class="o">&gt;</span> <span class="n">dim</span><span class="p">(</span><span class="n">mrna</span><span class="p">)</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span>   <span class="m">154</span> <span class="m">20457</span>
+<span class="o">&gt;</span> <span class="n">mrna</span><span class="p">[</span><span class="n">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="s2">"EGFR"</span><span class="p">,</span> <span class="s2">"PDGFRA"</span><span class="p">,</span> <span class="s2">"PDGFRB"</span><span class="p">,</span> <span class="s2">"PDGFD"</span><span class="p">,</span> <span class="s2">"IDH1"</span><span class="p">,</span> <span class="s2">"PTEN"</span><span class="p">)]</span>
+                   <span class="n">EGFR</span>  <span class="n">PDGFRA</span>  <span class="n">PDGFRB</span>   <span class="n">PDGFD</span>    <span class="n">IDH1</span>    <span class="n">PTEN</span>
+<span class="n">TCGA.02.0047.01</span> <span class="m">-0.5197</span>  <span class="m">2.0035</span>  <span class="m">1.1146</span>  <span class="m">0.0166</span> <span class="m">-0.6861</span>  <span class="m">0.4649</span>
+<span class="n">TCGA.02.0055.01</span> <span class="m">-0.6427</span>  <span class="m">1.1642</span>  <span class="m">0.3834</span>  <span class="m">0.2029</span> <span class="m">-0.2181</span>  <span class="m">0.2477</span>
+<span class="n">TCGA.02.2483.01</span> <span class="m">-0.6480</span>  <span class="m">3.6678</span>  <span class="m">0.6497</span> <span class="m">-0.3383</span>  <span class="m">0.2568</span>  <span class="m">0.3887</span>
+<span class="n">TCGA.02.2485.01</span> <span class="m">14.8733</span> <span class="m">10.8608</span>  <span class="m">0.0517</span>  <span class="m">1.6860</span> <span class="m">-0.7468</span> <span class="m">-0.5886</span>
+<span class="n">TCGA.02.2486.01</span>  <span class="m">1.9919</span> <span class="m">-1.0006</span> <span class="m">-1.0431</span> <span class="m">-0.5996</span> <span class="m">-0.2788</span> <span class="m">-0.8236</span>
+<span class="n">TCGA.06.0125.01</span> <span class="m">19.4827</span>  <span class="m">0.8435</span>  <span class="m">0.4206</span>  <span class="m">0.2626</span>  <span class="m">1.3471</span> <span class="m">-0.9411</span>
+<span class="n">TCGA.06.0129.01</span>  <span class="m">3.2558</span>  <span class="m">3.8987</span> <span class="m">-0.8038</span> <span class="m">-0.6874</span> <span class="m">-0.1759</span> <span class="m">-0.1096</span>
+<span class="n">TCGA.06.0130.01</span> <span class="m">-0.5860</span>  <span class="m">1.3006</span>  <span class="m">1.3127</span>  <span class="m">0.1338</span> <span class="m">-0.3734</span>  <span class="m">0.2267</span>
+<span class="n">TCGA.06.0132.01</span>  <span class="m">3.3013</span> <span class="m">-0.5902</span> <span class="m">-0.6581</span> <span class="m">-0.5305</span>  <span class="m">0.0071</span> <span class="m">-0.3471</span>
+<span class="n">TCGA.06.0138.01</span>  <span class="m">0.0538</span> <span class="m">-0.7941</span> <span class="m">-0.3264</span> <span class="m">-0.2727</span> <span class="m">-0.6714</span> <span class="m">-0.8844</span>
+
+<span class="o">&gt;</span> <span class="n">mrna_ueArray</span> <span class="o">&lt;-</span> <span class="n">matrices</span><span class="p">(</span><span class="n">dz</span><span class="p">)</span><span class="o">$</span><span class="n">mtx.mrna.ueArray</span>
+<span class="o">&gt;</span> <span class="n">dim</span><span class="p">(</span><span class="n">mrna_ueArray</span><span class="p">)</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span>   <span class="m">323</span> <span class="m">11864</span>
+<span class="o">&gt;</span> <span class="n">mrna_ueArray</span><span class="p">[</span><span class="n">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="s2">"EGFR"</span><span class="p">,</span> <span class="s2">"PDGFRA"</span><span class="p">,</span> <span class="s2">"PDGFRB"</span><span class="p">,</span> <span class="s2">"PDGFD"</span><span class="p">,</span> <span class="s2">"IDH1"</span><span class="p">,</span> <span class="s2">"PTEN"</span><span class="p">)]</span>
+                    <span class="n">EGFR</span>   <span class="n">PDGFRA</span>   <span class="n">PDGFRB</span>    <span class="n">PDGFD</span>     <span class="n">IDH1</span>     <span class="n">PTEN</span>
+<span class="n">TCGA.02.0001.01</span> <span class="m">-0.55506</span> <span class="m">-1.42016</span> <span class="m">-0.84432</span>  <span class="m">0.35039</span>  <span class="m">0.66024</span>  <span class="m">0.19538</span>
+<span class="n">TCGA.02.0003.01</span>  <span class="m">1.16408</span>  <span class="m">0.71728</span> <span class="m">-0.97898</span>  <span class="m">0.24541</span>  <span class="m">0.14273</span>  <span class="m">0.00998</span>
+<span class="n">TCGA.02.0006.01</span> <span class="m">-0.42073</span> <span class="m">-0.76334</span> <span class="m">-0.55323</span>  <span class="m">1.56054</span> <span class="m">-0.33884</span> <span class="m">-1.42227</span>
+<span class="n">TCGA.02.0007.01</span> <span class="m">-0.14858</span> <span class="m">-0.63001</span> <span class="m">-1.22194</span> <span class="m">-1.31923</span> <span class="m">-0.57342</span> <span class="m">-0.37273</span>
+<span class="n">TCGA.02.0009.01</span>  <span class="m">1.61760</span>  <span class="m">0.04357</span>  <span class="m">0.39104</span>  <span class="m">0.47292</span>  <span class="m">1.21465</span> <span class="m">-0.12257</span>
+<span class="n">TCGA.02.0010.01</span> <span class="m">-1.26082</span>  <span class="m">1.54538</span> <span class="m">-0.77360</span>  <span class="m">0.44092</span> <span class="m">-0.09955</span> <span class="m">-1.04246</span>
+<span class="n">TCGA.02.0011.01</span> <span class="m">-0.42477</span>  <span class="m">1.39795</span>  <span class="m">0.20248</span> <span class="m">-1.37690</span>  <span class="m">0.25609</span>  <span class="m">0.11981</span>
+<span class="n">TCGA.02.0014.01</span> <span class="m">-1.07672</span>  <span class="m">1.80703</span> <span class="m">-1.56612</span> <span class="m">-1.48714</span>  <span class="m">0.94881</span>  <span class="m">0.49207</span>
+<span class="n">TCGA.02.0021.01</span>  <span class="m">1.61471</span> <span class="m">-1.50998</span>  <span class="m">1.68084</span>  <span class="m">1.94643</span>  <span class="m">0.69170</span>  <span class="m">0.79564</span>
+<span class="n">TCGA.02.0024.01</span> <span class="m">-1.62924</span>  <span class="m">2.32561</span> <span class="m">-0.88169</span> <span class="m">-1.38952</span> <span class="m">-0.30963</span>  <span class="m">0.64653</span>
+
+<span class="o">&gt;</span> <span class="n">table</span><span class="p">(</span><span class="n">rownames</span><span class="p">(</span><span class="n">mrna</span><span class="p">)</span> <span class="o">%</span><span class="k">in</span><span class="o">%</span> <span class="n">rownames</span><span class="p">(</span><span class="n">mrna_ueArray</span><span class="p">))</span>
+
+<span class="n">FALSE</span>  <span class="n">TRUE</span> <span class="c1">#There are 107 patients overlapping between the two expression datasets
+</span>  <span class="m">107</span>    <span class="m">47</span> 
+</code></pre>
+
+<h2 id="protein-expression-data">Protein Expression Data</h2>
+<pre class="highlight r"><code><span class="o">&gt;</span> <span class="n">prot</span> <span class="o">&lt;-</span> <span class="n">matrices</span><span class="p">(</span><span class="n">dz</span><span class="p">)</span><span class="o">$</span><span class="n">mtx.prot</span>
+<span class="o">&gt;</span> <span class="n">dim</span><span class="p">(</span><span class="n">prot</span><span class="p">)</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="m">214</span> <span class="m">171</span>
+<span class="o">&gt;</span> <span class="n">prot</span><span class="p">[</span><span class="n">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="m">53</span><span class="p">,</span><span class="m">54</span><span class="p">,</span><span class="m">55</span><span class="p">,</span><span class="m">56</span><span class="p">,</span><span class="m">141</span><span class="p">,</span><span class="m">110</span><span class="p">,</span> <span class="m">168</span><span class="p">)]</span>
+               <span class="n">EGFR</span><span class="o">-</span><span class="n">R</span><span class="o">-</span><span class="n">C</span> <span class="n">EGFR_pY1068</span><span class="o">-</span><span class="n">R</span><span class="o">-</span><span class="n">V</span> <span class="n">EGFR_pY1173</span><span class="o">-</span><span class="n">R</span><span class="o">-</span><span class="n">C</span> <span class="n">EGFR_pY992</span><span class="o">-</span><span class="n">R</span><span class="o">-</span><span class="n">V</span>
+<span class="n">TCGA.02.0003</span> <span class="m">-1.1448860</span>     <span class="m">-0.97032203</span>     <span class="m">-0.55116022</span>   <span class="m">-0.981332851</span>
+<span class="n">TCGA.02.0004</span> <span class="m">-0.8788662</span>     <span class="m">-0.89093273</span>     <span class="m">-0.30619305</span>   <span class="m">-0.896262630</span>
+<span class="n">TCGA.02.0011</span> <span class="m">-0.6813241</span>     <span class="m">-0.01430349</span>     <span class="m">-0.40735789</span>   <span class="m">-0.341739894</span>
+<span class="n">TCGA.02.0014</span> <span class="m">-1.0575641</span>     <span class="m">-0.60484802</span>     <span class="m">-0.61024289</span>    <span class="m">0.188828520</span>
+<span class="n">TCGA.02.0068</span> <span class="m">-0.9876569</span>     <span class="m">-0.60366569</span>     <span class="m">-0.74691266</span>   <span class="m">-0.790809930</span>
+<span class="n">TCGA.02.0069</span> <span class="m">-0.9783135</span>     <span class="m">-0.76765246</span>     <span class="m">-0.66951716</span>    <span class="m">0.006548698</span>
+<span class="n">TCGA.02.0116</span> <span class="m">-0.1669634</span>      <span class="m">0.08162206</span>     <span class="m">-0.33343515</span>    <span class="m">0.978812874</span>
+<span class="n">TCGA.02.2470</span> <span class="m">-0.9978155</span>     <span class="m">-0.70780206</span>     <span class="m">-0.08883589</span>    <span class="m">0.084623552</span>
+<span class="n">TCGA.02.2485</span>  <span class="m">1.5386868</span>      <span class="m">1.00673045</span>      <span class="m">0.76348417</span>    <span class="m">0.864611688</span>
+<span class="n">TCGA.06.0125</span>  <span class="m">0.9290328</span>      <span class="m">0.48979561</span>      <span class="m">0.29574320</span>    <span class="m">0.080075827</span>
+             <span class="n">VEGFR2</span><span class="o">-</span><span class="n">R</span><span class="o">-</span><span class="n">C</span>   <span class="n">PTEN</span><span class="o">-</span><span class="n">R</span><span class="o">-</span><span class="n">V</span>     <span class="n">p53</span><span class="o">-</span><span class="n">R</span><span class="o">-</span><span class="n">V</span>
+<span class="n">TCGA.02.0003</span>  <span class="m">1.1057706</span>  <span class="m">0.6648982</span>  <span class="m">0.04813986</span>
+<span class="n">TCGA.02.0004</span>  <span class="m">0.8311737</span> <span class="m">-1.4479134</span> <span class="m">-0.04693505</span>
+<span class="n">TCGA.02.0011</span> <span class="m">-1.1156879</span>  <span class="m">0.4819067</span>  <span class="m">0.38073400</span>
+<span class="n">TCGA.02.0014</span> <span class="m">-1.0917743</span>  <span class="m">0.1249528</span> <span class="m">-0.45095659</span>
+<span class="n">TCGA.02.0068</span>  <span class="m">1.3738875</span>  <span class="m">0.1524966</span>  <span class="m">0.02748055</span>
+<span class="n">TCGA.02.0069</span>  <span class="m">2.1277449</span>  <span class="m">0.2083672</span> <span class="m">-0.04432054</span>
+<span class="n">TCGA.02.0116</span> <span class="m">-1.7190042</span> <span class="m">-1.9243557</span>  <span class="m">2.64672677</span>
+<span class="n">TCGA.02.2470</span> <span class="m">-1.9757657</span> <span class="m">-1.8878893</span>  <span class="m">0.26570687</span>
+<span class="n">TCGA.02.2485</span> <span class="m">-0.9737182</span> <span class="m">-0.4021184</span>  <span class="m">0.95267454</span>
+<span class="n">TCGA.06.0125</span>  <span class="m">0.8663092</span> <span class="m">-0.8788458</span>  <span class="m">0.01435868</span>
+</code></pre>
