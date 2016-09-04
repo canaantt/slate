@@ -2,10 +2,9 @@
 title: API Reference
 
 language_tabs:
-  - shell
-  - R
   - python
   - javascript
+  - r
 
 toc_footers:
   - email to contact@oncoscape.org

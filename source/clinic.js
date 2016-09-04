@@ -121,12 +121,12 @@ var disease_code = {
      "UVM":"Uveal Melanoma"
  };
 
-format.h2("Mongo DB Connection");
-format.codeJSStart('const mongoose = require(\"mongoose\");');
-format.table('mongoose.connect(\"mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin\",{user: \"oncoscapeRead\",pass: \"i1f4d9botHD4xnZ\"});');
-format.table('var connection = mongoose.connection;');
-format.table('var db = connection.db;');
-format.codeStop();
+// format.h2("Mongo DB Connection");
+// format.codeJSStart('const mongoose = require(\"mongoose\");');
+// format.table('mongoose.connect(\"mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin\",{user: \"oncoscapeRead\",pass: \"i1f4d9botHD4xnZ\"});');
+// format.table('var connection = mongoose.connection;');
+// format.table('var db = connection.db;');
+// format.codeStop();
 
 var onerror = function(e){
     console.log(e);
@@ -215,26 +215,40 @@ co(function *() {
   /* REST API Query on gbm_patient_tcga_clinical */
   collection = yield comongo.db.collection(db, 'gbm_patient_tcga_clinical');
   var doc = yield collection.find({}).toArray();
-  var max_ind = 0;
-  var max_len = 0;
-  var ind = 0;
-  format.h2("Example of fields from one record");
-  format.codeComment("Fields for most of records in gbm_patient_tcga_clinical");
+  // var max_ind = 0;
+  // var max_len = 0;
+  // var ind = 0;
+  format.h2("Example to access one collection from browser");
+  format.h3("HTTP Request");
+  format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/");
+  format.codeComment("Here we only show the first record in gbm_patient_tcga_clinical");
   format.codeStart();
-  format.text(Object.keys(doc[0])); 
+  format.text(JSON.stringify(doc[0], null, 4)); 
   format.codeStop(); 
-  format.h2("Get the count of records in the collection");
-  format.h3("HTTP Request")
-  format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/count");
-  format.codeComment("Count of records in gbm_patient_tcga_clinical");
-  format.codeStart();
-  format.text(doc.length);
-  format.codeStop();
-  format.h2("Query detail information from collection gbm_patient_tcga_clinical");
+  // format.h2("Get the count of records in the collection");
+  // format.h3("HTTP Request");
+  // format.codeComment('Male White patients result: ');
+  // format.codeStart();
+  // format.text(JSON.stringify(doc, null, 4)); 
+  // format.codeStop(); 
+  // format.codeComment('Count of the records meet this criteria');
+  // format.codeStart(); 
+  // format.text(doc.length);
+  // format.codeStop(); 
+  // format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/count");
+  // format.codeComment("Count of records in gbm_patient_tcga_clinical");
+  // format.codeStart();
+  // format.text(doc.length);
+  // format.codeStop();
+  format.h2("Query Collection from Browser");
+  format.h3("HTTP Request");
   var query = '{"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}';
   doc = yield collection.find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true}).limit(2).skip(5).toArray();
+  format.codeComment('Here we show the first two records that meet the below criteria: gender is male, race is white. We have skipped the first five records from the results. And we only show three fields (patient_ID, gender and race.');
+  format.codeStart();
+  format.text(JSON.stringify(doc, null, 4)); 
+  format.codeStop(); 
   format.text("Filter by gender and race and only show the selected fields");
-  format.h3("HTTP Request")
   format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q=" + query);
   format.text("only show gender, race and patient_ID");
   format.url('"$fields":["gender","race","patient_ID"]');
@@ -242,16 +256,8 @@ co(function *() {
   format.url('"$skip":5');
   format.text("limit the final output to two records.");
   format.url('"$limit":2');
-  format.codeComment('Male White patients result: ');
-  format.codeStart();
-  format.text(JSON.stringify(doc, null, 4)); 
-  format.codeStop(); 
-  format.codeComment('Count of the records meet this criteria');
-  format.codeStart(); 
-  format.text(doc.length);
-  format.codeStop(); 
       
-  format.h2("Fetch JSON formatted data"); 
+  format.h2("Fetch JSON-Formatted Data Using Programming Languages"); 
   format.codeComment('Fetch JSON formatted data using R, Python, or javascript');   
   // mongo shell version 
   format.codeMongoStart();
@@ -409,7 +415,8 @@ co(function *() {
   format.table('print json.dumps(data[0:2], indent=4, sort_keys=True)');
   format.text(JSON.stringify(python_json_obj, null, 4)); 
   format.codeStop();
-
+  format.text("Users can access json-formatted data using URL link.");
+  format.text("Here we show the example to access one collection using four different languages.");
   
   //=========================================================================
   /* using lookup_oncoscape_datasources file to populate _clinic_api_query.md 
@@ -461,13 +468,16 @@ co(function *() {
           }
          
       }
+      format.h3("More Details of Molecular Collections");
       if(mol_colls.length !== 0) {
+        var mol_annot = [];
         mol_colls.forEach(function(e){
           if(e.source === 'ucsc'){
                       format.codeStart();
                       var annot = ucsc_annotation.filterByCollection(e.collection);
                       format.text(JSON.stringify(annot, null, 4)); 
                       format.codeStop();
+                      mol_annot.push(annot);
           }else if(e.source === 'cBio'){
                       var annot = cbio_annotation.filterByCollection(e.collection);
                       if(annot != false){
@@ -477,11 +487,24 @@ co(function *() {
                         format.codeStart();
                         format.text(JSON.stringify(annot, null, 4)); 
                         format.codeStop();
+                        mol_annot.push(annot);
                       }
                       
-          } 
+          }
         });
+        format.text("Collection | Data Source | Data Type | Size | Description");
+        format.table("--------- | ----------- | ----------- | ----------- | -----------"); 
+        mol_annot.forEach(function(e){
+          format.table(e.collection + " | " +
+                       e.source + " | " +
+                       e.type + " | " +
+                       e.sampleSize + " | " + 
+                       e.description);
+        });
+
       }
+      
+
       
       
     }

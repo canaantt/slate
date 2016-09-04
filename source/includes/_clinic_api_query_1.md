@@ -1,98 +1,60 @@
 
-## Mongo DB Connection
-
-```javascript
-mongoose.connect("mongodb://oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/pancan12?authSource=admin",{user: "oncoscapeRead",pass: "i1f4d9botHD4xnZ"});
-var connection = mongoose.connection;
-var db = connection.db;
-```
-
-
-## Example of fields from one record
-
-> Fields for most of records in gbm_patient_tcga_clinical
-
-
-```
-
-[ '_id',
-  'patient_ID',
-  'history_lgg_dx_of_brain_tissue',
-  'prospective_collection',
-  'retrospective_collection',
-  'gender',
-  'days_to_birth',
-  'race',
-  'ethnicity',
-  'history_other_malignancy',
-  'history_neoadjuvant_treatment',
-  'diagnosis_year',
-  'pathologic_method',
-  'status_vital',
-  'days_to_last_contact',
-  'days_to_death',
-  'status_tumor',
-  'KPS',
-  'ECOG',
-  'encounter_type',
-  'radiation_treatment_adjuvant',
-  'pharmaceutical_tx_adjuvant',
-  'treatment_outcome_first_course',
-  'new_tumor_event_diagnosis',
-  'age_at_initial_pathologic_diagnosis',
-  'anatomic_organ_subdivision',
-  'days_to_diagnosis',
-  'disease_code',
-  'histologic_diagnosis',
-  'icd_10',
-  'icd_3_histology',
-  'icd_3',
-  'tissue_source_site_code',
-  'tumor_tissue_site' ]
-```
-
-
-## Get the count of records in the collection
+## Example to access one collection from browser
 
 ### HTTP Request
 
-`GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/count`
+`GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/`
 
 
-> Count of records in gbm_patient_tcga_clinical
+> Here we only show the first record in gbm_patient_tcga_clinical
 
 
 ```
 
-596
+{
+    "_id": "57bce8ec1debbd62f4bf3501",
+    "patient_ID": "TCGA-02-0001-01",
+    "history_lgg_dx_of_brain_tissue": false,
+    "prospective_collection": null,
+    "retrospective_collection": null,
+    "gender": "FEMALE",
+    "days_to_birth": -16179,
+    "race": "WHITE",
+    "ethnicity": "NOT HISPANIC OR LATINO",
+    "history_other_malignancy": null,
+    "history_neoadjuvant_treatment": true,
+    "diagnosis_year": 1009872000,
+    "pathologic_method": null,
+    "status_vital": "DEAD",
+    "days_to_last_contact": 279,
+    "days_to_death": 358,
+    "status_tumor": "WITH TUMOR",
+    "KPS": 80,
+    "ECOG": null,
+    "encounter_type": null,
+    "radiation_treatment_adjuvant": null,
+    "pharmaceutical_tx_adjuvant": null,
+    "treatment_outcome_first_course": null,
+    "new_tumor_event_diagnosis": null,
+    "age_at_initial_pathologic_diagnosis": 44,
+    "anatomic_organ_subdivision": null,
+    "days_to_diagnosis": 0,
+    "disease_code": null,
+    "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY",
+    "icd_10": "C71.9",
+    "icd_3_histology": "9440/3",
+    "icd_3": "C71.9",
+    "tissue_source_site_code": "02",
+    "tumor_tissue_site": "BRAIN"
+}
 ```
 
 
-## Query detail information from collection gbm_patient_tcga_clinical
-
-Filter by gender and race and only show the selected fields
+## Query Collection from Browser
 
 ### HTTP Request
 
-`GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q={"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}`
-
-
-only show gender, race and patient_ID
-
-`"$fields":["gender","race","patient_ID"]`
-
-
-skip the first five records
-
-`"$skip":5`
-
-
-limit the final output to two records.
-
-`"$limit":2`
-
-
-> Male White patients result: 
+> Here we show the first two records that meet the below criteria: gender is male, race is white. We have skipped the first five records from the results. And we only show three fields (patient_ID, gender and race.
 
 
 ```
@@ -116,16 +78,27 @@ limit the final output to two records.
 ```
 
 
-> Count of the records meet this criteria
+Filter by gender and race and only show the selected fields
+
+`GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q={"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}`
 
 
-```
+only show gender, race and patient_ID
 
-2
-```
+`"$fields":["gender","race","patient_ID"]`
 
 
-## Fetch JSON formatted data
+skip the first five records
+
+`"$skip":5`
+
+
+limit the final output to two records.
+
+`"$limit":2`
+
+
+## Fetch JSON-Formatted Data Using Programming Languages
 
 > Fetch JSON formatted data using R, Python, or javascript
 
@@ -283,6 +256,10 @@ print json.dumps(data[0:2], indent=4, sort_keys=True)
 ```
 
 
+Users can access json-formatted data using URL link.
+
+Here we show the example to access one collection using four different languages.
+
 # Collections by Disease
 
 ## HG19 - Genome Platform
@@ -293,23 +270,25 @@ hg19_genesets_hgnc_import | category | hgnc | genesets
 hg19_genesets_orghs_10000 | category | orgHs | genesets
 hg19_genesets_orghs_1e+05 | category | orgHs | genesets
 
+### More Details of Molecular Collections
+
 ## BRCA - Breast invasive carcinoma
 
-Collection Name | Collection Type | Data Source | Data Type | Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | ----------- | --------- | ----------- | ----------- | -----------
-brca_color_tcga_import | category | tcga | color | brca_color_tcga_import | category | tcga | color
-brca_patient_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
-brca_drug_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
-brca_radiation_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
-brca_followup-v1p5_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
-brca_followup-v2p1_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
-brca_followup-v4p0_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
-brca_newtumor_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
-brca_newtumor-followup-v4p0_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
-brca_othermalignancy-v4p0_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
-brca_events_tcga_clinical | clinical | tcga | color | brca_color_tcga_import | category | tcga | color
-brca_cnv_cbio_gistic | molecular | cBio | cnv | brca_color_tcga_import | category | tcga | color
-brca_mut_cbio_wxs | molecular | cBio | mut | brca_color_tcga_import | category | tcga | color
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+brca_color_tcga_import | category | tcga | color
+brca_patient_tcga_clinical | clinical | tcga | color
+brca_drug_tcga_clinical | clinical | tcga | color
+brca_radiation_tcga_clinical | clinical | tcga | color
+brca_followup-v1p5_tcga_clinical | clinical | tcga | color
+brca_followup-v2p1_tcga_clinical | clinical | tcga | color
+brca_followup-v4p0_tcga_clinical | clinical | tcga | color
+brca_newtumor_tcga_clinical | clinical | tcga | color
+brca_newtumor-followup-v4p0_tcga_clinical | clinical | tcga | color
+brca_othermalignancy-v4p0_tcga_clinical | clinical | tcga | color
+brca_events_tcga_clinical | clinical | tcga | color
+brca_cnv_cbio_gistic | molecular | cBio | cnv
+brca_mut_cbio_wxs | molecular | cBio | mut
 brca_mut01_cbio_import | molecular | cBio | mut01
 brca_methylation_cbio_hm27 | molecular | cBio | methylation
 brca_methylation_cbio_hm450 | molecular | cBio | methylation
@@ -321,6 +300,8 @@ brca_mut_ucsc_mutationcuratedwustlgene | molecular | ucsc | mut
 brca_mut01_ucsc_import | molecular | ucsc | mut01
 brca_psi_bradleylab_miso | molecular | bradleyLab | psi
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -331,7 +312,7 @@ brca_psi_bradleylab_miso | molecular | bradleyLab | psi
     "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
-    "DESCRIPTION": "Putative copy-number calls on 1079 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+    "description": "Putative copy-number calls on 1079 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
 }
 ```
 
@@ -346,7 +327,7 @@ brca_psi_bradleylab_miso | molecular | bradleyLab | psi
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Mutation data from whole exome sequencing."
+    "description": "Mutation data from whole exome sequencing."
 }
 ```
 
@@ -361,7 +342,7 @@ brca_psi_bradleylab_miso | molecular | bradleyLab | psi
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Binary mutation data from whole exome sequencing."
+    "description": "Binary mutation data from whole exome sequencing."
 }
 ```
 
@@ -376,7 +357,7 @@ brca_psi_bradleylab_miso | molecular | bradleyLab | psi
     "GENETIC_ALTERATION_TYPE": "METHYLATION",
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM27)",
-    "DESCRIPTION": "Methylation (HM27) beta-values for genes in 342 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+    "description": "Methylation (HM27) beta-values for genes in 342 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
 }
 ```
 
@@ -391,7 +372,7 @@ brca_psi_bradleylab_miso | molecular | bradleyLab | psi
     "GENETIC_ALTERATION_TYPE": "METHYLATION",
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM450)",
-    "DESCRIPTION": "Methylation (HM450) beta-values for genes in 833 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+    "description": "Methylation (HM450) beta-values for genes in 833 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
 }
 ```
 
@@ -406,7 +387,7 @@ brca_psi_bradleylab_miso | molecular | bradleyLab | psi
     "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (microarray)",
-    "DESCRIPTION": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene."
+    "description": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene."
 }
 ```
 
@@ -421,7 +402,7 @@ brca_psi_bradleylab_miso | molecular | bradleyLab | psi
     "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
-    "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
+    "description": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
 }
 ```
 
@@ -436,7 +417,7 @@ brca_psi_bradleylab_miso | molecular | bradleyLab | psi
     "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
     "DATATYPE": "Z-SCORE",
     "NAME": "protein/phosphoprotein level (RPPA)",
-    "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
+    "description": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
 }
 ```
 
@@ -451,7 +432,7 @@ brca_psi_bradleylab_miso | molecular | bradleyLab | psi
     "sampleSize": 1079,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA breast invasive carcinoma (BRCA) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA breast invasive carcinoma (BRCA) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
@@ -466,7 +447,7 @@ brca_psi_bradleylab_miso | molecular | bradleyLab | psi
     "sampleSize": 982,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA breast invasive carcinoma (BRCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Genome Institute at Washington University Sequencing Center using the WashU pipeline method. "
+    "description": "TCGA breast invasive carcinoma (BRCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Genome Institute at Washington University Sequencing Center using the WashU pipeline method. "
 }
 ```
 
@@ -481,16 +462,32 @@ brca_psi_bradleylab_miso | molecular | bradleyLab | psi
     "sampleSize": 982,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA breast invasive carcinoma (BRCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Genome Institute at Washington University Sequencing Center using the WashU pipeline method. "
+    "description": "TCGA breast invasive carcinoma (BRCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Genome Institute at Washington University Sequencing Center using the WashU pipeline method. "
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+brca_cnv_cbio_gistic | cbio | cnv | 1079 | Putative copy-number calls on 1079 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
+brca_mut_cbio_wxs | cbio | mut | 980 | Mutation data from whole exome sequencing.
+brca_mut01_cbio_import | cbio | mut01 | 980 | Binary mutation data from whole exome sequencing.
+brca_methylation_cbio_hm27 | cbio | methylation | 315 | Methylation (HM27) beta-values for genes in 342 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.
+brca_methylation_cbio_hm450 | cbio | methylation | 737 | Methylation (HM450) beta-values for genes in 833 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.
+brca_rna_cbio_microarray-agilent-median-zscore | cbio | rna | 1098 | mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene.
+brca_rna_cbio_rnaseq-median-zscore | cbio | rna | 490 | mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene.
+brca_protein_cbio_rppa-zscore | cbio | protein | 409 | Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)
+brca_cnv_ucsc_gistic2thd | ucsc | cnv | 1079 | TCGA breast invasive carcinoma (BRCA) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+brca_mut_ucsc_mutationcuratedwustlgene | ucsc | mut | 982 | TCGA breast invasive carcinoma (BRCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Genome Institute at Washington University Sequencing Center using the WashU pipeline method. 
+brca_mut01_ucsc_import | ucsc | mut01 | 982 | TCGA breast invasive carcinoma (BRCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Genome Institute at Washington University Sequencing Center using the WashU pipeline method. 
 
 ## ESCA - Esophageal carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 esca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+
+### More Details of Molecular Collections
 
 ```
 
@@ -502,10 +499,14 @@ esca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
     "sampleSize": 184,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA esophageal carcinoma (ESCA) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA esophageal carcinoma (ESCA) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+esca_cnv_ucsc_gistic2thd | ucsc | cnv | 184 | TCGA esophageal carcinoma (ESCA) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 
 ## LUNG - Lung adenocarcinoma & Lung squamous cell carcinoma
 
@@ -526,6 +527,8 @@ lung_rna_cbio_rnaseq | molecular | cBio | rna
 lung_rna_cbio_microarray-u133 | molecular | cBio | rna
 lung_protein_cbio_rppa | molecular | cBio | protein
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -536,7 +539,7 @@ lung_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 1016,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
@@ -551,7 +554,7 @@ lung_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 408,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+    "description": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
 }
 ```
 
@@ -566,10 +569,16 @@ lung_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 408,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+    "description": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+lung_cnv_ucsc_gistic2thd | ucsc | cnv | 1016 | The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+lung_mut_ucsc_mutation | ucsc | mut | 408 | The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
+lung_mut01_ucsc_mutation | ucsc | mut01 | 408 | The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
 
 ## COAD - Colon adenocarcinoma
 
@@ -581,6 +590,8 @@ coad_radiation_tcga_na | clinical | TCGA |
 coad_followup-v1p0_tcga_na | clinical | TCGA | 
 coad_newtumor_tcga_na | clinical | TCGA | 
 coad_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+
+### More Details of Molecular Collections
 
 ## GBM - Glioblastoma multiforme
 
@@ -597,6 +608,8 @@ gbm_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 gbm_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
 gbm_mut01_ucsc_import | molecular | ucsc | mut01
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -607,7 +620,7 @@ gbm_mut01_ucsc_import | molecular | ucsc | mut01
     "sampleSize": 577,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA glioblastoma multiforme (GBM) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA glioblastoma multiforme (GBM) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
@@ -622,7 +635,7 @@ gbm_mut01_ucsc_import | molecular | ucsc | mut01
     "sampleSize": 291,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA glioblastoma multiforme (GBM) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
+    "description": "TCGA glioblastoma multiforme (GBM) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
 }
 ```
 
@@ -637,10 +650,16 @@ gbm_mut01_ucsc_import | molecular | ucsc | mut01
     "sampleSize": 291,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA glioblastoma multiforme (GBM) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
+    "description": "TCGA glioblastoma multiforme (GBM) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+gbm_cnv_ucsc_gistic2thd | ucsc | cnv | 577 | TCGA glioblastoma multiforme (GBM) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+gbm_mut_ucsc_mutationbroadgene | ucsc | mut | 291 | TCGA glioblastoma multiforme (GBM) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. 
+gbm_mut01_ucsc_import | ucsc | mut01 | 291 | TCGA glioblastoma multiforme (GBM) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. 
 
 ## COADREAD - Colon adenocarcinoma & Rectum adenocarcinoma
 
@@ -659,6 +678,8 @@ coadread_rna_cbio_microarray-agilent | molecular | cBio | rna
 coadread_rna_cbio_rnaseq | molecular | cBio | rna
 coadread_protein_cbio_rppa | molecular | cBio | protein
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -669,7 +690,7 @@ coadread_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 408,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+    "description": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
 }
 ```
 
@@ -684,7 +705,7 @@ coadread_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 224,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": "TCGA colon & rectum adenocarcinoma (COADREAD) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+    "description": "TCGA colon & rectum adenocarcinoma (COADREAD) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
 }
 ```
 
@@ -699,10 +720,16 @@ coadread_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 224,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": "TCGA colon & rectum adenocarcinoma (COADREAD) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+    "description": "TCGA colon & rectum adenocarcinoma (COADREAD) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+coadread_cnv_ucsc_gistic2thd | ucsc | cnv | 408 | The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
+coadread_mut_ucsc_mutation | ucsc | mut | 224 | TCGA colon & rectum adenocarcinoma (COADREAD) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
+coadread_mut01_ucsc_mutation | ucsc | mut01 | 224 | TCGA colon & rectum adenocarcinoma (COADREAD) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
 
 ## HNSC - Head and Neck squamous cell carcinoma
 
@@ -728,6 +755,8 @@ hnsc_methylation_cbio_methylationhm450 | molecular | cBio | methylation
 hnsc_rna_cbio_rnaseq | molecular | cBio | rna
 hnsc_protein_cbio_rppa | molecular | cBio | protein
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -738,7 +767,7 @@ hnsc_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 522,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA head & neck squamous cell carcinoma (HNSC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA head & neck squamous cell carcinoma (HNSC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
@@ -753,7 +782,7 @@ hnsc_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 509,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA head & neck squamous cell carcinoma (HNSC) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
+    "description": "TCGA head & neck squamous cell carcinoma (HNSC) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
 }
 ```
 
@@ -768,7 +797,7 @@ hnsc_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 509,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA head & neck squamous cell carcinoma (HNSC) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
+    "description": "TCGA head & neck squamous cell carcinoma (HNSC) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
 }
 ```
 
@@ -783,7 +812,7 @@ hnsc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
-    "DESCRIPTION": "Putative copy-number calls on 522 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+    "description": "Putative copy-number calls on 522 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
 }
 ```
 
@@ -798,7 +827,7 @@ hnsc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Mutation data from whole exome sequencing."
+    "description": "Mutation data from whole exome sequencing."
 }
 ```
 
@@ -813,7 +842,7 @@ hnsc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Binary mutation data from whole exome sequencing. "
+    "description": "Binary mutation data from whole exome sequencing. "
 }
 ```
 
@@ -828,7 +857,7 @@ hnsc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "METHYLATION",
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM450)",
-    "DESCRIPTION": "Methylation (HM450) beta-values for genes in 580 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+    "description": "Methylation (HM450) beta-values for genes in 580 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
 }
 ```
 
@@ -843,7 +872,7 @@ hnsc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA expression (RNA Seq V2 RSEM)",
-    "DESCRIPTION": "Expression levels for 20532 genes in 541 hnsc cases (RNA Seq V2 RSEM)."
+    "description": "Expression levels for 20532 genes in 541 hnsc cases (RNA Seq V2 RSEM)."
 }
 ```
 
@@ -858,10 +887,22 @@ hnsc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
     "DATATYPE": "Z-SCORE",
     "NAME": "protein/phosphoprotein level (RPPA)",
-    "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
+    "description": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+hnsc_cnv_ucsc_gistic2thd | ucsc | cnv | 522 | TCGA head & neck squamous cell carcinoma (HNSC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+hnsc_mut_ucsc_mutationbroadgene | ucsc | mut | 509 | TCGA head & neck squamous cell carcinoma (HNSC) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. 
+hnsc_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 509 | TCGA head & neck squamous cell carcinoma (HNSC) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. 
+hnsc_cnv_cbio_gistic | cbio | cnv | 522 | Putative copy-number calls on 522 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
+hnsc_mut_cbio_mut | cbio | mut | 306 | Mutation data from whole exome sequencing.
+hnsc_mut01_cbio_mut | cbio | mut01 | 306 | Binary mutation data from whole exome sequencing. 
+hnsc_methylation_cbio_methylationhm450 | cbio | methylation | 530 | Methylation (HM450) beta-values for genes in 580 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.
+hnsc_rna_cbio_rnaseq | cbio | rna | 498 | Expression levels for 20532 genes in 541 hnsc cases (RNA Seq V2 RSEM).
+hnsc_protein_cbio_rppa | cbio | protein | 212 | Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)
 
 ## LGG - Brain Lower Grade Glioma
 
@@ -878,6 +919,8 @@ lgg_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 lgg_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
 lgg_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -888,7 +931,7 @@ lgg_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
     "sampleSize": 513,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA brain lower grade glioma (LGG) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA brain lower grade glioma (LGG) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
@@ -903,7 +946,7 @@ lgg_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
     "sampleSize": 408,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+    "description": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
 }
 ```
 
@@ -918,10 +961,16 @@ lgg_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
     "sampleSize": 408,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+    "description": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+lgg_cnv_ucsc_gistic2thd | ucsc | cnv | 513 | TCGA brain lower grade glioma (LGG) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+lgg_mut_ucsc_mutationbroadgene | ucsc | mut | 408 | The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
+lgg_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 408 | The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
 
 ## LUAD - Lung adenocarcinoma
 
@@ -946,6 +995,8 @@ luad_rna_cbio_microarray-agilent | molecular | cBio | rna
 luad_rna_cbio_rnaseq | molecular | cBio | rna
 luad_protein_cbio_rppa | molecular | cBio | protein
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -956,7 +1007,7 @@ luad_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 515,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA lung adenocarcinoma (LUAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA lung adenocarcinoma (LUAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
@@ -971,7 +1022,7 @@ luad_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 543,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA lung adenocarcinoma (LUAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
+    "description": "TCGA lung adenocarcinoma (LUAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
 }
 ```
 
@@ -986,7 +1037,7 @@ luad_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 543,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA lung adenocarcinoma (LUAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
+    "description": "TCGA lung adenocarcinoma (LUAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
 }
 ```
 
@@ -1001,7 +1052,7 @@ luad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
-    "DESCRIPTION": "Putative copy-number calls on 515 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+    "description": "Putative copy-number calls on 515 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
 }
 ```
 
@@ -1016,7 +1067,7 @@ luad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Mutation data from whole exome sequencing."
+    "description": "Mutation data from whole exome sequencing."
 }
 ```
 
@@ -1031,7 +1082,7 @@ luad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Binary mutation data from whole exome sequencing."
+    "description": "Binary mutation data from whole exome sequencing."
 }
 ```
 
@@ -1046,7 +1097,7 @@ luad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "METHYLATION",
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM27)",
-    "DESCRIPTION": "Methylation (HM27) beta-values for genes in 150 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+    "description": "Methylation (HM27) beta-values for genes in 150 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
 }
 ```
 
@@ -1061,7 +1112,7 @@ luad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "METHYLATION",
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM450)",
-    "DESCRIPTION": "Methylation (HM450) beta-values for genes in 483 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+    "description": "Methylation (HM450) beta-values for genes in 483 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
 }
 ```
 
@@ -1076,7 +1127,7 @@ luad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA expression (microarray)",
-    "DESCRIPTION": "Expression levels for 17215 genes in 32 luad cases (Agilent microarray)."
+    "description": "Expression levels for 17215 genes in 32 luad cases (Agilent microarray)."
 }
 ```
 
@@ -1091,7 +1142,7 @@ luad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
-    "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
+    "description": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
 }
 ```
 
@@ -1106,10 +1157,24 @@ luad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
     "DATATYPE": "Z-SCORE",
     "NAME": "protein/phosphoprotein level (RPPA)",
-    "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
+    "description": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+luad_cnv_ucsc_gistic2thd | ucsc | cnv | 515 | TCGA lung adenocarcinoma (LUAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+luad_mut_ucsc_mutationbroadgene | ucsc | mut | 543 | TCGA lung adenocarcinoma (LUAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. 
+luad_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 543 | TCGA lung adenocarcinoma (LUAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. 
+luad_cnv_cbio_gistic | cbio | cnv | 515 | Putative copy-number calls on 515 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
+luad_mut_cbio_mut | cbio | mut | 229 | Mutation data from whole exome sequencing.
+luad_mut01_cbio_mut | cbio | mut01 | 229 | Binary mutation data from whole exome sequencing.
+luad_methylation_cbio_methylationhm27 | cbio | methylation | 126 | Methylation (HM27) beta-values for genes in 150 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.
+luad_methylation_cbio_methylationhm450 | cbio | methylation | 451 | Methylation (HM450) beta-values for genes in 483 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.
+luad_rna_cbio_microarray-agilent | cbio | rna | 0 | Expression levels for 17215 genes in 32 luad cases (Agilent microarray).
+luad_rna_cbio_rnaseq | cbio | rna | 490 | mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene.
+luad_protein_cbio_rppa | cbio | protein | 181 | Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)
 
 ## LUSC - Lung squamous cell carcinoma
 
@@ -1135,6 +1200,8 @@ lusc_rna_cbio_rnaseq | molecular | cBio | rna
 lusc_rna_cbio_microarray-u133 | molecular | cBio | rna
 lusc_protein_cbio_rppa | molecular | cBio | protein
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -1145,7 +1212,7 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 501,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA lung squamous cell carcinoma (LUSC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA lung squamous cell carcinoma (LUSC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
@@ -1160,7 +1227,7 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 408,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+    "description": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
 }
 ```
 
@@ -1175,7 +1242,7 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 408,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+    "description": "The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
 }
 ```
 
@@ -1190,7 +1257,7 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
-    "DESCRIPTION": "Putative copy-number calls on 501 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+    "description": "Putative copy-number calls on 501 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
 }
 ```
 
@@ -1205,7 +1272,7 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Mutation data from whole exome sequencing."
+    "description": "Mutation data from whole exome sequencing."
 }
 ```
 
@@ -1220,7 +1287,7 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Mutation data from whole exome sequencing."
+    "description": "Mutation data from whole exome sequencing."
 }
 ```
 
@@ -1235,7 +1302,7 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "METHYLATION",
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM27)",
-    "DESCRIPTION": "Methylation (HM27) beta-values for genes in 160 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+    "description": "Methylation (HM27) beta-values for genes in 160 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
 }
 ```
 
@@ -1250,7 +1317,7 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "METHYLATION",
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM450)",
-    "DESCRIPTION": "Methylation (HM450) beta-values for genes in 401 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+    "description": "Methylation (HM450) beta-values for genes in 401 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
 }
 ```
 
@@ -1265,7 +1332,7 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (microarray)",
-    "DESCRIPTION": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene."
+    "description": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene."
 }
 ```
 
@@ -1280,7 +1347,7 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
-    "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
+    "description": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
 }
 ```
 
@@ -1295,7 +1362,7 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (U133 microarray only)",
-    "DESCRIPTION": "mRNA z-Scores  (U133 microarray only) compared to the expression distribution of each gene tumors that are diploid for this gene."
+    "description": "mRNA z-Scores  (U133 microarray only) compared to the expression distribution of each gene tumors that are diploid for this gene."
 }
 ```
 
@@ -1310,10 +1377,25 @@ lusc_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
     "DATATYPE": "Z-SCORE",
     "NAME": "protein/phosphoprotein level (RPPA)",
-    "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
+    "description": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+lusc_cnv_ucsc_gistic2thd | ucsc | cnv | 501 | TCGA lung squamous cell carcinoma (LUSC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+lusc_mut_ucsc_mutationbroadgene | ucsc | mut | 408 | The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
+lusc_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 408 | The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
+lusc_cnv_cbio_gistic | cbio | cnv | 32 | Putative copy-number calls on 501 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
+lusc_mut_cbio_mut | cbio | mut | 178 | Mutation data from whole exome sequencing.
+lusc_mut01_cbio_mut | cbio | mut01 | 178 | Mutation data from whole exome sequencing.
+lusc_methylation_cbio_methylationhm27 | cbio | methylation | 133 | Methylation (HM27) beta-values for genes in 160 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.
+lusc_methylation_cbio_methylationhm450 | cbio | methylation | 359 | Methylation (HM450) beta-values for genes in 401 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.
+lusc_rna_cbio_microarray-agilent | cbio | rna | 154 | mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene.
+lusc_rna_cbio_rnaseq | cbio | rna | 501 | mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene.
+lusc_rna_cbio_microarray-u133 | cbio | rna | 133 | mRNA z-Scores  (U133 microarray only) compared to the expression distribution of each gene tumors that are diploid for this gene.
+lusc_protein_cbio_rppa | cbio | protein | 0 | Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)
 
 ## PRAD - Prostate adenocarcinoma
 
@@ -1336,6 +1418,8 @@ prad_methylation_cbio_methylationhm450 | molecular | cBio | methylation
 prad_rna_cbio_microarray-agilent | molecular | cBio | rna
 prad_protein_cbio_rppa | molecular | cBio | protein
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -1346,7 +1430,7 @@ prad_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 492,
     "wrangler": "   cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA prostate adenocarcinoma (PRAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA prostate adenocarcinoma (PRAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
@@ -1361,7 +1445,7 @@ prad_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 425,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA prostate adenocarcinoma (PRAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method."
+    "description": "TCGA prostate adenocarcinoma (PRAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method."
 }
 ```
 
@@ -1376,7 +1460,7 @@ prad_protein_cbio_rppa | molecular | cBio | protein
     "sampleSize": 425,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA prostate adenocarcinoma (PRAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method."
+    "description": "TCGA prostate adenocarcinoma (PRAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method."
 }
 ```
 
@@ -1391,7 +1475,7 @@ prad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
-    "DESCRIPTION": "Putative copy-number calls on 492 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+    "description": "Putative copy-number calls on 492 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
 }
 ```
 
@@ -1406,7 +1490,7 @@ prad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Mutation data from whole exome sequencing."
+    "description": "Mutation data from whole exome sequencing."
 }
 ```
 
@@ -1421,7 +1505,7 @@ prad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Binary mutation data from whole exome sequencing."
+    "description": "Binary mutation data from whole exome sequencing."
 }
 ```
 
@@ -1436,7 +1520,7 @@ prad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "METHYLATION",
     "DATATYPE": "CONTINUOUS",
     "NAME": "Methylation (HM450)",
-    "DESCRIPTION": "Methylation (HM450) beta-values for genes in 475 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
+    "description": "Methylation (HM450) beta-values for genes in 475 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
 }
 ```
 
@@ -1451,7 +1535,7 @@ prad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (microarray)",
-    "DESCRIPTION": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene."
+    "description": "mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene."
 }
 ```
 
@@ -1466,10 +1550,22 @@ prad_protein_cbio_rppa | molecular | cBio | protein
     "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
     "DATATYPE": "Z-SCORE",
     "NAME": "protein/phosphoprotein level (RPPA)",
-    "DESCRIPTION": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
+    "description": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+prad_cnv_ucsc_gistic2thd | ucsc | cnv | 492 | TCGA prostate adenocarcinoma (PRAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+prad_mut_ucsc_mutationbroadgene | ucsc | mut | 425 | TCGA prostate adenocarcinoma (PRAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method.
+prad_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 425 | TCGA prostate adenocarcinoma (PRAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method.
+prad_cnv_cbio_gistic | cbio | cnv | 492 | Putative copy-number calls on 492 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
+prad_mut_cbio_mut | cbio | mut | 261 | Mutation data from whole exome sequencing.
+prad_mut01_cbio_mut | cbio | mut01 | 261 | Binary mutation data from whole exome sequencing.
+prad_methylation_cbio_methylationhm450 | cbio | methylation | 425 | Methylation (HM450) beta-values for genes in 475 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.
+prad_rna_cbio_microarray-agilent | cbio | rna | 487 | mRNA z-Scores (Agilent microarray) compared to the expression distribution of each gene tumors that are diploid for this gene.
+prad_protein_cbio_rppa | cbio | protein | 164 | Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)
 
 ## PAAD - Pancreatic adenocarcinoma
 
@@ -1490,6 +1586,8 @@ paad_mut_cbio_mut | molecular | cBio | mut
 paad_mut01_cbio_mut | molecular | cBio | mut01
 paad_rna_cbio_rnaseq | molecular | cBio | rna
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -1500,7 +1598,7 @@ paad_rna_cbio_rnaseq | molecular | cBio | rna
     "sampleSize": 184,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA pancreatic adenocarcinoma (PAAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA pancreatic adenocarcinoma (PAAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
@@ -1515,7 +1613,7 @@ paad_rna_cbio_rnaseq | molecular | cBio | rna
     "sampleSize": 131,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA pancreatic adenocarcinoma (PAAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. "
+    "description": "TCGA pancreatic adenocarcinoma (PAAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. "
 }
 ```
 
@@ -1530,7 +1628,7 @@ paad_rna_cbio_rnaseq | molecular | cBio | rna
     "sampleSize": 131,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA pancreatic adenocarcinoma (PAAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. "
+    "description": "TCGA pancreatic adenocarcinoma (PAAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. "
 }
 ```
 
@@ -1545,7 +1643,7 @@ paad_rna_cbio_rnaseq | molecular | cBio | rna
     "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
     "DATATYPE": "DISCRETE",
     "NAME": "Putative copy-number alterations from GISTIC",
-    "DESCRIPTION": "Putative copy-number calls on 184 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
+    "description": "Putative copy-number calls on 184 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
 }
 ```
 
@@ -1560,7 +1658,7 @@ paad_rna_cbio_rnaseq | molecular | cBio | rna
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Mutation data from whole exome sequencing."
+    "description": "Mutation data from whole exome sequencing."
 }
 ```
 
@@ -1575,7 +1673,7 @@ paad_rna_cbio_rnaseq | molecular | cBio | rna
     "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
     "DATATYPE": "MAF",
     "NAME": "Mutations",
-    "DESCRIPTION": "Binary mutation data from whole exome sequencing."
+    "description": "Binary mutation data from whole exome sequencing."
 }
 ```
 
@@ -1590,16 +1688,28 @@ paad_rna_cbio_rnaseq | molecular | cBio | rna
     "GENETIC_ALTERATION_TYPE": "MRNA_EXPRESSION",
     "DATATYPE": "Z-SCORE",
     "NAME": "mRNA Expression z-Scores (RNA Seq V2 RSEM)",
-    "DESCRIPTION": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
+    "description": "mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene."
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+paad_cnv_ucsc_gistic2thd | ucsc | cnv | 184 | TCGA pancreatic adenocarcinoma (PAAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+paad_mut_ucsc_mutationbroadgene | ucsc | mut | 131 | TCGA pancreatic adenocarcinoma (PAAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. 
+paad_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 131 | TCGA pancreatic adenocarcinoma (PAAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. 
+paad_cnv_cbio_gistic | cbio | cnv | 195 | Putative copy-number calls on 184 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
+paad_mut_cbio_mut | cbio | mut | 91 | Mutation data from whole exome sequencing.
+paad_mut01_cbio_mut | cbio | mut01 | 91 | Binary mutation data from whole exome sequencing.
+paad_rna_cbio_rnaseq | cbio | rna | 179 | mRNA z-Scores (RNA Seq V2 RSEM) compared to the expression distribution of each gene tumors that are diploid for this gene.
 
 ## ACC - Adrenocortical carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 acc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+
+### More Details of Molecular Collections
 
 ```
 
@@ -1611,10 +1721,14 @@ acc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
     "sampleSize": 90,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA adrenocortical carcinoma (ACC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA adrenocortical carcinoma (ACC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+acc_cnv_ucsc_gistic2thd | ucsc | cnv | 90 | TCGA adrenocortical carcinoma (ACC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 
 ## BLCA - Bladder Urothelial Carcinoma
 
@@ -1631,6 +1745,8 @@ blca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 blca_mut_ucsc_mutationbroadgene | molecular | ucsc | mut
 blca_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -1641,7 +1757,7 @@ blca_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
     "sampleSize": 408,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA bladder urothelial carcinoma (BLCA) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA bladder urothelial carcinoma (BLCA) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
@@ -1656,7 +1772,7 @@ blca_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
     "sampleSize": 238,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA bladder urothelial carcinoma (BLCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
+    "description": "TCGA bladder urothelial carcinoma (BLCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
 }
 ```
 
@@ -1671,16 +1787,24 @@ blca_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
     "sampleSize": 238,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA bladder urothelial carcinoma (BLCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
+    "description": "TCGA bladder urothelial carcinoma (BLCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. "
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+blca_cnv_ucsc_gistic2thd | ucsc | cnv | 408 | TCGA bladder urothelial carcinoma (BLCA) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+blca_mut_ucsc_mutationbroadgene | ucsc | mut | 238 | TCGA bladder urothelial carcinoma (BLCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. 
+blca_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 238 | TCGA bladder urothelial carcinoma (BLCA) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. 
 
 ## CESC - Cervical squamous cell carcinoma and endocervical adenocarcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 cesc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+
+### More Details of Molecular Collections
 
 ```
 
@@ -1692,16 +1816,22 @@ cesc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
     "sampleSize": 295,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA cervical squamous cell carcinoma and endocervical adenocarcinoma (CESC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA cervical squamous cell carcinoma and endocervical adenocarcinoma (CESC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+cesc_cnv_ucsc_gistic2thd | ucsc | cnv | 295 | TCGA cervical squamous cell carcinoma and endocervical adenocarcinoma (CESC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 
 ## CHOL - Cholangiocarcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 chol_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+
+### More Details of Molecular Collections
 
 ```
 
@@ -1713,16 +1843,22 @@ chol_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
     "sampleSize": 36,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA cholangiocarcinoma (CHOL) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA cholangiocarcinoma (CHOL) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+chol_cnv_ucsc_gistic2thd | ucsc | cnv | 36 | TCGA cholangiocarcinoma (CHOL) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 
 ## DLBC - Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 dlbc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+
+### More Details of Molecular Collections
 
 ```
 
@@ -1734,10 +1870,14 @@ dlbc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
     "sampleSize": 48,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA lymphoid neoplasm diffuse large B-cell lymphoma (DLBC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA lymphoid neoplasm diffuse large B-cell lymphoma (DLBC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+dlbc_cnv_ucsc_gistic2thd | ucsc | cnv | 48 | TCGA lymphoid neoplasm diffuse large B-cell lymphoma (DLBC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 
 ## LAML - Acute Myeloid Leukemia
 
@@ -1747,6 +1887,8 @@ laml_patient_tcga_na | clinical | TCGA |
 laml_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 laml_mut_ucsc_mutation | molecular | ucsc | mut
 laml_mut01_ucsc_mutation | molecular | ucsc | mut01
+
+### More Details of Molecular Collections
 
 ```
 
@@ -1758,7 +1900,7 @@ laml_mut01_ucsc_mutation | molecular | ucsc | mut01
     "sampleSize": 191,
     "wrangler": "cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA acute myeloid leukemia (LAML) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA acute myeloid leukemia (LAML) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
@@ -1773,7 +1915,7 @@ laml_mut01_ucsc_mutation | molecular | ucsc | mut01
     "sampleSize": 196,
     "wrangler": "cgData TCGAscript mutationMatrix processed on 2015-01-28",
     "wranglingProcedure": "TCGA PANCAN strictly filtered maf files (file names: *_cleaned_filtered.maf) download from Synapse, processed into gene by sample matrix at UCSC into cgData repository",
-    "desc": "TCGA acute myeloid leukemia (LAML) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+    "description": "TCGA acute myeloid leukemia (LAML) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
 }
 ```
 
@@ -1788,10 +1930,16 @@ laml_mut01_ucsc_mutation | molecular | ucsc | mut01
     "sampleSize": 196,
     "wrangler": "cgData TCGAscript mutationMatrix processed on 2015-01-28",
     "wranglingProcedure": "TCGA PANCAN strictly filtered maf files (file names: *_cleaned_filtered.maf) download from Synapse, processed into gene by sample matrix at UCSC into cgData repository",
-    "desc": "TCGA acute myeloid leukemia (LAML) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
+    "description": "TCGA acute myeloid leukemia (LAML) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample."
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+laml_cnv_ucsc_gistic2thd | ucsc | cnv | 191 | TCGA acute myeloid leukemia (LAML) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+laml_mut_ucsc_mutation | ucsc | mut | 196 | TCGA acute myeloid leukemia (LAML) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
+laml_mut01_ucsc_mutation | ucsc | mut01 | 196 | TCGA acute myeloid leukemia (LAML) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
 
 ## SARC - Sarcoma
 
@@ -1806,6 +1954,8 @@ sarc_newtumor-followup-v4p0_tcga_na | clinical | TCGA |
 sarc_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
 sarc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -1816,10 +1966,14 @@ sarc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
     "sampleSize": 257,
     "wrangler": "   cgData TCGAscript CopyNumber_Gistic2 processed on 2015-01-27",
     "wranglingProcedure": "FIREHOSE data download from TCGA DCC, processed at UCSC into cgData repository",
-    "desc": "TCGA sarcoma (SARC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
+    "description": "TCGA sarcoma (SARC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method."
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+sarc_cnv_ucsc_gistic2thd | ucsc | cnv | 257 | TCGA sarcoma (SARC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 
 ## STAD - Stomach adenocarcinoma
 
@@ -1827,6 +1981,8 @@ Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 stad_mut_ucsc_mutationbcmgene | molecular | ucsc | mut
 stad_mut01_ucsc_mutationbcmgene | molecular | ucsc | mut01
+
+### More Details of Molecular Collections
 
 ```
 
@@ -1838,7 +1994,7 @@ stad_mut01_ucsc_mutationbcmgene | molecular | ucsc | mut01
     "sampleSize": 379,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA stomach adenocarcinoma (STAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. "
+    "description": "TCGA stomach adenocarcinoma (STAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. "
 }
 ```
 
@@ -1853,10 +2009,15 @@ stad_mut01_ucsc_mutationbcmgene | molecular | ucsc | mut01
     "sampleSize": 379,
     "wrangler": "cgData TCGAscript maf processed on 2015-01-27",
     "wranglingProcedure": "Download .maf file from TCGA DCC, processed into gene by sample matrix at UCSC, stored in the UCSC Xena repository",
-    "desc": "TCGA stomach adenocarcinoma (STAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. "
+    "description": "TCGA stomach adenocarcinoma (STAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. "
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+stad_mut_ucsc_mutationbcmgene | ucsc | mut | 379 | TCGA stomach adenocarcinoma (STAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. 
+stad_mut01_ucsc_mutationbcmgene | ucsc | mut01 | 379 | TCGA stomach adenocarcinoma (STAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. 
 
 ## READ - Rectum adenocarcinoma
 
@@ -1868,6 +2029,8 @@ read_radiation_tcga_na | clinical | TCGA |
 read_followup-v1p0_tcga_na | clinical | TCGA | 
 read_newtumor_tcga_na | clinical | TCGA | 
 read_othermalignancy-v4p0_tcga_na | clinical | TCGA | 
+
+### More Details of Molecular Collections
 
 ## BRAIN - Lower Grade Glioma & Glioblastoma multiforme
 
@@ -1889,6 +2052,8 @@ brain_methylation_cbio_hm27 | molecular | cBio | methylation
 brain_rna_cbio_rnaseq-bc | molecular | cBio | rna
 brain_protein_cbio_rppa-zscore | molecular | cBio | protein
 
+### More Details of Molecular Collections
+
 ```
 
 {
@@ -1899,7 +2064,7 @@ brain_protein_cbio_rppa-zscore | molecular | cBio | protein
     "sampleSize": 1090,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": ""
+    "description": ""
 }
 ```
 
@@ -1914,7 +2079,12 @@ brain_protein_cbio_rppa-zscore | molecular | cBio | protein
     "sampleSize": 818,
     "wrangler": "",
     "wranglingProcedure": "",
-    "desc": ""
+    "description": ""
 }
 ```
 
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+brain_cnv_ucsc_gistic | ucsc | cnv | 1090 | 
+brain_mut01_ucsc_import | ucsc | mut01 | 818 | 
