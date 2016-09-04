@@ -260,13 +260,13 @@ co(function *() {
   format.h2("Fetch JSON-Formatted Data Using Programming Languages"); 
   format.codeComment('Fetch JSON formatted data using R, Python, or javascript');   
   // mongo shell version 
-  format.codeMongoStart();
-  format.table('collection = db.collection(\"gbm_patient_tcga_clinical\");');
-  format.table('collection.find({\"gender\":\"MALE\", \"race\":\"WHITE\"}, {\"patient_ID\":true, \"gender\":true,');
-  format.table(' \"race\":true, \"histologic_diagnosis\":true})');
-  format.table('          .limit(2).skip(5).toArray(function(err, doc){);');
-  format.table('console.log(JSON.stringify(doc, null, 4));');
-  format.codeStop();
+  // format.codeMongoStart();
+  // format.table('collection = db.collection(\"gbm_patient_tcga_clinical\");');
+  // format.table('collection.find({\"gender\":\"MALE\", \"race\":\"WHITE\"}, {\"patient_ID\":true, \"gender\":true,');
+  // format.table(' \"race\":true, \"histologic_diagnosis\":true})');
+  // format.table('          .limit(2).skip(5).toArray(function(err, doc){);');
+  // format.table('console.log(JSON.stringify(doc, null, 4));');
+  // format.codeStop();
 
   // javascript version 
   format.codeJSStart();

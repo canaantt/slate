@@ -103,15 +103,6 @@ limit the final output to two records.
 > Fetch JSON formatted data using R, Python, or javascript
 
 
-```shell
-collection = db.collection("gbm_patient_tcga_clinical");
-collection.find({"gender":"MALE", "race":"WHITE"}, {"patient_ID":true, "gender":true,
- "race":true, "histologic_diagnosis":true})
-          .limit(2).skip(5).toArray(function(err, doc){);
-console.log(JSON.stringify(doc, null, 4));
-```
-
-
 ```javascript
 var collection = "gbm_patient_tcga_clinical";
 var url = "https://dev.oncoscape.sttrcancer.io/api/" + collection + "/?q=";
