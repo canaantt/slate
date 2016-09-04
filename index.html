@@ -224,12 +224,6 @@
 <blockquote>
 <p>Fetch JSON formatted data using R, Python, or javascript</p>
 </blockquote>
-<pre class="highlight shell"><code>collection <span class="o">=</span> db.collection<span class="o">(</span><span class="s2">"gbm_patient_tcga_clinical"</span><span class="o">)</span>;
-collection.find<span class="o">({</span><span class="s2">"gender"</span>:<span class="s2">"MALE"</span>, <span class="s2">"race"</span>:<span class="s2">"WHITE"</span><span class="o">}</span>, <span class="o">{</span><span class="s2">"patient_ID"</span>:true, <span class="s2">"gender"</span>:true,
- <span class="s2">"race"</span>:true, <span class="s2">"histologic_diagnosis"</span>:true<span class="o">})</span>
-          .limit<span class="o">(</span>2<span class="o">)</span>.skip<span class="o">(</span>5<span class="o">)</span>.toArray<span class="o">(</span><span class="k">function</span><span class="o">(</span>err, doc<span class="o">){)</span>;
-console.log<span class="o">(</span>JSON.stringify<span class="o">(</span>doc, null, 4<span class="o">))</span>;
-</code></pre>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">collection</span> <span class="o">=</span> <span class="s2">"gbm_patient_tcga_clinical"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">"https://dev.oncoscape.sttrcancer.io/api/"</span> <span class="o">+</span> <span class="nx">collection</span> <span class="o">+</span> <span class="s2">"/?q="</span><span class="p">;</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
