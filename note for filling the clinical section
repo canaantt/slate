@@ -1,9 +1,0 @@
-1. for each disease, what kind of datasets are available
- 	Clinical: list of collections
- 	Molecular: list of collections
- 	pre-calculated: 
- 	different data sources: cbio & ucsc
- 	layout collections, etc.
-   required: collection names of all the entire database
-
-2. 
