@@ -220,6 +220,9 @@ co(function *() {
   // var ind = 0;
   format.h2("Example to access one collection from browser");
   format.h3("HTTP Request");
+  format.text("Collections are accessable at the host: http://dev.oncoscape.sttrcancer.io/api/");
+  format.text("The endpoint of oncoscape API is a unique URL. Every endpoint points to a unique collection.");
+  format.table("Below lists more details of the organization of the Oncoscape Mongo Database and the collections organized by disease type.");
   format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/");
   format.codeComment("Here we only show the first record in gbm_patient_tcga_clinical");
   format.codeStart();
