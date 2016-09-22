@@ -15,7 +15,8 @@ toc_footers:
 
 
 includes:
-  - clinic_api_query_1
+  - DBDesp
+  - clinic_api_query
 
 search: true
 ---
@@ -28,4 +29,4 @@ search: true
 
 Oncoscape API authentication occurs at Mongo DB level. 
 
-# Rest API Queries
+

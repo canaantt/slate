@@ -1,29 +1,10 @@
+var jsonfile = require("jsonfile");
 var comongo = require('co-mongodb');
 var co = require('co');
 var disease_tables = [];
 var db, collection, db_collections, collection_name, count, manifest, manifest_arr, lookup, lookup_arr;
-var format = {
-	h1: function(text) { console.log(); console.log('# '+text); },
-	h2: function(text) { console.log(); console.log('## '+text); },
-	h3: function(text) { console.log(); console.log('### '+text); },
-	h4: function(text) { console.log(); console.log('#### '+text); },
-	textbold: function(text) { console.log(); console.log(); console.log('**'+ text+'**'); },
-	textlist: function(text){ console.log(); console.log('- '+ text);  },
-	textsublist: function(text){ console.log('  * '+ text);  },
-	text: function(text){ console.log(); console.log(text);  },
-	url: function(text) {console.log(); console.log('`' + text + '`'); console.log();},
-	codeStart: function() { console.log(); console.log('```'); },
-	codeComment: function(text) {console.log(); console.log('> ' + text); console.log(); },
-	codeStop: function() {console.log('```');  console.log(); },
-	code: function(text) { console.log('"'+ text + '"'); },
-	jsonfy: function(text) { console.log('{' + text + '}');},
-	codeRStart: function(text) {  console.log(); console.log("```r");},
-	codeMongoStart: function(text) {  console.log(); console.log("```shell"); },
-	codeJSStart: function(text) {  console.log(); console.log("```javascript"); },
-	codePyStart: function(text) {  console.log(); console.log("```python"); },
-	codeJSONStart: function(text) {  console.log(); console.log("```json"); },
-	table: function(text){ console.log(text);  }
-};
+var lookup_elem = {};
+var manifest_elem = {};
 
 Array.prototype.unique = function() {
       var arr = [];
@@ -58,14 +39,13 @@ co(function *() {
 	// 	manifest_keys.concat(Object.keys(manifest_arr[i]));
 	// }
 	// var manifest_keys_unique = manifest_keys.unique();  
-	var manifest_elem = {};
 	manifest_elem.dataset = [];
 	manifest_elem.dataType = [];
 	manifest_elem.date = [];
 	manifest_elem.source = [];
-	manifest_elem.process = [];
+	manifest_elem.process = []; //not captured
 	manifest_elem.processName = [];
-	manifest_elem.parent = [];
+	manifest_elem.parent = []; //not captured
 	for(i=0; i<manifest_length; i++){
 		//console.log(i);
 		manifest_elem.dataset.push(manifest_arr[i].dataset);
@@ -88,7 +68,6 @@ co(function *() {
 	// 	lookup_keys.concat(Object.keys(lookup_arr[j]));
 	// }
 	// var lookup_keys_unique = lookup_keys.unique();
-	var lookup_elem = {};
 	lookup_elem.disease = [];
 	lookup_elem.source = [];
 	lookup_elem.beta = [];
@@ -120,6 +99,12 @@ co(function *() {
 		lookup_elem.beta.push(lookup_arr[j].beta);
 		lookup_elem.name.push(lookup_arr[j].name);
 		lookup_elem.img.push(lookup_arr[j].img);
+		if("clinical" in lookup_arr[j]){
+			var clinical_keys = Object.keys(lookup_arr[j].clinical);
+			clinical_keys.forEach(function(ck){
+				lookup_elem.clinical.push(ck);
+			})
+		}
 		if("category" in lookup_arr[j]){
 			lookup_arr[j].category.forEach(function(cat){
 				lookup_elem.category.source.push(cat.source);
@@ -147,6 +132,7 @@ co(function *() {
 				lookup_elem.edges.genesWeights.push(ed.genesWeights);
 			})
 		}
+		lookup_elem.clinical = lookup_elem.clinical.unique();
 		lookup_elem.category.source = lookup_elem.category.source.unique();
 		lookup_elem.category.type = lookup_elem.category.type.unique();
 		lookup_elem.molecular.source = lookup_elem.molecular.source.unique();
@@ -164,18 +150,9 @@ co(function *() {
 	lookup_elem.name = lookup_elem.name.unique();
 	lookup_elem.img = lookup_elem.img.unique();
 
-
-	format.h1("DataBase Description");
-	format.h2("From Collection Perspective");
-	format.text(manifest_elem.dataset);
-	format.h2("From Disease Perspective");
-	format.text(lookup_elem.disease);
-	format.text(lookup_elem.source);
-
+	jsonfile.writeFile("lookup_elem.json", lookup_elem, {spaces: 2}, function(err){ console.error(err);});
+	jsonfile.writeFile("manifest_elem.json", manifest_elem, {spaces: 2},  function(err){ console.error(err);});
+ 
  	yield comongo.db.close(db);
 }).catch(onerror);
   
-
-// jsonfile.writeFile("ajvMsg.json", ajvMsg, {spaces: 2}, function(err){ console.error(err);});
-// jsonfile.writeFile("tool_schemas.json", tool_schemas, {spaces: 2},  function(err){ console.error(err);});
- 
