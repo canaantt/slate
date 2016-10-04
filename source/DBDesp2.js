@@ -1,6 +1,8 @@
 var jsonfile = require("jsonfile");
 var lookup_elem = {};
 var manifest_elem = {};
+
+
 var format = {
 	h1: function(text) { console.log(); console.log('# '+text); },
 	h2: function(text) { console.log(); console.log('## '+text); },
@@ -107,7 +109,6 @@ jsonfile.readFile("lookup_elem.json", function(err, obj) {
 jsonfile.readFile("manifest_elem.json", function(err, obj) {
 	manifest_elem = obj;
 });
-
 
 
 jsonfile.readFile("lookup_elem.json", function(err, obj) {
