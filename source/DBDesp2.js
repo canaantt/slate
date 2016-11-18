@@ -1,6 +1,6 @@
 var jsonfile = require("jsonfile");
-var lookup_elem = {};
-var manifest_elem = {};
+var lookup_elem = require("./lookup_elem.json");
+var manifest_elem = require("./manifest_elem.json");
 var format = {
 	h1: function(text) { console.log(); console.log('# '+text); },
 	h2: function(text) { console.log(); console.log('## '+text); },
@@ -100,147 +100,144 @@ var source_keys_annot = {
 	'ucsc':'<a href=\'https://genome-cancer.ucsc.edu/\'>UCSC</a>',
 	'orgHs':'<a href=\'https://bioconductor.org/packages/release/data/annotation/html/org.Hs.eg.db.html/\'>Genome wide annotation for Human</a>'
 };
-
-jsonfile.readFile("lookup_elem.json", function(err, obj) {
-  	lookup_elem = obj;
-});
-jsonfile.readFile("manifest_elem.json", function(err, obj) {
-	manifest_elem = obj;
-});
-
-
-
-jsonfile.readFile("lookup_elem.json", function(err, obj) {
-  	lookup_elem = obj;
-  	format.h2("From Disease Perspective");
-	format.text("Key words to describe lookup_oncoscape_datasource collection");
-	format.text("Key | Annotation");
-	format.table("--------- | ----------- ");
-	var lookup_keys_annot_keys = Object.keys(lookup_keys_annot); 
-    for(var i=0;i<lookup_keys_annot_keys.length;i++){
-    	format.table(lookup_keys_annot_keys[i] + " | " + lookup_keys_annot[lookup_keys_annot_keys[i]]);
-    }    
-
-	format.h3("Disease List");
-	var disease_length = lookup_elem.disease.length;
-	format.text("Disease Code | Disease Name");
-    format.table("--------- | ----------- "); 
-    for(var j=0;j<disease_length;j++){
-    	format.table(lookup_elem.disease[j] + " | " + lookup_elem.name[j])
-    } 
-
-    format.h3("source");
-    // lookup_elem.source.forEach(function(e){
-    // 	if(e != ''){
-    // 		format.text(e);
-    // 	}
-    // });
-    format.text("<a href='https://gdc.cancer.gov/'>TCGA</a>");
-
-    format.h3("clinical");
-    format.text("Key words to describe clinical collections for each disease type");
-	format.text("clinical collection type | Annotation");
-	format.table("--------- | ----------- ");
-	var lookup_clinical_keys_annot_keys = Object.keys(lookup_clinical_keys_annot); 
-    for(var m=0;m<lookup_clinical_keys_annot_keys.length;m++){
-    	format.table(lookup_clinical_keys_annot_keys[m] + " | " + type_keys_annot[lookup_clinical_keys_annot_keys[m]]);
-    }  
-
-    format.h3("molecular");
-  	var lookup_molecular_source_keys = lookup_elem.molecular.source;
-  	format.text("molecular collection source | Annotation");
-	format.table("--------- | ----------- ");
-  	for(var n=0;n<lookup_molecular_source_keys.length;n++){
-    	format.table(lookup_molecular_source_keys[n] + " | " + source_keys_annot[lookup_molecular_source_keys[n]]);
-    } 
-  	var lookup_molecular_type_keys = lookup_elem.molecular.type;
-  	format.text("molecular collection type | Annotation");
-	format.table("--------- | ----------- ");
-  	for(p=0;p<lookup_molecular_type_keys.length;p++){
-    	format.table(lookup_molecular_type_keys[p] + " | " + type_keys_annot[lookup_molecular_type_keys[p]]);
-    } 
-
-
-    format.h3("category");
-    var lookup_category_source_keys = lookup_elem.category.source;
-  	format.text("category collection source | Annotation");
-	format.table("--------- | ----------- ");
-  	for(n=0;n<lookup_category_source_keys.length;n++){
-    	format.table(lookup_category_source_keys[n] + " | " + source_keys_annot[lookup_category_source_keys[n]]);
-    } 
-  	var lookup_category_type_keys = lookup_elem.category.type;
-  	format.text("category collection type | Annotation");
-	format.table("--------- | ----------- ");
-  	for(p=0;p<lookup_category_type_keys.length;p++){
-    	format.table(lookup_category_type_keys[p] + " | " + type_keys_annot[lookup_category_type_keys[p]]);
-    } 
-
-    format.h3("calculated");
-    var lookup_calculated_source_keys = lookup_elem.calculated.source;
-  	format.text("calculated collection source | Annotation");
-	format.table("--------- | ----------- ");
-  	for(n=0;n<lookup_calculated_source_keys.length;n++){
-    	format.table(lookup_calculated_source_keys[n] + " | " + source_keys_annot[lookup_calculated_source_keys[n]]);
-    } 
-  	var lookup_calculated_type_keys = lookup_elem.calculated.type;
-  	format.text("calculated collection type | Annotation");
-	format.table("--------- | ----------- ");
-  	for(p=0;p<lookup_calculated_type_keys.length;p++){
-    	format.table(lookup_calculated_type_keys[p] + " | " + type_keys_annot[lookup_calculated_type_keys[p]]);
-    } 
-
-
-    format.h3("edges");
-    format.text("edges names are collections of genesets: ");
-    format.text("edges geneset | geneset information");
-	format.table("--------- | ----------- ");
-	var i=0;
-    lookup_elem.edges.name.forEach(function(e){
-    	format.table(e + " | " + "hg19_genesets_hgnc_import[" + i  + "]");
-    	i++;
-    });
-    var lookup_edges_source_keys = lookup_elem.edges.source;
-  	format.text("edges collection source | Annotation");
-	format.table("--------- | ----------- ");
-  	for(n=0;n<lookup_edges_source_keys.length;n++){
-    	format.table(lookup_edges_source_keys[n] + " | " + source_keys_annot[lookup_edges_source_keys[n]]);
-    } 
-});
-
-jsonfile.readFile("manifest_elem.json", function(err, obj) {
-	manifest_elem = obj;
-	format.h2("From Collection Perspective");
-	format.text("Key words to describe manifest collection");
-	format.text("Key | Annotation");
-	format.table("--------- | ----------- ");
-	var manifest_keys_annot_keys = Object.keys(manifest_keys_annot); 
-    for(var i=0;i<manifest_keys_annot_keys.length;i++){
-    	format.table(manifest_keys_annot_keys[i] + " | " + manifest_keys_annot[manifest_keys_annot_keys[i]]);
-    }   
-
-	format.h3("Manifest Dataset");
-	format.text("This field is identical to lookup_oncoscape_datasource's disease field.");
-	var manifest_keys_annot_keys = manifest_elem.dataset;
-	format.text("Disease Code | Disease Name");
-    format.table("--------- | ----------- "); 
-	manifest_keys_annot_keys.forEach(function(m){
-		format.table(m + " | " + lookup_elem.name[lookup_elem.disease.indexOf(m.toLowerCase())]);
-	});
-
-	format.h3("All the datatypes within Database");
-	var manifest_type_keys = manifest_elem.dataType;
-  	format.text("collection type | Annotation");
-	format.table("--------- | ----------- ");
-  	for(p=0;p<manifest_type_keys.length;p++){
-    	format.table(manifest_type_keys[p] + " | " + type_keys_annot[manifest_type_keys[p]]);
-    } 
-    
-});
-
-
 format.h1("Database Description");
 format.text("We use two collections to track the metadata for all the data collections within our database. 'manifest' is organized by collection. 'lookup_oncoscape_datasource' is organized by disease.");
+// Describe lookup_oncoscape_datasource
+format.h2("From Disease Perspective");
+format.text("Key words to describe lookup_oncoscape_datasource collection");
+format.text("Key | Annotation");
+format.table("--------- | ----------- ");
+var lookup_keys_annot_keys = Object.keys(lookup_keys_annot); 
+for(var i=0;i<lookup_keys_annot_keys.length;i++){
+	format.table(lookup_keys_annot_keys[i] + " | " + lookup_keys_annot[lookup_keys_annot_keys[i]]);
+}    
+
+format.h3("Disease List");
+var disease_length = lookup_elem.disease.length;
+format.text("Disease Code | Disease Name");
+format.table("--------- | ----------- "); 
+for(var j=0;j<disease_length;j++){
+	format.table(lookup_elem.disease[j] + " | " + lookup_elem.name[j])
+} 
+
+format.h3("source");
+// lookup_elem.source.forEach(function(e){
+// 	if(e != ''){
+// 		format.text(e);
+// 	}
+// });
+format.text("<a href='https://gdc.cancer.gov/'>TCGA</a>");
+
+format.h3("clinical");
+format.text("Key words to describe clinical collections for each disease type");
+format.text("clinical collection type | Annotation");
+format.table("--------- | ----------- ");
+var lookup_clinical_keys_annot_keys = Object.keys(lookup_clinical_keys_annot); 
+for(var m=0;m<lookup_clinical_keys_annot_keys.length;m++){
+	format.table(lookup_clinical_keys_annot_keys[m] + " | " + type_keys_annot[lookup_clinical_keys_annot_keys[m]]);
+}  
+
+format.h3("molecular");
+var lookup_molecular_source_keys = lookup_elem.molecular.source;
+format.text("molecular collection source | Annotation");
+format.table("--------- | ----------- ");
+for(var n=0;n<lookup_molecular_source_keys.length;n++){
+	format.table(lookup_molecular_source_keys[n] + " | " + source_keys_annot[lookup_molecular_source_keys[n]]);
+} 
+var lookup_molecular_type_keys = lookup_elem.molecular.type;
+format.text("molecular collection type | Annotation");
+format.table("--------- | ----------- ");
+for(p=0;p<lookup_molecular_type_keys.length;p++){
+	format.table(lookup_molecular_type_keys[p] + " | " + type_keys_annot[lookup_molecular_type_keys[p]]);
+} 
 
 
+format.h3("category");
+var lookup_category_source_keys = lookup_elem.category.source;
+format.text("category collection source | Annotation");
+format.table("--------- | ----------- ");
+for(n=0;n<lookup_category_source_keys.length;n++){
+	format.table(lookup_category_source_keys[n] + " | " + source_keys_annot[lookup_category_source_keys[n]]);
+} 
+var lookup_category_type_keys = lookup_elem.category.type;
+format.text("category collection type | Annotation");
+format.table("--------- | ----------- ");
+for(p=0;p<lookup_category_type_keys.length;p++){
+	format.table(lookup_category_type_keys[p] + " | " + type_keys_annot[lookup_category_type_keys[p]]);
+} 
+
+format.h3("calculated");
+var lookup_calculated_source_keys = lookup_elem.calculated.source;
+format.text("calculated collection source | Annotation");
+format.table("--------- | ----------- ");
+for(n=0;n<lookup_calculated_source_keys.length;n++){
+	format.table(lookup_calculated_source_keys[n] + " | " + source_keys_annot[lookup_calculated_source_keys[n]]);
+} 
+var lookup_calculated_type_keys = lookup_elem.calculated.type;
+format.text("calculated collection type | Annotation");
+format.table("--------- | ----------- ");
+for(p=0;p<lookup_calculated_type_keys.length;p++){
+	format.table(lookup_calculated_type_keys[p] + " | " + type_keys_annot[lookup_calculated_type_keys[p]]);
+} 
+
+
+format.h3("edges");
+format.text("edges names are collections of genesets: ");
+format.text("edges geneset | geneset information");
+format.table("--------- | ----------- ");
+var i=0;
+lookup_elem.edges.name.forEach(function(e){
+	format.table(e + " | " + "hg19_genesets_hgnc_import[" + i  + "]");
+	i++;
+});
+var lookup_edges_source_keys = lookup_elem.edges.source;
+format.text("edges collection source | Annotation");
+format.table("--------- | ----------- ");
+for(n=0;n<lookup_edges_source_keys.length;n++){
+	format.table(lookup_edges_source_keys[n] + " | " + source_keys_annot[lookup_edges_source_keys[n]]);
+} 
+// Describe manifest
+format.h2("From Collection Perspective");
+format.text("Key words to describe manifest collection");
+format.text("Key | Annotation");
+format.table("--------- | ----------- ");
+var manifest_keys_annot_keys = Object.keys(manifest_keys_annot); 
+for(var i=0;i<manifest_keys_annot_keys.length;i++){
+	format.table(manifest_keys_annot_keys[i] + " | " + manifest_keys_annot[manifest_keys_annot_keys[i]]);
+}   
+
+format.h3("Manifest Dataset");
+format.text("This field is identical to lookup_oncoscape_datasource's disease field.");
+var manifest_keys_annot_keys = manifest_elem.dataset;
+format.text("Disease Code | Disease Name");
+format.table("--------- | ----------- "); 
+manifest_keys_annot_keys.forEach(function(m){
+	format.table(m + " | " + lookup_elem.name[lookup_elem.disease.indexOf(m.toLowerCase())]);
+});
+
+format.h3("All the datatypes within Database");
+var manifest_type_keys = manifest_elem.dataType;
+format.text("collection type | Annotation");
+format.table("--------- | ----------- ");
+for(p=0;p<manifest_type_keys.length;p++){
+	format.table(manifest_type_keys[p] + " | " + type_keys_annot[manifest_type_keys[p]]);
+} 
+
+format.h2("Genesets Details:");
+format.text("List of the genesets");
+format.text("Key | Annotation");
+format.table("--------- | ----------- ");
+
+// 1) The 545-gene set is all the genes that are recurrently impacted in TCGA gliomas.
+
+// 2) The OncoVogel274 gene set comes from combining (an old version of Oncoplex) with genes from this (famous) paper by Vogelstein:
+
+// https://www.ncbi.nlm.nih.gov/pubmed/23539594
+
+// 3) "TCGA pancan mutated" is what it says: all the genes recurrently mutated across all TCGA cancers (note that it may not be up to date for all the TCGA samples currently available)
+
+// 4) The "TCGA GBM classifiers" are the genes that TCGA published in this paper:
+
+// https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2818769/
 
 
