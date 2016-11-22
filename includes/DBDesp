@@ -218,7 +218,7 @@
 
 <h3 id="source">source</h3>
 
-<p><a href='https://gdc.cancer.gov/'>TCGA</a></p>
+<p><a target="_blank" href='https://gdc.cancer.gov/'>TCGA</a></p>
 
 <h3 id="clinical">clinical</h3>
 
@@ -274,27 +274,27 @@
 </thead><tbody>
 <tr>
 <td>broad</td>
-<td><a href='https://gdac.broadinstitute.org//'>Broad Firehose</a></td>
+<td><a target="_blank" href='https://gdac.broadinstitute.org//'>Broad Firehose</a></td>
 </tr>
 <tr>
 <td>cBio</td>
-<td><a href='http://www.cbioportal.org/'>cBioPortal</a></td>
+<td><a target="_blank" href='http://www.cbioportal.org/'>cBioPortal</a></td>
 </tr>
 <tr>
 <td>ucsc-PNAS</td>
-<td><a href='http://www.pnas.org/content/113/19/5394.full/'>Publication</a></td>
+<td><a target="_blank" href='http://www.pnas.org/content/113/19/5394.full/'>Publication</a></td>
 </tr>
 <tr>
 <td>ucsc</td>
-<td><a href='https://genome-cancer.ucsc.edu/'>UCSC</a></td>
+<td><a target="_blank" href='https://genome-cancer.ucsc.edu/'>UCSC</a></td>
 </tr>
 <tr>
 <td>bradleyLab</td>
-<td><a href='www.fredhutch.org/en/labs/labs-import/bradley-lab.html/'>Bradley Lab</a></td>
+<td><a target="_blank" href='www.fredhutch.org/en/labs/labs-import/bradley-lab.html/'>Bradley Lab</a></td>
 </tr>
 <tr>
 <td>demo</td>
-<td><a href='oncoscape.sttrcancer.org/'>Demo data source</a></td>
+<td><a target="_blank" href='oncoscape.sttrcancer.org/'>Demo data source</a></td>
 </tr>
 </tbody></table>
 
@@ -348,15 +348,15 @@
 </thead><tbody>
 <tr>
 <td>tcga</td>
-<td><a href='https://gdc.cancer.gov/'>TCGA</a></td>
+<td><a target="_blank" href='https://gdc.cancer.gov/'>TCGA</a></td>
 </tr>
 <tr>
 <td>hgnc</td>
-<td><a href='http://www.genenames.org/'>HUGO Gene Nomenclature Committee</a></td>
+<td><a target="_blank" href='http://www.genenames.org/'>HUGO Gene Nomenclature Committee</a></td>
 </tr>
 <tr>
 <td>orgHs</td>
-<td><a href='https://bioconductor.org/packages/release/data/annotation/html/org.Hs.eg.db.html/'>Genome wide annotation for Human</a></td>
+<td><a target="_blank" href='https://bioconductor.org/packages/release/data/annotation/html/org.Hs.eg.db.html/'>Genome wide annotation for Human</a></td>
 </tr>
 </tbody></table>
 
@@ -386,11 +386,11 @@
 </thead><tbody>
 <tr>
 <td>ucsc</td>
-<td><a href='https://genome-cancer.ucsc.edu/'>UCSC</a></td>
+<td><a target="_blank" href='https://genome-cancer.ucsc.edu/'>UCSC</a></td>
 </tr>
 <tr>
 <td>broad</td>
-<td><a href='https://gdac.broadinstitute.org//'>Broad Firehose</a></td>
+<td><a target="_blank" href='https://gdac.broadinstitute.org//'>Broad Firehose</a></td>
 </tr>
 </tbody></table>
 
@@ -462,11 +462,11 @@
 </thead><tbody>
 <tr>
 <td>broad</td>
-<td><a href='https://gdac.broadinstitute.org//'>Broad Firehose</a></td>
+<td><a target="_blank" href='https://gdac.broadinstitute.org//'>Broad Firehose</a></td>
 </tr>
 <tr>
 <td>ucsc</td>
-<td><a href='https://genome-cancer.ucsc.edu/'>UCSC</a></td>
+<td><a target="_blank" href='https://genome-cancer.ucsc.edu/'>UCSC</a></td>
 </tr>
 </tbody></table>
 
