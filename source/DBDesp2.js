@@ -1,6 +1,7 @@
 var jsonfile = require("jsonfile");
 var lookup_elem = require("./lookup_elem.json");
 var manifest_elem = require("./manifest_elem.json");
+
 var format = {
 	h1: function(text) { console.log(); console.log('# '+text); },
 	h2: function(text) { console.log(); console.log('## '+text); },

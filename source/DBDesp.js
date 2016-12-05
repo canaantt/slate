@@ -152,6 +152,8 @@ co(function *() {
 
 	jsonfile.writeFile("lookup_elem.json", lookup_elem, {spaces: 2}, function(err){ console.error(err);});
 	jsonfile.writeFile("manifest_elem.json", manifest_elem, {spaces: 2},  function(err){ console.error(err);});
+ 	jsonfile.writeFile("lookup_arr.json", lookup_arr, {spaces: 2}, function(err){ console.error(err);});
+	jsonfile.writeFile("manifest_arr.json", manifest_arr, {spaces: 2},  function(err){ console.error(err);});
  
  	yield comongo.db.close(db);
 }).catch(onerror);
