@@ -16,7 +16,7 @@ toc_footers:
 
 includes:
   - DBDesp2
-  - clinic_api_query
+  - clinic
 
 search: true
 ---
