@@ -19,8 +19,10 @@ Below lists more details of the organization of the Oncoscape Mongo Database and
 ```
 
 {
-    "_id": "57c9a095d482221d835e6018",
-    "patient_ID": "TCGA-02-0001-01",
+    "_id": "5848c25d61f0f98b374f7fe0",
+    "bcr_patient_uuid": "30a1fe5e-5b12-472c-aa86-c2db8167ab23",
+    "patient_ID": "TCGA-02-0001",
+    "form_completion_date": "2008-12-16",
     "history_lgg_dx_of_brain_tissue": false,
     "prospective_collection": null,
     "retrospective_collection": null,
@@ -28,30 +30,33 @@ Below lists more details of the organization of the Oncoscape Mongo Database and
     "days_to_birth": -16179,
     "race": "WHITE",
     "ethnicity": "NOT HISPANIC OR LATINO",
-    "history_other_malignancy": null,
+    "prior_malignancy": null,
     "history_neoadjuvant_treatment": true,
     "diagnosis_year": 1009872000,
     "pathologic_method": "TUMOR RESECTION",
-    "pathologic_method.1": null,
+    "method_initial_path_dx_other": null,
     "status_vital": "DEAD",
-    "days_to_last_contact": 279,
+    "days_to_last_follow_up": 279,
     "days_to_death": 358,
-    "status_tumor": "WITH TUMOR",
+    "last_known_disease_status": "WITH TUMOR",
     "KPS": 80,
     "ECOG": null,
     "encounter_type": null,
     "radiation_treatment_adjuvant": null,
     "pharmaceutical_tx_adjuvant": null,
     "treatment_outcome_first_course": null,
-    "new_tumor_event_diagnosis": null,
-    "age_at_initial_pathologic_diagnosis": 44,
+    "progression_or_recurrence": null,
+    "age_at_diagnosis": 44,
     "anatomic_organ_subdivision": null,
     "days_to_diagnosis": 0,
     "disease_code": null,
-    "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY",
+    "primary_diagnosis": "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY",
     "icd_10": "C71.9",
     "icd_3_histology": "9440/3",
-    "icd_3": "C71.9",
+    "site_of_resection_or_biopsy": "C71.9",
+    "informed_consent_verified": "YES",
+    "patient_id": "0001",
+    "project_code": "[Not Available]",
     "tissue_source_site_code": "02",
     "tumor_tissue_site": "BRAIN"
 }
@@ -69,18 +74,16 @@ Below lists more details of the organization of the Oncoscape Mongo Database and
 
 [
     {
-        "_id": "57c9a096d482221d835e6025",
-        "patient_ID": "TCGA-02-0024-01",
+        "_id": "5848c25e61f0f98b374f7fed",
+        "patient_ID": "TCGA-02-0024",
         "gender": "MALE",
-        "race": "WHITE",
-        "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME TREATED PRIMARY"
+        "race": "WHITE"
     },
     {
-        "_id": "57c9a096d482221d835e6026",
-        "patient_ID": "TCGA-02-0025-01",
+        "_id": "5848c25e61f0f98b374f7fee",
+        "patient_ID": "TCGA-02-0025",
         "gender": "MALE",
-        "race": "WHITE",
-        "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY"
+        "race": "WHITE"
     }
 ]
 ```
@@ -261,168 +264,28 @@ Here we show the example to access one collection using four different languages
 
 # Collections by Disease
 
-## BRAIN - Lower Grade Glioma & Glioblastoma multiforme
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-brain_color_tcga_import | category | tcga | color
-brain_events_tcga_clinical | clinical | tcga | color
-brain_patient_tcga_clinical | clinical | tcga | color
-brain_drug_tcga_clinical | clinical | tcga | color
-brain_newtumor_tcga_clinical | clinical | tcga | color
-brain_othermalignancy_tcga_v4p0 | clinical | tcga | color
-brain_radiation_tcga_clinical | clinical | tcga | color
-brain_mut_broad_mutsig2 | molecular | broad | mut
-brain_mut01_broad_mutsig2 | molecular | broad | mut01
-brain_methylation_cbio_hm27 | molecular | cBio | methylation
-brain_cnv_ucsc-pnas_gistic | molecular | ucsc-PNAS | cnv
-brain_mut01_ucsc-pnas_import | molecular | ucsc-PNAS | mut01
-brain_cnv_ucsc_gistic | molecular | ucsc | cnv
-brain_mut01_ucsc_import | molecular | ucsc | mut01
-brain_cnv_cbio_gistic | molecular | cBio | cnv
-brain_mut_cbio_wxs | molecular | cBio | mut
-brain_mut01_cbio_wxs | molecular | cBio | mut01
-
-### More Details of Molecular Collections
-
-```
-
-{
-    "source": "ucsc",
-    "type": "cnv",
-    "collection": "brain_cnv_ucsc_gistic",
-    "RawDataUrl": "",
-    "sampleSize": 1090,
-    "wrangler": "",
-    "wranglingProcedure": "",
-    "description": ""
-}
-```
-
-
-```
-
-{
-    "source": "ucsc",
-    "type": "mut01",
-    "collection": "brain_mut01_ucsc_import",
-    "RawDataUrl": "",
-    "sampleSize": 818,
-    "wrangler": "",
-    "wranglingProcedure": "",
-    "description": ""
-}
-```
-
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-brain_cnv_ucsc_gistic | ucsc | cnv | 1090 | 
-brain_mut01_ucsc_import | ucsc | mut01 | 818 | 
-
 ## BRCA - Breast invasive carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 brca_color_tcga_import | category | tcga | color
+brca_samplemap_tcga_molecular | clinical | tcga | color
 brca_events_tcga_clinical | clinical | tcga | color
-brca_patient_tcga_clinical | clinical | tcga | color
+brca_followup_tcga_v2p1 | clinical | tcga | color
 brca_drug_tcga_clinical | clinical | tcga | color
 brca_radiation_tcga_clinical | clinical | tcga | color
-brca_followup_tcga_v4p0 | clinical | tcga | color
 brca_newtumor_tcga_clinical | clinical | tcga | color
 brca_newtumor-followup_tcga_v4p0 | clinical | tcga | color
 brca_othermalignancy_tcga_v4p0 | clinical | tcga | color
 brca_mut_broad_mutsig2 | molecular | broad | mut
-brca_psi_bradleyLab_miso | molecular | bradleyLab | psi
+brca_psi_bradleylab_miso | molecular | bradleyLab | psi
 brca_mut01_broad_mutsig2 | molecular | broad | mut01
-brca_cnv_cbio_gistic | molecular | cBio | cnv
-brca_mut_cbio_wxs | molecular | cBio | mut
-brca_mut01_cbio_wxs | molecular | cBio | mut01
-brca_methylation_cbio_hm27 | molecular | cBio | methylation
-brca_methylation_cbio_hm450 | molecular | cBio | methylation
-brca_rna_cbio_agilent-median-zscore | molecular | cBio | rna
-brca_rna_cbio_seq-median-zscore | molecular | cBio | rna
-brca_protein_cbio_rppa-zscore | molecular | cBio | protein
 brca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 brca_mut01_ucsc_mutationcuratedwustlgene | molecular | ucsc | mut01
+brca_rna_ucsc_hiseq | molecular | ucsc | rna
+brca_protein_ucsc_rppa | molecular | ucsc | protein
 
 ### More Details of Molecular Collections
-
-```
-
-{
-    "source": "cbio",
-    "type": "cnv",
-    "collection": "brca_cnv_cbio_gistic",
-    "sampleSize": 1079,
-    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
-    "DATATYPE": "DISCRETE",
-    "NAME": "Putative copy-number alterations from GISTIC",
-    "description": "Putative copy-number calls on 1079 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "mut",
-    "collection": "brca_mut_cbio_wxs",
-    "sampleSize": 980,
-    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
-    "DATATYPE": "MAF",
-    "NAME": "Mutations",
-    "description": "Mutation data from whole exome sequencing."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "methylation",
-    "collection": "brca_methylation_cbio_hm27",
-    "sampleSize": 315,
-    "GENETIC_ALTERATION_TYPE": "METHYLATION",
-    "DATATYPE": "CONTINUOUS",
-    "NAME": "Methylation (HM27)",
-    "description": "Methylation (HM27) beta-values for genes in 342 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "methylation",
-    "collection": "brca_methylation_cbio_hm450",
-    "sampleSize": 737,
-    "GENETIC_ALTERATION_TYPE": "METHYLATION",
-    "DATATYPE": "CONTINUOUS",
-    "NAME": "Methylation (HM450)",
-    "description": "Methylation (HM450) beta-values for genes in 833 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "protein",
-    "collection": "brca_protein_cbio_rppa-zscore",
-    "sampleSize": 409,
-    "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
-    "DATATYPE": "Z-SCORE",
-    "NAME": "protein/phosphoprotein level (RPPA)",
-    "description": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
-}
-```
-
 
 ```
 
@@ -445,32 +308,44 @@ false
 ```
 
 
+```
+
+false
+```
+
+
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
-brca_cnv_cbio_gistic | cbio | cnv | 1079 | Putative copy-number calls on 1079 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
-brca_mut_cbio_wxs | cbio | mut | 980 | Mutation data from whole exome sequencing.
-brca_methylation_cbio_hm27 | cbio | methylation | 315 | Methylation (HM27) beta-values for genes in 342 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.
-brca_methylation_cbio_hm450 | cbio | methylation | 737 | Methylation (HM450) beta-values for genes in 833 cases. For genes with multiple methylation probes, the probe most anti-correlated with expression.
-brca_protein_cbio_rppa-zscore | cbio | protein | 409 | Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)
 brca_cnv_ucsc_gistic2thd | ucsc | cnv | 1079 | TCGA breast invasive carcinoma (BRCA) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+undefined | undefined | undefined | undefined | undefined
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
 ## ESCA - Esophageal carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-esca_drug_tcga_clinical | clinical | TCGA | 
-esca_followup_tcga_v4p0 | clinical | TCGA | 
-esca_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-esca_newtumor_tcga_clinical | clinical | TCGA | 
-esca_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-esca_patient_tcga_clinical | clinical | TCGA | 
-esca_radiation_tcga_clinical | clinical | TCGA | 
+esca_color_tcga_import | category | tcga | color
+esca_samplemap_tcga_molecular | clinical | tcga | color
+esca_drug_tcga_clinical | clinical | tcga | color
+esca_followup_tcga_v4p0 | clinical | tcga | color
+esca_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+esca_newtumor_tcga_clinical | clinical | tcga | color
+esca_othermalignancy_tcga_v4p0 | clinical | tcga | color
+esca_patient_tcga_clinical | clinical | tcga | color
+esca_radiation_tcga_clinical | clinical | tcga | color
 esca_mut_broad_mutsig2 | molecular | broad | mut
 esca_mut01_broad_mutsig2 | molecular | broad | mut01
 esca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 esca_rna_ucsc_hiseq | molecular | ucsc | rna
 esca_protein_ucsc_rppa | molecular | ucsc | protein
+esca_mut01_ucsc_broad | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -501,9 +376,16 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 esca_cnv_ucsc_gistic2thd | ucsc | cnv | 184 | TCGA esophageal carcinoma (ESCA) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -511,19 +393,22 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-gbm_events_tcga_clinical | clinical | TCGA | 
-gbm_patient_tcga_clinical | clinical | TCGA | 
-gbm_drug_tcga_clinical | clinical | TCGA | 
-gbm_radiation_tcga_clinical | clinical | TCGA | 
-gbm_followup_tcga_v1p0 | clinical | TCGA | 
-gbm_newtumor_tcga_clinical | clinical | TCGA | 
-gbm_newtumor-followup_tcga_v1p0 | clinical | TCGA | 
-gbm_othermalignancy_tcga_v4p0 | clinical | TCGA | 
+gbm_color_tcga_import | category | tcga | color
+gbm_events_tcga_clinical | clinical | tcga | color
+gbm_samplemap_tcga_molecular | clinical | tcga | color
+gbm_patient_tcga_clinical | clinical | tcga | color
+gbm_drug_tcga_clinical | clinical | tcga | color
+gbm_radiation_tcga_clinical | clinical | tcga | color
+gbm_followup_tcga_v1p0 | clinical | tcga | color
+gbm_newtumor_tcga_clinical | clinical | tcga | color
+gbm_newtumor-followup_tcga_v1p0 | clinical | tcga | color
+gbm_othermalignancy_tcga_v4p0 | clinical | tcga | color
 gbm_mut_broad_mutsig2 | molecular | broad | mut
 gbm_mut01_broad_mutsig2 | molecular | broad | mut01
 gbm_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 gbm_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 gbm_protein_ucsc_rppa | molecular | ucsc | protein
+gbm_rna_ucsc_hiseq | molecular | ucsc | rna
 
 ### More Details of Molecular Collections
 
@@ -554,9 +439,16 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 gbm_cnv_ucsc_gistic2thd | ucsc | cnv | 577 | TCGA glioblastoma multiforme (GBM) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -564,24 +456,22 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-hnsc_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-hnsc_events_tcga_clinical | clinical | TCGA | 
-hnsc_patient_tcga_na | clinical | TCGA | 
-hnsc_drug_tcga_clinical | clinical | TCGA | 
-hnsc_radiation_tcga_clinical | clinical | TCGA | 
-hnsc_followup_tcga_v4p8 | clinical | TCGA | 
-hnsc_newtumor_tcga_clinical | clinical | TCGA | 
-hnsc_newtumor-followup_tcga_v4p8 | clinical | TCGA | 
+hnsc_color_tcga_import | category | tcga | color
+hnsc_events_tcga_clinical | clinical | tcga | color
+hnsc_samplemap_tcga_molecular | clinical | tcga | color
+hnsc_followup_tcga_v1p0 | clinical | tcga | color
+hnsc_patient_tcga_na | clinical | tcga | color
+hnsc_drug_tcga_clinical | clinical | tcga | color
+hnsc_radiation_tcga_clinical | clinical | tcga | color
+hnsc_newtumor_tcga_clinical | clinical | tcga | color
+hnsc_newtumor-followup_tcga_v4p8 | clinical | tcga | color
+hnsc_othermalignancy_tcga_v4p0 | clinical | tcga | color
 hnsc_mut_broad_mutsig2 | molecular | broad | mut
 hnsc_mut01_broad_mutsig2 | molecular | broad | mut01
 hnsc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 hnsc_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
-hnsc_cnv_cbio_gistic | molecular | cBio | cnv
-hnsc_mut_cbio_mut | molecular | cBio | mut
-hnsc_mut01_cbio_mut | molecular | cBio | mut01
-hnsc_methylation_cbio_hm450 | molecular | cBio | methylation
-hnsc_protein_cbio_rppa | molecular | cBio | protein
 hnsc_protein_ucsc_rppa | molecular | ucsc | protein
+hnsc_rna_ucsc_hiseq | molecular | ucsc | rna
 
 ### More Details of Molecular Collections
 
@@ -617,61 +507,7 @@ hnsc_protein_ucsc_rppa | molecular | ucsc | protein
 
 ```
 
-{
-    "source": "cbio",
-    "type": "cnv",
-    "collection": "hnsc_cnv_cbio_gistic",
-    "sampleSize": 522,
-    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
-    "DATATYPE": "DISCRETE",
-    "NAME": "Putative copy-number alterations from GISTIC",
-    "description": "Putative copy-number calls on 522 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "mut",
-    "collection": "hnsc_mut_cbio_mut",
-    "sampleSize": 306,
-    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
-    "DATATYPE": "MAF",
-    "NAME": "Mutations",
-    "description": "Mutation data from whole exome sequencing."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "mut01",
-    "collection": "hnsc_mut01_cbio_mut",
-    "sampleSize": 306,
-    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
-    "DATATYPE": "MAF",
-    "NAME": "Mutations",
-    "description": "Binary mutation data from whole exome sequencing. "
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "protein",
-    "collection": "hnsc_protein_cbio_rppa",
-    "sampleSize": 212,
-    "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
-    "DATATYPE": "Z-SCORE",
-    "NAME": "protein/phosphoprotein level (RPPA)",
-    "description": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
-}
+false
 ```
 
 
@@ -685,27 +521,27 @@ Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 hnsc_cnv_ucsc_gistic2thd | ucsc | cnv | 522 | TCGA head & neck squamous cell carcinoma (HNSC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 hnsc_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 509 | TCGA head & neck squamous cell carcinoma (HNSC) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. 
-hnsc_cnv_cbio_gistic | cbio | cnv | 522 | Putative copy-number calls on 522 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
-hnsc_mut_cbio_mut | cbio | mut | 306 | Mutation data from whole exome sequencing.
-hnsc_mut01_cbio_mut | cbio | mut01 | 306 | Binary mutation data from whole exome sequencing. 
-hnsc_protein_cbio_rppa | cbio | protein | 212 | Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
 ## KICH - Kidney Chromophobe
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-kich_drug_tcga_clinical | clinical | TCGA | 
-kich_followup_tcga_v4p4 | clinical | TCGA | 
-kich_newtumor-followup_tcga_v4p4 | clinical | TCGA | 
-kich_newtumor_tcga_clinical | clinical | TCGA | 
-kich_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-kich_patient_tcga_clinical | clinical | TCGA | 
-kich_radiation_tcga_clinical | clinical | TCGA | 
+kich_color_tcga_import | category | tcga | color
+kich_samplemap_tcga_molecular | clinical | tcga | color
+kich_drug_tcga_clinical | clinical | tcga | color
+kich_followup_tcga_v4p4 | clinical | tcga | color
+kich_newtumor-followup_tcga_v4p4 | clinical | tcga | color
+kich_newtumor_tcga_clinical | clinical | tcga | color
+kich_othermalignancy_tcga_v4p0 | clinical | tcga | color
+kich_patient_tcga_clinical | clinical | tcga | color
+kich_radiation_tcga_clinical | clinical | tcga | color
 kich_mut_broad_mutsig2 | molecular | broad | mut
 kich_mut01_broad_mutsig2 | molecular | broad | mut01
 kich_rna_ucsc_hiseq | molecular | ucsc | rna
 kich_protein_ucsc_rppa | molecular | ucsc | protein
+kich_mut01_ucsc_broad | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -721,8 +557,15 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -730,34 +573,47 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-kirc_drug_tcga_clinical | clinical | TCGA | 
-kirc_followup_tcga_v1p0 | clinical | TCGA | 
-kirc_newtumor_tcga_clinical | clinical | TCGA | 
-kirc_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-kirc_patient_tcga_clinical | clinical | TCGA | 
-kirc_radiation_tcga_clinical | clinical | TCGA | 
+kirc_color_tcga_import | category | tcga | color
+kirc_samplemap_tcga_molecular | clinical | tcga | color
+kirc_drug_tcga_clinical | clinical | tcga | color
+kirc_followup_tcga_v1p0 | clinical | tcga | color
+kirc_newtumor_tcga_clinical | clinical | tcga | color
+kirc_othermalignancy_tcga_v4p0 | clinical | tcga | color
+kirc_patient_tcga_clinical | clinical | tcga | color
+kirc_radiation_tcga_clinical | clinical | tcga | color
 kirc_mut_broad_mutsig2 | molecular | broad | mut
 kirc_mut01_broad_mutsig2 | molecular | broad | mut01
+kirc_mut01_ucsc_pancanaws | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 
 ## KIRP - Kidney renal papillary cell carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-kirp_drug_tcga_clinical | clinical | TCGA | 
-kirp_followup_tcga_v1p0 | clinical | TCGA | 
-kirp_newtumor_tcga_clinical | clinical | TCGA | 
-kirp_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-kirp_patient_tcga_clinical | clinical | TCGA | 
-kirp_radiation_tcga_clinical | clinical | TCGA | 
+kirp_color_tcga_import | category | tcga | color
+kirp_samplemap_tcga_molecular | clinical | tcga | color
+kirp_drug_tcga_clinical | clinical | tcga | color
+kirp_followup_tcga_v1p0 | clinical | tcga | color
+kirp_newtumor_tcga_clinical | clinical | tcga | color
+kirp_othermalignancy_tcga_v4p0 | clinical | tcga | color
+kirp_patient_tcga_clinical | clinical | tcga | color
+kirp_radiation_tcga_clinical | clinical | tcga | color
 kirp_mut_broad_mutsig2 | molecular | broad | mut
 kirp_mut01_broad_mutsig2 | molecular | broad | mut01
 kirp_rna_ucsc_hiseq | molecular | ucsc | rna
 kirp_protein_ucsc_rppa | molecular | ucsc | protein
+kirp_mut01_ucsc_broadcurated | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -773,8 +629,15 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -782,18 +645,21 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-lgg_newtumor_tcga_clinical | clinical | TCGA | 
-lgg_events_tcga_clinical | clinical | TCGA | 
-lgg_patient_tcga_clinical | clinical | TCGA | 
-lgg_drug_tcga_clinical | clinical | TCGA | 
-lgg_radiation_tcga_clinical | clinical | TCGA | 
-lgg_followup_tcga_v1p0 | clinical | TCGA | 
-lgg_othermalignancy_tcga_v4p0 | clinical | TCGA | 
+lgg_color_tcga_import | category | tcga | color
+lgg_events_tcga_clinical | clinical | tcga | color
+lgg_samplemap_tcga_molecular | clinical | tcga | color
+lgg_patient_tcga_clinical | clinical | tcga | color
+lgg_drug_tcga_clinical | clinical | tcga | color
+lgg_radiation_tcga_clinical | clinical | tcga | color
+lgg_followup_tcga_v1p0 | clinical | tcga | color
+lgg_newtumor_tcga_clinical | clinical | tcga | color
+lgg_othermalignancy_tcga_v4p0 | clinical | tcga | color
 lgg_mut_broad_mutsig2 | molecular | broad | mut
 lgg_mut01_broad_mutsig2 | molecular | broad | mut01
 lgg_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 lgg_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 lgg_protein_ucsc_rppa | molecular | ucsc | protein
+lgg_rna_ucsc_hiseq | molecular | ucsc | rna
 
 ### More Details of Molecular Collections
 
@@ -833,27 +699,37 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 lgg_cnv_ucsc_gistic2thd | ucsc | cnv | 513 | TCGA brain lower grade glioma (LGG) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 lgg_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 408 | The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
 ## LIHC - undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-lihc_drug_tcga_clinical | clinical | TCGA | 
-lihc_followup_tcga_v4p0 | clinical | TCGA | 
-lihc_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-lihc_newtumor_tcga_clinical | clinical | TCGA | 
-lihc_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-lihc_patient_tcga_clinical | clinical | TCGA | 
-lihc_radiation_tcga_clinical | clinical | TCGA | 
+lihc_color_tcga_import | category | tcga | color
+lihc_samplemap_tcga_molecular | clinical | tcga | color
+lihc_drug_tcga_clinical | clinical | tcga | color
+lihc_followup_tcga_v4p0 | clinical | tcga | color
+lihc_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+lihc_newtumor_tcga_clinical | clinical | tcga | color
+lihc_othermalignancy_tcga_v4p0 | clinical | tcga | color
+lihc_patient_tcga_clinical | clinical | tcga | color
+lihc_radiation_tcga_clinical | clinical | tcga | color
 lihc_mut_broad_mutsig2 | molecular | broad | mut
 lihc_mut01_broad_mutsig2 | molecular | broad | mut01
 lihc_rna_ucsc_hiseq | molecular | ucsc | rna
 lihc_protein_ucsc_rppa | molecular | ucsc | protein
+lihc_mut01_ucsc_bcm | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -869,8 +745,15 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -878,25 +761,19 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-luad_events_tcga_clinical | clinical | TCGA | 
-luad_patient_tcga_clinical | clinical | TCGA | 
-luad_drug_tcga_clinical | clinical | TCGA | 
-luad_radiation_tcga_clinical | clinical | TCGA | 
-luad_followup_tcga_v1p0 | clinical | TCGA | 
-luad_newtumor_tcga_clinical | clinical | TCGA | 
-luad_othermalignancy_tcga_v4p0 | clinical | TCGA | 
+luad_color_tcga_import | category | tcga | color
+luad_events_tcga_clinical | clinical | tcga | color
+luad_samplemap_tcga_molecular | clinical | tcga | color
+luad_patient_tcga_clinical | clinical | tcga | color
+luad_drug_tcga_clinical | clinical | tcga | color
+luad_radiation_tcga_clinical | clinical | tcga | color
+luad_followup_tcga_v1p0 | clinical | tcga | color
+luad_newtumor_tcga_clinical | clinical | tcga | color
+luad_othermalignancy_tcga_v4p0 | clinical | tcga | color
 luad_mut_broad_mutsig2 | molecular | broad | mut
 luad_mut01_broad_mutsig2 | molecular | broad | mut01
 luad_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 luad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
-luad_cnv_cbio_gistic | molecular | cBio | cnv
-luad_mut_cbio_mut | molecular | cBio | mut
-luad_mut01_cbio_mut | molecular | cBio | mut01
-luad_methylation_cbio_hm27 | molecular | cBio | methylation
-luad_methylation_cbio_hm450 | molecular | cBio | methylation
-luad_rna_cbio_agilent | molecular | cBio | rna
-luad_rna_cbio_seq | molecular | cBio | rna
-luad_protein_cbio_rppa | molecular | cBio | protein
 luad_rna_ucsc_hiseq | molecular | ucsc | rna
 luad_protein_ucsc_rppa | molecular | ucsc | protein
 
@@ -934,66 +811,6 @@ luad_protein_ucsc_rppa | molecular | ucsc | protein
 
 ```
 
-{
-    "source": "cbio",
-    "type": "cnv",
-    "collection": "luad_cnv_cbio_gistic",
-    "sampleSize": 515,
-    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
-    "DATATYPE": "DISCRETE",
-    "NAME": "Putative copy-number alterations from GISTIC",
-    "description": "Putative copy-number calls on 515 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "mut",
-    "collection": "luad_mut_cbio_mut",
-    "sampleSize": 229,
-    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
-    "DATATYPE": "MAF",
-    "NAME": "Mutations",
-    "description": "Mutation data from whole exome sequencing."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "mut01",
-    "collection": "luad_mut01_cbio_mut",
-    "sampleSize": 229,
-    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
-    "DATATYPE": "MAF",
-    "NAME": "Mutations",
-    "description": "Binary mutation data from whole exome sequencing."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "protein",
-    "collection": "luad_protein_cbio_rppa",
-    "sampleSize": 181,
-    "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
-    "DATATYPE": "Z-SCORE",
-    "NAME": "protein/phosphoprotein level (RPPA)",
-    "description": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
-}
-```
-
-
-```
-
 false
 ```
 
@@ -1008,10 +825,6 @@ Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 luad_cnv_ucsc_gistic2thd | ucsc | cnv | 515 | TCGA lung adenocarcinoma (LUAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 luad_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 543 | TCGA lung adenocarcinoma (LUAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method. 
-luad_cnv_cbio_gistic | cbio | cnv | 515 | Putative copy-number calls on 515 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
-luad_mut_cbio_mut | cbio | mut | 229 | Mutation data from whole exome sequencing.
-luad_mut01_cbio_mut | cbio | mut01 | 229 | Binary mutation data from whole exome sequencing.
-luad_protein_cbio_rppa | cbio | protein | 181 | Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1019,26 +832,19 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-lusc_events_tcga_clinical | clinical | TCGA | 
-lusc_patient_tcga_clinical | clinical | TCGA | 
-lusc_drug_tcga_clinical | clinical | TCGA | 
-lusc_radiation_tcga_clinical | clinical | TCGA | 
-lusc_followup_tcga_v1p0 | clinical | TCGA | 
-lusc_newtumor_tcga_clinical | clinical | TCGA | 
-lusc_othermalignancy_tcga_v4p0 | clinical | TCGA | 
+lusc_color_tcga_import | category | tcga | color
+lusc_events_tcga_clinical | clinical | tcga | color
+lusc_samplemap_tcga_molecular | clinical | tcga | color
+lusc_patient_tcga_clinical | clinical | tcga | color
+lusc_drug_tcga_clinical | clinical | tcga | color
+lusc_radiation_tcga_clinical | clinical | tcga | color
+lusc_followup_tcga_v1p0 | clinical | tcga | color
+lusc_newtumor_tcga_clinical | clinical | tcga | color
+lusc_othermalignancy_tcga_v4p0 | clinical | tcga | color
 lusc_mut_broad_mutsig2 | molecular | broad | mut
 lusc_mut01_broad_mutsig2 | molecular | broad | mut01
 lusc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 lusc_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
-lusc_cnv_cbio_gistic | molecular | cBio | cnv
-lusc_mut_cbio_mut | molecular | cBio | mut
-lusc_mut01_cbio_mut | molecular | cBio | mut01
-lusc_methylation_cbio_hm27 | molecular | cBio | methylation
-lusc_methylation_cbio_hm450 | molecular | cBio | methylation
-lusc_rna_cbio_agilent | molecular | cBio | rna
-lusc_rna_cbio_seq | molecular | cBio | rna
-lusc_rna_cbio_u133 | molecular | cBio | rna
-lusc_protein_cbio_rppa | molecular | cBio | protein
 lusc_rna_ucsc_hiseq | molecular | ucsc | rna
 lusc_protein_ucsc_rppa | molecular | ucsc | protein
 
@@ -1076,66 +882,6 @@ lusc_protein_ucsc_rppa | molecular | ucsc | protein
 
 ```
 
-{
-    "source": "cbio",
-    "type": "cnv",
-    "collection": "lusc_cnv_cbio_gistic",
-    "sampleSize": 32,
-    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
-    "DATATYPE": "DISCRETE",
-    "NAME": "Putative copy-number alterations from GISTIC",
-    "description": "Putative copy-number calls on 501 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "mut",
-    "collection": "lusc_mut_cbio_mut",
-    "sampleSize": 178,
-    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
-    "DATATYPE": "MAF",
-    "NAME": "Mutations",
-    "description": "Mutation data from whole exome sequencing."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "mut01",
-    "collection": "lusc_mut01_cbio_mut",
-    "sampleSize": 178,
-    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
-    "DATATYPE": "MAF",
-    "NAME": "Mutations",
-    "description": "Mutation data from whole exome sequencing."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "protein",
-    "collection": "lusc_protein_cbio_rppa",
-    "sampleSize": 0,
-    "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
-    "DATATYPE": "Z-SCORE",
-    "NAME": "protein/phosphoprotein level (RPPA)",
-    "description": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
-}
-```
-
-
-```
-
 false
 ```
 
@@ -1150,10 +896,6 @@ Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 lusc_cnv_ucsc_gistic2thd | ucsc | cnv | 501 | TCGA lung squamous cell carcinoma (LUSC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 lusc_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 408 | The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
-lusc_cnv_cbio_gistic | cbio | cnv | 32 | Putative copy-number calls on 501 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
-lusc_mut_cbio_mut | cbio | mut | 178 | Mutation data from whole exome sequencing.
-lusc_mut01_cbio_mut | cbio | mut01 | 178 | Mutation data from whole exome sequencing.
-lusc_protein_cbio_rppa | cbio | protein | 0 | Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1161,18 +903,22 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-sarc_patient_tcga_clinical | clinical | TCGA | 
-sarc_drug_tcga_clinical | clinical | TCGA | 
-sarc_radiation_tcga_clinical | clinical | TCGA | 
-sarc_followup_tcga_v4p0 | clinical | TCGA | 
-sarc_newtumor_tcga_clinical | clinical | TCGA | 
-sarc_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-sarc_othermalignancy_tcga_v4p0 | clinical | TCGA | 
+sarc_color_tcga_import | category | tcga | color
+sarc_samplemap_tcga_molecular | clinical | tcga | color
+sarc_patient_tcga_clinical | clinical | tcga | color
+sarc_drug_tcga_clinical | clinical | tcga | color
+sarc_radiation_tcga_clinical | clinical | tcga | color
+sarc_followup_tcga_v4p0 | clinical | tcga | color
+sarc_newtumor_tcga_clinical | clinical | tcga | color
+sarc_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+sarc_othermalignancy_tcga_v4p0 | clinical | tcga | color
 sarc_mut_broad_mutsig2 | molecular | broad | mut
 sarc_mut01_broad_mutsig2 | molecular | broad | mut01
 sarc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 sarc_rna_ucsc_hiseq | molecular | ucsc | rna
 sarc_protein_ucsc_rppa | molecular | ucsc | protein
+sarc_mut01_ucsc_broad | molecular | ucsc | mut01
+sarc_methylation_ucsc_hm450 | molecular | ucsc | methylation
 
 ### More Details of Molecular Collections
 
@@ -1203,9 +949,23 @@ false
 ```
 
 
+```
+
+false
+```
+
+
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 sarc_cnv_ucsc_gistic2thd | ucsc | cnv | 257 | TCGA sarcoma (SARC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+undefined | undefined | undefined | undefined | undefined
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1213,21 +973,19 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-paad_patient_tcga_clinical | clinical | TCGA | 
-paad_drug_tcga_clinical | clinical | TCGA | 
-paad_radiation_tcga_clinical | clinical | TCGA | 
-paad_followup_tcga_v4p4 | clinical | TCGA | 
-paad_newtumor_tcga_clinical | clinical | TCGA | 
-paad_newtumor-followup_tcga_v4p4 | clinical | TCGA | 
-paad_othermalignancy_tcga_v4p0 | clinical | TCGA | 
+paad_color_tcga_import | category | tcga | color
+paad_samplemap_tcga_molecular | clinical | tcga | color
+paad_patient_tcga_clinical | clinical | tcga | color
+paad_drug_tcga_clinical | clinical | tcga | color
+paad_radiation_tcga_clinical | clinical | tcga | color
+paad_followup_tcga_v4p4 | clinical | tcga | color
+paad_newtumor_tcga_clinical | clinical | tcga | color
+paad_newtumor-followup_tcga_v4p4 | clinical | tcga | color
+paad_othermalignancy_tcga_v4p0 | clinical | tcga | color
 paad_mut_broad_mutsig2 | molecular | broad | mut
 paad_mut01_broad_mutsig2 | molecular | broad | mut01
 paad_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 paad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
-paad_cnv_cbio_gistic | molecular | cBio | cnv
-paad_mut_cbio_mut | molecular | cBio | mut
-paad_mut01_cbio_mut | molecular | cBio | mut01
-paad_rna_cbio_seq | molecular | cBio | rna
 paad_rna_ucsc_hiseq | molecular | ucsc | rna
 paad_protein_ucsc_rppa | molecular | ucsc | protein
 
@@ -1265,51 +1023,6 @@ paad_protein_ucsc_rppa | molecular | ucsc | protein
 
 ```
 
-{
-    "source": "cbio",
-    "type": "cnv",
-    "collection": "paad_cnv_cbio_gistic",
-    "sampleSize": 195,
-    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
-    "DATATYPE": "DISCRETE",
-    "NAME": "Putative copy-number alterations from GISTIC",
-    "description": "Putative copy-number calls on 184 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "mut",
-    "collection": "paad_mut_cbio_mut",
-    "sampleSize": 91,
-    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
-    "DATATYPE": "MAF",
-    "NAME": "Mutations",
-    "description": "Mutation data from whole exome sequencing."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "mut01",
-    "collection": "paad_mut01_cbio_mut",
-    "sampleSize": 91,
-    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
-    "DATATYPE": "MAF",
-    "NAME": "Mutations",
-    "description": "Binary mutation data from whole exome sequencing."
-}
-```
-
-
-```
-
 false
 ```
 
@@ -1324,9 +1037,6 @@ Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 paad_cnv_ucsc_gistic2thd | ucsc | cnv | 184 | TCGA pancreatic adenocarcinoma (PAAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 paad_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 131 | TCGA pancreatic adenocarcinoma (PAAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. 
-paad_cnv_cbio_gistic | cbio | cnv | 195 | Putative copy-number calls on 184 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
-paad_mut_cbio_mut | cbio | mut | 91 | Mutation data from whole exome sequencing.
-paad_mut01_cbio_mut | cbio | mut01 | 91 | Binary mutation data from whole exome sequencing.
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1334,22 +1044,18 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-prad_patient_tcga_clinical | clinical | TCGA | 
-prad_drug_tcga_clinical | clinical | TCGA | 
-prad_radiation_tcga_clinical | clinical | TCGA | 
-prad_followup_tcga_v1p0 | clinical | TCGA | 
-prad_newtumor_tcga_clinical | clinical | TCGA | 
-prad_othermalignancy_tcga_v4p0 | clinical | TCGA | 
+prad_color_tcga_import | category | tcga | color
+prad_samplemap_tcga_molecular | clinical | tcga | color
+prad_patient_tcga_clinical | clinical | tcga | color
+prad_drug_tcga_clinical | clinical | tcga | color
+prad_radiation_tcga_clinical | clinical | tcga | color
+prad_followup_tcga_v1p0 | clinical | tcga | color
+prad_newtumor_tcga_clinical | clinical | tcga | color
+prad_othermalignancy_tcga_v4p0 | clinical | tcga | color
 prad_mut_broad_mutsig2 | molecular | broad | mut
 prad_mut01_broad_mutsig2 | molecular | broad | mut01
 prad_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 prad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
-prad_cnv_cbio_gistic | molecular | cBio | cnv
-prad_mut_cbio_mut | molecular | cBio | mut
-prad_mut01_cbio_mut | molecular | cBio | mut01
-prad_methylation_cbio_hm450 | molecular | cBio | methylation
-prad_rna_cbio_agilent | molecular | cBio | rna
-prad_protein_cbio_rppa | molecular | cBio | protein
 prad_rna_ucsc_hiseq | molecular | ucsc | rna
 prad_protein_ucsc_rppa | molecular | ucsc | protein
 
@@ -1387,66 +1093,6 @@ prad_protein_ucsc_rppa | molecular | ucsc | protein
 
 ```
 
-{
-    "source": "cbio",
-    "type": "cnv",
-    "collection": "prad_cnv_cbio_gistic",
-    "sampleSize": 492,
-    "GENETIC_ALTERATION_TYPE": "COPY_NUMBER_ALTERATION",
-    "DATATYPE": "DISCRETE",
-    "NAME": "Putative copy-number alterations from GISTIC",
-    "description": "Putative copy-number calls on 492 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "mut",
-    "collection": "prad_mut_cbio_mut",
-    "sampleSize": 261,
-    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
-    "DATATYPE": "MAF",
-    "NAME": "Mutations",
-    "description": "Mutation data from whole exome sequencing."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "mut01",
-    "collection": "prad_mut01_cbio_mut",
-    "sampleSize": 261,
-    "GENETIC_ALTERATION_TYPE": "MUTATION_EXTENDED",
-    "DATATYPE": "MAF",
-    "NAME": "Mutations",
-    "description": "Binary mutation data from whole exome sequencing."
-}
-```
-
-
-```
-
-{
-    "source": "cbio",
-    "type": "protein",
-    "collection": "prad_protein_cbio_rppa",
-    "sampleSize": 164,
-    "GENETIC_ALTERATION_TYPE": "PROTEIN_ARRAY_PROTEIN_LEVEL",
-    "DATATYPE": "Z-SCORE",
-    "NAME": "protein/phosphoprotein level (RPPA)",
-    "description": "Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)"
-}
-```
-
-
-```
-
 false
 ```
 
@@ -1461,10 +1107,6 @@ Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 prad_cnv_ucsc_gistic2thd | ucsc | cnv | 492 | TCGA prostate adenocarcinoma (PRAD) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
 prad_mut01_ucsc_mutationbroadgene | ucsc | mut01 | 425 | TCGA prostate adenocarcinoma (PRAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Broad Institute Genome Sequencing Center using the MutDect method.
-prad_cnv_cbio_gistic | cbio | cnv | 492 | Putative copy-number calls on 492 cases determined using GISTIC 2.0. Values: -2 = homozygous deletion; -1 = hemizygous deletion; 0 = neutral / no change; 1 = gain; 2 = high level amplification.
-prad_mut_cbio_mut | cbio | mut | 261 | Mutation data from whole exome sequencing.
-prad_mut01_cbio_mut | cbio | mut01 | 261 | Binary mutation data from whole exome sequencing.
-prad_protein_cbio_rppa | cbio | protein | 164 | Protein or phosphoprotein level (Z-scores) measured by reverse phase protein array (RPPA)
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1472,16 +1114,19 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-skcm_drug_tcga_clinical | clinical | TCGA | 
-skcm_followup_tcga_v2p0 | clinical | TCGA | 
-skcm_newtumor_tcga_clinical | clinical | TCGA | 
-skcm_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-skcm_patient_tcga_clinical | clinical | TCGA | 
-skcm_radiation_tcga_clinical | clinical | TCGA | 
+skcm_color_tcga_import | category | tcga | color
+skcm_samplemap_tcga_molecular | clinical | tcga | color
+skcm_drug_tcga_clinical | clinical | tcga | color
+skcm_followup_tcga_v2p0 | clinical | tcga | color
+skcm_newtumor_tcga_clinical | clinical | tcga | color
+skcm_othermalignancy_tcga_v4p0 | clinical | tcga | color
+skcm_patient_tcga_clinical | clinical | tcga | color
+skcm_radiation_tcga_clinical | clinical | tcga | color
 skcm_mut_broad_mutsig2 | molecular | broad | mut
 skcm_mut01_broad_mutsig2 | molecular | broad | mut01
 skcm_rna_ucsc_hiseq | molecular | ucsc | rna
 skcm_protein_ucsc_rppa | molecular | ucsc | protein
+skcm_mut01_ucsc_broad | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -1497,8 +1142,15 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1506,17 +1158,20 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-stad_drug_tcga_clinical | clinical | TCGA | 
-stad_followup_tcga_v1p0 | clinical | TCGA | 
-stad_newtumor_tcga_clinical | clinical | TCGA | 
-stad_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-stad_patient_tcga_clinical | clinical | TCGA | 
-stad_radiation_tcga_clinical | clinical | TCGA | 
+stad_color_tcga_import | category | tcga | color
+stad_samplemap_tcga_molecular | clinical | tcga | color
+stad_drug_tcga_clinical | clinical | tcga | color
+stad_followup_tcga_v1p0 | clinical | tcga | color
+stad_newtumor_tcga_clinical | clinical | tcga | color
+stad_othermalignancy_tcga_v4p0 | clinical | tcga | color
+stad_patient_tcga_clinical | clinical | tcga | color
+stad_radiation_tcga_clinical | clinical | tcga | color
 stad_mut_broad_mutsig2 | molecular | broad | mut
 stad_mut01_broad_mutsig2 | molecular | broad | mut01
 stad_mut01_ucsc_mutationbcmgene | molecular | ucsc | mut01
 stad_rna_ucsc_hiseq | molecular | ucsc | rna
 stad_protein_ucsc_rppa | molecular | ucsc | protein
+stad_mut01_ucsc_broadcurated | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -1547,9 +1202,16 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 stad_mut01_ucsc_mutationbcmgene | ucsc | mut01 | 379 | TCGA stomach adenocarcinoma (STAD) somatic mutation data. Sequencing data are generated on a IlluminaGA system. The calls are generated at Baylor College of Medicine Human Genome Sequencing Center using the Baylor pipeline method. 
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1557,17 +1219,20 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-thca_drug_tcga_clinical | clinical | TCGA | 
-thca_followup_tcga_v4p0 | clinical | TCGA | 
-thca_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-thca_newtumor_tcga_clinical | clinical | TCGA | 
-thca_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-thca_patient_tcga_clinical | clinical | TCGA | 
-thca_radiation_tcga_clinical | clinical | TCGA | 
+thca_color_tcga_import | category | tcga | color
+thca_samplemap_tcga_molecular | clinical | tcga | color
+thca_followup_tcga_v2p0 | clinical | tcga | color
+thca_drug_tcga_clinical | clinical | tcga | color
+thca_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+thca_newtumor_tcga_clinical | clinical | tcga | color
+thca_othermalignancy_tcga_v4p0 | clinical | tcga | color
+thca_patient_tcga_clinical | clinical | tcga | color
+thca_radiation_tcga_clinical | clinical | tcga | color
 thca_mut_broad_mutsig2 | molecular | broad | mut
 thca_mut01_broad_mutsig2 | molecular | broad | mut01
 thca_rna_ucsc_hiseq | molecular | ucsc | rna
 thca_protein_ucsc_rppa | molecular | ucsc | protein
+thca_mut01_ucsc_broad | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -1583,8 +1248,15 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1592,19 +1264,28 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-ucec_drug_tcga_clinical | clinical | TCGA | 
-ucec_followup_tcga_v2p0 | clinical | TCGA | 
-ucec_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-ucec_newtumor_tcga_clinical | clinical | TCGA | 
-ucec_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-ucec_patient_tcga_clinical | clinical | TCGA | 
-ucec_radiation_tcga_clinical | clinical | TCGA | 
+ucec_color_tcga_import | category | tcga | color
+ucec_samplemap_tcga_molecular | clinical | tcga | color
+ucec_followup_tcga_v1p7 | clinical | tcga | color
+ucec_drug_tcga_clinical | clinical | tcga | color
+ucec_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+ucec_newtumor_tcga_clinical | clinical | tcga | color
+ucec_othermalignancy_tcga_v4p0 | clinical | tcga | color
+ucec_patient_tcga_clinical | clinical | tcga | color
+ucec_radiation_tcga_clinical | clinical | tcga | color
 ucec_mut_broad_mutsig2 | molecular | broad | mut
 ucec_mut01_broad_mutsig2 | molecular | broad | mut01
 ucec_rna_ucsc_hiseq | molecular | ucsc | rna
 ucec_protein_ucsc_rppa | molecular | ucsc | protein
+ucec_mut01_ucsc_pancanaws | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
+
+```
+
+false
+```
+
 
 ```
 
@@ -1622,23 +1303,27 @@ Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
+undefined | undefined | undefined | undefined | undefined
 
 ## ACC - Adrenocortical carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-acc_drug_tcga_clinical | clinical | TCGA | 
-acc_followup_tcga_v4p0 | clinical | TCGA | 
-acc_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-acc_newtumor_tcga_clinical | clinical | TCGA | 
-acc_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-acc_patient_tcga_clinical | clinical | TCGA | 
-acc_radiation_tcga_clinical | clinical | TCGA | 
+acc_color_tcga_import | category | tcga | color
+acc_samplemap_tcga_molecular | clinical | tcga | color
+acc_drug_tcga_clinical | clinical | tcga | color
+acc_followup_tcga_v4p0 | clinical | tcga | color
+acc_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+acc_newtumor_tcga_clinical | clinical | tcga | color
+acc_othermalignancy_tcga_v4p0 | clinical | tcga | color
+acc_patient_tcga_clinical | clinical | tcga | color
+acc_radiation_tcga_clinical | clinical | tcga | color
 acc_mut_broad_mutsig2 | molecular | broad | mut
 acc_mut01_broad_mutsig2 | molecular | broad | mut01
 acc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 acc_rna_ucsc_hiseq | molecular | ucsc | rna
 acc_protein_ucsc_rppa | molecular | ucsc | protein
+acc_mut01_ucsc_broadcurated | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -1669,9 +1354,16 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 acc_cnv_ucsc_gistic2thd | ucsc | cnv | 90 | TCGA adrenocortical carcinoma (ACC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1679,13 +1371,15 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-blca_patient_tcga_clinical | clinical | TCGA | 
-blca_drug_tcga_clinical | clinical | TCGA | 
-blca_radiation_tcga_clinical | clinical | TCGA | 
-blca_followup_tcga_v4p0 | clinical | TCGA | 
-blca_newtumor_tcga_clinical | clinical | TCGA | 
-blca_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-blca_othermalignancy_tcga_v4p0 | clinical | TCGA | 
+blca_color_tcga_import | category | tcga | color
+blca_samplemap_tcga_molecular | clinical | tcga | color
+blca_followup_tcga_v2p0 | clinical | tcga | color
+blca_patient_tcga_clinical | clinical | tcga | color
+blca_drug_tcga_clinical | clinical | tcga | color
+blca_radiation_tcga_clinical | clinical | tcga | color
+blca_newtumor_tcga_clinical | clinical | tcga | color
+blca_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+blca_othermalignancy_tcga_v4p0 | clinical | tcga | color
 blca_mut_broad_mutsig2 | molecular | broad | mut
 blca_mut01_broad_mutsig2 | molecular | broad | mut01
 blca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
@@ -1748,18 +1442,21 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-cesc_drug_tcga_clinical | clinical | TCGA | 
-cesc_followup_tcga_v4p0 | clinical | TCGA | 
-cesc_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-cesc_newtumor_tcga_clinical | clinical | TCGA | 
-cesc_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-cesc_patient_tcga_clinical | clinical | TCGA | 
-cesc_radiation_tcga_clinical | clinical | TCGA | 
+cesc_color_tcga_import | category | tcga | color
+cesc_samplemap_tcga_molecular | clinical | tcga | color
+cesc_followup_tcga_v2p0 | clinical | tcga | color
+cesc_drug_tcga_clinical | clinical | tcga | color
+cesc_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+cesc_newtumor_tcga_clinical | clinical | tcga | color
+cesc_othermalignancy_tcga_v4p0 | clinical | tcga | color
+cesc_patient_tcga_clinical | clinical | tcga | color
+cesc_radiation_tcga_clinical | clinical | tcga | color
 cesc_mut_broad_mutsig2 | molecular | broad | mut
 cesc_mut01_broad_mutsig2 | molecular | broad | mut01
 cesc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 cesc_rna_ucsc_hiseq | molecular | ucsc | rna
 cesc_protein_ucsc_rppa | molecular | ucsc | protein
+cesc_mut01_ucsc_ucsc | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -1790,9 +1487,16 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 cesc_cnv_ucsc_gistic2thd | ucsc | cnv | 295 | TCGA cervical squamous cell carcinoma and endocervical adenocarcinoma (CESC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1800,18 +1504,21 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-chol_drug_tcga_clinical | clinical | TCGA | 
-chol_followup_tcga_v4p0 | clinical | TCGA | 
-chol_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-chol_newtumor_tcga_clinical | clinical | TCGA | 
-chol_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-chol_patient_tcga_clinical | clinical | TCGA | 
-chol_radiation_tcga_clinical | clinical | TCGA | 
+chol_color_tcga_import | category | tcga | color
+chol_samplemap_tcga_molecular | clinical | tcga | color
+chol_drug_tcga_clinical | clinical | tcga | color
+chol_followup_tcga_v4p0 | clinical | tcga | color
+chol_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+chol_newtumor_tcga_clinical | clinical | tcga | color
+chol_othermalignancy_tcga_v4p0 | clinical | tcga | color
+chol_patient_tcga_clinical | clinical | tcga | color
+chol_radiation_tcga_clinical | clinical | tcga | color
 chol_mut_broad_mutsig2 | molecular | broad | mut
 chol_mut01_broad_mutsig2 | molecular | broad | mut01
 chol_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 chol_rna_ucsc_hiseq | molecular | ucsc | rna
 chol_protein_ucsc_rppa | molecular | ucsc | protein
+chol_mut01_ucsc_broad | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -1842,9 +1549,16 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 chol_cnv_ucsc_gistic2thd | ucsc | cnv | 36 | TCGA cholangiocarcinoma (CHOL) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1852,17 +1566,20 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-dlbc_drug_tcga_clinical | clinical | TCGA | 
-dlbc_followup_tcga_v4p4 | clinical | TCGA | 
-dlbc_newtumor-followup_tcga_v4p4 | clinical | TCGA | 
-dlbc_newtumor_tcga_clinical | clinical | TCGA | 
-dlbc_patient_tcga_clinical | clinical | TCGA | 
-dlbc_radiation_tcga_clinical | clinical | TCGA | 
+dlbc_color_tcga_import | category | tcga | color
+dlbc_samplemap_tcga_molecular | clinical | tcga | color
+dlbc_drug_tcga_clinical | clinical | tcga | color
+dlbc_followup_tcga_v4p4 | clinical | tcga | color
+dlbc_newtumor-followup_tcga_v4p4 | clinical | tcga | color
+dlbc_newtumor_tcga_clinical | clinical | tcga | color
+dlbc_patient_tcga_clinical | clinical | tcga | color
+dlbc_radiation_tcga_clinical | clinical | tcga | color
 dlbc_mut_broad_mutsig2 | molecular | broad | mut
 dlbc_mut01_broad_mutsig2 | molecular | broad | mut01
 dlbc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 dlbc_rna_ucsc_hiseq | molecular | ucsc | rna
 dlbc_protein_ucsc_rppa | molecular | ucsc | protein
+dlbc_mut01_ucsc_bcm | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -1893,9 +1610,16 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 dlbc_cnv_ucsc_gistic2thd | ucsc | cnv | 48 | TCGA lymphoid neoplasm diffuse large B-cell lymphoma (DLBC) thresholded gene-level copy number variation (CNV) estimated using the GISTIC2 method.
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -1903,17 +1627,12 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-coadread_events_tcga_clinical | clinical | TCGA | 
+coadread_color_tcga_import | category | tcga | color
+coadread_events_tcga_clinical | clinical | tcga | color
+coadread_samplemap_tcga_molecular | clinical | tcga | color
 coadread_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 coadread_mut01_ucsc_mutation | molecular | ucsc | mut01
-coadread_cnv_cbio_gistic | molecular | cBio | cnv
-coadread_mut_cbio_mut | molecular | cBio | mut
-coadread_mut01_cbio_mut | molecular | cBio | mut01
-coadread_methylation_cbio_hm27 | molecular | cBio | methylation
-coadread_methylation_cbio_hm450 | molecular | cBio | methylation
-coadread_rna_cbio_agilent | molecular | cBio | rna
-coadread_rna_cbio_seq | molecular | cBio | rna
-coadread_protein_cbio_rppa | molecular | cBio | protein
+coadread_rna_ucsc_hiseq | molecular | ucsc | rna
 
 ### More Details of Molecular Collections
 
@@ -1947,28 +1666,28 @@ coadread_protein_cbio_rppa | molecular | cBio | protein
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 coadread_cnv_ucsc_gistic2thd | ucsc | cnv | 408 | The dataset is combined from TCGA lung squamous cell carcinoma and lung adenocarcinoma datasets. TCGA lung cancer (LUNG) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
 coadread_mut01_ucsc_mutation | ucsc | mut01 | 224 | TCGA colon & rectum adenocarcinoma (COADREAD) somatic mutation data. Red (=1) indicates that a non-silent somatic mutation (nonsense, missense, frame-shif indels, splice site mutations, stop codon readthroughs) was identified in the protein coding region of a gene, or any mutation identified in a non-coding gene. White (=0) indicates that none of the above mutation calls were made in this gene for the specific sample.
+undefined | undefined | undefined | undefined | undefined
 
 ## LUNG - Lung adenocarcinoma & Lung squamous cell carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-lung_events_tcga_clinical | clinical | TCGA | 
+lung_color_tcga_import | category | tcga | color
+lung_events_tcga_clinical | clinical | tcga | color
+lung_samplemap_tcga_molecular | clinical | tcga | color
 lung_facs_demo_flow | molecular | demo | facs
 lung_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 lung_mut01_ucsc_mutation | molecular | ucsc | mut01
-lung_cnv_cbio_gistic | molecular | cBio | cnv
-lung_mut_cbio_mut | molecular | cBio | mut
-lung_mut01_cbio_mut | molecular | cBio | mut01
-lung_methylation_cbio_hm27 | molecular | cBio | methylation
-lung_methylation_cbio_hm450 | molecular | cBio | methylation
-lung_rna_cbio_agilent | molecular | cBio | rna
-lung_rna_cbio_seq | molecular | cBio | rna
-lung_rna_cbio_u133 | molecular | cBio | rna
-lung_protein_cbio_rppa | molecular | cBio | protein
 lung_rna_ucsc_hiseq | molecular | ucsc | rna
 
 ### More Details of Molecular Collections
@@ -2019,16 +1738,25 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-coad_patient_tcga_clinical | clinical | TCGA | 
-coad_drug_tcga_clinical | clinical | TCGA | 
-coad_radiation_tcga_clinical | clinical | TCGA | 
-coad_followup_tcga_v1p0 | clinical | TCGA | 
-coad_newtumor_tcga_clinical | clinical | TCGA | 
-coad_newtumor-followup_tcga_v1p0 | clinical | TCGA | 
-coad_othermalignancy_tcga_v4p0 | clinical | TCGA | 
+coad_color_tcga_import | category | tcga | color
+coad_samplemap_tcga_molecular | clinical | tcga | color
+coad_patient_tcga_clinical | clinical | tcga | color
+coad_drug_tcga_clinical | clinical | tcga | color
+coad_radiation_tcga_clinical | clinical | tcga | color
+coad_followup_tcga_v1p0 | clinical | tcga | color
+coad_newtumor_tcga_clinical | clinical | tcga | color
+coad_newtumor-followup_tcga_v1p0 | clinical | tcga | color
+coad_othermalignancy_tcga_v4p0 | clinical | tcga | color
 coad_protein_ucsc_rppa | molecular | ucsc | protein
+coad_rna_ucsc_hiseq | molecular | ucsc | rna
 
 ### More Details of Molecular Collections
+
+```
+
+false
+```
+
 
 ```
 
@@ -2039,13 +1767,14 @@ false
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 undefined | undefined | undefined | undefined | undefined
+undefined | undefined | undefined | undefined | undefined
 
 ## HG19 - Genome Platform
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 hg19_genesets_hgnc_import | category | hgnc | genesets
-hg19_genesets_orghs_1e+05 | category | orgHs | genesets
+hg19_genesets_orghs_1e05 | category | orgHs | genesets
 
 ### More Details of Molecular Collections
 
@@ -2053,7 +1782,9 @@ hg19_genesets_orghs_1e+05 | category | orgHs | genesets
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-laml_patient_tcga_clinical | clinical | TCGA | 
+laml_color_tcga_import | category | tcga | color
+laml_samplemap_tcga_molecular | clinical | tcga | color
+laml_patient_tcga_clinical | clinical | tcga | color
 laml_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 laml_mut01_ucsc_mutation | molecular | ucsc | mut01
 laml_rna_ucsc_hiseq | molecular | ucsc | rna
@@ -2106,13 +1837,15 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-read_patient_tcga_clinical | clinical | TCGA | 
-read_drug_tcga_clinical | clinical | TCGA | 
-read_radiation_tcga_clinical | clinical | TCGA | 
-read_followup_tcga_v1p0 | clinical | TCGA | 
-read_newtumor_tcga_clinical | clinical | TCGA | 
-read_newtumor-followup_tcga_v1p0 | clinical | TCGA | 
-read_othermalignancy_tcga_v4p0 | clinical | TCGA | 
+read_color_tcga_import | category | tcga | color
+read_samplemap_tcga_molecular | clinical | tcga | color
+read_drug_tcga_clinical | clinical | tcga | color
+read_followup_tcga_v1p0 | clinical | tcga | color
+read_newtumor-followup_tcga_v1p0 | clinical | tcga | color
+read_newtumor_tcga_clinical | clinical | tcga | color
+read_othermalignancy_tcga_v4p0 | clinical | tcga | color
+read_patient_tcga_clinical | clinical | tcga | color
+read_radiation_tcga_clinical | clinical | tcga | color
 read_protein_ucsc_rppa | molecular | ucsc | protein
 read_rna_ucsc_hiseq | molecular | ucsc | rna
 
@@ -2139,15 +1872,18 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-ucs_drug_tcga_clinical | clinical | TCGA | 
-ucs_followup_tcga_v4p0 | clinical | TCGA | 
-ucs_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-ucs_newtumor_tcga_clinical | clinical | TCGA | 
-ucs_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-ucs_patient_tcga_clinical | clinical | TCGA | 
-ucs_radiation_tcga_clinical | clinical | TCGA | 
+ucs_color_tcga_import | category | tcga | color
+ucs_samplemap_tcga_molecular | clinical | tcga | color
+ucs_drug_tcga_clinical | clinical | tcga | color
+ucs_followup_tcga_v4p0 | clinical | tcga | color
+ucs_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+ucs_newtumor_tcga_clinical | clinical | tcga | color
+ucs_othermalignancy_tcga_v4p0 | clinical | tcga | color
+ucs_patient_tcga_clinical | clinical | tcga | color
+ucs_radiation_tcga_clinical | clinical | tcga | color
 ucs_rna_ucsc_hiseq | molecular | ucsc | rna
 ucs_protein_ucsc_rppa | molecular | ucsc | protein
+ucs_mut01_ucsc_broad | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -2163,8 +1899,15 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -2172,15 +1915,18 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-uvm_drug_tcga_clinical | clinical | TCGA | 
-uvm_followup_tcga_v4p0 | clinical | TCGA | 
-uvm_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-uvm_newtumor_tcga_clinical | clinical | TCGA | 
-uvm_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-uvm_patient_tcga_clinical | clinical | TCGA | 
-uvm_radiation_tcga_clinical | clinical | TCGA | 
+uvm_color_tcga_import | category | tcga | color
+uvm_samplemap_tcga_molecular | clinical | tcga | color
+uvm_drug_tcga_clinical | clinical | tcga | color
+uvm_followup_tcga_v4p0 | clinical | tcga | color
+uvm_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+uvm_newtumor_tcga_clinical | clinical | tcga | color
+uvm_othermalignancy_tcga_v4p0 | clinical | tcga | color
+uvm_patient_tcga_clinical | clinical | tcga | color
+uvm_radiation_tcga_clinical | clinical | tcga | color
 uvm_rna_ucsc_hiseq | molecular | ucsc | rna
 uvm_protein_ucsc_rppa | molecular | ucsc | protein
+uvm_mut01_ucsc_broadcurated | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -2196,8 +1942,15 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -2205,15 +1958,18 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-thym_drug_tcga_clinical | clinical | TCGA | 
-thym_followup_tcga_v4p0 | clinical | TCGA | 
-thym_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-thym_newtumor_tcga_clinical | clinical | TCGA | 
-thym_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-thym_patient_tcga_clinical | clinical | TCGA | 
-thym_radiation_tcga_clinical | clinical | TCGA | 
+thym_color_tcga_import | category | tcga | color
+thym_samplemap_tcga_molecular | clinical | tcga | color
+thym_drug_tcga_clinical | clinical | tcga | color
+thym_followup_tcga_v4p0 | clinical | tcga | color
+thym_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+thym_newtumor_tcga_clinical | clinical | tcga | color
+thym_othermalignancy_tcga_v4p0 | clinical | tcga | color
+thym_patient_tcga_clinical | clinical | tcga | color
+thym_radiation_tcga_clinical | clinical | tcga | color
 thym_rna_ucsc_hiseq | molecular | ucsc | rna
 thym_protein_ucsc_rppa | molecular | ucsc | protein
+thym_mut01_ucsc_broad | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -2229,8 +1985,15 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -2238,15 +2001,18 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-tgct_drug_tcga_clinical | clinical | TCGA | 
-tgct_followup_tcga_v4p0 | clinical | TCGA | 
-tgct_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-tgct_newtumor_tcga_clinical | clinical | TCGA | 
-tgct_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-tgct_patient_tcga_clinical | clinical | TCGA | 
-tgct_radiation_tcga_clinical | clinical | TCGA | 
+tgct_color_tcga_import | category | tcga | color
+tgct_samplemap_tcga_molecular | clinical | tcga | color
+tgct_drug_tcga_clinical | clinical | tcga | color
+tgct_followup_tcga_v4p0 | clinical | tcga | color
+tgct_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+tgct_newtumor_tcga_clinical | clinical | tcga | color
+tgct_othermalignancy_tcga_v4p0 | clinical | tcga | color
+tgct_patient_tcga_clinical | clinical | tcga | color
+tgct_radiation_tcga_clinical | clinical | tcga | color
 tgct_rna_ucsc_hiseq | molecular | ucsc | rna
 tgct_protein_ucsc_rppa | molecular | ucsc | protein
+tgct_mut01_ucsc_broad | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -2262,8 +2028,15 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -2271,15 +2044,18 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-pcpg_drug_tcga_clinical | clinical | TCGA | 
-pcpg_followup_tcga_v4p0 | clinical | TCGA | 
-pcpg_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-pcpg_newtumor_tcga_clinical | clinical | TCGA | 
-pcpg_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-pcpg_patient_tcga_clinical | clinical | TCGA | 
-pcpg_radiation_tcga_clinical | clinical | TCGA | 
+pcpg_color_tcga_import | category | tcga | color
+pcpg_samplemap_tcga_molecular | clinical | tcga | color
+pcpg_drug_tcga_clinical | clinical | tcga | color
+pcpg_followup_tcga_v4p0 | clinical | tcga | color
+pcpg_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+pcpg_newtumor_tcga_clinical | clinical | tcga | color
+pcpg_othermalignancy_tcga_v4p0 | clinical | tcga | color
+pcpg_patient_tcga_clinical | clinical | tcga | color
+pcpg_radiation_tcga_clinical | clinical | tcga | color
 pcpg_rna_ucsc_hiseq | molecular | ucsc | rna
 pcpg_protein_ucsc_rppa | molecular | ucsc | protein
+pcpg_mut01_ucsc_broad | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -2295,8 +2071,15 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -2304,15 +2087,18 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-ov_drug_tcga_clinical | clinical | TCGA | 
-ov_followup_tcga_v1p0 | clinical | TCGA | 
-ov_newtumor-followup_tcga_v1p0 | clinical | TCGA | 
-ov_newtumor_tcga_clinical | clinical | TCGA | 
-ov_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-ov_patient_tcga_clinical | clinical | TCGA | 
-ov_radiation_tcga_clinical | clinical | TCGA | 
+ov_color_tcga_import | category | tcga | color
+ov_samplemap_tcga_molecular | clinical | tcga | color
+ov_drug_tcga_clinical | clinical | tcga | color
+ov_followup_tcga_v1p0 | clinical | tcga | color
+ov_newtumor-followup_tcga_v1p0 | clinical | tcga | color
+ov_newtumor_tcga_clinical | clinical | tcga | color
+ov_othermalignancy_tcga_v4p0 | clinical | tcga | color
+ov_patient_tcga_clinical | clinical | tcga | color
+ov_radiation_tcga_clinical | clinical | tcga | color
 ov_rna_ucsc_hiseq | molecular | ucsc | rna
 ov_protein_ucsc_rppa | molecular | ucsc | protein
+ov_mut01_ucsc_pancanaws | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
 
@@ -2328,8 +2114,15 @@ false
 ```
 
 
+```
+
+false
+```
+
+
 Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
+undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
 
@@ -2337,17 +2130,26 @@ undefined | undefined | undefined | undefined | undefined
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-meso_drug_tcga_clinical | clinical | TCGA | 
-meso_followup_tcga_v4p0 | clinical | TCGA | 
-meso_newtumor-followup_tcga_v4p0 | clinical | TCGA | 
-meso_newtumor_tcga_clinical | clinical | TCGA | 
-meso_othermalignancy_tcga_v4p0 | clinical | TCGA | 
-meso_patient_tcga_clinical | clinical | TCGA | 
-meso_radiation_tcga_clinical | clinical | TCGA | 
+meso_color_tcga_import | category | tcga | color
+meso_samplemap_tcga_molecular | clinical | tcga | color
+meso_drug_tcga_clinical | clinical | tcga | color
+meso_followup_tcga_v4p0 | clinical | tcga | color
+meso_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+meso_newtumor_tcga_clinical | clinical | tcga | color
+meso_othermalignancy_tcga_v4p0 | clinical | tcga | color
+meso_patient_tcga_clinical | clinical | tcga | color
+meso_radiation_tcga_clinical | clinical | tcga | color
 meso_rna_ucsc_hiseq | molecular | ucsc | rna
 meso_protein_ucsc_rppa | molecular | ucsc | protein
+meso_mut01_ucsc_broad | molecular | ucsc | mut01
 
 ### More Details of Molecular Collections
+
+```
+
+false
+```
+
 
 ```
 
@@ -2365,3 +2167,64 @@ Collection | Data Source | Data Type | Size | Description
 --------- | ----------- | ----------- | ----------- | -----------
 undefined | undefined | undefined | undefined | undefined
 undefined | undefined | undefined | undefined | undefined
+undefined | undefined | undefined | undefined | undefined
+
+## BRAIN - Lower Grade Glioma & Glioblastoma multiforme
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+brain_color_tcga_import | category | tcga | color
+brain_samplemap_tcga_molecular | clinical | tcga | color
+brain_events_tcga_clinical | clinical | tcga | color
+brain_patient_tcga_clinical | clinical | tcga | color
+brain_followup-v1p0_tcga_clinical | clinical | tcga | color
+brain_drug_tcga_clinical | clinical | tcga | color
+brain_newtumor_tcga_clinical | clinical | tcga | color
+brain_othermalignancy-v4p0_tcga_clinical | clinical | tcga | color
+brain_radiation_tcga_clinical | clinical | tcga | color
+brain_followup_tcga_v1p0 | clinical | tcga | color
+brain_newtumor_tcga_clinical | clinical | tcga | color
+brain_othermalignancy_tcga_v4p0 | clinical | tcga | color
+brain_mut_broad_mutsig2 | molecular | broad | mut
+brain_mut01_broad_mutsig2 | molecular | broad | mut01
+brain_cnv_ucsc-pnas_gistic | molecular | ucsc-PNAS | cnv
+brain_mut01_ucsc-pnas_import | molecular | ucsc-PNAS | mut01
+brain_cnv_ucsc_gistic | molecular | ucsc | cnv
+brain_mut01_ucsc_import | molecular | ucsc | mut01
+
+### More Details of Molecular Collections
+
+```
+
+{
+    "source": "ucsc",
+    "type": "cnv",
+    "collection": "brain_cnv_ucsc_gistic",
+    "RawDataUrl": "",
+    "sampleSize": 1090,
+    "wrangler": "",
+    "wranglingProcedure": "",
+    "description": ""
+}
+```
+
+
+```
+
+{
+    "source": "ucsc",
+    "type": "mut01",
+    "collection": "brain_mut01_ucsc_import",
+    "RawDataUrl": "",
+    "sampleSize": 818,
+    "wrangler": "",
+    "wranglingProcedure": "",
+    "description": ""
+}
+```
+
+
+Collection | Data Source | Data Type | Size | Description
+--------- | ----------- | ----------- | ----------- | -----------
+brain_cnv_ucsc_gistic | ucsc | cnv | 1090 | 
+brain_mut01_ucsc_import | ucsc | mut01 | 818 | 
