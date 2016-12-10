@@ -218,42 +218,28 @@ co(function *() {
   // var max_ind = 0;
   // var max_len = 0;
   // var ind = 0;
-  format.h1("Rest API Queries");
+  format.h1("Data Access");
   format.h2("Example to access one collection from browser");
   format.h3("HTTP Request");
   format.text("Collections are accessable at the host: http://dev.oncoscape.sttrcancer.io/api/");
   format.text("The endpoint of oncoscape API is a unique URL. Every endpoint points to a unique collection.");
   format.table("Below lists more details of the organization of the Oncoscape Mongo Database and the collections organized by disease type.");
-  format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/");
-  format.codeComment("Here we only show the first record in gbm_patient_tcga_clinical");
-  format.codeStart();
-  format.text(JSON.stringify(doc[0], null, 4)); 
-  format.codeStop(); 
-  // format.h2("Get the count of records in the collection");
-  // format.h3("HTTP Request");
-  // format.codeComment('Male White patients result: ');
+  format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q=&apikey=password");
+  // format.codeComment("Here we only show the first record in gbm_patient_tcga_clinical");
   // format.codeStart();
-  // format.text(JSON.stringify(doc, null, 4)); 
+  // format.text(JSON.stringify(doc[0], null, 4)); 
   // format.codeStop(); 
-  // format.codeComment('Count of the records meet this criteria');
-  // format.codeStart(); 
-  // format.text(doc.length);
-  // format.codeStop(); 
-  // format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/count");
-  // format.codeComment("Count of records in gbm_patient_tcga_clinical");
-  // format.codeStart();
-  // format.text(doc.length);
-  // format.codeStop();
+  
   format.h2("Query Collection from Browser");
   format.h3("HTTP Request");
   var query = '{"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}';
   doc = yield collection.find({"gender":"MALE", "race":"WHITE"},{"patient_ID":true, "gender":true, "race":true, "histologic_diagnosis":true}).limit(2).skip(5).toArray();
-  format.codeComment('Here we show the first two records that meet the below criteria: gender is male, race is white. We have skipped the first five records from the results. And we only show three fields (patient_ID, gender and race.');
-  format.codeStart();
-  format.text(JSON.stringify(doc, null, 4)); 
-  format.codeStop(); 
+  // format.codeComment('Here we show the first two records that meet the below criteria: gender is male, race is white. We have skipped the first five records from the results. And we only show three fields (patient_ID, gender and race.');
+  // format.codeStart();
+  // format.text(JSON.stringify(doc, null, 4)); 
+  // format.codeStop(); 
   format.text("Filter by gender and race and only show the selected fields");
-  format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q=" + query);
+  format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q=" + query + "&apikey=password");
   format.text("only show gender, race and patient_ID");
   format.url('"$fields":["gender","race","patient_ID"]');
   format.text("skip the first five records");
@@ -262,7 +248,7 @@ co(function *() {
   format.url('"$limit":2');
       
   format.h2("Fetch JSON-Formatted Data Using Programming Languages"); 
-  format.codeComment('Fetch JSON formatted data using R, Python, or javascript');   
+  //format.codeComment('Fetch JSON formatted data using R, Python, or javascript');   
   // mongo shell version 
   // format.codeMongoStart();
   // format.table('collection = db.collection(\"gbm_patient_tcga_clinical\");');
@@ -273,16 +259,16 @@ co(function *() {
   // format.codeStop();
 
   // javascript version 
-  format.codeJSStart();
-  format.table('var collection = \"gbm_patient_tcga_clinical\";');
-  format.table('var url = \"https://dev.oncoscape.sttrcancer.io/api/\" + collection + \"/?q=\";');
-  format.table('$.get(url, function(data) {'); 
-  format.table('     var field_names = Object.keys(data[0]);');
-  format.table('     var count = data.length;');
-  format.table('     console.log("fields name of the first records: " + field_names);');
-  format.table('     console.log("counts: " + count);');
-  format.table('  });');
-  format.codeStop();
+  // format.codeJSStart();
+  // format.table('var collection = \"gbm_patient_tcga_clinical\";');
+  // format.table('var url = \"https://dev.oncoscape.sttrcancer.io/api/\" + collection + \"/?q=&apikey=password\";');
+  // format.table('$.get(url, function(data) {'); 
+  // format.table('     var field_names = Object.keys(data[0]);');
+  // format.table('     var count = data.length;');
+  // format.table('     console.log("fields name of the first records: " + field_names);');
+  // format.table('     console.log("counts: " + count);');
+  // format.table('  });');
+  // format.codeStop();
 
   // mongo shell version: not connect, --replicaSet option is specified 
   // format.codeMongoStart();
@@ -291,141 +277,141 @@ co(function *() {
   // format.codeStop();
 
   // R verion: not connect, error code 3
-  format.codeRStart();
-  format.table('install.packages(\"jsonlite\")');
-  format.table('install.packages(\"curl\")');
-  format.table('library(jsonlite)');
-  format.table('library(curl)');
-  format.table('gbm_patient <- fromJSON(\"https://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical\")');
-  format.table('str(gbm_patient, max.level=2)');
-  format.table('\'data.frame\': 596 obs. of  33 variables:');
-  format.table('\$ patient_ID                         : chr  "TCGA-02-0001-01" "TCGA-02-0003-01" "TCGA-02-0004-01" "TCGA-02-0006-01" ...');
-  format.table('\$ history_lgg_dx_of_brain_tissue     : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...');
-  format.table('\$ prospective_collection             : logi  NA NA NA NA NA NA ...');
-  format.table('\$ retrospective_collection           : logi  NA NA NA NA NA NA ...');
-  format.table('\$ gender                             : chr  "FEMALE" "MALE" "MALE" "FEMALE" ...');
-  format.table('\$ days_to_birth                      : int  -16179 -18341 -21617 -20516 -14806 -22457 -7452 -6926 -9369 -18404 ...');
-  format.table('\$ race                               : chr  "WHITE" "WHITE" "WHITE" "WHITE" ...');
-  format.table('\$ ethnicity                          : chr  "NOT HISPANIC OR LATINO" "NOT HISPANIC OR LATINO" "NOT HISPANIC OR LATINO" "NOT HISPANIC OR LATINO" ...');
-  format.table('\$ history_other_malignancy           : logi  NA NA NA NA NA NA ...');
-  format.table('\$ history_neoadjuvant_treatment      : logi  TRUE FALSE FALSE FALSE TRUE FALSE ...');
-  format.table('\$ diagnosis_year                     : int  1009872000 1041408000 1009872000 1009872000 1009872000 1041408000 1009872000 1072944000 852105600 1009872000 ...');
-  format.table('\$ pathologic_method                  : logi  NA NA NA NA NA NA ...');
-  format.table('\$ pathologic_method                  : logi  NA NA NA NA NA NA ...');
-  format.table('\$ status_vital                       : chr  "DEAD" "DEAD" "DEAD" "DEAD" ...');
-  format.table('\$ days_to_last_contact               : int  279 144 345 558 705 322 1077 630 2512 627 ...');
-  format.table('\$ days_to_death                      : int  358 144 345 558 705 322 1077 630 2512 627 ...');
-  format.table('\$ status_tumor                       : chr  "WITH TUMOR" "WITH TUMOR" "WITH TUMOR" "WITH TUMOR" ...');
-  format.table('\$ KPS                                : int  80 100 80 80 80 80 80 80 100 80 ...');
-  format.table('\$ ECOG                               : int  NA NA NA NA NA NA NA NA NA NA ...');
-  format.table('\$ encounter_type                     : chr  NA NA NA NA ...');
-  format.table('\$ radiation_treatment_adjuvant       : logi  NA NA NA NA NA NA ...');
-  format.table('\$ pharmaceutical_tx_adjuvant         : logi  NA NA NA NA NA NA ...');
-  format.table('\$ treatment_outcome_first_course     : chr  NA NA NA NA ...');
-  format.table('\$ new_tumor_event_diagnosis          : logi  NA NA NA NA NA NA ...');
-  format.table('\$ age_at_initial_pathologic_diagnosis: int  44 50 59 56 40 61 20 18 25 50 ...');
-  format.table('\$ anatomic_organ_subdivision         : logi  NA NA NA NA NA NA ...');
-  format.table('\$ days_to_diagnosis                  : int  0 0 0 0 0 0 0 0 0 0 ...');
-  format.table('\$ disease_code                       : logi  NA NA NA NA NA NA ...');
-  format.table('\$ histologic_diagnosis               : chr  "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" ...');
-  format.table('\$ icd_10                             : chr  "C71.9" "C71.9" "C71.9" "C71.9" ...');
-  format.table('\$ icd_3_histology                    : chr  "9440/3" "9440/3" "9440/3" "9440/3" ...');
-  format.table('\$ icd_3                              : chr  "C71.9" "C71.9" "C71.9" "C71.9" ...');
-  format.table('\$ tissue_source_site_code            : chr  "02" "02" "02" "02" ...');
-  format.table('\$ tumor_tissue_site                  : chr  "BRAIN" "BRAIN" "BRAIN" "BRAIN" ...');
-  format.codeStop();
+  // format.codeRStart();
+  // format.table('install.packages(\"jsonlite\")');
+  // format.table('install.packages(\"curl\")');
+  // format.table('library(jsonlite)');
+  // format.table('library(curl)');
+  // format.table('gbm_patient <- fromJSON(\"https://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical\?q=&apikey=password")');
+  // format.table('str(gbm_patient, max.level=2)');
+  // format.table('\'data.frame\': 596 obs. of  33 variables:');
+  // format.table('\$ patient_ID                         : chr  "TCGA-02-0001-01" "TCGA-02-0003-01" "TCGA-02-0004-01" "TCGA-02-0006-01" ...');
+  // format.table('\$ history_lgg_dx_of_brain_tissue     : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...');
+  // format.table('\$ prospective_collection             : logi  NA NA NA NA NA NA ...');
+  // format.table('\$ retrospective_collection           : logi  NA NA NA NA NA NA ...');
+  // format.table('\$ gender                             : chr  "FEMALE" "MALE" "MALE" "FEMALE" ...');
+  // format.table('\$ days_to_birth                      : int  -16179 -18341 -21617 -20516 -14806 -22457 -7452 -6926 -9369 -18404 ...');
+  // format.table('\$ race                               : chr  "WHITE" "WHITE" "WHITE" "WHITE" ...');
+  // format.table('\$ ethnicity                          : chr  "NOT HISPANIC OR LATINO" "NOT HISPANIC OR LATINO" "NOT HISPANIC OR LATINO" "NOT HISPANIC OR LATINO" ...');
+  // format.table('\$ history_other_malignancy           : logi  NA NA NA NA NA NA ...');
+  // format.table('\$ history_neoadjuvant_treatment      : logi  TRUE FALSE FALSE FALSE TRUE FALSE ...');
+  // format.table('\$ diagnosis_year                     : int  1009872000 1041408000 1009872000 1009872000 1009872000 1041408000 1009872000 1072944000 852105600 1009872000 ...');
+  // format.table('\$ pathologic_method                  : logi  NA NA NA NA NA NA ...');
+  // format.table('\$ pathologic_method                  : logi  NA NA NA NA NA NA ...');
+  // format.table('\$ status_vital                       : chr  "DEAD" "DEAD" "DEAD" "DEAD" ...');
+  // format.table('\$ days_to_last_contact               : int  279 144 345 558 705 322 1077 630 2512 627 ...');
+  // format.table('\$ days_to_death                      : int  358 144 345 558 705 322 1077 630 2512 627 ...');
+  // format.table('\$ status_tumor                       : chr  "WITH TUMOR" "WITH TUMOR" "WITH TUMOR" "WITH TUMOR" ...');
+  // format.table('\$ KPS                                : int  80 100 80 80 80 80 80 80 100 80 ...');
+  // format.table('\$ ECOG                               : int  NA NA NA NA NA NA NA NA NA NA ...');
+  // format.table('\$ encounter_type                     : chr  NA NA NA NA ...');
+  // format.table('\$ radiation_treatment_adjuvant       : logi  NA NA NA NA NA NA ...');
+  // format.table('\$ pharmaceutical_tx_adjuvant         : logi  NA NA NA NA NA NA ...');
+  // format.table('\$ treatment_outcome_first_course     : chr  NA NA NA NA ...');
+  // format.table('\$ new_tumor_event_diagnosis          : logi  NA NA NA NA NA NA ...');
+  // format.table('\$ age_at_initial_pathologic_diagnosis: int  44 50 59 56 40 61 20 18 25 50 ...');
+  // format.table('\$ anatomic_organ_subdivision         : logi  NA NA NA NA NA NA ...');
+  // format.table('\$ days_to_diagnosis                  : int  0 0 0 0 0 0 0 0 0 0 ...');
+  // format.table('\$ disease_code                       : logi  NA NA NA NA NA NA ...');
+  // format.table('\$ histologic_diagnosis               : chr  "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY" ...');
+  // format.table('\$ icd_10                             : chr  "C71.9" "C71.9" "C71.9" "C71.9" ...');
+  // format.table('\$ icd_3_histology                    : chr  "9440/3" "9440/3" "9440/3" "9440/3" ...');
+  // format.table('\$ icd_3                              : chr  "C71.9" "C71.9" "C71.9" "C71.9" ...');
+  // format.table('\$ tissue_source_site_code            : chr  "02" "02" "02" "02" ...');
+  // format.table('\$ tumor_tissue_site                  : chr  "BRAIN" "BRAIN" "BRAIN" "BRAIN" ...');
+  // format.codeStop();
 
   // python verion: haven't tried 
-  var python_json_obj = [
-    {
-        "ECOG": null, 
-        "KPS": 80, 
-        "age_at_initial_pathologic_diagnosis": 44, 
-        "anatomic_organ_subdivision": null, 
-        "days_to_birth": -16179, 
-        "days_to_death": 358, 
-        "days_to_diagnosis": 0, 
-        "days_to_last_contact": 279, 
-        "diagnosis_year": 1009872000, 
-        "disease_code": null, 
-        "encounter_type": null, 
-        "ethnicity": "NOT HISPANIC OR LATINO", 
-        "gender": "FEMALE", 
-        "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY", 
-        "history_lgg_dx_of_brain_tissue": false, 
-        "history_neoadjuvant_treatment": true, 
-        "history_other_malignancy": null, 
-        "icd_10": "C71.9", 
-        "icd_3": "C71.9", 
-        "icd_3_histology": "9440/3", 
-        "new_tumor_event_diagnosis": null, 
-        "pathologic_method": null, 
-        "patient_ID": "TCGA-02-0001-01", 
-        "pharmaceutical_tx_adjuvant": null, 
-        "prospective_collection": null, 
-        "race": "WHITE", 
-        "radiation_treatment_adjuvant": null, 
-        "retrospective_collection": null, 
-        "status_tumor": "WITH TUMOR", 
-        "status_vital": "DEAD", 
-        "tissue_source_site_code": "02", 
-        "treatment_outcome_first_course": null, 
-        "tumor_tissue_site": "BRAIN"
-    }, 
-    {
-        "ECOG": null, 
-        "KPS": 100, 
-        "age_at_initial_pathologic_diagnosis": 50, 
-        "anatomic_organ_subdivision": null, 
-        "days_to_birth": -18341, 
-        "days_to_death": 144, 
-        "days_to_diagnosis": 0, 
-        "days_to_last_contact": 144, 
-        "diagnosis_year": 1041408000, 
-        "disease_code": null, 
-        "encounter_type": null, 
-        "ethnicity": "NOT HISPANIC OR LATINO", 
-        "gender": "MALE", 
-        "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY", 
-        "history_lgg_dx_of_brain_tissue": false, 
-        "history_neoadjuvant_treatment": false, 
-        "history_other_malignancy": null, 
-        "icd_10": "C71.9", 
-        "icd_3": "C71.9", 
-        "icd_3_histology": "9440/3", 
-        "new_tumor_event_diagnosis": null, 
-        "pathologic_method": null, 
-        "patient_ID": "TCGA-02-0003-01", 
-        "pharmaceutical_tx_adjuvant": null, 
-        "prospective_collection": null, 
-        "race": "WHITE", 
-        "radiation_treatment_adjuvant": null, 
-        "retrospective_collection": null, 
-        "status_tumor": "WITH TUMOR", 
-        "status_vital": "DEAD", 
-        "tissue_source_site_code": "02", 
-        "treatment_outcome_first_course": null, 
-        "tumor_tissue_site": "BRAIN"
-    }
-];
-  format.codePyStart();
-  format.codeComment('shell commands: sudo pip install pymongo, simplejson, urllib2, json');
-  format.table('import urllib2');
-  format.table('import json');
-  format.table('import simplejson');
-  format.table('url = \"https://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical\"');
-  format.table('response = urlli2.urlopen(url)');
-  format.table('data = simplejson.load(response)');
-  format.table('print json.dumps(data[0:2], indent=4, sort_keys=True)');
-  format.text(JSON.stringify(python_json_obj, null, 4)); 
-  format.codeStop();
-  format.text("Users can access json-formatted data using URL link.");
-  format.text("Here we show the example to access one collection using four different languages.");
+//   var python_json_obj = [
+//     {
+//         "ECOG": null, 
+//         "KPS": 80, 
+//         "age_at_initial_pathologic_diagnosis": 44, 
+//         "anatomic_organ_subdivision": null, 
+//         "days_to_birth": -16179, 
+//         "days_to_death": 358, 
+//         "days_to_diagnosis": 0, 
+//         "days_to_last_contact": 279, 
+//         "diagnosis_year": 1009872000, 
+//         "disease_code": null, 
+//         "encounter_type": null, 
+//         "ethnicity": "NOT HISPANIC OR LATINO", 
+//         "gender": "FEMALE", 
+//         "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY", 
+//         "history_lgg_dx_of_brain_tissue": false, 
+//         "history_neoadjuvant_treatment": true, 
+//         "history_other_malignancy": null, 
+//         "icd_10": "C71.9", 
+//         "icd_3": "C71.9", 
+//         "icd_3_histology": "9440/3", 
+//         "new_tumor_event_diagnosis": null, 
+//         "pathologic_method": null, 
+//         "patient_ID": "TCGA-02-0001-01", 
+//         "pharmaceutical_tx_adjuvant": null, 
+//         "prospective_collection": null, 
+//         "race": "WHITE", 
+//         "radiation_treatment_adjuvant": null, 
+//         "retrospective_collection": null, 
+//         "status_tumor": "WITH TUMOR", 
+//         "status_vital": "DEAD", 
+//         "tissue_source_site_code": "02", 
+//         "treatment_outcome_first_course": null, 
+//         "tumor_tissue_site": "BRAIN"
+//     }, 
+//     {
+//         "ECOG": null, 
+//         "KPS": 100, 
+//         "age_at_initial_pathologic_diagnosis": 50, 
+//         "anatomic_organ_subdivision": null, 
+//         "days_to_birth": -18341, 
+//         "days_to_death": 144, 
+//         "days_to_diagnosis": 0, 
+//         "days_to_last_contact": 144, 
+//         "diagnosis_year": 1041408000, 
+//         "disease_code": null, 
+//         "encounter_type": null, 
+//         "ethnicity": "NOT HISPANIC OR LATINO", 
+//         "gender": "MALE", 
+//         "histologic_diagnosis": "GLIOBLASTOMA MULTIFORME UNTREATED PRIMARY", 
+//         "history_lgg_dx_of_brain_tissue": false, 
+//         "history_neoadjuvant_treatment": false, 
+//         "history_other_malignancy": null, 
+//         "icd_10": "C71.9", 
+//         "icd_3": "C71.9", 
+//         "icd_3_histology": "9440/3", 
+//         "new_tumor_event_diagnosis": null, 
+//         "pathologic_method": null, 
+//         "patient_ID": "TCGA-02-0003-01", 
+//         "pharmaceutical_tx_adjuvant": null, 
+//         "prospective_collection": null, 
+//         "race": "WHITE", 
+//         "radiation_treatment_adjuvant": null, 
+//         "retrospective_collection": null, 
+//         "status_tumor": "WITH TUMOR", 
+//         "status_vital": "DEAD", 
+//         "tissue_source_site_code": "02", 
+//         "treatment_outcome_first_course": null, 
+//         "tumor_tissue_site": "BRAIN"
+//     }
+// ];
+//   format.codePyStart();
+//   format.codeComment('shell commands: sudo pip install pymongo, simplejson, urllib2, json');
+//   format.table('import urllib2');
+//   format.table('import json');
+//   format.table('import simplejson');
+//   format.table('url = \"https://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical\?q=&apikey=password"');
+//   format.table('response = urlli2.urlopen(url)');
+//   format.table('data = simplejson.load(response)');
+//   format.table('print json.dumps(data[0:2], indent=4, sort_keys=True)');
+//   format.text(JSON.stringify(python_json_obj, null, 4)); 
+//   format.codeStop();
+//   format.text("Users can access json-formatted data using URL link.");
+//   format.text("Here we show the example to access one collection using four different languages.");
   
   //=========================================================================
   /* using lookup_oncoscape_datasources file to populate _clinic_api_query.md 
   */
-  format.h1("Collections by Disease");
+  format.h1("Data Content");
   lookup_oncoscape_datasources = yield comongo.db.collection(db, "lookup_oncoscape_datasources");
   datasources = yield lookup_oncoscape_datasources.find({}).toArray();
   var datasource_count = yield lookup_oncoscape_datasources.count();
@@ -475,27 +461,25 @@ co(function *() {
       format.h3("More Details of Molecular Collections");
       if(mol_colls.length !== 0) {
         var mol_annot = [];
-        mol_colls.forEach(function(e){
-          if(e.source === 'ucsc'){
-                      format.codeStart();
-                      var annot = ucsc_annotation.filterByCollection(e.collection);
-                      format.text(JSON.stringify(annot, null, 4)); 
-                      format.codeStop();
-                      mol_annot.push(annot);
-          }else if(e.source === 'cBio'){
-                      var annot = cbio_annotation.filterByCollection(e.collection);
-                      if(annot != false){
-                        // var e_coll = yield comongo.db.collection(db, e.collection);
-                        // var e_coll_count = yield e.collection.count();
+        // mol_colls.forEach(function(e){
+        //   if(e.source === 'ucsc'){
+        //               format.codeStart();
+        //               var annot = ucsc_annotation.filterByCollection(e.collection);
+        //               format.text(JSON.stringify(annot, null, 4)); 
+        //               format.codeStop();
+        //               mol_annot.push(annot);
+        //   }else if(e.source === 'cBio'){
+        //               var annot = cbio_annotation.filterByCollection(e.collection);
+        //               if(annot != false){
+        //                 // var e_coll = yield comongo.db.collection(db, e.collection);
+        //                 // var e_coll_count = yield e.collection.count();
   
-                        format.codeStart();
-                        format.text(JSON.stringify(annot, null, 4)); 
-                        format.codeStop();
-                        mol_annot.push(annot);
-                      }
+                        
+        //                 mol_annot.push(annot);
+        //               }
                       
-          }
-        });
+        //   }
+        // });
         format.text("Collection | Data Source | Data Type | Size | Description");
         format.table("--------- | ----------- | ----------- | ----------- | -----------"); 
         mol_annot.forEach(function(e){

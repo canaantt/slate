@@ -2256,7 +2256,7 @@ var genesets_annot = {
 		]
    }
 };
-format.h1("Database Description");
+format.h1("Data Provenance");
 format.text("We use two collections to track the metadata for all the data collections within our database. 'manifest' is organized by collection. 'lookup_oncoscape_datasource' is organized by disease.");
 // Describe lookup_oncoscape_datasource
 format.h2("From Disease Perspective");

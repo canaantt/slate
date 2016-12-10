@@ -28,8 +28,8 @@ $examples-bg: #393939;
 $code-bg: #292929;
 $code-annotation-bg: #1c1c1c;
 $nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
-//$nav-active-bg: #93C54B;
+//$nav-active-bg: #2467af;
+$nav-active-bg: #93C54B;
 $lang-select-border: #000;
 $lang-select-bg: #222;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
@@ -53,8 +53,9 @@ $lang-select-pressed-text: #fff; // color of language tab text when mouse is pre
 
 // SIZES
 ////////////////////
-$nav-width: 230px; // width of the navbar
-$examples-width: 35%; // portion of the screen taken up by code examples
+//$nav-width: 230px; // width of the navbar
+$nav-width: 24%; // width of the navbar
+$examples-width: 10%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px; // padding to left and right of content & examples
 $nav-padding: 15px; // padding to left and right of navbar
@@ -62,7 +63,8 @@ $nav-v-padding: 10px; // padding used vertically around search boxes and results
 $nav-indent: 10px; // extra padding for ToC subitems
 $code-annotation-padding: 13px; // padding inside code annotations
 $h1-margin-bottom: 21px; // padding under the largest header tags
-$tablet-width: 930px; // min width before reverting to tablet size
+//$tablet-width: 930px; // min width before reverting to tablet size
+$tablet-width: 70%; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width; // min width before reverting to mobile size
 
 
@@ -70,7 +72,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 ////////////////////
 %default-font {
   font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 %header-font {
@@ -80,7 +82,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 %code-font {
   font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.5;
 }
 

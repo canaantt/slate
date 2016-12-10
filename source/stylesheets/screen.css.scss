@@ -69,7 +69,7 @@ html, body {
   resize: horizontal;
   overflow: auto;
   background-color: $nav-bg;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
 
   // language selector for mobile devices
@@ -95,7 +95,7 @@ html, body {
       border-width: 0 0 1px 0;
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
-      box-sizing: border-box;
+      //box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - 30;
       outline: none;
@@ -188,7 +188,7 @@ html, body {
     font-weight: 500;
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
+      font-size: 15px;
     }
 
     // for embossed look:
@@ -202,7 +202,7 @@ html, body {
         // Styling here for a level 2 nesting. For example -> 
         background-color: $submenu-bg;
         padding-left: $nav-padding + $nav-indent * 3;
-        font-size: 10px;
+        font-size: 15px;
       }
     }
   }
@@ -290,6 +290,7 @@ html, body {
     right: 0;
     top: 0;
     bottom: 0;
+    display: none;
   }
 
   .lang-selector {

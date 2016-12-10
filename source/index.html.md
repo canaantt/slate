@@ -1,11 +1,6 @@
 ---
 title: API Reference
 
-language_tabs:
-  - python
-  - javascript
-  - r
-
 toc_footers:
   - email to contact@oncoscape.org
   - <a target="_blank" href='https://oncoscape.sttrcancer.org'>Oncoscape</a>
@@ -25,8 +20,15 @@ search: true
 
 [Oncoscape](https://oncoscape.sttrcancer.org/#/) is a web application that hosts an integrated suite of analysis tools for users to explore hypotheses related to molecular and clinical data in order to better understand cancer biology and treatment options. For more detailed information, please read [wiki](https://github.com/FredHutch/Oncoscape).
 
-# Authentication
-
-Oncoscape API authentication occurs at Mongo DB level. 
+* <a href='#data-content'>**Data Content**</a>
+  * Organizes most if not all data tables by disease
+  * Lists data types includes clinical and molecular tables
+  * Lists data sources and a brief description of the individual table
+* <a href='#data-access'>**Data Access**</a>
+  * Endpoint for Oncoscape Data API
+  * Syntax for simple query
+* <a href='#data-provenance'>**Data Provenance**</a>
+  * Explanation of the Oncoscape data processing pipeline
+  * Oncoscape interface
 
 
