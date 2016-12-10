@@ -1,4 +1,4 @@
-<h1 id="database-description">Database Description</h1>
+<h1 id="data-provenance">Data Provenance</h1>
 
 <p>We use two collections to track the metadata for all the data collections within our database. &lsquo;manifest&rsquo; is organized by collection. &#39;lookup_oncoscape_datasource&rsquo; is organized by disease.</p>
 
