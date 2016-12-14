@@ -3,7 +3,13 @@
 
 We use two collections to track the metadata for all the data collections within our database. 'manifest' is organized by collection. 'lookup_oncoscape_datasource' is organized by disease.
 
-## From Disease Perspective
+## Pipeline
+
+![Data Processing Pipeline](/images/datapipeline.png)
+
+## Oncoscape Interface
+
+### From Disease Perspective
 
 Key words to describe lookup_oncoscape_datasource collection
 
@@ -149,7 +155,7 @@ edges collection source | Annotation
 broad | <a target="_blank" href='https://gdac.broadinstitute.org//'>Broad Firehose</a>
 ucsc | <a target="_blank" href='https://genome-cancer.ucsc.edu/'>UCSC</a>
 
-## From Collection Perspective
+### From Collection Perspective
 
 Key words to describe manifest collection
 
@@ -241,7 +247,7 @@ edges | derived collection to describe edges between genes and patients use for 
 ptDegree | derived collection to describe the weight of patients based on on the number of data points use for Markers and Patients (one of the Oncoscape tools)
 geneDegree | derived collection to describe the weight of genes based on on the number of data points use for Markers and Patients (one of the Oncoscape tools)
 
-## Genesets Details:
+### Genesets Details:
 
 Key | description | number of genes
 --------- | --------- | ---------

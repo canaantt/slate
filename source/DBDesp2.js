@@ -2259,7 +2259,10 @@ var genesets_annot = {
 format.h1("Data Provenance");
 format.text("We use two collections to track the metadata for all the data collections within our database. 'manifest' is organized by collection. 'lookup_oncoscape_datasource' is organized by disease.");
 // Describe lookup_oncoscape_datasource
-format.h2("From Disease Perspective");
+format.h2("Pipeline");
+format.text("![Data Processing Pipeline](/images/datapipeline.png)");
+format.h2("Oncoscape Interface");
+format.h3("From Disease Perspective");
 format.text("Key words to describe lookup_oncoscape_datasource collection");
 format.text("Key | Annotation");
 format.table("--------- | ----------- ");
@@ -2349,7 +2352,7 @@ for(n=0;n<lookup_edges_source_keys.length;n++){
 	format.table(lookup_edges_source_keys[n] + " | " + source_keys_annot[lookup_edges_source_keys[n]]);
 } 
 // Describe manifest
-format.h2("From Collection Perspective");
+format.h3("From Collection Perspective");
 format.text("Key words to describe manifest collection");
 format.text("Key | Annotation");
 format.table("--------- | ----------- ");
@@ -2375,7 +2378,7 @@ for(p=0;p<manifest_type_keys.length;p++){
 	format.table(manifest_type_keys[p] + " | " + type_keys_annot[manifest_type_keys[p]]);
 } 
 
-format.h2("Genesets Details:");
+format.h3("Genesets Details:");
 format.text("Key | description | number of genes");
 format.table("--------- | --------- | ---------");
 var genesets_keys = Object.keys(genesets_annot);
