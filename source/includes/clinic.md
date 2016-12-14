@@ -37,8 +37,6 @@ limit the final output to two records.
 `"$limit":2`
 
 
-## Fetch JSON-Formatted Data Using Programming Languages
-
 # Data Content
 
 ## BRCA - Breast invasive carcinoma
@@ -62,11 +60,6 @@ brca_mut01_ucsc_mutationcuratedwustlgene | molecular | ucsc | mut01
 brca_rna_ucsc_hiseq | molecular | ucsc | rna
 brca_protein_ucsc_rppa | molecular | ucsc | protein
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## ESCA - Esophageal carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -86,11 +79,6 @@ esca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 esca_rna_ucsc_hiseq | molecular | ucsc | rna
 esca_protein_ucsc_rppa | molecular | ucsc | protein
 esca_mut01_ucsc_broad | molecular | ucsc | mut01
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## GBM - Glioblastoma multiforme
 
@@ -113,11 +101,6 @@ gbm_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 gbm_protein_ucsc_rppa | molecular | ucsc | protein
 gbm_rna_ucsc_hiseq | molecular | ucsc | rna
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## HNSC - Head and Neck squamous cell carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -139,11 +122,6 @@ hnsc_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 hnsc_protein_ucsc_rppa | molecular | ucsc | protein
 hnsc_rna_ucsc_hiseq | molecular | ucsc | rna
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## KICH - Kidney Chromophobe
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -163,11 +141,6 @@ kich_rna_ucsc_hiseq | molecular | ucsc | rna
 kich_protein_ucsc_rppa | molecular | ucsc | protein
 kich_mut01_ucsc_broad | molecular | ucsc | mut01
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## KIRC - Kidney renal clear cell carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -183,11 +156,6 @@ kirc_radiation_tcga_clinical | clinical | tcga | color
 kirc_mut_broad_mutsig2 | molecular | broad | mut
 kirc_mut01_broad_mutsig2 | molecular | broad | mut01
 kirc_mut01_ucsc_pancanaws | molecular | ucsc | mut01
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## KIRP - Kidney renal papillary cell carcinoma
 
@@ -206,11 +174,6 @@ kirp_mut01_broad_mutsig2 | molecular | broad | mut01
 kirp_rna_ucsc_hiseq | molecular | ucsc | rna
 kirp_protein_ucsc_rppa | molecular | ucsc | protein
 kirp_mut01_ucsc_broadcurated | molecular | ucsc | mut01
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## LGG - Brain Lower Grade Glioma
 
@@ -232,11 +195,6 @@ lgg_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 lgg_protein_ucsc_rppa | molecular | ucsc | protein
 lgg_rna_ucsc_hiseq | molecular | ucsc | rna
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## LIHC - undefined
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -255,11 +213,6 @@ lihc_mut01_broad_mutsig2 | molecular | broad | mut01
 lihc_rna_ucsc_hiseq | molecular | ucsc | rna
 lihc_protein_ucsc_rppa | molecular | ucsc | protein
 lihc_mut01_ucsc_bcm | molecular | ucsc | mut01
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## LUAD - Lung adenocarcinoma
 
@@ -281,11 +234,6 @@ luad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 luad_rna_ucsc_hiseq | molecular | ucsc | rna
 luad_protein_ucsc_rppa | molecular | ucsc | protein
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## LUSC - Lung squamous cell carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -305,11 +253,6 @@ lusc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 lusc_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 lusc_rna_ucsc_hiseq | molecular | ucsc | rna
 lusc_protein_ucsc_rppa | molecular | ucsc | protein
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## SARC - Sarcoma
 
@@ -332,11 +275,6 @@ sarc_protein_ucsc_rppa | molecular | ucsc | protein
 sarc_mut01_ucsc_broad | molecular | ucsc | mut01
 sarc_methylation_ucsc_hm450 | molecular | ucsc | methylation
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## PAAD - Pancreatic adenocarcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -357,11 +295,6 @@ paad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 paad_rna_ucsc_hiseq | molecular | ucsc | rna
 paad_protein_ucsc_rppa | molecular | ucsc | protein
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## PRAD - Prostate adenocarcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -381,11 +314,6 @@ prad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 prad_rna_ucsc_hiseq | molecular | ucsc | rna
 prad_protein_ucsc_rppa | molecular | ucsc | protein
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## SKCM - Skin Cutaneous Melanoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -403,11 +331,6 @@ skcm_mut01_broad_mutsig2 | molecular | broad | mut01
 skcm_rna_ucsc_hiseq | molecular | ucsc | rna
 skcm_protein_ucsc_rppa | molecular | ucsc | protein
 skcm_mut01_ucsc_broad | molecular | ucsc | mut01
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## STAD - Stomach adenocarcinoma
 
@@ -428,11 +351,6 @@ stad_rna_ucsc_hiseq | molecular | ucsc | rna
 stad_protein_ucsc_rppa | molecular | ucsc | protein
 stad_mut01_ucsc_broadcurated | molecular | ucsc | mut01
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## THCA - Thyroid carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -452,11 +370,6 @@ thca_rna_ucsc_hiseq | molecular | ucsc | rna
 thca_protein_ucsc_rppa | molecular | ucsc | protein
 thca_mut01_ucsc_broad | molecular | ucsc | mut01
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## UCEC - Uterine Corpus Endometrial Carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -475,11 +388,6 @@ ucec_mut01_broad_mutsig2 | molecular | broad | mut01
 ucec_rna_ucsc_hiseq | molecular | ucsc | rna
 ucec_protein_ucsc_rppa | molecular | ucsc | protein
 ucec_mut01_ucsc_pancanaws | molecular | ucsc | mut01
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## ACC - Adrenocortical carcinoma
 
@@ -501,11 +409,6 @@ acc_rna_ucsc_hiseq | molecular | ucsc | rna
 acc_protein_ucsc_rppa | molecular | ucsc | protein
 acc_mut01_ucsc_broadcurated | molecular | ucsc | mut01
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## BLCA - Bladder Urothelial Carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -525,11 +428,6 @@ blca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 blca_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 blca_rna_ucsc_hiseq | molecular | ucsc | rna
 blca_protein_ucsc_rppa | molecular | ucsc | protein
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## CESC - Cervical squamous cell carcinoma and endocervical adenocarcinoma
 
@@ -551,11 +449,6 @@ cesc_rna_ucsc_hiseq | molecular | ucsc | rna
 cesc_protein_ucsc_rppa | molecular | ucsc | protein
 cesc_mut01_ucsc_ucsc | molecular | ucsc | mut01
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## CHOL - Cholangiocarcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -576,11 +469,6 @@ chol_rna_ucsc_hiseq | molecular | ucsc | rna
 chol_protein_ucsc_rppa | molecular | ucsc | protein
 chol_mut01_ucsc_broad | molecular | ucsc | mut01
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## DLBC - Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -600,11 +488,6 @@ dlbc_rna_ucsc_hiseq | molecular | ucsc | rna
 dlbc_protein_ucsc_rppa | molecular | ucsc | protein
 dlbc_mut01_ucsc_bcm | molecular | ucsc | mut01
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## COADREAD - Colon adenocarcinoma & Rectum adenocarcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -615,11 +498,6 @@ coadread_samplemap_tcga_molecular | clinical | tcga | color
 coadread_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 coadread_mut01_ucsc_mutation | molecular | ucsc | mut01
 coadread_rna_ucsc_hiseq | molecular | ucsc | rna
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## LUNG - Lung adenocarcinoma & Lung squamous cell carcinoma
 
@@ -632,11 +510,6 @@ lung_facs_demo_flow | molecular | demo | facs
 lung_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 lung_mut01_ucsc_mutation | molecular | ucsc | mut01
 lung_rna_ucsc_hiseq | molecular | ucsc | rna
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## COAD - Colon adenocarcinoma
 
@@ -654,19 +527,12 @@ coad_othermalignancy_tcga_v4p0 | clinical | tcga | color
 coad_protein_ucsc_rppa | molecular | ucsc | protein
 coad_rna_ucsc_hiseq | molecular | ucsc | rna
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## HG19 - Genome Platform
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
 hg19_genesets_hgnc_import | category | hgnc | genesets
 hg19_genesets_orghs_1e05 | category | orgHs | genesets
-
-### More Details of Molecular Collections
 
 ## LAML - Acute Myeloid Leukemia
 
@@ -678,11 +544,6 @@ laml_patient_tcga_clinical | clinical | tcga | color
 laml_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 laml_mut01_ucsc_mutation | molecular | ucsc | mut01
 laml_rna_ucsc_hiseq | molecular | ucsc | rna
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## READ - Rectum adenocarcinoma
 
@@ -699,11 +560,6 @@ read_patient_tcga_clinical | clinical | tcga | color
 read_radiation_tcga_clinical | clinical | tcga | color
 read_protein_ucsc_rppa | molecular | ucsc | protein
 read_rna_ucsc_hiseq | molecular | ucsc | rna
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## UCS - Uterine Carcinosarcoma
 
@@ -722,11 +578,6 @@ ucs_rna_ucsc_hiseq | molecular | ucsc | rna
 ucs_protein_ucsc_rppa | molecular | ucsc | protein
 ucs_mut01_ucsc_broad | molecular | ucsc | mut01
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## UVM - Uveal Melanoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -743,11 +594,6 @@ uvm_radiation_tcga_clinical | clinical | tcga | color
 uvm_rna_ucsc_hiseq | molecular | ucsc | rna
 uvm_protein_ucsc_rppa | molecular | ucsc | protein
 uvm_mut01_ucsc_broadcurated | molecular | ucsc | mut01
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## THYM - Thymoma
 
@@ -766,11 +612,6 @@ thym_rna_ucsc_hiseq | molecular | ucsc | rna
 thym_protein_ucsc_rppa | molecular | ucsc | protein
 thym_mut01_ucsc_broad | molecular | ucsc | mut01
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## TGCT - Testicular Germ Cell Tumors
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -787,11 +628,6 @@ tgct_radiation_tcga_clinical | clinical | tcga | color
 tgct_rna_ucsc_hiseq | molecular | ucsc | rna
 tgct_protein_ucsc_rppa | molecular | ucsc | protein
 tgct_mut01_ucsc_broad | molecular | ucsc | mut01
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## PCPG - Pheochromocytoma and Paraganglioma
 
@@ -810,11 +646,6 @@ pcpg_rna_ucsc_hiseq | molecular | ucsc | rna
 pcpg_protein_ucsc_rppa | molecular | ucsc | protein
 pcpg_mut01_ucsc_broad | molecular | ucsc | mut01
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## OV - Ovarian serous cystadenocarcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -832,11 +663,6 @@ ov_rna_ucsc_hiseq | molecular | ucsc | rna
 ov_protein_ucsc_rppa | molecular | ucsc | protein
 ov_mut01_ucsc_pancanaws | molecular | ucsc | mut01
 
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
-
 ## MESO - Mesothelioma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -853,11 +679,6 @@ meso_radiation_tcga_clinical | clinical | tcga | color
 meso_rna_ucsc_hiseq | molecular | ucsc | rna
 meso_protein_ucsc_rppa | molecular | ucsc | protein
 meso_mut01_ucsc_broad | molecular | ucsc | mut01
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
 
 ## BRAIN - Lower Grade Glioma & Glioblastoma multiforme
 
@@ -878,11 +699,6 @@ brain_othermalignancy_tcga_v4p0 | clinical | tcga | color
 brain_mut_broad_mutsig2 | molecular | broad | mut
 brain_mut01_broad_mutsig2 | molecular | broad | mut01
 brain_cnv_ucsc-pnas_gistic | molecular | ucsc-PNAS | cnv
-brain_mut01_ucsc-pnas_import | molecular | ucsc-PNAS | mut01
+brain_mut01_ucsc-pnas_mutationbroadgene | molecular | ucsc-PNAS | mut01
 brain_cnv_ucsc_gistic | molecular | ucsc | cnv
-brain_mut01_ucsc_import | molecular | ucsc | mut01
-
-### More Details of Molecular Collections
-
-Collection | Data Source | Data Type | Size | Description
---------- | ----------- | ----------- | ----------- | -----------
+brain_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01

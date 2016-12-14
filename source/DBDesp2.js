@@ -105,7 +105,7 @@ var genesets_annot = {
    'TCGA_GBM_classifiers':{
 	   'source': '',
 	   'description':  '<a target="_blank" href=\'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2818769/\'>TCGA_GBM_classifiers</a>',
-	   'number_of_genes': 840,
+	   'number_of_genes': '<a href="#TCGA_GBM_classifiers" onclick="genesetDisplay">840</a>',
 	   'genes' : [ 
 			"ABAT", 
 			"ABCD2", 
@@ -952,7 +952,7 @@ var genesets_annot = {
    'Marker_genes_545':{
 	   'source':'Eric Holland Research Group',
 	   'description': 'The 545-gene set is all the genes that are recurrently impacted in TCGA gliomas.',
-	   'number_of_genes': 545,
+	   'number_of_genes': '<a href="#Marker_genes_545" onclick="genesetDisplay">545</a>',
 	   'genes' : [ 
 			"ABCG2", 
 			"AHNAK2", 
@@ -1504,7 +1504,7 @@ var genesets_annot = {
    'TCGA_pancan_mutated':{
 	   'source': 'TCGA',
 	   'description': 'all the genes recurrently mutated across all TCGA cancers (note that it may not be up to date for all the TCGA samples currently available',
-	   'number_of_genes': 64,
+	   'number_of_genes': '<a href="#TCGA_pancan_mutated" onclick="genesetDisplay">64</a>',
 	   'genes': [ 
 			"TP53", 
 			"ARID1A", 
@@ -1575,7 +1575,7 @@ var genesets_annot = {
    'oncoVogel274':{
 	   'source': '',
 	   'description': 'The OncoVogel274 gene set comes from combining (an old version of Oncoplex) with genes from this (famous) paper by <a target="_blank" href=\'https://www.ncbi.nlm.nih.gov/pubmed/23539594/\'>Vogelstein</a>',
-	   'number_of_genes': 274,
+	   'number_of_genes': '<a href="#oncoVogel274" onclick="genesetDisplay">274</a>',
 	   'genes':[ 
 			"ABCB1", 
 			"ABCC4", 
@@ -1856,7 +1856,7 @@ var genesets_annot = {
    'Oncoplex':{
 	   'source': 'UW Medicine',
 	   'description': '<a target="_blank" href=\'http://tests.labmed.washington.edu/UW-OncoPlex/\'>UW Oncoplex Cancer Panel</a>',
-	   'number_of_genes': 263,
+	   'number_of_genes': '<a href="#Oncoplex" onclick="genesetDisplay">263</a>',
 	   'genes':[ 
 			"ABCB1", 
 			"ABCC4", 
@@ -2126,7 +2126,7 @@ var genesets_annot = {
    'OSCC_Chen_131_probes':{
 	   'source': '',
 	   'description': '<a target="_blank" href=\'https://www.ncbi.nlm.nih.gov/pubmed/18669583/\'>OSCC_Chen_131_probes</a>',
-	   'number_of_genes': 109,
+	   'number_of_genes': '<a href="#OSCC_Chen_131_probes" onclick="genesetDisplay">109</a>',
 	   'genes':[ 
 			"COL1A1", 
 			"COL1A2", 
@@ -2242,7 +2242,7 @@ var genesets_annot = {
    'OSCC_Chen_9_genes':{
 	   'source': '',
 	   'description': '<a target="_blank" href=\'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4527746//\'>OSCC_Chen_9_genes</a>',
-	   'number_of_genes': 9,
+	   'number_of_genes': '<a href="#OSCC_Chen_9_genes" onclick="genesetDisplay">9</a>',
 	   'genes':[ 
 			"TP53", 
 			"NFKB", 
@@ -2262,7 +2262,8 @@ format.text("We use two collections to track the metadata for all the data colle
 format.h2("Pipeline");
 format.text("![Data Processing Pipeline](/images/datapipeline.png)");
 format.h2("Oncoscape Interface");
-format.h3("From Disease Perspective");
+format.text("we use lookup as an hand-off from data-generation to data-utilization. Lookup is reminding us the data are organized by diseases. And they have the subcategories: clinical, molecular. The lookup is organized by disease. The top half: meta about the disease set. The bottom is the actual data. from each lookup document. The meta section is organized by..The actual section is organized by … subcategories. Render tables are created for tool; MP: render_patient; PCA: render_pca"); 
+
 format.text("Key words to describe lookup_oncoscape_datasource collection");
 format.text("Key | Annotation");
 format.table("--------- | ----------- ");
@@ -2378,12 +2379,35 @@ for(p=0;p<manifest_type_keys.length;p++){
 	format.table(manifest_type_keys[p] + " | " + type_keys_annot[manifest_type_keys[p]]);
 } 
 
-format.h3("Genesets Details:");
+format.h3("Genesets Details");
 format.text("Key | description | number of genes");
 format.table("--------- | --------- | ---------");
 var genesets_keys = Object.keys(genesets_annot);
+var node;
 for(var i= 0; i<genesets_keys.length; i++){
 	format.table(genesets_keys[i] + " | "  + genesets_annot[genesets_keys[i]].description + " | " +
 				genesets_annot[genesets_keys[i]].number_of_genes);
+	node =  '<div id='+ '"' + genesets_keys[i] + '">' +genesets_annot[genesets_keys[i]].genes +'</div>'
 }
+
+/* REST API Query on gbm_patient_tcga_clinical */
+format.h1("Data Access");
+format.h2("Example to access one collection from browser");
+format.h3("HTTP Request");
+format.text("Collections are accessable at the host: http://dev.oncoscape.sttrcancer.io/api/");
+format.text("The endpoint of oncoscape API is a unique URL. Every endpoint points to a unique collection.");
+format.table("Below lists more details of the organization of the Oncoscape Mongo Database and the collections organized by disease type.");
+format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q=&apikey=password");
+format.h2("Query Collection from Browser");
+format.h3("HTTP Request");
+var query = '{"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}'; 
+format.text("Filter by gender and race and only show the selected fields");
+format.url("GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q=" + query + "&apikey=password");
+format.text("only show gender, race and patient_ID");
+format.url('"$fields":["gender","race","patient_ID"]');
+format.text("skip the first five records");
+format.url('"$skip":5');
+format.text("limit the final output to two records.");
+format.url('"$limit":2');
+  
 

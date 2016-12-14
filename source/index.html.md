@@ -10,8 +10,9 @@ toc_footers:
 
 
 includes:
-  - DBDesp2
   - clinic
+  - DBDesp2
+
 
 search: true
 ---
@@ -24,11 +25,11 @@ search: true
   * Organizes most if not all data tables by disease
   * Lists data types includes clinical and molecular tables
   * Lists data sources and a brief description of the individual table
-* <a href='#data-access'>**Data Access**</a>
-  * Endpoint for Oncoscape Data API
-  * Syntax for simple query
 * <a href='#data-provenance'>**Data Provenance**</a>
   * Explanation of the Oncoscape data processing pipeline
   * Oncoscape interface
+* <a href='#data-access'>**Data Access**</a>
+  * Endpoint for Oncoscape Data API
+  * Syntax for simple query
 
 

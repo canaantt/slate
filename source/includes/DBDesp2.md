@@ -9,7 +9,7 @@ We use two collections to track the metadata for all the data collections within
 
 ## Oncoscape Interface
 
-### From Disease Perspective
+we use lookup as an hand-off from data-generation to data-utilization. Lookup is reminding us the data are organized by diseases. And they have the subcategories: clinical, molecular. The lookup is organized by disease. The top half: meta about the disease set. The bottom is the actual data. from each lookup document. The meta section is organized by..The actual section is organized by … subcategories. Render tables are created for tool; MP: render_patient; PCA: render_pca
 
 Key words to describe lookup_oncoscape_datasource collection
 
@@ -247,14 +247,52 @@ edges | derived collection to describe edges between genes and patients use for 
 ptDegree | derived collection to describe the weight of patients based on on the number of data points use for Markers and Patients (one of the Oncoscape tools)
 geneDegree | derived collection to describe the weight of genes based on on the number of data points use for Markers and Patients (one of the Oncoscape tools)
 
-### Genesets Details:
+### Genesets Details
 
 Key | description | number of genes
 --------- | --------- | ---------
-TCGA_GBM_classifiers | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2818769/'>TCGA_GBM_classifiers</a> | 840
-Marker_genes_545 | The 545-gene set is all the genes that are recurrently impacted in TCGA gliomas. | 545
-TCGA_pancan_mutated | all the genes recurrently mutated across all TCGA cancers (note that it may not be up to date for all the TCGA samples currently available | 64
-oncoVogel274 | The OncoVogel274 gene set comes from combining (an old version of Oncoplex) with genes from this (famous) paper by <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pubmed/23539594/'>Vogelstein</a> | 274
-Oncoplex | <a target="_blank" href='http://tests.labmed.washington.edu/UW-OncoPlex/'>UW Oncoplex Cancer Panel</a> | 263
-OSCC_Chen_131_probes | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pubmed/18669583/'>OSCC_Chen_131_probes</a> | 109
-OSCC_Chen_9_genes | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4527746//'>OSCC_Chen_9_genes</a> | 9
+TCGA_GBM_classifiers | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2818769/'>TCGA_GBM_classifiers</a> | <a href="#TCGA_GBM_classifiers" onclick="genesetDisplay">840</a>
+Marker_genes_545 | The 545-gene set is all the genes that are recurrently impacted in TCGA gliomas. | <a href="#Marker_genes_545" onclick="genesetDisplay">545</a>
+TCGA_pancan_mutated | all the genes recurrently mutated across all TCGA cancers (note that it may not be up to date for all the TCGA samples currently available | <a href="#TCGA_pancan_mutated" onclick="genesetDisplay">64</a>
+oncoVogel274 | The OncoVogel274 gene set comes from combining (an old version of Oncoplex) with genes from this (famous) paper by <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pubmed/23539594/'>Vogelstein</a> | <a href="#oncoVogel274" onclick="genesetDisplay">274</a>
+Oncoplex | <a target="_blank" href='http://tests.labmed.washington.edu/UW-OncoPlex/'>UW Oncoplex Cancer Panel</a> | <a href="#Oncoplex" onclick="genesetDisplay">263</a>
+OSCC_Chen_131_probes | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pubmed/18669583/'>OSCC_Chen_131_probes</a> | <a href="#OSCC_Chen_131_probes" onclick="genesetDisplay">109</a>
+OSCC_Chen_9_genes | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4527746//'>OSCC_Chen_9_genes</a> | <a href="#OSCC_Chen_9_genes" onclick="genesetDisplay">9</a>
+
+# Data Access
+
+## Example to access one collection from browser
+
+### HTTP Request
+
+Collections are accessable at the host: http://dev.oncoscape.sttrcancer.io/api/
+
+The endpoint of oncoscape API is a unique URL. Every endpoint points to a unique collection.
+Below lists more details of the organization of the Oncoscape Mongo Database and the collections organized by disease type.
+
+`GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q=&apikey=password`
+
+
+## Query Collection from Browser
+
+### HTTP Request
+
+Filter by gender and race and only show the selected fields
+
+`GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q={"gender":"MALE", "race":"WHITE","$fields":["gender","race","patient_ID"],"$skip":5,"$limit":2}&apikey=password`
+
+
+only show gender, race and patient_ID
+
+`"$fields":["gender","race","patient_ID"]`
+
+
+skip the first five records
+
+`"$skip":5`
+
+
+limit the final output to two records.
+
+`"$limit":2`
+

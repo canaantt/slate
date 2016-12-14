@@ -247,7 +247,7 @@ co(function *() {
   format.text("limit the final output to two records.");
   format.url('"$limit":2');
       
-  format.h2("Fetch JSON-Formatted Data Using Programming Languages"); 
+  //format.h2("Fetch JSON-Formatted Data Using Programming Languages"); 
   //format.codeComment('Fetch JSON formatted data using R, Python, or javascript');   
   // mongo shell version 
   // format.codeMongoStart();
@@ -458,43 +458,38 @@ co(function *() {
           }
          
       }
-      format.h3("More Details of Molecular Collections");
-      if(mol_colls.length !== 0) {
-        var mol_annot = [];
-        // mol_colls.forEach(function(e){
-        //   if(e.source === 'ucsc'){
-        //               format.codeStart();
-        //               var annot = ucsc_annotation.filterByCollection(e.collection);
-        //               format.text(JSON.stringify(annot, null, 4)); 
-        //               format.codeStop();
-        //               mol_annot.push(annot);
-        //   }else if(e.source === 'cBio'){
-        //               var annot = cbio_annotation.filterByCollection(e.collection);
-        //               if(annot != false){
-        //                 // var e_coll = yield comongo.db.collection(db, e.collection);
-        //                 // var e_coll_count = yield e.collection.count();
+      // format.h3("More Details of Molecular Collections");
+      // if(mol_colls.length !== 0) {
+      //   var mol_annot = [];
+      //   mol_colls.forEach(function(e){
+      //     if(e.source === 'ucsc'){
+      //                 format.codeStart();
+      //                 var annot = ucsc_annotation.filterByCollection(e.collection);
+      //                 format.text(JSON.stringify(annot, null, 4)); 
+      //                 format.codeStop();
+      //                 mol_annot.push(annot);
+      //     }else if(e.source === 'cBio'){
+      //                 var annot = cbio_annotation.filterByCollection(e.collection);
+      //                 if(annot != false){
+      //                   // var e_coll = yield comongo.db.collection(db, e.collection);
+      //                   // var e_coll_count = yield e.collection.count();
   
                         
-        //                 mol_annot.push(annot);
-        //               }
+      //                   mol_annot.push(annot);
+      //                 }
                       
-        //   }
-        // });
-        format.text("Collection | Data Source | Data Type | Size | Description");
-        format.table("--------- | ----------- | ----------- | ----------- | -----------"); 
-        mol_annot.forEach(function(e){
-          format.table(e.collection + " | " +
-                       e.source + " | " +
-                       e.type + " | " +
-                       e.sampleSize + " | " + 
-                       e.description);
-        });
-
-      }
-      
-
-      
-      
+      //     }
+      //   });
+      //   format.text("Collection | Data Source | Data Type | Size | Description");
+      //   format.table("--------- | ----------- | ----------- | ----------- | -----------"); 
+      //   mol_annot.forEach(function(e){
+      //     format.table(e.collection + " | " +
+      //                  e.source + " | " +
+      //                  e.type + " | " +
+      //                  e.sampleSize + " | " + 
+      //                  e.description);
+      //   });
+      // }
     }
    
   }
