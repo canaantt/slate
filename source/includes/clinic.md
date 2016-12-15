@@ -1,6 +1,69 @@
 
 # Data Content
 
+## ACC - Adrenocortical carcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+acc_color_tcga_import | category | tcga | color
+acc_samplemap_tcga_molecular | clinical | tcga | color
+acc_drug_tcga_clinical | clinical | tcga | color
+acc_followup_tcga_v4p0 | clinical | tcga | color
+acc_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+acc_newtumor_tcga_clinical | clinical | tcga | color
+acc_othermalignancy_tcga_v4p0 | clinical | tcga | color
+acc_patient_tcga_clinical | clinical | tcga | color
+acc_radiation_tcga_clinical | clinical | tcga | color
+acc_mut_broad_mutsig2 | molecular | broad | mut
+acc_mut01_broad_mutsig2 | molecular | broad | mut01
+acc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+acc_rna_ucsc_hiseq | molecular | ucsc | rna
+acc_protein_ucsc_rppa | molecular | ucsc | protein
+acc_mut01_ucsc_broadcurated | molecular | ucsc | mut01
+
+## BLCA - Bladder Urothelial Carcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+blca_color_tcga_import | category | tcga | color
+blca_samplemap_tcga_molecular | clinical | tcga | color
+blca_followup_tcga_v2p0 | clinical | tcga | color
+blca_patient_tcga_clinical | clinical | tcga | color
+blca_drug_tcga_clinical | clinical | tcga | color
+blca_radiation_tcga_clinical | clinical | tcga | color
+blca_newtumor_tcga_clinical | clinical | tcga | color
+blca_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+blca_othermalignancy_tcga_v4p0 | clinical | tcga | color
+blca_mut_broad_mutsig2 | molecular | broad | mut
+blca_mut01_broad_mutsig2 | molecular | broad | mut01
+blca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+blca_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
+blca_rna_ucsc_hiseq | molecular | ucsc | rna
+blca_protein_ucsc_rppa | molecular | ucsc | protein
+
+## BRAIN - Lower Grade Glioma & Glioblastoma multiforme
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+brain_color_tcga_import | category | tcga | color
+brain_samplemap_tcga_molecular | clinical | tcga | color
+brain_events_tcga_clinical | clinical | tcga | color
+brain_patient_tcga_clinical | clinical | tcga | color
+brain_followup-v1p0_tcga_clinical | clinical | tcga | color
+brain_drug_tcga_clinical | clinical | tcga | color
+brain_newtumor_tcga_clinical | clinical | tcga | color
+brain_othermalignancy-v4p0_tcga_clinical | clinical | tcga | color
+brain_radiation_tcga_clinical | clinical | tcga | color
+brain_followup_tcga_v1p0 | clinical | tcga | color
+brain_newtumor_tcga_clinical | clinical | tcga | color
+brain_othermalignancy_tcga_v4p0 | clinical | tcga | color
+brain_mut_broad_mutsig2 | molecular | broad | mut
+brain_mut01_broad_mutsig2 | molecular | broad | mut01
+brain_cnv_ucsc-pnas_gistic | molecular | ucsc-PNAS | cnv
+brain_mut01_ucsc-pnas_mutationbroadgene | molecular | ucsc-PNAS | mut01
+brain_cnv_ucsc_gistic | molecular | ucsc | cnv
+brain_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
+
 ## BRCA - Breast invasive carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -15,12 +78,97 @@ brca_newtumor_tcga_clinical | clinical | tcga | color
 brca_newtumor-followup_tcga_v4p0 | clinical | tcga | color
 brca_othermalignancy_tcga_v4p0 | clinical | tcga | color
 brca_mut_broad_mutsig2 | molecular | broad | mut
-brca_psi_bradleylab_miso | molecular | bradleyLab | psi
 brca_mut01_broad_mutsig2 | molecular | broad | mut01
 brca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 brca_mut01_ucsc_mutationcuratedwustlgene | molecular | ucsc | mut01
 brca_rna_ucsc_hiseq | molecular | ucsc | rna
 brca_protein_ucsc_rppa | molecular | ucsc | protein
+
+## CESC - Cervical squamous cell carcinoma and endocervical adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+cesc_color_tcga_import | category | tcga | color
+cesc_samplemap_tcga_molecular | clinical | tcga | color
+cesc_followup_tcga_v2p0 | clinical | tcga | color
+cesc_drug_tcga_clinical | clinical | tcga | color
+cesc_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+cesc_newtumor_tcga_clinical | clinical | tcga | color
+cesc_othermalignancy_tcga_v4p0 | clinical | tcga | color
+cesc_patient_tcga_clinical | clinical | tcga | color
+cesc_radiation_tcga_clinical | clinical | tcga | color
+cesc_mut_broad_mutsig2 | molecular | broad | mut
+cesc_mut01_broad_mutsig2 | molecular | broad | mut01
+cesc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+cesc_rna_ucsc_hiseq | molecular | ucsc | rna
+cesc_protein_ucsc_rppa | molecular | ucsc | protein
+cesc_mut01_ucsc_ucsc | molecular | ucsc | mut01
+
+## CHOL - Cholangiocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+chol_color_tcga_import | category | tcga | color
+chol_samplemap_tcga_molecular | clinical | tcga | color
+chol_drug_tcga_clinical | clinical | tcga | color
+chol_followup_tcga_v4p0 | clinical | tcga | color
+chol_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+chol_newtumor_tcga_clinical | clinical | tcga | color
+chol_othermalignancy_tcga_v4p0 | clinical | tcga | color
+chol_patient_tcga_clinical | clinical | tcga | color
+chol_radiation_tcga_clinical | clinical | tcga | color
+chol_mut_broad_mutsig2 | molecular | broad | mut
+chol_mut01_broad_mutsig2 | molecular | broad | mut01
+chol_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+chol_rna_ucsc_hiseq | molecular | ucsc | rna
+chol_protein_ucsc_rppa | molecular | ucsc | protein
+chol_mut01_ucsc_broad | molecular | ucsc | mut01
+
+## COAD - Colon adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+coad_color_tcga_import | category | tcga | color
+coad_samplemap_tcga_molecular | clinical | tcga | color
+coad_patient_tcga_clinical | clinical | tcga | color
+coad_drug_tcga_clinical | clinical | tcga | color
+coad_radiation_tcga_clinical | clinical | tcga | color
+coad_followup_tcga_v1p0 | clinical | tcga | color
+coad_newtumor_tcga_clinical | clinical | tcga | color
+coad_newtumor-followup_tcga_v1p0 | clinical | tcga | color
+coad_othermalignancy_tcga_v4p0 | clinical | tcga | color
+coad_protein_ucsc_rppa | molecular | ucsc | protein
+coad_rna_ucsc_hiseq | molecular | ucsc | rna
+
+## COADREAD - Colon adenocarcinoma & Rectum adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+coadread_color_tcga_import | category | tcga | color
+coadread_events_tcga_clinical | clinical | tcga | color
+coadread_samplemap_tcga_molecular | clinical | tcga | color
+coadread_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+coadread_mut01_ucsc_mutation | molecular | ucsc | mut01
+coadread_rna_ucsc_hiseq | molecular | ucsc | rna
+
+## DLBC - Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+dlbc_color_tcga_import | category | tcga | color
+dlbc_samplemap_tcga_molecular | clinical | tcga | color
+dlbc_drug_tcga_clinical | clinical | tcga | color
+dlbc_followup_tcga_v4p4 | clinical | tcga | color
+dlbc_newtumor-followup_tcga_v4p4 | clinical | tcga | color
+dlbc_newtumor_tcga_clinical | clinical | tcga | color
+dlbc_patient_tcga_clinical | clinical | tcga | color
+dlbc_radiation_tcga_clinical | clinical | tcga | color
+dlbc_mut_broad_mutsig2 | molecular | broad | mut
+dlbc_mut01_broad_mutsig2 | molecular | broad | mut01
+dlbc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+dlbc_rna_ucsc_hiseq | molecular | ucsc | rna
+dlbc_protein_ucsc_rppa | molecular | ucsc | protein
+dlbc_mut01_ucsc_bcm | molecular | ucsc | mut01
 
 ## ESCA - Esophageal carcinoma
 
@@ -62,6 +210,13 @@ gbm_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 gbm_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 gbm_protein_ucsc_rppa | molecular | ucsc | protein
 gbm_rna_ucsc_hiseq | molecular | ucsc | rna
+
+## HG19 - Genome Platform
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+hg19_genesets_hgnc_import | category | hgnc | genesets
+hg19_genesets_orghs_1e05 | category | orgHs | genesets
 
 ## HNSC - Head and Neck squamous cell carcinoma
 
@@ -137,6 +292,17 @@ kirp_rna_ucsc_hiseq | molecular | ucsc | rna
 kirp_protein_ucsc_rppa | molecular | ucsc | protein
 kirp_mut01_ucsc_broadcurated | molecular | ucsc | mut01
 
+## LAML - Acute Myeloid Leukemia
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+laml_color_tcga_import | category | tcga | color
+laml_samplemap_tcga_molecular | clinical | tcga | color
+laml_patient_tcga_clinical | clinical | tcga | color
+laml_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+laml_mut01_ucsc_mutation | molecular | ucsc | mut01
+laml_rna_ucsc_hiseq | molecular | ucsc | rna
+
 ## LGG - Brain Lower Grade Glioma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -196,6 +362,18 @@ luad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 luad_rna_ucsc_hiseq | molecular | ucsc | rna
 luad_protein_ucsc_rppa | molecular | ucsc | protein
 
+## LUNG - Lung adenocarcinoma & Lung squamous cell carcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+lung_color_tcga_import | category | tcga | color
+lung_events_tcga_clinical | clinical | tcga | color
+lung_samplemap_tcga_molecular | clinical | tcga | color
+lung_facs_demo_flow | molecular | demo | facs
+lung_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+lung_mut01_ucsc_mutation | molecular | ucsc | mut01
+lung_rna_ucsc_hiseq | molecular | ucsc | rna
+
 ## LUSC - Lung squamous cell carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -216,26 +394,39 @@ lusc_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 lusc_rna_ucsc_hiseq | molecular | ucsc | rna
 lusc_protein_ucsc_rppa | molecular | ucsc | protein
 
-## SARC - Sarcoma
+## MESO - Mesothelioma
 
 Collection Name | Collection Type | Data Source | Data Type
 --------- | ----------- | ----------- | -----------
-sarc_color_tcga_import | category | tcga | color
-sarc_samplemap_tcga_molecular | clinical | tcga | color
-sarc_patient_tcga_clinical | clinical | tcga | color
-sarc_drug_tcga_clinical | clinical | tcga | color
-sarc_radiation_tcga_clinical | clinical | tcga | color
-sarc_followup_tcga_v4p0 | clinical | tcga | color
-sarc_newtumor_tcga_clinical | clinical | tcga | color
-sarc_newtumor-followup_tcga_v4p0 | clinical | tcga | color
-sarc_othermalignancy_tcga_v4p0 | clinical | tcga | color
-sarc_mut_broad_mutsig2 | molecular | broad | mut
-sarc_mut01_broad_mutsig2 | molecular | broad | mut01
-sarc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
-sarc_rna_ucsc_hiseq | molecular | ucsc | rna
-sarc_protein_ucsc_rppa | molecular | ucsc | protein
-sarc_mut01_ucsc_broad | molecular | ucsc | mut01
-sarc_methylation_ucsc_hm450 | molecular | ucsc | methylation
+meso_color_tcga_import | category | tcga | color
+meso_samplemap_tcga_molecular | clinical | tcga | color
+meso_drug_tcga_clinical | clinical | tcga | color
+meso_followup_tcga_v4p0 | clinical | tcga | color
+meso_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+meso_newtumor_tcga_clinical | clinical | tcga | color
+meso_othermalignancy_tcga_v4p0 | clinical | tcga | color
+meso_patient_tcga_clinical | clinical | tcga | color
+meso_radiation_tcga_clinical | clinical | tcga | color
+meso_rna_ucsc_hiseq | molecular | ucsc | rna
+meso_protein_ucsc_rppa | molecular | ucsc | protein
+meso_mut01_ucsc_broad | molecular | ucsc | mut01
+
+## OV - Ovarian serous cystadenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+ov_color_tcga_import | category | tcga | color
+ov_samplemap_tcga_molecular | clinical | tcga | color
+ov_drug_tcga_clinical | clinical | tcga | color
+ov_followup_tcga_v1p0 | clinical | tcga | color
+ov_newtumor-followup_tcga_v1p0 | clinical | tcga | color
+ov_newtumor_tcga_clinical | clinical | tcga | color
+ov_othermalignancy_tcga_v4p0 | clinical | tcga | color
+ov_patient_tcga_clinical | clinical | tcga | color
+ov_radiation_tcga_clinical | clinical | tcga | color
+ov_rna_ucsc_hiseq | molecular | ucsc | rna
+ov_protein_ucsc_rppa | molecular | ucsc | protein
+ov_mut01_ucsc_pancanaws | molecular | ucsc | mut01
 
 ## PAAD - Pancreatic adenocarcinoma
 
@@ -257,6 +448,23 @@ paad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 paad_rna_ucsc_hiseq | molecular | ucsc | rna
 paad_protein_ucsc_rppa | molecular | ucsc | protein
 
+## PCPG - Pheochromocytoma and Paraganglioma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+pcpg_color_tcga_import | category | tcga | color
+pcpg_samplemap_tcga_molecular | clinical | tcga | color
+pcpg_drug_tcga_clinical | clinical | tcga | color
+pcpg_followup_tcga_v4p0 | clinical | tcga | color
+pcpg_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+pcpg_newtumor_tcga_clinical | clinical | tcga | color
+pcpg_othermalignancy_tcga_v4p0 | clinical | tcga | color
+pcpg_patient_tcga_clinical | clinical | tcga | color
+pcpg_radiation_tcga_clinical | clinical | tcga | color
+pcpg_rna_ucsc_hiseq | molecular | ucsc | rna
+pcpg_protein_ucsc_rppa | molecular | ucsc | protein
+pcpg_mut01_ucsc_broad | molecular | ucsc | mut01
+
 ## PRAD - Prostate adenocarcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -275,6 +483,43 @@ prad_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
 prad_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
 prad_rna_ucsc_hiseq | molecular | ucsc | rna
 prad_protein_ucsc_rppa | molecular | ucsc | protein
+
+## READ - Rectum adenocarcinoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+read_color_tcga_import | category | tcga | color
+read_samplemap_tcga_molecular | clinical | tcga | color
+read_drug_tcga_clinical | clinical | tcga | color
+read_followup_tcga_v1p0 | clinical | tcga | color
+read_newtumor-followup_tcga_v1p0 | clinical | tcga | color
+read_newtumor_tcga_clinical | clinical | tcga | color
+read_othermalignancy_tcga_v4p0 | clinical | tcga | color
+read_patient_tcga_clinical | clinical | tcga | color
+read_radiation_tcga_clinical | clinical | tcga | color
+read_protein_ucsc_rppa | molecular | ucsc | protein
+read_rna_ucsc_hiseq | molecular | ucsc | rna
+
+## SARC - Sarcoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+sarc_color_tcga_import | category | tcga | color
+sarc_samplemap_tcga_molecular | clinical | tcga | color
+sarc_patient_tcga_clinical | clinical | tcga | color
+sarc_drug_tcga_clinical | clinical | tcga | color
+sarc_radiation_tcga_clinical | clinical | tcga | color
+sarc_followup_tcga_v4p0 | clinical | tcga | color
+sarc_newtumor_tcga_clinical | clinical | tcga | color
+sarc_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+sarc_othermalignancy_tcga_v4p0 | clinical | tcga | color
+sarc_mut_broad_mutsig2 | molecular | broad | mut
+sarc_mut01_broad_mutsig2 | molecular | broad | mut01
+sarc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
+sarc_rna_ucsc_hiseq | molecular | ucsc | rna
+sarc_protein_ucsc_rppa | molecular | ucsc | protein
+sarc_mut01_ucsc_broad | molecular | ucsc | mut01
+sarc_methylation_ucsc_hm450 | molecular | ucsc | methylation
 
 ## SKCM - Skin Cutaneous Melanoma
 
@@ -313,6 +558,23 @@ stad_rna_ucsc_hiseq | molecular | ucsc | rna
 stad_protein_ucsc_rppa | molecular | ucsc | protein
 stad_mut01_ucsc_broadcurated | molecular | ucsc | mut01
 
+## TGCT - Testicular Germ Cell Tumors
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+tgct_color_tcga_import | category | tcga | color
+tgct_samplemap_tcga_molecular | clinical | tcga | color
+tgct_drug_tcga_clinical | clinical | tcga | color
+tgct_followup_tcga_v4p0 | clinical | tcga | color
+tgct_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+tgct_newtumor_tcga_clinical | clinical | tcga | color
+tgct_othermalignancy_tcga_v4p0 | clinical | tcga | color
+tgct_patient_tcga_clinical | clinical | tcga | color
+tgct_radiation_tcga_clinical | clinical | tcga | color
+tgct_rna_ucsc_hiseq | molecular | ucsc | rna
+tgct_protein_ucsc_rppa | molecular | ucsc | protein
+tgct_mut01_ucsc_broad | molecular | ucsc | mut01
+
 ## THCA - Thyroid carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -332,6 +594,23 @@ thca_rna_ucsc_hiseq | molecular | ucsc | rna
 thca_protein_ucsc_rppa | molecular | ucsc | protein
 thca_mut01_ucsc_broad | molecular | ucsc | mut01
 
+## THYM - Thymoma
+
+Collection Name | Collection Type | Data Source | Data Type
+--------- | ----------- | ----------- | -----------
+thym_color_tcga_import | category | tcga | color
+thym_samplemap_tcga_molecular | clinical | tcga | color
+thym_drug_tcga_clinical | clinical | tcga | color
+thym_followup_tcga_v4p0 | clinical | tcga | color
+thym_newtumor-followup_tcga_v4p0 | clinical | tcga | color
+thym_newtumor_tcga_clinical | clinical | tcga | color
+thym_othermalignancy_tcga_v4p0 | clinical | tcga | color
+thym_patient_tcga_clinical | clinical | tcga | color
+thym_radiation_tcga_clinical | clinical | tcga | color
+thym_rna_ucsc_hiseq | molecular | ucsc | rna
+thym_protein_ucsc_rppa | molecular | ucsc | protein
+thym_mut01_ucsc_broad | molecular | ucsc | mut01
+
 ## UCEC - Uterine Corpus Endometrial Carcinoma
 
 Collection Name | Collection Type | Data Source | Data Type
@@ -350,178 +629,6 @@ ucec_mut01_broad_mutsig2 | molecular | broad | mut01
 ucec_rna_ucsc_hiseq | molecular | ucsc | rna
 ucec_protein_ucsc_rppa | molecular | ucsc | protein
 ucec_mut01_ucsc_pancanaws | molecular | ucsc | mut01
-
-## ACC - Adrenocortical carcinoma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-acc_color_tcga_import | category | tcga | color
-acc_samplemap_tcga_molecular | clinical | tcga | color
-acc_drug_tcga_clinical | clinical | tcga | color
-acc_followup_tcga_v4p0 | clinical | tcga | color
-acc_newtumor-followup_tcga_v4p0 | clinical | tcga | color
-acc_newtumor_tcga_clinical | clinical | tcga | color
-acc_othermalignancy_tcga_v4p0 | clinical | tcga | color
-acc_patient_tcga_clinical | clinical | tcga | color
-acc_radiation_tcga_clinical | clinical | tcga | color
-acc_mut_broad_mutsig2 | molecular | broad | mut
-acc_mut01_broad_mutsig2 | molecular | broad | mut01
-acc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
-acc_rna_ucsc_hiseq | molecular | ucsc | rna
-acc_protein_ucsc_rppa | molecular | ucsc | protein
-acc_mut01_ucsc_broadcurated | molecular | ucsc | mut01
-
-## BLCA - Bladder Urothelial Carcinoma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-blca_color_tcga_import | category | tcga | color
-blca_samplemap_tcga_molecular | clinical | tcga | color
-blca_followup_tcga_v2p0 | clinical | tcga | color
-blca_patient_tcga_clinical | clinical | tcga | color
-blca_drug_tcga_clinical | clinical | tcga | color
-blca_radiation_tcga_clinical | clinical | tcga | color
-blca_newtumor_tcga_clinical | clinical | tcga | color
-blca_newtumor-followup_tcga_v4p0 | clinical | tcga | color
-blca_othermalignancy_tcga_v4p0 | clinical | tcga | color
-blca_mut_broad_mutsig2 | molecular | broad | mut
-blca_mut01_broad_mutsig2 | molecular | broad | mut01
-blca_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
-blca_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01
-blca_rna_ucsc_hiseq | molecular | ucsc | rna
-blca_protein_ucsc_rppa | molecular | ucsc | protein
-
-## CESC - Cervical squamous cell carcinoma and endocervical adenocarcinoma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-cesc_color_tcga_import | category | tcga | color
-cesc_samplemap_tcga_molecular | clinical | tcga | color
-cesc_followup_tcga_v2p0 | clinical | tcga | color
-cesc_drug_tcga_clinical | clinical | tcga | color
-cesc_newtumor-followup_tcga_v4p0 | clinical | tcga | color
-cesc_newtumor_tcga_clinical | clinical | tcga | color
-cesc_othermalignancy_tcga_v4p0 | clinical | tcga | color
-cesc_patient_tcga_clinical | clinical | tcga | color
-cesc_radiation_tcga_clinical | clinical | tcga | color
-cesc_mut_broad_mutsig2 | molecular | broad | mut
-cesc_mut01_broad_mutsig2 | molecular | broad | mut01
-cesc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
-cesc_rna_ucsc_hiseq | molecular | ucsc | rna
-cesc_protein_ucsc_rppa | molecular | ucsc | protein
-cesc_mut01_ucsc_ucsc | molecular | ucsc | mut01
-
-## CHOL - Cholangiocarcinoma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-chol_color_tcga_import | category | tcga | color
-chol_samplemap_tcga_molecular | clinical | tcga | color
-chol_drug_tcga_clinical | clinical | tcga | color
-chol_followup_tcga_v4p0 | clinical | tcga | color
-chol_newtumor-followup_tcga_v4p0 | clinical | tcga | color
-chol_newtumor_tcga_clinical | clinical | tcga | color
-chol_othermalignancy_tcga_v4p0 | clinical | tcga | color
-chol_patient_tcga_clinical | clinical | tcga | color
-chol_radiation_tcga_clinical | clinical | tcga | color
-chol_mut_broad_mutsig2 | molecular | broad | mut
-chol_mut01_broad_mutsig2 | molecular | broad | mut01
-chol_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
-chol_rna_ucsc_hiseq | molecular | ucsc | rna
-chol_protein_ucsc_rppa | molecular | ucsc | protein
-chol_mut01_ucsc_broad | molecular | ucsc | mut01
-
-## DLBC - Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-dlbc_color_tcga_import | category | tcga | color
-dlbc_samplemap_tcga_molecular | clinical | tcga | color
-dlbc_drug_tcga_clinical | clinical | tcga | color
-dlbc_followup_tcga_v4p4 | clinical | tcga | color
-dlbc_newtumor-followup_tcga_v4p4 | clinical | tcga | color
-dlbc_newtumor_tcga_clinical | clinical | tcga | color
-dlbc_patient_tcga_clinical | clinical | tcga | color
-dlbc_radiation_tcga_clinical | clinical | tcga | color
-dlbc_mut_broad_mutsig2 | molecular | broad | mut
-dlbc_mut01_broad_mutsig2 | molecular | broad | mut01
-dlbc_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
-dlbc_rna_ucsc_hiseq | molecular | ucsc | rna
-dlbc_protein_ucsc_rppa | molecular | ucsc | protein
-dlbc_mut01_ucsc_bcm | molecular | ucsc | mut01
-
-## COADREAD - Colon adenocarcinoma & Rectum adenocarcinoma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-coadread_color_tcga_import | category | tcga | color
-coadread_events_tcga_clinical | clinical | tcga | color
-coadread_samplemap_tcga_molecular | clinical | tcga | color
-coadread_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
-coadread_mut01_ucsc_mutation | molecular | ucsc | mut01
-coadread_rna_ucsc_hiseq | molecular | ucsc | rna
-
-## LUNG - Lung adenocarcinoma & Lung squamous cell carcinoma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-lung_color_tcga_import | category | tcga | color
-lung_events_tcga_clinical | clinical | tcga | color
-lung_samplemap_tcga_molecular | clinical | tcga | color
-lung_facs_demo_flow | molecular | demo | facs
-lung_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
-lung_mut01_ucsc_mutation | molecular | ucsc | mut01
-lung_rna_ucsc_hiseq | molecular | ucsc | rna
-
-## COAD - Colon adenocarcinoma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-coad_color_tcga_import | category | tcga | color
-coad_samplemap_tcga_molecular | clinical | tcga | color
-coad_patient_tcga_clinical | clinical | tcga | color
-coad_drug_tcga_clinical | clinical | tcga | color
-coad_radiation_tcga_clinical | clinical | tcga | color
-coad_followup_tcga_v1p0 | clinical | tcga | color
-coad_newtumor_tcga_clinical | clinical | tcga | color
-coad_newtumor-followup_tcga_v1p0 | clinical | tcga | color
-coad_othermalignancy_tcga_v4p0 | clinical | tcga | color
-coad_protein_ucsc_rppa | molecular | ucsc | protein
-coad_rna_ucsc_hiseq | molecular | ucsc | rna
-
-## HG19 - Genome Platform
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-hg19_genesets_hgnc_import | category | hgnc | genesets
-hg19_genesets_orghs_1e05 | category | orgHs | genesets
-
-## LAML - Acute Myeloid Leukemia
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-laml_color_tcga_import | category | tcga | color
-laml_samplemap_tcga_molecular | clinical | tcga | color
-laml_patient_tcga_clinical | clinical | tcga | color
-laml_cnv_ucsc_gistic2thd | molecular | ucsc | cnv
-laml_mut01_ucsc_mutation | molecular | ucsc | mut01
-laml_rna_ucsc_hiseq | molecular | ucsc | rna
-
-## READ - Rectum adenocarcinoma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-read_color_tcga_import | category | tcga | color
-read_samplemap_tcga_molecular | clinical | tcga | color
-read_drug_tcga_clinical | clinical | tcga | color
-read_followup_tcga_v1p0 | clinical | tcga | color
-read_newtumor-followup_tcga_v1p0 | clinical | tcga | color
-read_newtumor_tcga_clinical | clinical | tcga | color
-read_othermalignancy_tcga_v4p0 | clinical | tcga | color
-read_patient_tcga_clinical | clinical | tcga | color
-read_radiation_tcga_clinical | clinical | tcga | color
-read_protein_ucsc_rppa | molecular | ucsc | protein
-read_rna_ucsc_hiseq | molecular | ucsc | rna
 
 ## UCS - Uterine Carcinosarcoma
 
@@ -556,111 +663,3 @@ uvm_radiation_tcga_clinical | clinical | tcga | color
 uvm_rna_ucsc_hiseq | molecular | ucsc | rna
 uvm_protein_ucsc_rppa | molecular | ucsc | protein
 uvm_mut01_ucsc_broadcurated | molecular | ucsc | mut01
-
-## THYM - Thymoma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-thym_color_tcga_import | category | tcga | color
-thym_samplemap_tcga_molecular | clinical | tcga | color
-thym_drug_tcga_clinical | clinical | tcga | color
-thym_followup_tcga_v4p0 | clinical | tcga | color
-thym_newtumor-followup_tcga_v4p0 | clinical | tcga | color
-thym_newtumor_tcga_clinical | clinical | tcga | color
-thym_othermalignancy_tcga_v4p0 | clinical | tcga | color
-thym_patient_tcga_clinical | clinical | tcga | color
-thym_radiation_tcga_clinical | clinical | tcga | color
-thym_rna_ucsc_hiseq | molecular | ucsc | rna
-thym_protein_ucsc_rppa | molecular | ucsc | protein
-thym_mut01_ucsc_broad | molecular | ucsc | mut01
-
-## TGCT - Testicular Germ Cell Tumors
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-tgct_color_tcga_import | category | tcga | color
-tgct_samplemap_tcga_molecular | clinical | tcga | color
-tgct_drug_tcga_clinical | clinical | tcga | color
-tgct_followup_tcga_v4p0 | clinical | tcga | color
-tgct_newtumor-followup_tcga_v4p0 | clinical | tcga | color
-tgct_newtumor_tcga_clinical | clinical | tcga | color
-tgct_othermalignancy_tcga_v4p0 | clinical | tcga | color
-tgct_patient_tcga_clinical | clinical | tcga | color
-tgct_radiation_tcga_clinical | clinical | tcga | color
-tgct_rna_ucsc_hiseq | molecular | ucsc | rna
-tgct_protein_ucsc_rppa | molecular | ucsc | protein
-tgct_mut01_ucsc_broad | molecular | ucsc | mut01
-
-## PCPG - Pheochromocytoma and Paraganglioma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-pcpg_color_tcga_import | category | tcga | color
-pcpg_samplemap_tcga_molecular | clinical | tcga | color
-pcpg_drug_tcga_clinical | clinical | tcga | color
-pcpg_followup_tcga_v4p0 | clinical | tcga | color
-pcpg_newtumor-followup_tcga_v4p0 | clinical | tcga | color
-pcpg_newtumor_tcga_clinical | clinical | tcga | color
-pcpg_othermalignancy_tcga_v4p0 | clinical | tcga | color
-pcpg_patient_tcga_clinical | clinical | tcga | color
-pcpg_radiation_tcga_clinical | clinical | tcga | color
-pcpg_rna_ucsc_hiseq | molecular | ucsc | rna
-pcpg_protein_ucsc_rppa | molecular | ucsc | protein
-pcpg_mut01_ucsc_broad | molecular | ucsc | mut01
-
-## OV - Ovarian serous cystadenocarcinoma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-ov_color_tcga_import | category | tcga | color
-ov_samplemap_tcga_molecular | clinical | tcga | color
-ov_drug_tcga_clinical | clinical | tcga | color
-ov_followup_tcga_v1p0 | clinical | tcga | color
-ov_newtumor-followup_tcga_v1p0 | clinical | tcga | color
-ov_newtumor_tcga_clinical | clinical | tcga | color
-ov_othermalignancy_tcga_v4p0 | clinical | tcga | color
-ov_patient_tcga_clinical | clinical | tcga | color
-ov_radiation_tcga_clinical | clinical | tcga | color
-ov_rna_ucsc_hiseq | molecular | ucsc | rna
-ov_protein_ucsc_rppa | molecular | ucsc | protein
-ov_mut01_ucsc_pancanaws | molecular | ucsc | mut01
-
-## MESO - Mesothelioma
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-meso_color_tcga_import | category | tcga | color
-meso_samplemap_tcga_molecular | clinical | tcga | color
-meso_drug_tcga_clinical | clinical | tcga | color
-meso_followup_tcga_v4p0 | clinical | tcga | color
-meso_newtumor-followup_tcga_v4p0 | clinical | tcga | color
-meso_newtumor_tcga_clinical | clinical | tcga | color
-meso_othermalignancy_tcga_v4p0 | clinical | tcga | color
-meso_patient_tcga_clinical | clinical | tcga | color
-meso_radiation_tcga_clinical | clinical | tcga | color
-meso_rna_ucsc_hiseq | molecular | ucsc | rna
-meso_protein_ucsc_rppa | molecular | ucsc | protein
-meso_mut01_ucsc_broad | molecular | ucsc | mut01
-
-## BRAIN - Lower Grade Glioma & Glioblastoma multiforme
-
-Collection Name | Collection Type | Data Source | Data Type
---------- | ----------- | ----------- | -----------
-brain_color_tcga_import | category | tcga | color
-brain_samplemap_tcga_molecular | clinical | tcga | color
-brain_events_tcga_clinical | clinical | tcga | color
-brain_patient_tcga_clinical | clinical | tcga | color
-brain_followup-v1p0_tcga_clinical | clinical | tcga | color
-brain_drug_tcga_clinical | clinical | tcga | color
-brain_newtumor_tcga_clinical | clinical | tcga | color
-brain_othermalignancy-v4p0_tcga_clinical | clinical | tcga | color
-brain_radiation_tcga_clinical | clinical | tcga | color
-brain_followup_tcga_v1p0 | clinical | tcga | color
-brain_newtumor_tcga_clinical | clinical | tcga | color
-brain_othermalignancy_tcga_v4p0 | clinical | tcga | color
-brain_mut_broad_mutsig2 | molecular | broad | mut
-brain_mut01_broad_mutsig2 | molecular | broad | mut01
-brain_cnv_ucsc-pnas_gistic | molecular | ucsc-PNAS | cnv
-brain_mut01_ucsc-pnas_mutationbroadgene | molecular | ucsc-PNAS | mut01
-brain_cnv_ucsc_gistic | molecular | ucsc | cnv
-brain_mut01_ucsc_mutationbroadgene | molecular | ucsc | mut01

@@ -1,9 +1,10 @@
-//http://www.csvjson.com/csv2json 
+//http://www.csvjson.com/csv2json
+var u = require('underscore'); 
 var jsonfile = require("jsonfile");
-var cbio_annotation = require("./cbio_annot_reorganized.json");
-var ucsc_annotation = require("./ucsc_mol_annotation.json");
 var comongo = require('co-mongodb');
 var co = require('co');
+var cbio_annotation = require("./cbio_annot_reorganized.json");
+var ucsc_annotation = require("./ucsc_mol_annotation.json");
 var disease_tables = [];
 var db, collection,db_collections,collection_name, count,manifest, manifest_content;
 var diseases = [];
@@ -166,6 +167,7 @@ co(function *() {
   format.h1("Data Content");
   lookup_oncoscape_datasources = yield comongo.db.collection(db, "lookup_oncoscape_datasources");
   datasources = yield lookup_oncoscape_datasources.find({}).toArray();
+  datasources = u.sortBy(datasources, 'disease');
   var datasource_count = yield lookup_oncoscape_datasources.count();
   //yield comongo.db.close(db);
 
@@ -179,7 +181,6 @@ co(function *() {
       format.h2(datasources[i].disease.toUpperCase() + " - " + disease_code[datasources[i].disease.toUpperCase()]);
       var datasource = datasources[i];
       var mol_colls = [];
-      //db = yield comongo.client.connect('mongodb://oncoscapeRead:i1f4d9botHD4xnZ@oncoscape-dev-db1.sttrcancer.io:27017,oncoscape-dev-db2.sttrcancer.io:27017,oncoscape-dev-db3.sttrcancer.io:27017/tcga?authSource=admin&replicaSet=rs0');
       format.text("Collection Name | Collection Type | Data Source | Data Type");
       format.table("--------- | ----------- | ----------- | -----------"); 
       elem_source = datasource.source;
