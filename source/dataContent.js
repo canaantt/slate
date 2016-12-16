@@ -26,28 +26,6 @@ var unique_collections;
 var unique_sources;
 var unique_parents;
 var lookup_oncoscape_datasources, datasources;
-var format = {
-	h1: function(text) { console.log(); console.log('# '+text); },
-	h2: function(text) { console.log(); console.log('## '+text); },
-	h3: function(text) { console.log(); console.log('### '+text); },
-	h4: function(text) { console.log(); console.log('#### '+text); },
-  textbold: function(text) { console.log(); console.log(); console.log('**'+ text+'**'); },
-  textlist: function(text){ console.log(); console.log('- '+ text);  },
-  textsublist: function(text){ console.log('  * '+ text);  },
-	text: function(text){ console.log(); console.log(text);  },
-	url: function(text) {console.log(); console.log('`' + text + '`'); console.log();},
-	codeStart: function() { console.log(); console.log('```'); },
-	codeComment: function(text) {console.log(); console.log('> ' + text); console.log(); },
-	codeStop: function() {console.log('```');  console.log(); },
-	code: function(text) { console.log('"'+ text + '"'); },
-	jsonfy: function(text) { console.log('{' + text + '}');},
-  codeRStart: function(text) {  console.log(); console.log("```r");},
-  codeMongoStart: function(text) {  console.log(); console.log("```shell"); },
-  codeJSStart: function(text) {  console.log(); console.log("```javascript"); },
-  codePyStart: function(text) {  console.log(); console.log("```python"); },
-  codeJSONStart: function(text) {  console.log(); console.log("```json"); },
-  table: function(text){ console.log(text);  }
-};
 var disease_code = {
      "HG19" : "Genome Platform",
      "BRAIN": "Lower Grade Glioma & Glioblastoma multiforme",
@@ -87,6 +65,28 @@ var disease_code = {
      "UCEC":"Uterine Corpus Endometrial Carcinoma",  
      "UVM":"Uveal Melanoma"
  };
+var format = {
+	h1: function(text) { console.log(); console.log('# '+text); },
+	h2: function(text) { console.log(); console.log('## '+text); },
+	h3: function(text) { console.log(); console.log('### '+text); },
+	h4: function(text) { console.log(); console.log('#### '+text); },
+  textbold: function(text) { console.log(); console.log(); console.log('**'+ text+'**'); },
+  textlist: function(text){ console.log(); console.log('- '+ text);  },
+  textsublist: function(text){ console.log('  * '+ text);  },
+	text: function(text){ console.log(); console.log(text);  },
+	url: function(text) {console.log(); console.log('`' + text + '`'); console.log();},
+	codeStart: function() { console.log(); console.log('```'); },
+	codeComment: function(text) {console.log(); console.log('> ' + text); console.log(); },
+	codeStop: function() {console.log('```');  console.log(); },
+	code: function(text) { console.log('"'+ text + '"'); },
+	jsonfy: function(text) { console.log('{' + text + '}');},
+  codeRStart: function(text) {  console.log(); console.log("```r");},
+  codeMongoStart: function(text) {  console.log(); console.log("```shell"); },
+  codeJSStart: function(text) {  console.log(); console.log("```javascript"); },
+  codePyStart: function(text) {  console.log(); console.log("```python"); },
+  codeJSONStart: function(text) {  console.log(); console.log("```json"); },
+  table: function(text){ console.log(text);  }
+};
 var onerror = function(e){
     console.log(e);
   };
@@ -169,10 +169,9 @@ co(function *() {
   datasources = yield lookup_oncoscape_datasources.find({}).toArray();
   datasources = u.sortBy(datasources, 'disease');
   var datasource_count = yield lookup_oncoscape_datasources.count();
-  //yield comongo.db.close(db);
-
+  
   unique_datasets_length = datasources.length;
-  var dataTypeCat = ['category','clinical', 'molecular'];
+  var dataTypeCat = ['clinical', 'molecular'];
   var dataTypeCat_length = dataTypeCat.length;
   var elem_source, elem_dataType;
 

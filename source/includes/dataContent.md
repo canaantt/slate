@@ -5,15 +5,14 @@
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -45,15 +44,14 @@ somatic mutation SNPs and small INDELs (bcm automated) | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -88,18 +86,17 @@ copy number | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc-PNAS
@@ -111,15 +108,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -131,15 +127,14 @@ protein | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -151,15 +146,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -171,15 +165,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 protein | molecular | ucsc
 rna | molecular | ucsc
 
@@ -187,9 +180,8 @@ rna | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
 cnv | molecular | ucsc
 mut01 | molecular | ucsc
 rna | molecular | ucsc
@@ -198,14 +190,13 @@ rna | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -217,15 +208,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -237,16 +227,15 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -258,23 +247,20 @@ rna | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-genesets | category | hgnc
-genesets | category | orgHs
 
 ## HNSC - Head and Neck squamous cell carcinoma
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -286,15 +272,14 @@ rna | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -305,14 +290,13 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 mut01 | molecular | ucsc
@@ -321,14 +305,13 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -365,9 +348,8 @@ copy number | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
 cnv | molecular | ucsc
 mut01 | molecular | ucsc
 rna | molecular | ucsc
@@ -379,20 +361,25 @@ gene expression RNAseq (polyA+ IlluminaGA) | molecular | ucsc xena
 exon expression RNAseq (polyA+ IlluminaGA) | molecular | ucsc xena
 Phenotypes | molecular | ucsc xena
 gene expression RNAseq (ployA+ IlluminaHiSeq pancan normalized) | molecular | ucsc xena
+DNA methylation (Methylation450k) | molecular | ucsc xena
+copy number (delete germline cnv) | molecular | ucsc xena
+copy number segments (delete germline cnv) | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
+somatic gene-level non-silent mutation (wustl) | molecular | ucsc xena
+copy number (gistic2_thresholded) | molecular | ucsc xena
 
 ## LGG - Brain Lower Grade Glioma
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -428,15 +415,14 @@ somatic mutation SNPs and small INDELs (bcm automated) | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -447,15 +433,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -490,9 +475,8 @@ copy number | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
 facs | molecular | demo
 cnv | molecular | ucsc
 mut01 | molecular | ucsc
@@ -502,15 +486,14 @@ rna | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -522,15 +505,14 @@ protein | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -539,15 +521,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -556,15 +537,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -576,15 +556,14 @@ protein | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -593,14 +572,13 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -612,15 +590,14 @@ protein | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 protein | molecular | ucsc
 rna | molecular | ucsc
 
@@ -628,15 +605,14 @@ rna | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -669,14 +645,13 @@ copy number | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -687,14 +662,13 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 mut01 | molecular | ucsc
@@ -706,15 +680,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -723,15 +696,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -742,15 +714,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -759,15 +730,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -778,15 +748,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -795,15 +764,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
-color | category | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
-color | clinical | tcga
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
+ | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
