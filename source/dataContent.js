@@ -168,7 +168,6 @@ co(function *() {
   lookup_oncoscape_datasources = yield comongo.db.collection(db, "lookup_oncoscape_datasources");
   datasources = yield lookup_oncoscape_datasources.find({}).toArray();
   datasources = u.sortBy(datasources, 'disease');
-  var datasource_count = yield lookup_oncoscape_datasources.count();
   
   unique_datasets_length = datasources.length;
   var dataTypeCat = ['clinical', 'molecular'];
@@ -203,15 +202,15 @@ co(function *() {
                 var elems = Object.keys(datasource[dataTypeCat[j]]);
                 var elems_length = elems.length;
                 for(var m=0; m<elems_length;m++){
-                  format.table(elem_dataType + " | " + dataTypeCat[j] + " | " + elem_source);
+                  format.table(elems[m] + " | " + dataTypeCat[j] + " | " + elem_source);
                 }
             }
             
           }
          
       }
+
     }
-   
   }
   yield comongo.db.close(db);
 }).catch(onerror);

@@ -5,14 +5,14 @@
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -44,14 +44,14 @@ somatic mutation SNPs and small INDELs (bcm automated) | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+followup | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+newtumor | clinical | TCGA
+newtumor-followup | clinical | TCGA
+othermalignancy | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -86,17 +86,17 @@ copy number | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+events | clinical | TCGA
+patient | clinical | TCGA
+followUp-v1p0 | clinical | TCGA
+drug | clinical | TCGA
+newTumor | clinical | TCGA
+otherMalignancy-v4p0 | clinical | TCGA
+radiation | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc-PNAS
@@ -108,14 +108,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+events | clinical | TCGA
+followup | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+newtumor | clinical | TCGA
+newtumor-followup | clinical | TCGA
+othermalignancy | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -127,14 +127,14 @@ protein | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+followup | clinical | TCGA
+drug | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -146,14 +146,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -165,14 +165,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+newtumor-followup | clinical | TCGA
+othermalignancy | clinical | TCGA
 protein | molecular | ucsc
 rna | molecular | ucsc
 
@@ -180,8 +180,8 @@ rna | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
+events | clinical | TCGA
+samplemap | clinical | TCGA
 cnv | molecular | ucsc
 mut01 | molecular | ucsc
 rna | molecular | ucsc
@@ -190,13 +190,13 @@ rna | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -208,40 +208,49 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
+
+## FPPP - undefined
+
+Data Type | Collection Type | Data Source 
+--------- | ----------- | ----------- 
+Phenotypes | molecular | ucsc xena
+miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
 
 ## GBM - Glioblastoma multiforme
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+events | clinical | TCGA
+samplemap | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+newtumor-followup | clinical | TCGA
+othermalignancy | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
 mut01 | molecular | ucsc
 protein | molecular | ucsc
 rna | molecular | ucsc
+protein expression RPPA | molecular | ucsc xena
+copy number (gistic2) | molecular | ucsc xena
 
 ## HG19 - Genome Platform
 
@@ -252,15 +261,15 @@ Data Type | Collection Type | Data Source
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+events | clinical | TCGA
+samplemap | clinical | TCGA
+followup | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+newtumor | clinical | TCGA
+newtumor-followup | clinical | TCGA
+othermalignancy | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -272,14 +281,14 @@ rna | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -290,13 +299,13 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 mut01 | molecular | ucsc
@@ -305,13 +314,13 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -348,8 +357,8 @@ copy number | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+patient | clinical | TCGA
 cnv | molecular | ucsc
 mut01 | molecular | ucsc
 rna | molecular | ucsc
@@ -367,19 +376,24 @@ copy number segments (delete germline cnv) | molecular | ucsc xena
 gene expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
 somatic gene-level non-silent mutation (wustl) | molecular | ucsc xena
 copy number (gistic2_thresholded) | molecular | ucsc xena
+copy number segments | molecular | ucsc xena
+somatic gene-level non-silent mutation (pancan awg) | molecular | ucsc xena
+DNA methylation (Methylation27k) | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaHiSeq percentile) | molecular | ucsc xena
+copy number | molecular | ucsc xena
 
 ## LGG - Brain Lower Grade Glioma
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+events | clinical | TCGA
+samplemap | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -415,14 +429,14 @@ somatic mutation SNPs and small INDELs (bcm automated) | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -433,14 +447,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+events | clinical | TCGA
+samplemap | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -475,8 +489,8 @@ copy number | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
+events | clinical | TCGA
+samplemap | clinical | TCGA
 facs | molecular | demo
 cnv | molecular | ucsc
 mut01 | molecular | ucsc
@@ -486,14 +500,14 @@ rna | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+events | clinical | TCGA
+samplemap | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -505,14 +519,14 @@ protein | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -521,14 +535,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -537,14 +551,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+newtumor-followup | clinical | TCGA
+othermalignancy | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -556,14 +570,14 @@ protein | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -572,13 +586,13 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -590,14 +604,14 @@ protein | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 protein | molecular | ucsc
 rna | molecular | ucsc
 
@@ -605,14 +619,14 @@ rna | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+newtumor-followup | clinical | TCGA
+othermalignancy | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 cnv | molecular | ucsc
@@ -645,13 +659,13 @@ copy number | molecular | ucsc xena
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -662,13 +676,13 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 mut01 | molecular | ucsc
@@ -680,14 +694,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -696,14 +710,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+followup | clinical | TCGA
+drug | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -714,14 +728,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -730,14 +744,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+followup | clinical | TCGA
+drug | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 mut | molecular | broad
 mut01 | molecular | broad
 rna | molecular | ucsc
@@ -748,14 +762,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
@@ -764,14 +778,14 @@ mut01 | molecular | ucsc
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
- | clinical | TCGA
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
 rna | molecular | ucsc
 protein | molecular | ucsc
 mut01 | molecular | ucsc
