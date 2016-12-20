@@ -140,7 +140,7 @@ mds | Multidimensional Scaling data for a specific data with specific genesets
 
 edges names are collections of genesets: 
 
-edges geneset | geneset information
+edges geneset | geneset inhelper.formation
 --------- | ----------- 
 TCGA GBM classifiers | hg19_genesets_hgnc_import[0]
 Marker genes 545 | hg19_genesets_hgnc_import[1]
@@ -247,23 +247,12 @@ edges | derived collection to describe edges between genes and patients use for 
 ptDegree | derived collection to describe the weight of patients based on on the number of data points use for Markers and Patients (one of the Oncoscape tools)
 geneDegree | derived collection to describe the weight of genes based on on the number of data points use for Markers and Patients (one of the Oncoscape tools)
 
-### Genesets Details
-
-Key | description | number of genes
---------- | --------- | ---------
-TCGA_GBM_classifiers | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2818769/'>TCGA_GBM_classifiers</a> | <a href="#TCGA_GBM_classifiers" onclick="genesetDisplay">840</a>
-Marker_genes_545 | The 545-gene set is all the genes that are recurrently impacted in TCGA gliomas. | <a href="#Marker_genes_545" onclick="genesetDisplay">545</a>
-TCGA_pancan_mutated | all the genes recurrently mutated across all TCGA cancers (note that it may not be up to date for all the TCGA samples currently available | <a href="#TCGA_pancan_mutated" onclick="genesetDisplay">64</a>
-oncoVogel274 | The OncoVogel274 gene set comes from combining (an old version of Oncoplex) with genes from this (famous) paper by <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pubmed/23539594/'>Vogelstein</a> | <a href="#oncoVogel274" onclick="genesetDisplay">274</a>
-Oncoplex | <a target="_blank" href='http://tests.labmed.washington.edu/UW-OncoPlex/'>UW Oncoplex Cancer Panel</a> | <a href="#Oncoplex" onclick="genesetDisplay">263</a>
-OSCC_Chen_131_probes | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pubmed/18669583/'>OSCC_Chen_131_probes</a> | <a href="#OSCC_Chen_131_probes" onclick="genesetDisplay">109</a>
-OSCC_Chen_9_genes | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4527746//'>OSCC_Chen_9_genes</a> | <a href="#OSCC_Chen_9_genes" onclick="genesetDisplay">9</a>
-
 # Data Access
 
 ## Example to access one collection from browser
 
-### HTTP Request
+
+**HTTP Request**
 
 Collections are accessable at the host: http://dev.oncoscape.sttrcancer.io/api/
 
@@ -275,7 +264,8 @@ Below lists more details of the organization of the Oncoscape Mongo Database and
 
 ## Query Collection from Browser
 
-### HTTP Request
+
+**HTTP Request**
 
 Filter by gender and race and only show the selected fields
 

@@ -1,7 +1,28 @@
 
 # Data Content
 
-## ACC - Adrenocortical carcinoma
+## General Information
+
+### Data Source
+
+### Data Type
+
+### Genesets Details
+
+Key | description | number of genes
+--------- | --------- | ---------
+TCGA_GBM_classifiers | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2818769/'>TCGA_GBM_classifiers</a> | <a href="#TCGA_GBM_classifiers" onclick="genesetDisplay">840</a>
+Marker_genes_545 | The 545-gene set is all the genes that are recurrently impacted in TCGA gliomas. | <a href="#Marker_genes_545" onclick="genesetDisplay">545</a>
+TCGA_pancan_mutated | all the genes recurrently mutated across all TCGA cancers (note that it may not be up to date for all the TCGA samples currently available | <a href="#TCGA_pancan_mutated" onclick="genesetDisplay">64</a>
+oncoVogel274 | The OncoVogel274 gene set comes from combining (an old version of Oncoplex) with genes from this (famous) paper by <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pubmed/23539594/'>Vogelstein</a> | <a href="#oncoVogel274" onclick="genesetDisplay">274</a>
+Oncoplex | <a target="_blank" href='http://tests.labmed.washington.edu/UW-OncoPlex/'>UW Oncoplex Cancer Panel</a> | <a href="#Oncoplex" onclick="genesetDisplay">263</a>
+OSCC_Chen_131_probes | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pubmed/18669583/'>OSCC_Chen_131_probes</a> | <a href="#OSCC_Chen_131_probes" onclick="genesetDisplay">109</a>
+OSCC_Chen_9_genes | <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4527746//'>OSCC_Chen_9_genes</a> | <a href="#OSCC_Chen_9_genes" onclick="genesetDisplay">9</a>
+
+## Data Content in Disease
+
+
+**ACC - Adrenocortical carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -13,12 +34,6 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 protein expression RPPA | molecular | ucsc xena
 copy number (gistic2) | molecular | ucsc xena
 exon expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
@@ -40,7 +55,8 @@ miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
 copy number | molecular | ucsc xena
 somatic mutation SNPs and small INDELs (bcm automated) | molecular | ucsc xena
 
-## BLCA - Bladder Urothelial Carcinoma
+
+**BLCA - Bladder Urothelial Carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -52,12 +68,6 @@ radiation | clinical | TCGA
 newtumor | clinical | TCGA
 newtumor-followup | clinical | TCGA
 othermalignancy | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
 protein expression RPPA | molecular | ucsc xena
 copy number (gistic2) | molecular | ucsc xena
 miRNA isoform expression (IlluminaGA) | molecular | ucsc xena
@@ -82,7 +92,8 @@ gene expression RNAseq (polyA+ IlluminaHiSeq percentile) | molecular | ucsc xena
 miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
 copy number | molecular | ucsc xena
 
-## BRAIN - Lower Grade Glioma & Glioblastoma multiforme
+
+**BRAIN - Lower Grade Glioma & Glioblastoma multiforme**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -97,14 +108,9 @@ radiation | clinical | TCGA
 followup | clinical | TCGA
 newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc-PNAS
-mut01 | molecular | ucsc-PNAS
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
 
-## BRCA - Breast invasive carcinoma
+
+**BRCA - Breast invasive carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -116,14 +122,9 @@ radiation | clinical | TCGA
 newtumor | clinical | TCGA
 newtumor-followup | clinical | TCGA
 othermalignancy | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
 
-## CESC - Cervical squamous cell carcinoma and endocervical adenocarcinoma
+
+**CESC - Cervical squamous cell carcinoma and endocervical adenocarcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -135,14 +136,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## CHOL - Cholangiocarcinoma
+
+**CHOL - Cholangiocarcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -154,14 +150,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## COAD - Colon adenocarcinoma
+
+**COAD - Colon adenocarcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -173,20 +164,27 @@ followup | clinical | TCGA
 newtumor | clinical | TCGA
 newtumor-followup | clinical | TCGA
 othermalignancy | clinical | TCGA
-protein | molecular | ucsc
-rna | molecular | ucsc
 
-## COADREAD - Colon adenocarcinoma & Rectum adenocarcinoma
+
+**COADREAD - Colon adenocarcinoma & Rectum adenocarcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
 events | clinical | TCGA
 samplemap | clinical | TCGA
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-rna | molecular | ucsc
+copy number (gistic2) | molecular | ucsc xena
+exon expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
+protein expression RPPA (RBN) | molecular | ucsc xena
+DNA methylation (Methylation450k) | molecular | ucsc xena
+Phenotypes | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
+copy number (gistic2_thresholded) | molecular | ucsc xena
+somatic gene-level non-silent mutation (pancan awg) | molecular | ucsc xena
+DNA methylation (Methylation27k) | molecular | ucsc xena
+gene expression (AgilentG4502A_07_3) | molecular | ucsc xena
 
-## DLBC - Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+
+**DLBC - Lymphoid Neoplasm Diffuse Large B-cell Lymphoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -197,14 +195,9 @@ newtumor-followup | clinical | TCGA
 newtumor | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## ESCA - Esophageal carcinoma
+
+**ESCA - Esophageal carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -216,21 +209,17 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## FPPP - undefined
+
+**FPPP - Formalin Fixed Paraffin-Embedded Pilot Phase II**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
 Phenotypes | molecular | ucsc xena
 miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
 
-## GBM - Glioblastoma multiforme
+
+**GBM - Glioblastoma multiforme**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -243,21 +232,39 @@ followup | clinical | TCGA
 newtumor | clinical | TCGA
 newtumor-followup | clinical | TCGA
 othermalignancy | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-protein | molecular | ucsc
-rna | molecular | ucsc
 protein expression RPPA | molecular | ucsc xena
 copy number (gistic2) | molecular | ucsc xena
+exon expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
+somatic gene-level non-silent mutation (broad) | molecular | ucsc xena
+protein expression RPPA (RBN) | molecular | ucsc xena
+Phenotypes | molecular | ucsc xena
+gene expression (AffyU133a) | molecular | ucsc xena
+gene expression RNAseq (ployA+ IlluminaHiSeq pancan normalized) | molecular | ucsc xena
+DNA methylation (Methylation450k) | molecular | ucsc xena
+copy number (delete germline cnv) | molecular | ucsc xena
+copy number segments (delete germline cnv) | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
+gene expression (AgilentG4502A_07_1) | molecular | ucsc xena
+somatic mutation SNPs and small INDELs (ucsc automated) | molecular | ucsc xena
+copy number (gistic2_thresholded) | molecular | ucsc xena
+copy number segments | molecular | ucsc xena
+somatic gene-level non-silent mutation (pancan awg) | molecular | ucsc xena
+somatic gene-level non-silent mutation (ucsc automated) | molecular | ucsc xena
+somatic mutation SNPs and small INDELs (broad) | molecular | ucsc xena
+DNA methylation (Methylation27k) | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaHiSeq percentile) | molecular | ucsc xena
+miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
+gene expression (AgilentG4502A_07_2) | molecular | ucsc xena
+copy number | molecular | ucsc xena
 
-## HG19 - Genome Platform
+
+**HG19 - Genome Platform**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
 
-## HNSC - Head and Neck squamous cell carcinoma
+
+**HNSC - Head and Neck squamous cell carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -270,14 +277,9 @@ radiation | clinical | TCGA
 newtumor | clinical | TCGA
 newtumor-followup | clinical | TCGA
 othermalignancy | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-protein | molecular | ucsc
-rna | molecular | ucsc
 
-## KICH - Kidney Chromophobe
+
+**KICH - Kidney Chromophobe**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -289,13 +291,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## KIRC - Kidney renal clear cell carcinoma
+
+**KIRC - Kidney renal clear cell carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -306,11 +304,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-mut01 | molecular | ucsc
 
-## KIRP - Kidney renal papillary cell carcinoma
+
+**KIRP - Kidney renal papillary cell carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -321,11 +317,6 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 Phenotypes | molecular | ucsc xena
 protein expression RPPA | molecular | ucsc xena
 copy number (gistic2) | molecular | ucsc xena
@@ -353,15 +344,13 @@ gene expression (AgilentG4502A_07_3) | molecular | ucsc xena
 miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
 copy number | molecular | ucsc xena
 
-## LAML - Acute Myeloid Leukemia
+
+**LAML - Acute Myeloid Leukemia**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
 samplemap | clinical | TCGA
 patient | clinical | TCGA
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-rna | molecular | ucsc
 copy number (gistic2) | molecular | ucsc xena
 miRNA isoform expression (IlluminaGA) | molecular | ucsc xena
 exon expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
@@ -382,7 +371,8 @@ DNA methylation (Methylation27k) | molecular | ucsc xena
 gene expression RNAseq (polyA+ IlluminaHiSeq percentile) | molecular | ucsc xena
 copy number | molecular | ucsc xena
 
-## LGG - Brain Lower Grade Glioma
+
+**LGG - Brain Lower Grade Glioma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -394,12 +384,6 @@ radiation | clinical | TCGA
 followup | clinical | TCGA
 newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-protein | molecular | ucsc
-rna | molecular | ucsc
 protein expression RPPA | molecular | ucsc xena
 copy number (gistic2) | molecular | ucsc xena
 exon expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
@@ -425,7 +409,8 @@ miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
 copy number | molecular | ucsc xena
 somatic mutation SNPs and small INDELs (bcm automated) | molecular | ucsc xena
 
-## LIHC - undefined
+
+**LIHC - Liver hepatocellular carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -437,13 +422,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## LUAD - Lung adenocarcinoma
+
+**LUAD - Lung adenocarcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -455,12 +436,6 @@ radiation | clinical | TCGA
 followup | clinical | TCGA
 newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
 protein expression RPPA | molecular | ucsc xena
 copy number (gistic2) | molecular | ucsc xena
 miRNA isoform expression (IlluminaGA) | molecular | ucsc xena
@@ -485,18 +460,16 @@ gene expression (AgilentG4502A_07_3) | molecular | ucsc xena
 miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
 copy number | molecular | ucsc xena
 
-## LUNG - Lung adenocarcinoma & Lung squamous cell carcinoma
+
+**LUNG - Lung adenocarcinoma & Lung squamous cell carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
 events | clinical | TCGA
 samplemap | clinical | TCGA
-facs | molecular | demo
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-rna | molecular | ucsc
 
-## LUSC - Lung squamous cell carcinoma
+
+**LUSC - Lung squamous cell carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -508,14 +481,9 @@ radiation | clinical | TCGA
 followup | clinical | TCGA
 newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
 
-## MESO - Mesothelioma
+
+**MESO - Mesothelioma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -527,46 +495,25 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
+protein expression RPPA | molecular | ucsc xena
+copy number (gistic2) | molecular | ucsc xena
+Phenotypes | molecular | ucsc xena
+exon expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
+gene expression RNAseq (ployA+ IlluminaHiSeq pancan normalized) | molecular | ucsc xena
+DNA methylation (Methylation450k) | molecular | ucsc xena
+copy number (delete germline cnv) | molecular | ucsc xena
+copy number segments (delete germline cnv) | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
+copy number (gistic2_thresholded) | molecular | ucsc xena
+copy number segments | molecular | ucsc xena
+somatic gene-level non-silent mutation (bcgsc automated) | molecular | ucsc xena
+somatic mutation SNPs and small INDELs (bcgsc automated) | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaHiSeq percentile) | molecular | ucsc xena
+miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
+copy number | molecular | ucsc xena
 
-## OV - Ovarian serous cystadenocarcinoma
 
-Data Type | Collection Type | Data Source 
---------- | ----------- | ----------- 
-samplemap | clinical | TCGA
-drug | clinical | TCGA
-followup | clinical | TCGA
-newtumor-followup | clinical | TCGA
-newtumor | clinical | TCGA
-othermalignancy | clinical | TCGA
-patient | clinical | TCGA
-radiation | clinical | TCGA
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
-
-## PAAD - Pancreatic adenocarcinoma
-
-Data Type | Collection Type | Data Source 
---------- | ----------- | ----------- 
-samplemap | clinical | TCGA
-patient | clinical | TCGA
-drug | clinical | TCGA
-radiation | clinical | TCGA
-followup | clinical | TCGA
-newtumor | clinical | TCGA
-newtumor-followup | clinical | TCGA
-othermalignancy | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
-
-## PCPG - Pheochromocytoma and Paraganglioma
+**OV - Ovarian serous cystadenocarcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -578,44 +525,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## PRAD - Prostate adenocarcinoma
 
-Data Type | Collection Type | Data Source 
---------- | ----------- | ----------- 
-samplemap | clinical | TCGA
-patient | clinical | TCGA
-drug | clinical | TCGA
-radiation | clinical | TCGA
-followup | clinical | TCGA
-newtumor | clinical | TCGA
-othermalignancy | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-mut01 | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
-
-## READ - Rectum adenocarcinoma
-
-Data Type | Collection Type | Data Source 
---------- | ----------- | ----------- 
-samplemap | clinical | TCGA
-drug | clinical | TCGA
-followup | clinical | TCGA
-newtumor-followup | clinical | TCGA
-newtumor | clinical | TCGA
-othermalignancy | clinical | TCGA
-patient | clinical | TCGA
-radiation | clinical | TCGA
-protein | molecular | ucsc
-rna | molecular | ucsc
-
-## SARC - Sarcoma
+**PAAD - Pancreatic adenocarcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -627,13 +539,94 @@ followup | clinical | TCGA
 newtumor | clinical | TCGA
 newtumor-followup | clinical | TCGA
 othermalignancy | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-cnv | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
-methylation | molecular | ucsc
+
+
+**PANCAN - undefined**
+
+Data Type | Collection Type | Data Source 
+--------- | ----------- | ----------- 
+gene-level copy number (gistic2) | molecular | ucsc xena
+somatic gene-level non-silent mutation (broad) | molecular | ucsc xena
+somatic mutation SNPs and small INDELs (wustl) | molecular | ucsc xena
+
+
+**PCPG - Pheochromocytoma and Paraganglioma**
+
+Data Type | Collection Type | Data Source 
+--------- | ----------- | ----------- 
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
+
+
+**PRAD - Prostate adenocarcinoma**
+
+Data Type | Collection Type | Data Source 
+--------- | ----------- | ----------- 
+samplemap | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+
+
+**READ - Rectum adenocarcinoma**
+
+Data Type | Collection Type | Data Source 
+--------- | ----------- | ----------- 
+samplemap | clinical | TCGA
+drug | clinical | TCGA
+followup | clinical | TCGA
+newtumor-followup | clinical | TCGA
+newtumor | clinical | TCGA
+othermalignancy | clinical | TCGA
+patient | clinical | TCGA
+radiation | clinical | TCGA
+protein expression RPPA | molecular | ucsc xena
+copy number (gistic2) | molecular | ucsc xena
+miRNA isoform expression (IlluminaGA) | molecular | ucsc xena
+exon expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
+protein expression RPPA (RBN) | molecular | ucsc xena
+Phenotypes | molecular | ucsc xena
+somatic gene-level non-silent mutation (bcm SOLiD) | molecular | ucsc xena
+somatic gene-level non-silent mutation (bcm) | molecular | ucsc xena
+exon expression RNAseq (polyA+ IlluminaGA) | molecular | ucsc xena
+somatic mutation SNPs and small INDELs (bcm SOLiD) | molecular | ucsc xena
+gene expression RNAseq (ployA+ IlluminaHiSeq pancan normalized) | molecular | ucsc xena
+DNA methylation (Methylation450k) | molecular | ucsc xena
+copy number (delete germline cnv) | molecular | ucsc xena
+copy number segments (delete germline cnv) | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
+copy number (gistic2_thresholded) | molecular | ucsc xena
+copy number segments | molecular | ucsc xena
+DNA methylation (Methylation27k) | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaHiSeq percentile) | molecular | ucsc xena
+gene expression (AgilentG4502A_07_3) | molecular | ucsc xena
+miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaGA) | molecular | ucsc xena
+copy number | molecular | ucsc xena
+somatic mutation SNPs and small INDELs (bcm) | molecular | ucsc xena
+
+
+**SARC - Sarcoma**
+
+Data Type | Collection Type | Data Source 
+--------- | ----------- | ----------- 
+samplemap | clinical | TCGA
+patient | clinical | TCGA
+drug | clinical | TCGA
+radiation | clinical | TCGA
+followup | clinical | TCGA
+newtumor | clinical | TCGA
+newtumor-followup | clinical | TCGA
+othermalignancy | clinical | TCGA
 protein expression RPPA | molecular | ucsc xena
 copy number (gistic2) | molecular | ucsc xena
 exon expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
@@ -655,7 +648,8 @@ gene expression RNAseq (polyA+ IlluminaHiSeq percentile) | molecular | ucsc xena
 miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
 copy number | molecular | ucsc xena
 
-## SKCM - Skin Cutaneous Melanoma
+
+**SKCM - Skin Cutaneous Melanoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -666,13 +660,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## STAD - Stomach adenocarcinoma
+
+**STAD - Stomach adenocarcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -683,14 +673,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-mut01 | molecular | ucsc
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## TGCT - Testicular Germ Cell Tumors
+
+**TGCT - Testicular Germ Cell Tumors**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -702,11 +687,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## THCA - Thyroid carcinoma
+
+**THCA - Thyroid carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -718,13 +701,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## THYM - Thymoma
+
+**THYM - Thymoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -736,11 +715,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## UCEC - Uterine Corpus Endometrial Carcinoma
+
+**UCEC - Uterine Corpus Endometrial Carcinoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -752,13 +729,9 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-mut | molecular | broad
-mut01 | molecular | broad
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 
-## UCS - Uterine Carcinosarcoma
+
+**UCS - Uterine Carcinosarcoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -770,11 +743,31 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
+protein expression RPPA | molecular | ucsc xena
+copy number (gistic2) | molecular | ucsc xena
+exon expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
+somatic gene-level non-silent mutation (broad automated) | molecular | ucsc xena
+somatic gene-level non-silent mutation (broad curated) | molecular | ucsc xena
+somatic mutation SNPs and small INDELs (broad curated) | molecular | ucsc xena
+Phenotypes | molecular | ucsc xena
+somatic gene-level non-silent mutation (bcm automated) | molecular | ucsc xena
+gene expression RNAseq (ployA+ IlluminaHiSeq pancan normalized) | molecular | ucsc xena
+DNA methylation (Methylation450k) | molecular | ucsc xena
+copy number (delete germline cnv) | molecular | ucsc xena
+copy number segments (delete germline cnv) | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
+copy number (gistic2_thresholded) | molecular | ucsc xena
+copy number segments | molecular | ucsc xena
+somatic gene-level non-silent mutation (bcgsc automated) | molecular | ucsc xena
+somatic mutation SNPs and small INDELs (bcgsc automated) | molecular | ucsc xena
+somatic mutation SNPs and small INDELs (broad automated) | molecular | ucsc xena
+gene expression RNAseq (polyA+ IlluminaHiSeq percentile) | molecular | ucsc xena
+miRNA isoform expression (IlluminaHiseq) | molecular | ucsc xena
+copy number | molecular | ucsc xena
+somatic mutation SNPs and small INDELs (bcm automated) | molecular | ucsc xena
 
-## UVM - Uveal Melanoma
+
+**UVM - Uveal Melanoma**
 
 Data Type | Collection Type | Data Source 
 --------- | ----------- | ----------- 
@@ -786,9 +779,6 @@ newtumor | clinical | TCGA
 othermalignancy | clinical | TCGA
 patient | clinical | TCGA
 radiation | clinical | TCGA
-rna | molecular | ucsc
-protein | molecular | ucsc
-mut01 | molecular | ucsc
 protein expression RPPA | molecular | ucsc xena
 copy number (gistic2) | molecular | ucsc xena
 exon expression RNAseq (polyA+ IlluminaHiSeq) | molecular | ucsc xena
