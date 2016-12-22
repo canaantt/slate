@@ -3,8 +3,7 @@ var u = require('underscore');
 var jsonfile = require("jsonfile");
 var comongo = require('co-mongodb');
 var co = require('co');
-var cbio_annotation = require("./cbio_annot_reorganized.json");
-var ucsc_annotation = require("./ucsc_mol_annotation.json");
+var helper = require("./testingHelper.js");
 var disease_tables = [];
 var db, collection,db_collections,collection_name, count,manifest, manifest_content;
 var diseases = [];
@@ -44,7 +43,7 @@ var disease_code = {
      "KICH":"Kidney Chromophobe",
      "KIRC":"Kidney renal clear cell carcinoma", 
      "KIRP":"Kidney renal papillary cell carcinoma", 
-     "LICH":"Liver hepatocellular carcinoma",    
+     "LIHC":"Liver hepatocellular carcinoma",    
      "LUAD":"Lung adenocarcinoma",   
      "LUSC":"Lung squamous cell carcinoma",  
      "LUNG":"Lung adenocarcinoma & Lung squamous cell carcinoma",
@@ -63,7 +62,8 @@ var disease_code = {
      "THCA":"Thyroid carcinoma", 
      "UCS":"Uterine Carcinosarcoma",
      "UCEC":"Uterine Corpus Endometrial Carcinoma",  
-     "UVM":"Uveal Melanoma"
+     "UVM":"Uveal Melanoma",
+     "FPPP": "Formalin Fixed Paraffin-Embedded Pilot Phase II"
  };
 var genesets_annot = {
    'TCGA_GBM_classifiers':{
@@ -2236,49 +2236,11 @@ var format = {
   codeJSONStart: function(text) {  console.log(); console.log("```json"); },
   table: function(text){ console.log(text);  }
 };
+
 var onerror = function(e){
     console.log(e);
   };
-Array.prototype.contains = function(v) {
-      for(var i = 0; i < this.length; i++) {
-          if(this[i] === v) return true;
-      }
-      return false;
-  };
-Array.prototype.getAllIndexes = function(v) {
-      var indexes = [], i = -1;
-      while ((i = this.indexOf(v, i+1)) != -1){
-          indexes.push(i);
-      }
-      return indexes;
-  };
-Array.prototype.unique = function() {
-      var arr = [];
-      for(var i = 0; i < this.length; i++) {
-          if(!arr.contains(this[i])) {
-              arr.push(this[i]);
-          }
-      }
-      return arr; 
-  };
-function filterByCollection(obj, val) {
-  if (obj.collection !== undefined && typeof(obj.collection) === 'string' && obj.collection === val) {
-    //return true;
-    return obj;
-  } else {
-    invalidEntries++;
-    return false;
-  }
-}
-Array.prototype.filterByCollection = function(v){
-  for(var i = 0; i < this.length; i++) {
-    if(this[i].collection === v){
-      //console.log(this[i].collection);
-      return this[i];
-    } 
-  }
-  return false;
-};
+
 var invalidEntries = 0;
 function filterByDataSet(value, obj) {
   if ('dataset' in obj && typeof(obj.dataset) === 'string' && obj.dataset === value) {
@@ -2313,7 +2275,23 @@ co(function *() {
   //=========================================================================
   /* using lookup_oncoscape_datasources file to populate _clinic_api_query.md 
   */
-  format.h1("Data Content");
+  helper.format.h1("Data Content");
+  helper.format.h2("General Information");
+  helper.format.text("The input data for each disease compose both clinical and molecular collection types. This section is dedicated to explain the data sources and data types for the input data.");
+  helper.format.h3("Data Source");
+  helper.format.h3("Data Type");
+  helper.format.h3("Genesets Details");
+  helper.format.text("Key | description | number of genes");
+  helper.format.table("--------- | --------- | ---------");
+  var genesets_keys = Object.keys(genesets_annot);
+  var node;
+  for(var i= 0; i<genesets_keys.length; i++){
+    helper.format.table(genesets_keys[i] + " | "  + genesets_annot[genesets_keys[i]].description + " | " +
+          genesets_annot[genesets_keys[i]].number_of_genes);
+    node =  '<div id='+ '"' + genesets_keys[i] + '">' +genesets_annot[genesets_keys[i]].genes +'</div>'
+  }
+
+  helper.format.h2("Data Content in Disease");
   lookup_oncoscape_datasources = yield comongo.db.collection(db, "lookup_oncoscape_datasources");
   datasources = yield lookup_oncoscape_datasources.find({}).toArray();
   datasources = u.sortBy(datasources, 'disease');
@@ -2344,20 +2322,23 @@ co(function *() {
 
   for(var i=0;i<unique_datasets_length;i++){
     if("disease" in datasources[i]){
-      format.h3(datasources[i].disease.toUpperCase() + " - " + disease_code[datasources[i].disease.toUpperCase()]);
+      helper.format.textbold(datasources[i].disease.toUpperCase() + " - " + disease_code[datasources[i].disease.toUpperCase()]);
       var datasource = datasources[i];
-      format.text("Data Type | Collection Type | Data Source ");
-      format.table("--------- | ----------- | ----------- "); 
+      helper.format.text("Data Type | Collection Type | Data Source ");
+      helper.format.table("--------- | ----------- | ----------- "); 
       elem_source = datasource.source;
       elem_dataType = "";
       for(var j=0; j<dataTypeCat_length; j++){
          if(dataTypeCat[j] in datasource){
             if(Array.isArray(datasource[dataTypeCat[j]])) {
+                if(dataTypeCat[j] == "molecular"){
+                  datasource[dataTypeCat[j]] = datasource[dataTypeCat[j]].filter(function(m){return m.source == 'ucsc xena'});
+                }
                 datasource[dataTypeCat[j]].forEach(function(elem){
                   elem_source = elem.source;
                   elem_dataType = elem.type; 
                   if('collection' in elem){
-                    format.table(elem_dataType + " | " + dataTypeCat[j] + " | " + elem_source);
+                    helper.format.table(elem_dataType + " | " + dataTypeCat[j] + " | " + elem_source);
                   }else{
                     format.table(elem_dataType + " | " + dataTypeCat[j] + " | " + elem_source );
                   }
@@ -2366,7 +2347,7 @@ co(function *() {
                 var elems = Object.keys(datasource[dataTypeCat[j]]);
                 var elems_length = elems.length;
                 for(var m=0; m<elems_length;m++){
-                  format.table(elems[m] + " | " + dataTypeCat[j] + " | " + elem_source);
+                  helper.format.table(elems[m] + " | " + dataTypeCat[j] + " | " + elem_source);
                 }
             }
             
@@ -2379,7 +2360,8 @@ co(function *() {
 
   yield comongo.db.close(db);
 }).catch(onerror);
-  
+ 
+
 
 
  
