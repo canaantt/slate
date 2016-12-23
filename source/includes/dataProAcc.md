@@ -5,7 +5,7 @@ We use two collections to track the metadata for all the data collections within
 
 ## Pipeline
 
-![Data Processing Pipeline](/images/datapipeline.png)
+![Data Processing Pipeline](/images/datapipeline2.png)
 
 ## Oncoscape Interface
 
@@ -286,3 +286,8 @@ limit the final output to two records.
 
 `"$limit":2`
 
+
+## Explore the Oncoscape Database
+
+
+**<a target='_blank' href='http://resources.sttrcancer.org/api/data-explorer/'>Data Explorer</a>**

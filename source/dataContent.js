@@ -74,6 +74,7 @@ var format = {
       h5: function(text) { console.log(); console.log('##### '+text); },
       textbold: function(text) { console.log(); console.log(); console.log('**'+ text+'**'); },
       textlist: function(text){ console.log(); console.log('- '+ text);  },
+      textboldlist: function(text){console.log(); console.log('- '+ '**'+ text+'**'); },
       textsublist: function(text){ console.log('  * '+ text);  },
       text: function(text){ console.log(); console.log(text);  },
       url: function(text) {console.log(); console.log('`' + text + '`'); console.log();},
@@ -89,46 +90,36 @@ var format = {
       codeJSONStart: function(text) {  console.log(); console.log("```json"); },
       table: function(text){ console.log(text);  }
 };
-var lookup_clinical_keys_annot = {
+var clinical_annot = {
       'events':'clinical events collection organized by patient',
       'patient':'patient collection for each disease type',
       'drug':'chemo or other medicine administration records',
-      'newTumor':'new tumor event records for possible patients',
-      'otherMalignancy':'other maliganancy records for possible patients',
+      'newtumor':'new tumor event records for possible patients',
+      'othermalignancy':'other maliganancy records for possible patients',
       'radiation':'radiation administration records',
-      'followUp':'possible follow-up records',
-      'newTumor-followUp':'possible follow-up records for the new tumor events'
-};
-var type_keys_annot = {
-      'color':'a collection for coloring in Oncoscape application',
+      'followup':'possible follow-up records',
+      'newtumor-followup':'possible follow-up records for the new tumor events',
+      'samplemap': 'sample-patient mapping collection'
+}; //lookup_oncoscape_datasources
+
+var class_annot = {
+      'expr': 'Expression data including mRNA and microRNA expression data and protein-level and phosphoprotein level (RPPA) data',
       'mut':'non-synonymous mutations representated as strings in this collection',
       'mut01':'non-synonymous mutations representated as binary values in this collection',
-      'events':'clinical events collection organized by patient',
-      'patient':'patient collection for each disease type',
-      'drug':'chemo or other medicine administration records',
-      'newTumor':'new tumor event records for possible patients',
-      'otherMalignancy':'other maliganancy records for possible patients',
-      'radiation':'radiation administration records',
-      'followUp':'possible follow-up records',
-      'newTumor-followUp':'possible follow-up records for the new tumor events',
-      'genesets':'a collection of multiple genesets with specific genes in each set',
-      'methylation':'DNA methlyation data',
-      'rna':'mRNA and microRNA expression data',
-      'protein':'protein-level and phosphoprotein level (RPPA) data',
-      'psi':'percentage spliced in (PSI, Ψ) values in RNA splicing data',
-      'facs':'Fluorescence-activated cell sorting data',
+      'meth':'DNA methlyation data',
+      'meth_thd':'Thresholded DNA methlyation data',
       'cnv':'DNA copy-number data represented as Gistic score',
-      'annotation':'annotation files for a specific data type, for instance RNA splicing',
-      'chromosome':'annoataion for chromosomes',
-      'genes':'annotation data used to annotate genes',
-      'centromere':'centromere position for each chromosome on human genome',
-      'pcaScores':'calculated PCA scores for a specific data with specific genesets',
-      'pcaLoadings':'pre-calculated PCA scores for a specific data with specific genesets',
-      'mds':'Multidimensional Scaling data for a specific data with specific genesets',
-      'edges':'derived collection to describe edges between genes and patients use for Markers and Patients (one of the Oncoscape tools)',
-      'ptDegree':'derived collection to describe the weight of patients based on on the number of data points use for Markers and Patients (one of the Oncoscape tools)',
-      'geneDegree':'derived collection to describe the weight of genes based on on the number of data points use for Markers and Patients (one of the Oncoscape tools)' 
-};
+      'cnv_thd':'Thresholded DNA copy-number data represented as Gistic score',
+      'clin': 'Clinical information including events, drug, radiation, follow-up, newTumor-followUp collections',
+      'cluster':'Derived data collections including calculated PCA and MDS results'
+}; //lookup_dataTypes
+
+var schema_annot = {
+      'chr_sample': 'Collections of this schema have chromosomal location information as keys for each record, which is a list of values with samples as keys.',
+      'hugo_sample': 'Collections of this schema have chromosomal HUGO genes as keys for each record, which is a list of values with samples as keys.',
+      'sample_pos': 'Collections of this schema have samples as keys for each record, which is a list of position.',
+      'methoprobe_sample':'Collections of this schema have methlyation probes as keys for each record, which is a list of values with samples as keys.'
+}; //lookup_dataTypes
 
 var onerror = function(e){
     console.log(e);
@@ -178,17 +169,39 @@ co(function *() {
   
   format.text("This section is dedicated to explain the raw data Oncoscape utilizes. The section <a href='#data-provenance'>Data Provenance</a> explains how the raw data have been processed to fit into our visualization model.");
   format.h2("Clinical Data");
-  format.textlist("Data Sources");
-  format.textlist("Data Type");
+  format.h3("Data Sources");
+  format.text("<a target='_blank' href='https://gdc-portal.nci.nih.gov/legacy-archive/search/f?filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22cases.project.program.name%22,%22value%22:%5B%22TCGA%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22files.data_category%22,%22value%22:%5B%22Clinical%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22files.data_type%22,%22value%22:%5B%22Clinical%20Supplement%22,%22Clinical%20data%22%5D%7D%7D%5D%7D&pagination=%7B%22files%22:%7B%22from%22:0,%22size%22:20,%22sort%22:%22cases.project.project_id:asc%22%7D%7D'>GDC clinical data</a>");
+  format.h3("Data Type");
+  format.text("Clinical Collection Type | Annotation");
+  format.table("--------- | ----------- ");
+  var clinical_annot_keys = Object.keys(clinical_annot); 
+  for(var m=0;m<clinical_annot_keys.length;m++){
+    format.table(clinical_annot_keys[m] + " | " + clinical_annot[clinical_annot_keys[m]]);
+  }  
   format.h2("Molecular Data");
-  format.textlist("Data Sources");
-  format.textlist("Data Type");
+  format.h3("Data Sources");
+  format.text("<a target='_blank' href='https://xenabrowser.net/datapages/?host=https://tcga.xenahubs.net'>UCSC xena hub</a>");
+  format.text("<a target='_blank' href='https://github.com/ucscXena/ucsc-xena-server'>UCSC xena github</a>");
+  format.h3("Data Type");
+  format.text("Collection Class | Annotation");
+  format.table("--------- | ----------- ");
+  var class_annot_keys = Object.keys(class_annot);
+  for(p=0;p<class_annot_keys.length;p++){
+    format.table(class_annot_keys[p] + " | " + class_annot[class_annot_keys[p]]);
+  } 
+  format.h3("Schema");
+  format.text("Schema Type | Annotation");
+  format.table("--------- | ----------- ");
+  var schema_annot_keys = Object.keys(schema_annot);
+  for(p=0;p<schema_annot_keys.length;p++){
+    format.table(schema_annot_keys[p] + " | " + schema_annot[schema_annot_keys[p]]);
+  } 
   format.h2("Gene Set");
   format.text("Name | Description | Genes");
   format.table("--------- | --------- | ---------");
   for(var i= 0; i<genesets_annot.length; i++){
-      format.table('<a target="_blank" href='+ genesets_annot[i].url + '>' +genesets_annot[i].name +'</a>'+ " | "  + 
-             genesets_annot[i].desc  + " | " + "genes");
+      format.table('<a target="_blank" href='+ genesets_annot[i].url + '>' + genesets_annot[i].name +'</a>'+ ' | '  + 
+             genesets_annot[i].desc  + ' | ' + '<a target="_blank" href=\'https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={' + '"name":"'+ genesets_annot[i].name + '","$fields":["genes"]}&apikey=password' + '\'>genes</a>');
       
   }
   yield comongo.db.close(db);

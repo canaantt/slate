@@ -84,7 +84,7 @@ helper.format.h1("Data Provenance");
 helper.format.text("We use two collections to track the metadata for all the data collections within our database. 'manifest' is organized by collection. 'lookup_oncoscape_datasource' is organized by disease.");
 // Describe lookup_oncoscape_datasource
 helper.format.h2("Pipeline");
-helper.format.text("![Data Processing Pipeline](/images/datapipeline.png)");
+helper.format.text("![Data Processing Pipeline](/images/datapipeline2.png)");
 helper.format.h2("Oncoscape Interface");
 helper.format.text("we use lookup as an hand-off from data-generation to data-utilization. Lookup is reminding us the data are organized by diseases. And they have the subcategories: clinical, molecular. The lookup is organized by disease. The top half: meta about the disease set. The bottom is the actual data. from each lookup document. The meta section is organized by..The actual section is organized by … subcategories. Render tables are created for tool; MP: render_patient; PCA: render_pca"); 
 
@@ -224,5 +224,7 @@ helper.format.text("skip the first five records");
 helper.format.url('"$skip":5');
 helper.format.text("limit the final output to two records.");
 helper.format.url('"$limit":2');
+helper.format.h2("Explore the Oncoscape Database");
+helper.format.textbold("<a target='_blank' href='http://resources.sttrcancer.org/api/data-explorer/'>Data Explorer</a>");
   
 
