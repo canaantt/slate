@@ -103,15 +103,13 @@ var clinical_annot = {
 }; //lookup_oncoscape_datasources
 
 var class_annot = {
-      'expr': 'Expression data including mRNA and microRNA expression data and protein-level and phosphoprotein level (RPPA) data',
+      'expr': 'Expression data including mRNA and microRNA expression data and Reverse hase protein array (RPPA) data',
       'mut':'non-synonymous mutations representated as strings in this collection',
       'mut01':'non-synonymous mutations representated as binary values in this collection',
       'meth':'DNA methlyation data',
       'meth_thd':'Thresholded DNA methlyation data',
       'cnv':'DNA copy-number data represented as Gistic score',
-      'cnv_thd':'Thresholded DNA copy-number data represented as Gistic score',
-      'clin': 'Clinical information including events, drug, radiation, follow-up, newTumor-followUp collections',
-      'cluster':'Derived data collections including calculated PCA and MDS results'
+      'cnv_thd':'Thresholded DNA copy-number data represented as Gistic score'
 }; //lookup_dataTypes
 
 var schema_annot = {
@@ -167,10 +165,10 @@ co(function *() {
   genesets_annot_cursor = yield comongo.db.collection(db, "lookup_genesets");
   genesets_annot = yield genesets_annot_cursor.find({}).toArray();
   
-  format.text("This section is dedicated to explain the raw data Oncoscape utilizes. The section <a href='#data-provenance'>Data Provenance</a> explains how the raw data have been processed to fit into our visualization model.");
+  format.text("This section is dedicated to explain the raw data Oncoscape utilizes. The section <a href='#data-provenance'>Data Provenance</a> explains how the raw data has been processed to fit into our visualization model.");
   format.h2("Clinical Data");
   format.h3("Data Sources");
-  format.text("Genomic Data Commons Data Portal (GDC) from National Institutes of Health (NIH) provided compiled annotated clinical data.");
+  format.text("Genomic Data Commons Data Portal (GDC) from National Institutes of Health (NIH) provides the compiled annotated clinical data.");
   format.text("<a target='_blank' href='https://gdc-portal.nci.nih.gov/legacy-archive/search/f?filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22cases.project.program.name%22,%22value%22:%5B%22TCGA%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22files.data_category%22,%22value%22:%5B%22Clinical%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22files.data_type%22,%22value%22:%5B%22Clinical%20Supplement%22,%22Clinical%20data%22%5D%7D%7D%5D%7D&pagination=%7B%22files%22:%7B%22from%22:0,%22size%22:20,%22sort%22:%22cases.project.project_id:asc%22%7D%7D'>GDC clinical data</a>");
   format.h3("Data Type");
   format.text("Clinical Collection Type | Annotation");
@@ -181,6 +179,7 @@ co(function *() {
   }  
   format.h2("Molecular Data");
   format.h3("Data Sources");
+  format.text("UCSC Xena compiled annotated normalized molecular datasets of various platforms from multiple institutes. ")
   format.text("<a target='_blank' href='https://xenabrowser.net/datapages/?host=https://tcga.xenahubs.net'>UCSC xena hub</a>");
   format.text("<a target='_blank' href='https://github.com/ucscXena/ucsc-xena-server'>UCSC xena github</a>");
   format.h3("Data Type");
@@ -202,7 +201,7 @@ co(function *() {
   format.table("--------- | --------- | ---------");
   for(var i= 0; i<genesets_annot.length; i++){
       format.table('<a target="_blank" href='+ genesets_annot[i].url + '>' + genesets_annot[i].name +'</a>'+ ' | '  + 
-             genesets_annot[i].desc  + ' | ' + '<a target="_blank" href=\'https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={' + '"name":"'+ genesets_annot[i].name + '","$fields":["genes"]}&apikey=password' + '\'>genes</a>');
+             genesets_annot[i].desc  + ' | ' + '<a target="_blank" href=\'https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={' + '"name":"'+ genesets_annot[i].name + '","$fields":["genes"]}&apikey=password' + '\'>'+ genesets_annot[i].num +'</a>');
       
   }
   yield comongo.db.close(db);

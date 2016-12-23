@@ -207,6 +207,7 @@ for(p=0;p<manifest_type_keys.length;p++){
 
 /* REST API Query on gbm_patient_tcga_clinical */
 helper.format.h1("Data Access");
+helper.format.text("Oncoscape provides the RESTful API service. ");
 helper.format.h2("Example to access one collection from browser");
 helper.format.textbold("HTTP Request");
 helper.format.text("Collections are accessable at the host: http://dev.oncoscape.sttrcancer.io/api/");

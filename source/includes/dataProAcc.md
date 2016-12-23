@@ -249,6 +249,8 @@ geneDegree | derived collection to describe the weight of genes based on on the 
 
 # Data Access
 
+Oncoscape provides the RESTful API service. 
+
 ## Example to access one collection from browser
 
 
