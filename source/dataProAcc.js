@@ -207,7 +207,7 @@ for(p=0;p<manifest_type_keys.length;p++){
 
 /* REST API Query on gbm_patient_tcga_clinical */
 helper.format.h1("Data Access");
-helper.format.text("Oncoscape provides the RESTful API service. ");
+helper.format.text("Oncoscape provides the API service based on the traditional RESTful API data structure. Data are secured with exposed by API Gateway Kong.. The privacy is managed at collection level. You can acess the public datasets through appending 'apikey=password'.");
 helper.format.h2("Example to access one collection from browser");
 helper.format.textbold("HTTP Request");
 helper.format.text("Collections are accessable at the host: http://dev.oncoscape.sttrcancer.io/api/");

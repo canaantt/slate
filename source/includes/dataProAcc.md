@@ -249,7 +249,7 @@ geneDegree | derived collection to describe the weight of genes based on on the 
 
 # Data Access
 
-Oncoscape provides the RESTful API service. 
+Oncoscape provides the API service based on the traditional RESTful API data structure. Data are secured with exposed by API Gateway Kong.. The privacy is managed at collection level. You can acess the public datasets through appending 'apikey=password'.
 
 ## Example to access one collection from browser
 
