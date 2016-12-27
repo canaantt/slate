@@ -11,7 +11,8 @@ toc_footers:
 
 includes:
   - dataContent
-  - dataProAcc
+  - dataProvenance
+  - dataAccess
 
 
 search: true

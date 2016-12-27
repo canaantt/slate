@@ -51,14 +51,14 @@ cnv_thd | Thresholded DNA copy-number data represented as Gistic score
 
 Schema Type | Annotation
 --------- | ----------- 
-chr_sample | Collections of this schema have chromosomal location information as keys for each record, which is a list of values with samples as keys.
+chr_sample | Collections of this schema have chromosomal location inhelper.formation as keys for each record, which is a list of values with samples as keys.
 hugo_sample | Collections of this schema have chromosomal HUGO genes as keys for each record, which is a list of values with samples as keys.
 sample_pos | Collections of this schema have samples as keys for each record, which is a list of position.
 methoprobe_sample | Collections of this schema have methlyation probes as keys for each record, which is a list of values with samples as keys.
 
 ## Gene Set
 
-Name        | Description | Genes
+Name | Description | Genes
 --------- | --------- | ---------
 <a target="_blank" href=https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2818769/>TCGA GBM Classifiers</a> | Gene expression-based molecular classification of GBM subtypes (Proneural, Neural, Classical, Mesenchymal) | <a target="_blank" href='https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={"name":"TCGA GBM Classifiers","$fields":["genes"]}&apikey=password'>840</a>
 <a target="_blank" href=>Glioma Markers</a> | Genes recurrently impacted in TCGA gliomas | <a target="_blank" href='https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={"name":"Glioma Markers","$fields":["genes"]}&apikey=password'>545</a>
