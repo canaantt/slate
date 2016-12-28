@@ -2,7 +2,13 @@
 
 <p>We use two collections to track the metadata for all the data collections within our database. &lsquo;manifest&rsquo; is organized by collection. &#39;lookup_oncoscape_datasource&rsquo; is organized by disease.</p>
 
-<h2 id="from-disease-perspective">From Disease Perspective</h2>
+<h2 id="pipeline">Pipeline</h2>
+
+<p><img alt="Data Processing Pipeline" src="/images/datapipeline2.png" /></p>
+
+<h2 id="oncoscape-interface">Oncoscape Interface</h2>
+
+<p>we use lookup as an hand-off from data-generation to data-utilization. Lookup is reminding us the data are organized by diseases. And they have the subcategories: clinical, molecular. The lookup is organized by disease. The top half: meta about the disease set. The bottom is the actual data. from each lookup document. The meta section is organized by..The actual section is organized by … subcategories. Render tables are created for tool; MP: render_patient; PCA: render_pca</p>
 
 <p>Key words to describe lookup_oncoscape_datasource collection</p>
 
@@ -421,7 +427,7 @@
 <table><thead>
 <tr>
 <th>edges geneset</th>
-<th>geneset information</th>
+<th>geneset inhelper.formation</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -470,7 +476,7 @@
 </tr>
 </tbody></table>
 
-<h2 id="from-collection-perspective">From Collection Perspective</h2>
+<h3 id="from-collection-perspective">From Collection Perspective</h3>
 
 <p>Key words to describe manifest collection</p>
 
@@ -796,48 +802,41 @@
 </tr>
 </tbody></table>
 
-<h2 id="genesets-details">Genesets Details:</h2>
+<h1 id="data-access">Data Access</h1>
 
-<table><thead>
-<tr>
-<th>Key</th>
-<th>description</th>
-<th>number of genes</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>TCGA_GBM_classifiers</td>
-<td><a target="_blank" href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2818769/'>TCGA_GBM_classifiers</a></td>
-<td>840</td>
-</tr>
-<tr>
-<td>Marker_genes_545</td>
-<td>The 545-gene set is all the genes that are recurrently impacted in TCGA gliomas.</td>
-<td>545</td>
-</tr>
-<tr>
-<td>TCGA_pancan_mutated</td>
-<td>all the genes recurrently mutated across all TCGA cancers (note that it may not be up to date for all the TCGA samples currently available</td>
-<td>64</td>
-</tr>
-<tr>
-<td>oncoVogel274</td>
-<td>The OncoVogel274 gene set comes from combining (an old version of Oncoplex) with genes from this (famous) paper by <a target="_blank" href='https://www.ncbi.nlm.nih.gov/pubmed/23539594/'>Vogelstein</a></td>
-<td>274</td>
-</tr>
-<tr>
-<td>Oncoplex</td>
-<td><a target="_blank" href='http://tests.labmed.washington.edu/UW-OncoPlex/'>UW Oncoplex Cancer Panel</a></td>
-<td>263</td>
-</tr>
-<tr>
-<td>OSCC_Chen_131_probes</td>
-<td><a target="_blank" href='https://www.ncbi.nlm.nih.gov/pubmed/18669583/'>OSCC_Chen_131_probes</a></td>
-<td>109</td>
-</tr>
-<tr>
-<td>OSCC_Chen_9_genes</td>
-<td><a target="_blank" href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4527746//'>OSCC_Chen_9_genes</a></td>
-<td>9</td>
-</tr>
-</tbody></table>
+<p>Oncoscape provides the API service based on the traditional RESTful API data structure. Data are secured with exposed by API Gateway Kong.. The privacy is managed at collection level. You can acess the public datasets through appending &#39;apikey=password&rsquo;.</p>
+
+<h2 id="example-to-access-one-collection-from-browser">Example to access one collection from browser</h2>
+
+<p><strong>HTTP Request</strong></p>
+
+<p>Collections are accessable at the host: http://dev.oncoscape.sttrcancer.io/api/</p>
+
+<p>The endpoint of oncoscape API is a unique URL. Every endpoint points to a unique collection.
+Below lists more details of the organization of the Oncoscape Mongo Database and the collections organized by disease type.</p>
+
+<p><code class="prettyprint">GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q=&amp;apikey=password</code></p>
+
+<h2 id="query-collection-from-browser">Query Collection from Browser</h2>
+
+<p><strong>HTTP Request</strong></p>
+
+<p>Filter by gender and race and only show the selected fields</p>
+
+<p><code class="prettyprint">GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q={&quot;gender&quot;:&quot;MALE&quot;, &quot;race&quot;:&quot;WHITE&quot;,&quot;$fields&quot;:[&quot;gender&quot;,&quot;race&quot;,&quot;patient_ID&quot;],&quot;$skip&quot;:5,&quot;$limit&quot;:2}&amp;apikey=password</code></p>
+
+<p>only show gender, race and patient_ID</p>
+
+<p><code class="prettyprint">&quot;$fields&quot;:[&quot;gender&quot;,&quot;race&quot;,&quot;patient_ID&quot;]</code></p>
+
+<p>skip the first five records</p>
+
+<p><code class="prettyprint">&quot;$skip&quot;:5</code></p>
+
+<p>limit the final output to two records.</p>
+
+<p><code class="prettyprint">&quot;$limit&quot;:2</code></p>
+
+<h2 id="explore-the-oncoscape-database">Explore the Oncoscape Database</h2>
+
+<p><strong><a target='_blank' href='http://resources.sttrcancer.org/api/data-explorer/'>Data Explorer</a></strong></p>

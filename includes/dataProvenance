@@ -1,0 +1,96 @@
+<h1 id="data-provenance">Data Provenance</h1>
+
+<p>To fit into the Oncoscape Data Visualization model, we further processed the raw data described in <a href='#data-content'>Data Content</a>. This section is dedicated to explain the data model and process. The two major processes include <a href='#cluster'>cluster</a> and <a href='#network'>network</a>.</p>
+
+<h2 id="cluster">Cluster</h2>
+
+<p>The cluster collections are generated to fit into two tools &lsquo;Markers and Patients&rsquo; and &#39;PCA&rsquo; in Oncoscape. There are two Schemas for clutster collections: Multidimensional Scaling (MDS) and Principal component analysis (PCA).</p>
+
+<h3 id="mds">MDS</h3>
+
+<p><strong>Input Data:</strong></p>
+
+<ul>
+<li><p><a href='#data-type7'>cnv_thd</a></p></li>
+<li><p><a href='#data-type7'>mut01</a></p></li>
+</ul>
+
+<p><strong>Mechanism:</strong></p>
+
+<p>cnv_thd and mut01 were combined and the distance matrix were calculated best represent the similarity of individual sample in the N-dimensional space.</p>
+
+<p><strong>Schema:</strong></p>
+
+<h3 id="pca">PCA</h3>
+
+<p><strong>Input Data:</strong></p>
+
+<ul>
+<li><p><a href='#data-type7'>expr</a> including RNA and Protein</p></li>
+<li><p><a href='#data-type7'>cnv</a></p></li>
+</ul>
+
+<p><strong>Mechanism:</strong></p>
+
+<p>The collection of each class will be processed respectively that distance matrices were generated to best represent the similarity of individual sample in the N-dimensional space.</p>
+
+<p><strong>Schema:</strong></p>
+
+<h3 id="collection-organization">Collection Organization</h3>
+
+<p>The naming convention of the derived collections includes the information from method, geneset as well as data class listed below.</p>
+
+<table><thead>
+<tr>
+<th>Methods</th>
+<th>Genesets</th>
+<th>Data Class</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PCA</td>
+<td>All Genes</td>
+<td>RNA</td>
+</tr>
+<tr>
+<td>MDS</td>
+<td>TCGA Pancan Mutated</td>
+<td>Protein</td>
+</tr>
+<tr>
+<td></td>
+<td>Oncoplex</td>
+<td>CNV/Mut01</td>
+</tr>
+<tr>
+<td></td>
+<td>Glioma Markers</td>
+<td>Mut01</td>
+</tr>
+<tr>
+<td></td>
+<td>Oncoplex Vogelstein</td>
+<td>CNV</td>
+</tr>
+<tr>
+<td></td>
+<td>TCGA GBM Classifiers</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h2 id="network">Network</h2>
+
+<p>The network collections are generated to fit to&#39;Markers and Patients&rsquo; in Oncoscape. There are three Schemas for network collections: edges, patient weights and gene weights.</p>
+
+<h3 id="edges">Edges</h3>
+
+<p>Edges contain the information to define the edges connecting one patient sample with one gene. For each record the value may be integer between -2 to +2. If one gene in one patient sample has copy number variation, this information will be represented as -2 (deletion), or -1 (loss), or +1 (gain), or +2 (amplificaiton). If this gene on this patient sample doesn&rsquo;t have copy number variation but point mutation, this information will be represented as &#39;0&rsquo;. Otherwise, no record will be shown. </p>
+
+<h3 id="patient-degrees">Patient degrees</h3>
+
+<p>For a certain dataset, patient degrees record the number of altered genes (copy number variation and point mutation) for each patient.</p>
+
+<h3 id="gene-degrees">Gene degrees</h3>
+
+<p>For a certain dataset, gene degrees record the number of patients who have this gene altered (either caused by copy number varation or point mutation).</p>

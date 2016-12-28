@@ -1,0 +1,38 @@
+<h1 id="data-access">Data Access</h1>
+
+<p>Oncoscape provides the API service based on the traditional RESTful API data structure. Data are secured with exposed by API Gateway Kong.. The privacy is managed at collection level. You can acess the public datasets through appending &lsquo;apikey=password&rsquo;.</p>
+
+<h2 id="example-to-access-one-collection-from-browser">Example to access one collection from browser</h2>
+
+<p><strong>HTTP Request</strong></p>
+
+<p>Collections are accessable at the host: http://dev.oncoscape.sttrcancer.io/api/</p>
+
+<p>The endpoint of oncoscape API is a unique URL. Every endpoint points to a unique collection.
+Below lists more details of the organization of the Oncoscape Mongo Database and the collections organized by disease type.</p>
+
+<p><code class="prettyprint">GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q=&amp;apikey=password</code></p>
+
+<h2 id="query-collection-from-browser">Query Collection from Browser</h2>
+
+<p><strong>HTTP Request</strong></p>
+
+<p>Filter by gender and race and only show the selected fields</p>
+
+<p><code class="prettyprint">GET http://dev.oncoscape.sttrcancer.io/api/gbm_patient_tcga_clinical/?q={&quot;gender&quot;:&quot;MALE&quot;, &quot;race&quot;:&quot;WHITE&quot;,&quot;$fields&quot;:[&quot;gender&quot;,&quot;race&quot;,&quot;patient_ID&quot;],&quot;$skip&quot;:5,&quot;$limit&quot;:2}&amp;apikey=password</code></p>
+
+<p>only show gender, race and patient_ID</p>
+
+<p><code class="prettyprint">&quot;$fields&quot;:[&quot;gender&quot;,&quot;race&quot;,&quot;patient_ID&quot;]</code></p>
+
+<p>skip the first five records</p>
+
+<p><code class="prettyprint">&quot;$skip&quot;:5</code></p>
+
+<p>limit the final output to two records.</p>
+
+<p><code class="prettyprint">&quot;$limit&quot;:2</code></p>
+
+<h2 id="explore-the-oncoscape-database">Explore the Oncoscape Database</h2>
+
+<p><strong><a target='_blank' href='http://resources.sttrcancer.org/api/data-explorer/'>Data Explorer</a></strong></p>
