@@ -2,6 +2,12 @@
 
 <p>To fit into the Oncoscape Data Visualization model, we further processed the raw data described in <a href='#data-content'>Data Content</a>. This section is dedicated to explain the data model and process. The two major processes include <a href='#cluster'>cluster</a> and <a href='#network'>network</a>.</p>
 
+<h2 id="pipeline">Pipeline</h2>
+
+<p><img alt="Data Processing Pipeline" src="/images/datapipeline2.png" /></p>
+
+<h2 id="oncoscape-interface">Oncoscape Interface</h2>
+
 <h2 id="cluster">Cluster</h2>
 
 <p>The cluster collections are generated to fit into two tools &lsquo;Markers and Patients&rsquo; and &#39;PCA&rsquo; in Oncoscape. There are two Schemas for clutster collections: Multidimensional Scaling (MDS) and Principal component analysis (PCA).</p>
