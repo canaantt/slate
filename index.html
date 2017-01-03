@@ -121,15 +121,15 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p><a href="https://oncoscape.sttrcancer.org/#/">Oncoscape</a> is a web application that hosts an integrated suite of analysis tools for users to explore hypotheses related to molecular and clinical data in order to better understand cancer biology and treatment options. For more detailed information, please read <a href="https://github.com/FredHutch/Oncoscape">wiki</a>.</p>
+<p><a target="_blank" href='https://oncoscape.sttrcancer.org/#/'>Oncoscape</a> is a web application that hosts an integrated suite of analysis tools for users to explore hypotheses related to molecular and clinical data in order to better understand cancer biology and treatment options. For more detailed information, please read <a target="_blank" href='https://github.com/FredHutch/Oncoscape'>github repo page</a>.</p>
 
 <ul>
 <li><a href='#data-content'><strong>Data Content</strong></a>
 
 <ul>
-<li>Organizes most if not all data tables by disease</li>
-<li>Lists data types includes clinical and molecular tables</li>
-<li>Lists data sources and a brief description of the individual table</li>
+<li>Organizes most if not all data collections by disease</li>
+<li>Lists data types includes clinical and molecular collections</li>
+<li>Lists data sources and a brief description of the individual collection</li>
 </ul></li>
 <li><a href='#data-provenance'><strong>Data Provenance</strong></a>
 
@@ -277,7 +277,7 @@
 </tr>
 </tbody></table>
 
-<h2 id="gene-set">Gene Set</h2>
+<h2 id="gene-sets">Gene Sets</h2>
 
 <table><thead>
 <tr>
@@ -320,17 +320,21 @@
 
           <h1 id="data-provenance">Data Provenance</h1>
 
-<p>To fit into the Oncoscape Data Visualization model, we further processed the raw data described in <a href='#data-content'>Data Content</a>. This section is dedicated to explain the data model and process. The two major processes include <a href='#cluster'>cluster</a> and <a href='#network'>network</a>.</p>
+<p>We use two collections to track the metadata for all the data collections within our database. &lsquo;manifest&rsquo; is organized by collection. &#39;lookup_oncoscape_datasource&rsquo; is organized by disease.</p>
 
 <h2 id="pipeline">Pipeline</h2>
 
-<p><img alt="Data Processing Pipeline" src="images/datapipeline2.png" /></p>
+<p><img alt="Data Processing Pipeline" src="images/datapipeline2.svg" /></p>
 
 <h2 id="oncoscape-interface">Oncoscape Interface</h2>
 
+<p>we use lookup as an hand-off from data-generation to data-utilization. Lookup is reminding us the data are organized by diseases. And they have the subcategories: clinical, molecular. The lookup is organized by disease. The top half: meta about the disease set. The bottom is the actual data. from each lookup document. The meta section is organized by..The actual section is organized by … subcategories. Render tables are created for tool; MP: render_patient; PCA: render_pca</p>
+
+<p>To fit into the Oncoscape Data Visualization model, we further processed the raw data described in <a href='#data-content'>Data Content</a>. This section is dedicated to explain the data model and process. The two major processes include <a href='#cluster'>cluster</a> and <a href='#network'>network</a>.</p>
+
 <h2 id="cluster">Cluster</h2>
 
-<p>The cluster collections are generated to fit into two tools &lsquo;Markers and Patients&rsquo; and &#39;PCA&rsquo; in Oncoscape. There are two Schemas for clutster collections: Multidimensional Scaling (MDS) and Principal component analysis (PCA).</p>
+<p>The cluster collections are generated to fit into two tools &#39;Markers and Patients&rsquo; and &#39;PCA&rsquo; in Oncoscape. There are two Schemas for clutster collections: Multidimensional Scaling (MDS) and Principal component analysis (PCA).</p>
 
 <h3 id="mds">MDS</h3>
 

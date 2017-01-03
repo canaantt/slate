@@ -1,1 +1,0 @@
-var jsonfile=require("jsonfile"),cbio_annotation={},ucsc_annotation={};jsonfile.readFile("cbio_mol_annotation.json",function(n,o){cbio_annotation=o}),jsonfile.readFile("ucsc_mol_annotation.json",function(n,o){ucsc_annotation=o});
