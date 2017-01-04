@@ -1,0 +1,172 @@
+<h1 id="data-content">Data Content</h1>
+
+<p>This section is dedicated to explain the raw data Oncoscape utilizes. The section <a href='#data-provenance'>Data Provenance</a> explains how the raw data has been processed to fit into our visualization model.</p>
+
+<h2 id="clinical-data">Clinical Data</h2>
+
+<h3 id="data-sources">Data Sources</h3>
+
+<p>Genomic Data Commons Data Portal (GDC) from National Institutes of Health (NIH) provides the compiled annotated clinical data.</p>
+
+<p><a target='_blank' href='https://gdc-portal.nci.nih.gov/legacy-archive/search/f?filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22cases.project.program.name%22,%22value%22:%5B%22TCGA%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22files.data_category%22,%22value%22:%5B%22Clinical%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22files.data_type%22,%22value%22:%5B%22Clinical%20Supplement%22,%22Clinical%20data%22%5D%7D%7D%5D%7D&pagination=%7B%22files%22:%7B%22from%22:0,%22size%22:20,%22sort%22:%22cases.project.project_id:asc%22%7D%7D'>GDC clinical data</a></p>
+
+<h3 id="data-type">Data Type</h3>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Annotation</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>events</td>
+<td>clinical events collection organized by patient</td>
+</tr>
+<tr>
+<td>patient</td>
+<td>patient collection for each disease type</td>
+</tr>
+<tr>
+<td>drug</td>
+<td>chemo or other medicine administration records</td>
+</tr>
+<tr>
+<td>newtumor</td>
+<td>new tumor event records for possible patients</td>
+</tr>
+<tr>
+<td>othermalignancy</td>
+<td>other maliganancy records for possible patients</td>
+</tr>
+<tr>
+<td>radiation</td>
+<td>radiation administration records</td>
+</tr>
+<tr>
+<td>followup</td>
+<td>possible follow-up records</td>
+</tr>
+<tr>
+<td>newtumor-followup</td>
+<td>possible follow-up records for the new tumor events</td>
+</tr>
+<tr>
+<td>samplemap</td>
+<td>sample-patient mapping collection</td>
+</tr>
+</tbody></table>
+
+<h2 id="molecular-data">Molecular Data</h2>
+
+<h3 id="data-sources">Data Sources</h3>
+
+<p>UCSC Xena compiled annotated normalized molecular datasets of various platforms from multiple institutes. </p>
+
+<p><a target='_blank' href='https://xenabrowser.net/datapages/?host=https://tcga.xenahubs.net'>UCSC xena hub</a></p>
+
+<p><a target='_blank' href='https://github.com/ucscXena/ucsc-xena-server'>UCSC xena github</a></p>
+
+<h3 id="data-type">Data Type</h3>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Annotation</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>expr</td>
+<td>Expression data including mRNA and microRNA expression data and Reverse hase protein array (RPPA) data</td>
+</tr>
+<tr>
+<td>mut</td>
+<td>non-synonymous mutations representated as strings in this collection</td>
+</tr>
+<tr>
+<td>mut01</td>
+<td>non-synonymous mutations representated as binary values in this collection</td>
+</tr>
+<tr>
+<td>meth</td>
+<td>DNA methlyation data</td>
+</tr>
+<tr>
+<td>meth_thd</td>
+<td>Thresholded DNA methlyation data</td>
+</tr>
+<tr>
+<td>cnv</td>
+<td>DNA copy-number data represented as Gistic score</td>
+</tr>
+<tr>
+<td>cnv_thd</td>
+<td>Thresholded DNA copy-number data represented as Gistic score</td>
+</tr>
+</tbody></table>
+
+<h3 id="schema">Schema</h3>
+
+<table><thead>
+<tr>
+<th>Schema Type</th>
+<th>Annotation</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chr_sample</td>
+<td>Collections of this schema have chromosomal location inhelper.formation as keys for each record, which is a list of values with samples as keys.</td>
+</tr>
+<tr>
+<td>hugo_sample</td>
+<td>Collections of this schema have chromosomal HUGO genes as keys for each record, which is a list of values with samples as keys.</td>
+</tr>
+<tr>
+<td>sample_pos</td>
+<td>Collections of this schema have samples as keys for each record, which is a list of position.</td>
+</tr>
+<tr>
+<td>methoprobe_sample</td>
+<td>Collections of this schema have methlyation probes as keys for each record, which is a list of values with samples as keys.</td>
+</tr>
+</tbody></table>
+
+<h2 id="gene-sets">Gene Sets</h2>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Genes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a target="_blank" href=https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2818769/>TCGA GBM Classifiers</a></td>
+<td>Gene expression-based molecular classification of GBM subtypes (Proneural, Neural, Classical, Mesenchymal)</td>
+<td><a target="_blank" href='https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={"name":"TCGA GBM Classifiers","$fields":["genes"]}&apikey=password'>840</a></td>
+</tr>
+<tr>
+<td><a target="_blank" href=>Glioma Markers</a></td>
+<td>Genes recurrently impacted in TCGA gliomas</td>
+<td><a target="_blank" href='https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={"name":"Glioma Markers","$fields":["genes"]}&apikey=password'>545</a></td>
+</tr>
+<tr>
+<td><a target="_blank" href=https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4320046/>TCGA Pancan Mutated</a></td>
+<td>Significantly mutated genes according to the TCGA PANCAN working group (syn1750331) identified by both MuSiC and MutSig</td>
+<td><a target="_blank" href='https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={"name":"TCGA Pancan Mutated","$fields":["genes"]}&apikey=password'>73</a></td>
+</tr>
+<tr>
+<td><a target="_blank" href=https://www.ncbi.nlm.nih.gov/pubmed/23539594/>Oncoplex Vogelstein</a></td>
+<td>Combined set from the Oncoplex gene panel and driver genes described in Vogelstein, Science 2013.</td>
+<td><a target="_blank" href='https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={"name":"Oncoplex Vogelstein","$fields":["genes"]}&apikey=password'>274</a></td>
+</tr>
+<tr>
+<td><a target="_blank" href=http://tests.labmed.washington.edu/UW-OncoPlex/>Oncoplex</a></td>
+<td>A sequencing panel that detects mutations in genes related to cancer treatment, prognosis, and diagnosis.</td>
+<td><a target="_blank" href='https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={"name":"Oncoplex","$fields":["genes"]}&apikey=password'>263</a></td>
+</tr>
+<tr>
+<td><a target="_blank" href=https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2575803/>OSCC Expression Markers</a></td>
+<td>Differentially expressed probe set comparing normal oral tissue to oral squamous cell carcinoma</td>
+<td><a target="_blank" href='https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={"name":"OSCC Expression Markers","$fields":["genes"]}&apikey=password'>109</a></td>
+</tr>
+</tbody></table>
