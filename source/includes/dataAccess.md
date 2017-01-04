@@ -44,4 +44,4 @@ limit the final output to two records.
 ## Explore the Oncoscape Database
 
 
-**<a target='_blank' href='http://resources.sttrcancer.org/api/data-explorer/'>Data Explorer</a>**
+**<a target='_blank' href='http://resources.sttrcancer.org/api/data-explorer/'>Data Explorer</a> is an interactive web application to explore the clinical collections in the database.**

@@ -21,6 +21,6 @@ helper.format.url('"$skip":5');
 helper.format.text("limit the final output to two records.");
 helper.format.url('"$limit":2');
 helper.format.h2("Explore the Oncoscape Database");
-helper.format.textbold("<a target='_blank' href='http://resources.sttrcancer.org/api/data-explorer/'>Data Explorer</a>");
+helper.format.textbold("<a target='_blank' href='http://resources.sttrcancer.org/api/data-explorer/'>Data Explorer</a> is an interactive web application to explore the clinical collections in the database.");
   
 
