@@ -132,7 +132,7 @@ co(function *() {
   helper.format.text("Genomic Data Commons Data Portal (GDC) from National Institutes of Health (NIH) provides the compiled annotated clinical data.");
   helper.format.text("<a target='_blank' href='https://gdc-portal.nci.nih.gov/legacy-archive/search/f?filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22cases.project.program.name%22,%22value%22:%5B%22TCGA%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22files.data_category%22,%22value%22:%5B%22Clinical%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22files.data_type%22,%22value%22:%5B%22Clinical%20Supplement%22,%22Clinical%20data%22%5D%7D%7D%5D%7D&pagination=%7B%22files%22:%7B%22from%22:0,%22size%22:20,%22sort%22:%22cases.project.project_id:asc%22%7D%7D'>GDC clinical data</a>");
   helper.format.h3("Data Type");
-  helper.format.text("Clinical Collection Type | Annotation");
+  helper.format.text("Type | Annotation");
   helper.format.table("--------- | ----------- ");
   var clinical_annot_keys = Object.keys(clinical_annot); 
   for(var m=0;m<clinical_annot_keys.length;m++){
@@ -144,7 +144,7 @@ co(function *() {
   helper.format.text("<a target='_blank' href='https://xenabrowser.net/datapages/?host=https://tcga.xenahubs.net'>UCSC xena hub</a>");
   helper.format.text("<a target='_blank' href='https://github.com/ucscXena/ucsc-xena-server'>UCSC xena github</a>");
   helper.format.h3("Data Type");
-  helper.format.text("Collection Class | Annotation");
+  helper.format.text("Type | Annotation");
   helper.format.table("--------- | ----------- ");
   var class_annot_keys = Object.keys(class_annot);
   for(p=0;p<class_annot_keys.length;p++){

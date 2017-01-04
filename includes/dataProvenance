@@ -1,6 +1,6 @@
 <h1 id="data-provenance">Data Provenance</h1>
 
-<p>We use two collections to track the metadata for all the data collections within our database. &lsquo;manifest&rsquo; is organized by collection. &#39;lookup_oncoscape_datasource&rsquo; is organized by disease.</p>
+<p>This section is dedicated to explain how the raw data were processed to generate new data models to fit to Oncoscape visualization tools. The section <a href='#data-content'>Data Content</a> explains the source and type of raw data.</p>
 
 <h2 id="pipeline">Pipeline</h2>
 
@@ -8,45 +8,59 @@
 
 <h2 id="oncoscape-interface">Oncoscape Interface</h2>
 
-<p>we use lookup as an hand-off from data-generation to data-utilization. Lookup is reminding us the data are organized by diseases. And they have the subcategories: clinical, molecular. The lookup is organized by disease. The top half: meta about the disease set. The bottom is the actual data. from each lookup document. The meta section is organized by..The actual section is organized by … subcategories. Render tables are created for tool; MP: render_patient; PCA: render_pca</p>
+<p>We use lookup as an hand-off from data-generation to data-utilization. Lookup reminds us the data are organized by diseases. And they have the subcategories: clinical, molecular. Each document of the lookup collection is to describe the organization of all the disease-related collection structure. Within each document, except for the organization of actual data collections, there is metadata section. </p>
 
-<p>To fit into the Oncoscape Data Visualization model, we further processed the raw data described in <a href='#data-content'>Data Content</a>. This section is dedicated to explain the data model and process. The two major processes include <a href='#cluster'>cluster</a> and <a href='#network'>network</a>.</p>
+<p><img alt="One example of lookup do3cument" src="/images/lookup_doc.png" /></p>
 
-<h2 id="cluster">Cluster</h2>
+<p>The processed raw data are stored under &lsquo;calculated&rsquo; and &#39;edges&rsquo; in each document. The &#39;calculated&rsquo; is explained in <a href='#cluster'>Cluster</a> while the &#39;edges&rsquo; is explained in <a href='#network'>Network</a>.</p>
 
-<p>The cluster collections are generated to fit into two tools &#39;Markers and Patients&rsquo; and &#39;PCA&rsquo; in Oncoscape. There are two Schemas for clutster collections: Multidimensional Scaling (MDS) and Principal component analysis (PCA).</p>
+<h3 id="cluster">Cluster</h3>
 
-<h3 id="mds">MDS</h3>
+<p>The cluster collections are generated to fit into two Oncoscape tools &#39;Markers and Patients&rsquo; and &#39;PCA&rsquo;. There are two Schemas for clutster collections: Multidimensional Scaling (MDS) and Principal component analysis (PCA).</p>
 
-<p><strong>Input Data:</strong></p>
+<p><strong>MDS</strong></p>
 
 <ul>
-<li><p><a href='#data-type7'>cnv_thd</a></p></li>
-<li><p><a href='#data-type7'>mut01</a></p></li>
-</ul>
+<li><p>Input Data:</p>
 
-<p><strong>Mechanism:</strong></p>
+<ul>
+<li><a href='#data-type7'>cnv_thd</a></li>
+<li><a href='#data-type7'>mut01</a></li>
+</ul></li>
+<li><p>Mechanism:</p></li>
+</ul>
 
 <p>cnv_thd and mut01 were combined and the distance matrix were calculated best represent the similarity of individual sample in the N-dimensional space.</p>
 
-<p><strong>Schema:</strong></p>
-
-<h3 id="pca">PCA</h3>
-
-<p><strong>Input Data:</strong></p>
-
 <ul>
-<li><p><a href='#data-type7'>expr</a> including RNA and Protein</p></li>
-<li><p><a href='#data-type7'>cnv</a></p></li>
+<li>Schema</li>
 </ul>
 
-<p><strong>Mechanism:</strong></p>
+<p><img alt="mds collection schema" src="/images/mds.png" /></p>
+
+<p><strong>PCA</strong></p>
+
+<ul>
+<li><p>Input Data:</p>
+
+<ul>
+<li><a href='#data-type7'>expr</a> including RNA and Protein</li>
+<li><a href='#data-type7'>cnv</a></li>
+</ul></li>
+<li><p>Mechanism:</p></li>
+</ul>
 
 <p>The collection of each class will be processed respectively that distance matrices were generated to best represent the similarity of individual sample in the N-dimensional space.</p>
 
-<p><strong>Schema:</strong></p>
+<ul>
+<li>Schema</li>
+</ul>
 
-<h3 id="collection-organization">Collection Organization</h3>
+<p><img alt="pca scores collection schema" src="/images/pcascore.png" /></p>
+
+<p><img alt="pca loading schema" src="/images/pcaloading.png" /></p>
+
+<p><strong>Collection Organization</strong></p>
 
 <p>The naming convention of the derived collections includes the information from method, geneset as well as data class listed below.</p>
 
@@ -89,18 +103,36 @@
 </tr>
 </tbody></table>
 
-<h2 id="network">Network</h2>
+<h3 id="network">Network</h3>
 
-<p>The network collections are generated to fit to&#39;Markers and Patients&rsquo; in Oncoscape. There are three Schemas for network collections: edges, patient weights and gene weights.</p>
+<p>The network collections are generated to fit to Oncoscape tool &#39;Markers and Patients&rsquo;. There are three Schemas for network collections: edges, patient weights and gene weights.</p>
 
-<h3 id="edges">Edges</h3>
+<p><strong>Edges</strong></p>
 
 <p>Edges contain the information to define the edges connecting one patient sample with one gene. For each record the value may be integer between -2 to +2. If one gene in one patient sample has copy number variation, this information will be represented as -2 (deletion), or -1 (loss), or +1 (gain), or +2 (amplificaiton). If this gene on this patient sample doesn&rsquo;t have copy number variation but point mutation, this information will be represented as &#39;0&rsquo;. Otherwise, no record will be shown. </p>
 
-<h3 id="patient-degrees">Patient degrees</h3>
+<ul>
+<li>Schema</li>
+</ul>
+
+<p><img alt="edges schema" src="/images/edge.png" /></p>
+
+<p><strong>Patient degrees</strong></p>
 
 <p>For a certain dataset, patient degrees record the number of altered genes (copy number variation and point mutation) for each patient.</p>
 
-<h3 id="gene-degrees">Gene degrees</h3>
+<ul>
+<li>Schema</li>
+</ul>
+
+<p><img alt="ptdegree schema" src="/images/ptdegree.png" /></p>
+
+<p><strong>Gene degrees</strong></p>
 
 <p>For a certain dataset, gene degrees record the number of patients who have this gene altered (either caused by copy number varation or point mutation).</p>
+
+<ul>
+<li>Schema</li>
+</ul>
+
+<p><img alt="genedegree schema" src="/images/genedegree.png" /></p>

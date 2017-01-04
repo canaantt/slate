@@ -14,7 +14,7 @@
 
 <table><thead>
 <tr>
-<th>Clinical Collection Type</th>
+<th>Type</th>
 <th>Annotation</th>
 </tr>
 </thead><tbody>
@@ -70,7 +70,7 @@
 
 <table><thead>
 <tr>
-<th>Collection Class</th>
+<th>Type</th>
 <th>Annotation</th>
 </tr>
 </thead><tbody>
