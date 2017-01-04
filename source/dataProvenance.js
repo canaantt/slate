@@ -5,6 +5,9 @@ var helper = require("./testingHelper.js");
 
 helper.format.h1("Data Provenance");
 helper.format.text("To fit into the Oncoscape Data Visualization model, we further processed the raw data described in <a href='#data-content'>Data Content</a>. This section is dedicated to explain the data model and process. The two major processes include <a href='#cluster'>cluster</a> and <a href='#network'>network</a>.");
+helper.format.h2("Pipeline");
+helper.format.text("![Data Processing Pipeline](/images/datapipeline2.png)");
+helper.format.h2("Oncoscape Interface");
 helper.format.h2("Cluster");
 helper.format.text("The cluster collections are generated to fit into two tools 'Markers and Patients' and 'PCA' in Oncoscape. There are two Schemas for clutster collections: Multidimensional Scaling (MDS) and Principal component analysis (PCA).");
 helper.format.h3("MDS");
