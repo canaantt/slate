@@ -20,17 +20,17 @@ search: true
 
 # Introduction
 
-<a target="_blank" href='https://oncoscape.sttrcancer.org/#/'>Oncoscape</a> is a web application that hosts an integrated suite of analysis tools for users to explore hypotheses related to molecular and clinical data in order to better understand cancer biology and treatment options. For more detailed information, please read <a target="_blank" href='https://github.com/FredHutch/Oncoscape'>github repo page</a>.
+<a target="_blank" href='https://oncoscape.sttrcancer.org/#/'>Oncoscape</a> is a data visualization platform that empowers researchers to discover novel patterns and relationships between clinical and molecular data. Through a suite of interoperable tools, Oncoscape offers a unique and intuitive approach to hypothesis refinement.For more detailed information, please read <a target="_blank" href='https://github.com/FredHutch/Oncoscape'>github repo page</a>.
 
 * <a href='#data-content'>**Data Content**</a>
-  * Organizes most if not all data collections by disease
-  * Lists data types includes clinical and molecular collections
-  * Lists data sources and a brief description of the individual collection
+  * data sources
+  * data types of clinical and molecular collections
 * <a href='#data-provenance'>**Data Provenance**</a>
   * Explanation of the Oncoscape data processing pipeline
   * Oncoscape interface
 * <a href='#data-access'>**Data Access**</a>
   * Endpoint for Oncoscape Data API
-  * Syntax for simple query
+  * Syntax for simple query using browser
+  * Interactive web application to explore the data
 
 

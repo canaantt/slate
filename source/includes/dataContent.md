@@ -13,7 +13,7 @@ Genomic Data Commons Data Portal (GDC) from National Institutes of Health (NIH) 
 
 ### Data Type
 
-Clinical Collection Type | Annotation
+Type | Annotation
 --------- | ----------- 
 events | clinical events collection organized by patient
 patient | patient collection for each disease type
@@ -37,7 +37,7 @@ UCSC Xena compiled annotated normalized molecular datasets of various platforms 
 
 ### Data Type
 
-Collection Class | Annotation
+Type | Annotation
 --------- | ----------- 
 expr | Expression data including mRNA and microRNA expression data and Reverse hase protein array (RPPA) data
 mut | non-synonymous mutations representated as strings in this collection
