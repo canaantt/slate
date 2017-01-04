@@ -157,7 +157,7 @@ co(function *() {
   for(p=0;p<schema_annot_keys.length;p++){
     helper.format.table(schema_annot_keys[p] + " | " + schema_annot[schema_annot_keys[p]]);
   } 
-  helper.format.h2("Gene Set");
+  helper.format.h2("Gene Sets");
   helper.format.text("Name | Description | Genes");
   helper.format.table("--------- | --------- | ---------");
   for(var i= 0; i<genesets_annot.length; i++){

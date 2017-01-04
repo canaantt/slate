@@ -9,8 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jQuery": "^1.7.4",
+    "co": "^4.6.0",
+    "co-mongodb": "^0.1.0",
+    "jquery": "^1.7.4",
     "jsdom": "^9.4.2",
-    "mongodb": "^2.2.5"
+    "jsonfile": "^2.4.0",
+    "mongodb": "^2.2.5",
+    "underscore": "^1.8.3"
   }
 }

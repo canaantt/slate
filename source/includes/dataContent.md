@@ -56,7 +56,7 @@ hugo_sample | Collections of this schema have chromosomal HUGO genes as keys for
 sample_pos | Collections of this schema have samples as keys for each record, which is a list of position.
 methoprobe_sample | Collections of this schema have methlyation probes as keys for each record, which is a list of values with samples as keys.
 
-## Gene Set
+## Gene Sets
 
 Name | Description | Genes
 --------- | --------- | ---------
