@@ -161,8 +161,16 @@ co(function *() {
   helper.format.text("Name | Description | Genes");
   helper.format.table("--------- | --------- | ---------");
   for(var i= 0; i<genesets_annot.length; i++){
-      helper.format.table('<a target="_blank" href='+ genesets_annot[i].url + '>' + genesets_annot[i].name +'</a>'+ ' | '  + 
+      if(genesets_annot[i].url != ""){
+        helper.format.table('<a target="_blank" href='+ genesets_annot[i].url + '>' + genesets_annot[i].name +'</a>'+ ' | '  + 
              genesets_annot[i].desc  + ' | ' + '<a target="_blank" href=\'https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={' + '"name":"'+ genesets_annot[i].name + '","$fields":["genes"]}&apikey=password' + '\'>'+ genesets_annot[i].num +'</a>');
+      
+      }else{
+        helper.format.table(genesets_annot[i].name + ' | '  + 
+             genesets_annot[i].desc  + ' | ' + '<a target="_blank" href=\'https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={' + '"name":"'+ genesets_annot[i].name + '","$fields":["genes"]}&apikey=password' + '\'>'+ genesets_annot[i].num +'</a>');
+      
+      }
+
       
   }
   yield comongo.db.close(db);

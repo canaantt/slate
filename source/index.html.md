@@ -6,7 +6,7 @@ toc_footers:
   - <a target="_blank" href='https://oncoscape.sttrcancer.org'>Oncoscape</a>
   - <a target="_blank" href='https://github.com/FredHutch/Oncoscape'>Oncoscape Github Site</a>
   - <a target="_blank" href='http://resources.sttrcancer.org/api/data-explorer/'>Oncoscape Data API Explorer</a>
-  - <a target="_blank" href='http://resources.sttrcancer.org/oncoscape'>Oncoscape Tool Documentation</a>
+  - <a target="_blank" href='http://oncoscape.sttrcancer.org/documentation/'>Oncoscape Tool Documentation</a>
 
 
 includes:
