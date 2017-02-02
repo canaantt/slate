@@ -145,7 +145,7 @@
 <td><a target="_blank" href='https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={"name":"TCGA GBM Classifiers","$fields":["genes"]}&apikey=password'>840</a></td>
 </tr>
 <tr>
-<td><a target="_blank" href=>Glioma Markers</a></td>
+<td>Glioma Markers</td>
 <td>Genes recurrently impacted in TCGA gliomas</td>
 <td><a target="_blank" href='https://dev.oncoscape.sttrcancer.io/api/lookup_genesets/?q={"name":"Glioma Markers","$fields":["genes"]}&apikey=password'>545</a></td>
 </tr>
